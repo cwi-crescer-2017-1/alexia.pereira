@@ -4,8 +4,8 @@ Informe ao usuário (alguém que não sabe nada sobre este projeto!) tudo que
 ele/ela precisa saber. Os comentários devem incluir, pelo menos:
 ------------------------------------------------------------------------
 
-TITULO DO PROJETO:
-OBJETIVO DO PROJETO:
+TITULO DO PROJETO: Cavaleiro dos Zodíaco
+OBJETIVO DO PROJETO: Aprimorar os conceitos e práticas de Orientação Objetos e abstração.
 VERSÃO ou DATA:
 COMO INICIAR O PROJETO:
 AUTORES:
