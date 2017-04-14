@@ -6,7 +6,7 @@ import org.junit.Test;
 public class SaintTest {
     @Test
     public void vestirArmaduraDeixaArmaduraVestida() {
-   
+ 
          // AAA
          // 1. Arrange - Montagem dos dados de teste
          Armadura armadura = new Armadura("Aquário", Categoria.OURO);
@@ -28,12 +28,28 @@ public class SaintTest {
     public void aoCriarSaintGeneroENaoInformado () {
         Saint saint = new Saint("Shaka", new Armadura ("Virgem", Categoria.OURO));
         assertEquals(Genero.NAO_INFORMADO, saint.getGenero());
-    
-    
     }
     
+    @Test
+    public void aoCriarSaintEleEVivo () {
+        Saint saint = new Saint("Shaka", new Armadura ("Virgem", Categoria.OURO));
+        assertEquals(StatusDeVida.VIVO, saint.getStatus());
+        
+    }
     
+    @Test
+    public void aoCriarSaintEleTem100DeVida () {
+        Saint saint = new Saint("Shaka", new Armadura ("Virgem", Categoria.OURO));
+        assertEquals(100.0, saint.getVida(), 100.0);
+        
+    }
     
+    @Test
+    public void perderVidaPerdeRealmenteVida () {
+        Saint saint = new Saint("Shaka", new Armadura ("Virgem", Categoria.OURO));
+        saint.perderVida(10.0);
+        assertEquals(90.0, saint.getVida(), 0.001);    
+    }
     
     
     
