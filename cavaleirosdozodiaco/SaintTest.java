@@ -52,11 +52,37 @@ public class SaintTest {
     }
     
     @Test
-    public void perderVidaPerdeRealmenteVida () {
+    public void perderDanoComValor10() {
         Saint saint = new Saint("Shaka", new Armadura ("Virgem", Categoria.OURO));
         saint.perderVida(10.0);
         assertEquals(90.0, saint.getVida(), 0.001);    
     }
+    
+    
+    @Test
+    public void perderDanoComValor100() {
+        Saint saint = new Saint("Shaka", new Armadura ("Virgem", Categoria.OURO));
+        saint.perderVida(100.0);
+        assertEquals(0.0, saint.getVida(), 0.001);    
+    }
+    
+    
+    @Test
+    public void perderDanoComValor1000() {
+        Saint saint = new Saint("Shaka", new Armadura ("Virgem", Categoria.OURO));
+        saint.perderVida(1000.0);
+        assertEquals(-900.0, saint.getVida(), 0.001);    
+    }
+    
+    
+    @Test
+    public void perderDanoComValorMenos1000() {
+        Saint saint = new Saint("Shaka", new Armadura ("Virgem", Categoria.OURO));
+        saint.perderVida(-1000.0);
+        assertEquals(1100.0, saint.getVida(), 0.001);    
+    }
+    
+    
     
     
     
