@@ -3,7 +3,7 @@ public class Saint {
     private Armadura armadura;
     private boolean armaduraVestida;
     private Genero genero = Genero.NAO_INFORMADO;
-    private StatusDeVida status = StatusDeVida.VIVO;
+    private Status status = Status.VIVO;
     private double vida;
     
     public Saint(String nome, Armadura armadura) {
@@ -28,7 +28,7 @@ public class Saint {
         this.genero = genero;
     }
     
-    public StatusDeVida getStatus () {
+    public Status getStatus () {
         return this.status;
     }
     
