@@ -83,6 +83,15 @@ public class SaintTest {
     }
     
     
+    @Test
+    public void aoCriarSaintEleNasceCom5SentidosDespertados () {
+        Saint saint = new Saint ("Hyoga", new Armadura("Cisne", Categoria.BRONZE));
+        assertEquals(5, saint.getQtdSentidosDespertados());
+        
+    }
+    
+    
+    
     
     
     
