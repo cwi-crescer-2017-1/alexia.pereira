@@ -80,16 +80,14 @@ public class SaintTest {
         // Assert
         assertEquals(-900, shiryu.getVida(), 0.01);
     }
-
+    
     @Test
-    public void perderDanoComValorMenos1000() throws Exception {
-        // Arrange
-        Saint shiryu = new Saint("Shiryu", new Armadura("Dragão", Categoria.BRONZE));
-        // Act
-        shiryu.perderVida(-1000);
-        // Assert
-        assertEquals(1100, shiryu.getVida(), 0.01);
+    public void setStatusAlteraStatus () throws Exception {
+        Saint shiryu = new BronzeSaint("Shiryu", new Armadura("Dragão", Categoria.BRONZE));
+        shiryu.setStatus(Status.MORTO);
+        assertEquals(Status.MORTO, shiryu.getStatus());
     }
+    
 
     @Test
     public void criarSaintNasceCom5SentidosDespertados() throws Exception {
@@ -102,23 +100,71 @@ public class SaintTest {
         Saint marin = new SilverSaint("Marin", new Armadura("Águia", Categoria.PRATA));
         assertEquals(6, marin.getQtdSentidosDespertados());
     }
-    
+
     @Test
     public void criarSaintOuroNasceCom7SentidosDespertados() throws Exception {
         Saint afrodite = new GoldSaint("Afrodite", new Armadura("Peixes", Categoria.OURO));
         assertEquals(7, afrodite.getQtdSentidosDespertados());
     }
-    
+
     @Test(expected=Exception.class)
     public void constelacaoInvalidaDeOuroDeveLancarErro() throws Exception {
         new GoldSaint("Bernardo", new Armadura("Café", Categoria.OURO));
+    }    
+
+    @Test
+    public void saintPerdeVidaEMorre () throws Exception {
+        Saint afrodite = new Saint("Afrodite", new Armadura("Peixes", Categoria.OURO));
+        afrodite.perderVida(100);
+        assertEquals(Status.MORTO, afrodite.getStatus());
     }
 
+    @Test
+    public void saintPerdeVidaENaoMorre () throws Exception {
+        Saint afrodite = new Saint("Afrodite", new Armadura("Peixes", Categoria.OURO));
+        afrodite.perderVida(99);
+        assertEquals(Status.VIVO, afrodite.getStatus());
+    }
+
+    @Test(expected=InvalidParameterException.class)
+    public void perderDanoComValorNegativo1000() throws Exception {
+        // Arrange
+        Saint shiryu = new Saint("Shiryu", new Armadura("Dragão", Categoria.BRONZE));
+        // Act
+        shiryu.perderVida(-1000);
+        // Assert
+        assertEquals(1100, shiryu.getVida(), 0.01);
+    }
+
+    @Test(expected=InvalidParameterException.class)
+    public void perderDanoComValorNegativo100() throws Exception {
+        // Arrange
+        Saint shiryu = new Saint("Shiryu", new Armadura("Dragão", Categoria.BRONZE));
+        // Act
+        shiryu.perderVida(-100);
+        // Assert
+        assertEquals(1100, shiryu.getVida(), 0.01);
+    }
+
+    @Test(expected=InvalidParameterException.class)
+    public void perderDanoComValorNegativo1() throws Exception {
+        // Arrange
+        Saint shiryu = new Saint("Shiryu", new Armadura("Dragão", Categoria.BRONZE));
+        // Act
+        shiryu.perderVida(-1);
+        // Assert
+        assertEquals(1100, shiryu.getVida(), 0.01);
+    }
+
+    @Test
+    public void saintNaoPerdeVidaQuandoMorto () throws Exception {
+        Saint shiryu = new Saint("Shiryu", new Armadura("Dragão", Categoria.BRONZE));
+        shiryu.perderVida(100);
+        shiryu.perderVida(100);
+        assertEquals(0, shiryu.getVida(), 0.01);
+    }
+        
 }
-
-
-
-
 
 
 

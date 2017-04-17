@@ -10,12 +10,8 @@ public class Saint {
     public Saint(String nome, Armadura armadura) throws Exception {
         this.nome = nome;
         this.armadura = armadura;
-
         /*int valorCategoria = this.armadura.getCategoria().getValor();
         this.qtdSentidosDespertados += valorCategoria;*/
-
-        
-
     }
 
     public void vestirArmadura() {
@@ -37,15 +33,26 @@ public class Saint {
 
     public Status getStatus() {
         return this.status;
+    } 
+    
+    public void setStatus (Status status) {
+        this.status = status;
     }
-
+        
     public double getVida() {
         return this.vida;
     }
 
-    public void perderVida(double dano) {
-        //this.vida = this.vida - dano;
-        this.vida -= dano;
+    public void perderVida(double dano) throws InvalidParameterException {
+        if (dano > 0) {  
+            if (this.getStatus() != Status.MORTO) {
+                this.vida -= dano;
+                this.status = (this.vida < 1) ? Status.MORTO : this.status;
+            }
+            
+        } else {
+            throw new InvalidParameterException("Parâmetro inválido");
+        }
     }
 
     public Armadura getArmadura() {
