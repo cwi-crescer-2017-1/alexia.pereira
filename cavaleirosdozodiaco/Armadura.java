@@ -12,4 +12,8 @@ public class Armadura {
     }
     
     
+    public String getConstelacao () {
+        return this.constelacao;
+    }
+    
 }
