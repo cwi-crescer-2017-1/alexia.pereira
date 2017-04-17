@@ -90,8 +90,17 @@ public class SaintTest {
         
     }
     
+    @Test
+    public void categoriaPrata6Sentidos () {
+        Saint marin = new Saint ("Marin", new Armadura("Águia", Categoria.PRATA));
+        assertEquals(6, marin.getQtdSentidosDespertados());
+    }
     
-    
+    @Test
+    public void categoriaOuro7Sentidos () {
+        Saint marin = new Saint ("Marin", new Armadura("Águia", Categoria.OURO));
+        assertEquals(7, marin.getQtdSentidosDespertados());
+    }
     
     
     
