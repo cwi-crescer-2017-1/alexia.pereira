@@ -7,7 +7,7 @@ public class Batalha {
         this.saint2 = saint2;
     }
 
-    public void iniciar () {
+    public void iniciar () throws Exception {
         final double dano = 10;
         if (this.saint1.getArmadura().getCategoria().getValor() >= this.saint2.getArmadura().getCategoria().getValor()) {
             this.saint2.perderVida(dano);

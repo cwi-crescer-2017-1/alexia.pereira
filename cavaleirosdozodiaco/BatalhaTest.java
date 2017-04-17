@@ -6,9 +6,9 @@ import org.junit.Test;
 public class BatalhaTest {
 
     @Test
-    public void categoriaSaint1MaiorQueSaint2 () {
-        Saint seiya = new Saint ("Seiya", new Armadura("Pegaso", Categoria.BRONZE));
-        Saint marin = new Saint ("Marin", new Armadura("Águia", Categoria.PRATA));
+    public void categoriaSaint1MaiorQueSaint2 () throws Exception {
+        Saint seiya = new BronzeSaint ("Seiya", new Armadura("Pegaso", Categoria.BRONZE));
+        Saint marin = new SilverSaint ("Marin", new Armadura("Águia", Categoria.PRATA));
         Batalha batalha = new Batalha (seiya, marin);
         batalha.iniciar();
         assertEquals(90.0, seiya.getVida(), 0.001);
@@ -16,7 +16,7 @@ public class BatalhaTest {
     }
 
     @Test
-    public void iniciarVerificaEmpateDeCategoria () {
+    public void iniciarVerificaEmpateDeCategoria ()  throws Exception {
         Saint alderbaran = new Saint ("Alderbaran", new Armadura("Touro", Categoria.OURO));
         Saint mascaraMorte = new Saint ("Máscara da Morte", new Armadura("Câncer", Categoria.OURO));
         Batalha batalha = new Batalha (alderbaran, mascaraMorte);
@@ -26,7 +26,7 @@ public class BatalhaTest {
     }
     
     @Test
-    public void categoriaSaint2MaiorQueSaint1 () {
+    public void categoriaSaint2MaiorQueSaint1 () throws Exception {
         Saint ikki = new Saint ("Ikki", new Armadura("Fênix", Categoria.BRONZE));
         Saint mascaraMorte = new Saint ("Máscara da Morte", new Armadura("Câncer", Categoria.OURO));
         Batalha batalha = new Batalha (ikki, mascaraMorte);
