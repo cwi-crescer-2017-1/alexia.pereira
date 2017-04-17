@@ -5,106 +5,121 @@ import org.junit.Test;
 
 public class SaintTest {
     @Test
-    public void vestirArmaduraDeixaArmaduraVestida() {
- 
-         // AAA
-         // 1. Arrange - Montagem dos dados de teste
-         Armadura armadura = new Armadura("Aquário", Categoria.OURO);
-         Saint saint = new Saint("Camus", armadura);
-         // 2. Act - Invocar ação a ser testada
-         saint.vestirArmadura();
-         // 3. Assert - Verificação dos resultados do teste
-         boolean resultado = saint.getArmaduraVestida();
-         assertEquals(true, resultado);
+    public void vestirArmaduraDeixaArmaduraVestida() throws Exception {
+        // AAA
+        // 1. Arrange - Montagem dos dados de teste
+        Armadura escorpiao = new Armadura("Escorpião", Categoria.OURO);
+        Saint milo = new Saint("Milo", escorpiao);
+        // 2. Act - Invocar a ação a ser testada
+        milo.vestirArmadura();
+        // 3. Assert - Verificação dos resultados do teste
+        boolean resultado = milo.getArmaduraVestida();
+        assertEquals(true, resultado);
     }
-    
+
     @Test
-    public void naoVestirArmaduraDeixaArmaduraNaoVestida () {
-        Saint saint = new Saint ("Hyoga", new Armadura("Cisne", Categoria.BRONZE));
-        assertEquals(false, saint.getArmaduraVestida());
+    public void naoVestirArmaduraDeixaArmaduraNaoVestida() throws Exception {
+        Saint hyoga = new Saint("Hyoga", new Armadura("Cisne", Categoria.BRONZE));
+        assertEquals(false, hyoga.getArmaduraVestida());
     }
-    
+
     @Test
-    public void aoCriarSaintGeneroENaoInformado () {
-        Saint saint = new Saint("Shaka", new Armadura ("Virgem", Categoria.OURO));
-        assertEquals(Genero.NAO_INFORMADO, saint.getGenero());
+    public void aoCriarSaintGeneroENaoInformado() throws Exception {
+        Armadura virgem = new Armadura("Virgem", Categoria.OURO);
+        Saint shaka = new Saint("Shaka", virgem);
+        assertEquals(Genero.NAO_INFORMADO, shaka.getGenero());
     }
-    
+
     @Test
-    public void deveSerPossivelAlterarOGenero () {
-        Saint saint = new Saint("Jabu", new Armadura ("Unicornio", Categoria.OURO));
-        saint.setGenero(Genero.MASCULINO);
-        assertEquals(Genero.MASCULINO, saint.getGenero());        
+    public void deveSerPossivelAlterarOGenero() throws Exception {
+        Saint jabu = new Saint("Jabu", new Armadura("Unicórnio", Categoria.BRONZE));
+        jabu.setGenero(Genero.MASCULINO);
+        assertEquals(Genero.MASCULINO, jabu.getGenero());
+        jabu.setGenero(Genero.FEMININO);
+        assertEquals(Genero.FEMININO, jabu.getGenero());
     }
-   
+
     @Test
-    public void aoCriarSaintEleEVivo () {
-        Saint saint = new Saint("Shaka", new Armadura ("Virgem", Categoria.OURO));
-        assertEquals(Status.VIVO, saint.getStatus());
-        
+    public void statusInicialDeveSerVivo() throws Exception {
+        Saint shiryu = new Saint("Shiryu", new Armadura("Dragão", Categoria.BRONZE));
+        assertEquals(Status.VIVO, shiryu.getStatus());
     }
-    
+
     @Test
-    public void aoCriarSaintEleTem100DeVida () {
-        Saint saint = new Saint("Shaka", new Armadura ("Virgem", Categoria.OURO));
-        assertEquals(100.0, saint.getVida(), 100.0);
-        
+    public void vidaInicialDeveSer100() throws Exception {
+        Saint shiryu = new Saint("Shiryu", new Armadura("Dragão", Categoria.BRONZE));
+        assertEquals(100.0, shiryu.getVida(), 0.01);
     }
-    
+
     @Test
-    public void perderDanoComValor10() {
-        Saint saint = new Saint("Shaka", new Armadura ("Virgem", Categoria.OURO));
-        saint.perderVida(10.0);
-        assertEquals(90.0, saint.getVida(), 0.001);    
+    public void perderDanoComValor10() throws Exception {
+        // Arrange
+        Saint shiryu = new Saint("Shiryu", new Armadura("Dragão", Categoria.BRONZE));
+        // Act
+        shiryu.perderVida(10);
+        // Assert
+        assertEquals(90, shiryu.getVida(), 0.01);
     }
-    
-    
+
     @Test
-    public void perderDanoComValor100() {
-        Saint saint = new Saint("Shaka", new Armadura ("Virgem", Categoria.OURO));
-        saint.perderVida(100.0);
-        assertEquals(0.0, saint.getVida(), 0.001);    
+    public void perderDanoComValor100() throws Exception {
+        // Arrange
+        Saint shiryu = new Saint("Shiryu", new Armadura("Dragão", Categoria.BRONZE));
+        // Act
+        shiryu.perderVida(100);
+        // Assert
+        assertEquals(0, shiryu.getVida(), 0.01);
     }
-    
-    
+
     @Test
-    public void perderDanoComValor1000() {
-        Saint saint = new Saint("Shaka", new Armadura ("Virgem", Categoria.OURO));
-        saint.perderVida(1000.0);
-        assertEquals(-900.0, saint.getVida(), 0.001);    
+    public void perderDanoComValor1000() throws Exception {
+        // Arrange
+        Saint shiryu = new Saint("Shiryu", new Armadura("Dragão", Categoria.BRONZE));
+        // Act
+        shiryu.perderVida(1000);
+        // Assert
+        assertEquals(-900, shiryu.getVida(), 0.01);
     }
-    
-    
+
     @Test
-    public void perderDanoComValorMenos1000() {
-        Saint saint = new Saint("Shaka", new Armadura ("Virgem", Categoria.OURO));
-        saint.perderVida(-1000.0);
-        assertEquals(1100.0, saint.getVida(), 0.001);    
+    public void perderDanoComValorMenos1000() throws Exception {
+        // Arrange
+        Saint shiryu = new Saint("Shiryu", new Armadura("Dragão", Categoria.BRONZE));
+        // Act
+        shiryu.perderVida(-1000);
+        // Assert
+        assertEquals(1100, shiryu.getVida(), 0.01);
     }
-    
-    
+
     @Test
-    public void aoCriarSaintEleNasceCom5SentidosDespertados () {
-        Saint saint = new Saint ("Hyoga", new Armadura("Cisne", Categoria.BRONZE));
-        assertEquals(5, saint.getQtdSentidosDespertados());
-        
+    public void criarSaintNasceCom5SentidosDespertados() throws Exception {
+        Saint seiya = new BronzeSaint("Seiya", new Armadura("Pégaso", Categoria.BRONZE));
+        assertEquals(5, seiya.getQtdSentidosDespertados());
     }
-    
+
     @Test
-    public void categoriaPrata6Sentidos () {
-        Saint marin = new Saint ("Marin", new Armadura("Águia", Categoria.PRATA));
+    public void criarSaintPrataNasceCom6SentidosDespertados() throws Exception {
+        Saint marin = new SilverSaint("Marin", new Armadura("Águia", Categoria.PRATA));
         assertEquals(6, marin.getQtdSentidosDespertados());
     }
     
     @Test
-    public void categoriaOuro7Sentidos () {
-        Saint marin = new Saint ("Marin", new Armadura("Águia", Categoria.OURO));
-        assertEquals(7, marin.getQtdSentidosDespertados());
+    public void criarSaintOuroNasceCom7SentidosDespertados() throws Exception {
+        Saint afrodite = new GoldSaint("Afrodite", new Armadura("Peixes", Categoria.OURO));
+        assertEquals(7, afrodite.getQtdSentidosDespertados());
     }
     
-    
-    
-    
-    
-    
+    @Test(expected=Exception.class)
+    public void constelacaoInvalidaDeOuroDeveLancarErro() throws Exception {
+        new GoldSaint("Bernardo", new Armadura("Café", Categoria.OURO));
+    }
+
 }
+
+
+
+
+
+
+
+
