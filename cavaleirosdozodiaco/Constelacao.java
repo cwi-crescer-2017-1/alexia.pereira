@@ -15,7 +15,7 @@ public class Constelacao  {
     }
     
     public void adicionarGolpe (Golpe golpe) {
-        int contador = 3;
+        int contador = this.golpes.length;
         for (int i = 0; i < this.golpes.length; i++) {
             if (golpes[i] == null) {
                 contador--;
