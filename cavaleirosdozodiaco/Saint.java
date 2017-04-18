@@ -1,4 +1,5 @@
 import java.security.InvalidParameterException;
+import java.util.ArrayList;
 public class Saint {
     private String nome;
     protected Armadura armadura;
@@ -72,7 +73,7 @@ public class Saint {
         return this.qtdSentidosDespertados;
     }
     
-    public Golpe[] getGolpes () {
+    public ArrayList<Golpe> getGolpes () {
         return this.getConstelacao().getGolpes();
     }
     
@@ -81,10 +82,10 @@ public class Saint {
     }
     
     public Golpe getProximoGolpe() { 
-        Golpe[] golpes = getGolpes(); 
-        int posicao = this.acumuladorProximoGolpe % golpes.length; 
+        ArrayList<Golpe> golpes = this.getGolpes(); 
+        int posicao = this.acumuladorProximoGolpe % golpes.size(); 
         this.acumuladorProximoGolpe++; 
-        return golpes[posicao]; 
+        return golpes.get(posicao); 
     } 
     
 

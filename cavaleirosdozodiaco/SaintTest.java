@@ -149,9 +149,8 @@ public class SaintTest {
         Saint shiryu = new Saint("Shiryu", new Armadura((new Constelacao("Dragão")), Categoria.BRONZE));
         Golpe golpe = new Golpe ("Cólera do Dragão", 20);
         shiryu.aprenderGolpe(golpe);
-        assertEquals(golpe, shiryu.getArmadura().getConstelacao().getGolpes()[0]);
-        assertNull(shiryu.getArmadura().getConstelacao().getGolpes()[1]);
-        assertNull(shiryu.getArmadura().getConstelacao().getGolpes()[2]);
+        assertEquals(golpe, shiryu.getArmadura().getConstelacao().getGolpes().get(0));
+                assertEquals(1, shiryu.getArmadura().getConstelacao().getGolpes().size());
     }
 
     @Test
@@ -159,13 +158,13 @@ public class SaintTest {
         Saint shiryu = new Saint("Shiryu", new Armadura((new Constelacao("Dragão")), Categoria.BRONZE));
         Golpe golpe = new Golpe ("Cólera do Dragão", 20);
         shiryu.aprenderGolpe(golpe);
-        assertEquals(golpe, shiryu.getArmadura().getConstelacao().getGolpes()[0]);
+        assertEquals(golpe, shiryu.getArmadura().getConstelacao().getGolpes().get(0));
 
         Golpe cafe = new Golpe ("Café", 2);
         shiryu.aprenderGolpe(cafe);
 
-        assertEquals(cafe, shiryu.getArmadura().getConstelacao().getGolpes()[1]);
-        assertNull(shiryu.getArmadura().getConstelacao().getGolpes()[2]);
+        assertEquals(cafe, shiryu.getArmadura().getConstelacao().getGolpes().get(1));
+        assertEquals(2, shiryu.getArmadura().getConstelacao().getGolpes().size());
     }
 
     @Test
@@ -173,30 +172,14 @@ public class SaintTest {
         Saint shiryu = new Saint("Shiryu", new Armadura((new Constelacao("Dragão")), Categoria.BRONZE));
         Golpe golpe1 = new Golpe ("Meteoro de Pegaso", 100);
         shiryu.aprenderGolpe(golpe1);
-        assertEquals(golpe1, shiryu.getArmadura().getConstelacao().getGolpes()[0]);
+        assertEquals(golpe1, shiryu.getArmadura().getConstelacao().getGolpes().get(0));
         Golpe golpe2 = new Golpe ("Metéoro 2", 80);
         shiryu.aprenderGolpe(new Golpe ("Metéoro 2", 80));
-        assertEquals(golpe2, shiryu.getArmadura().getConstelacao().getGolpes()[1]);
+        assertEquals(golpe2, shiryu.getArmadura().getConstelacao().getGolpes().get(1));
         Golpe golpe3 = new Golpe ("Metéoro 3", 30);
         shiryu.aprenderGolpe(new Golpe ("Metéoro 3", 30));
-        assertEquals(golpe3, shiryu.getArmadura().getConstelacao().getGolpes()[2]);
-    }
-
-    @Test (expected = ArrayIndexOutOfBoundsException.class)
-    public void adicionarQuatroGolpes () throws Exception {
-        Saint shiryu = new Saint("Shiryu", new Armadura((new Constelacao("Dragão")), Categoria.BRONZE));
-        Golpe golpe1 = new Golpe ("Meteoro de Pegaso", 100);
-        shiryu.aprenderGolpe(golpe1);
-
-        Golpe golpe2 = new Golpe ("Metéoro 2", 80);
-        shiryu.aprenderGolpe(new Golpe ("Metéoro 2", 80));
-
-        Golpe golpe3 = new Golpe ("Metéoro 3", 30);
-        shiryu.aprenderGolpe(new Golpe ("Metéoro 3", 30));
-
-        Golpe golpe4 = new Golpe ("Metéoro 4", 40);
-        shiryu.aprenderGolpe(new Golpe ("Metéoro 4", 40));
-
+        assertEquals(golpe3, shiryu.getArmadura().getConstelacao().getGolpes().get(2));
+        assertEquals(3, shiryu.getArmadura().getConstelacao().getGolpes().size());
     }
 
     @Test
