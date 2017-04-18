@@ -79,7 +79,7 @@ public class SaintTest {
         // Act
         shiryu.perderVida(1000);
         // Assert
-        assertEquals(-900, shiryu.getVida(), 0.01);
+        assertEquals(0, shiryu.getVida(), 0.01);
     }
 
     @Test
@@ -145,29 +145,106 @@ public class SaintTest {
     }
 
     @Test
-    public void aprenderGolpeInsereGolpeNaConstelacao () throws Exception {
+    public void aprenderUmGolpe () throws Exception {
         Saint shiryu = new Saint("Shiryu", new Armadura((new Constelacao("Dragão")), Categoria.BRONZE));
         Golpe golpe = new Golpe ("Cólera do Dragão", 20);
         shiryu.aprenderGolpe(golpe);
         assertEquals(golpe, shiryu.getArmadura().getConstelacao().getGolpes()[0]);
-        
+        assertNull(shiryu.getArmadura().getConstelacao().getGolpes()[1]);
+        assertNull(shiryu.getArmadura().getConstelacao().getGolpes()[2]);
     }
 
     @Test
-    public void proximoGolpeRetornaOGolpeCerto () throws Exception {
+    public void aprenderDoisGolpes () throws Exception {
         Saint shiryu = new Saint("Shiryu", new Armadura((new Constelacao("Dragão")), Categoria.BRONZE));
-        Golpe golpe1 = new Golpe ("Cólera do Dragão", 20);
-        shiryu.aprenderGolpe(golpe1);
-        Golpe golpe2 = new Golpe ("Cólera2 do2 Dragão2", 30);
-        shiryu.aprenderGolpe(golpe2);        
-        Golpe golpe3 = new Golpe ("Cólera3 do3 Dragão3", 40);
-        shiryu.aprenderGolpe(golpe3);        
-        assertEquals(golpe1, shiryu.getProximoGolpe());
-        assertEquals(golpe2, shiryu.getProximoGolpe());
-        assertEquals(golpe3, shiryu.getProximoGolpe());
-        assertEquals(golpe1, shiryu.getProximoGolpe());
+        Golpe golpe = new Golpe ("Cólera do Dragão", 20);
+        shiryu.aprenderGolpe(golpe);
+        assertEquals(golpe, shiryu.getArmadura().getConstelacao().getGolpes()[0]);
+
+        Golpe cafe = new Golpe ("Café", 2);
+        shiryu.aprenderGolpe(cafe);
+
+        assertEquals(cafe, shiryu.getArmadura().getConstelacao().getGolpes()[1]);
+        assertNull(shiryu.getArmadura().getConstelacao().getGolpes()[2]);
     }
 
-    
-}
+    @Test
+    public void aprenderTresGolpes () throws Exception {
+        Saint shiryu = new Saint("Shiryu", new Armadura((new Constelacao("Dragão")), Categoria.BRONZE));
+        Golpe golpe1 = new Golpe ("Meteoro de Pegaso", 100);
+        shiryu.aprenderGolpe(golpe1);
+        assertEquals(golpe1, shiryu.getArmadura().getConstelacao().getGolpes()[0]);
+        Golpe golpe2 = new Golpe ("Metéoro 2", 80);
+        shiryu.aprenderGolpe(new Golpe ("Metéoro 2", 80));
+        assertEquals(golpe2, shiryu.getArmadura().getConstelacao().getGolpes()[1]);
+        Golpe golpe3 = new Golpe ("Metéoro 3", 30);
+        shiryu.aprenderGolpe(new Golpe ("Metéoro 3", 30));
+        assertEquals(golpe3, shiryu.getArmadura().getConstelacao().getGolpes()[2]);
+    }
 
+    @Test (expected = ArrayIndexOutOfBoundsException.class)
+    public void adicionarQuatroGolpes () throws Exception {
+        Saint shiryu = new Saint("Shiryu", new Armadura((new Constelacao("Dragão")), Categoria.BRONZE));
+        Golpe golpe1 = new Golpe ("Meteoro de Pegaso", 100);
+        shiryu.aprenderGolpe(golpe1);
+
+        Golpe golpe2 = new Golpe ("Metéoro 2", 80);
+        shiryu.aprenderGolpe(new Golpe ("Metéoro 2", 80));
+
+        Golpe golpe3 = new Golpe ("Metéoro 3", 30);
+        shiryu.aprenderGolpe(new Golpe ("Metéoro 3", 30));
+
+        Golpe golpe4 = new Golpe ("Metéoro 4", 40);
+        shiryu.aprenderGolpe(new Golpe ("Metéoro 4", 40));
+
+    }
+
+    @Test
+    public void getProximoGolpeComUm() throws Exception {
+        Saint saga = new Saint("Saga", new Armadura(new Constelacao("Gêmeos"), Categoria.OURO));
+        Golpe outraDimensao = new Golpe("Outra dimensão", 10);
+        saga.aprenderGolpe(new Golpe("Outra dimensão", 10));
+        assertEquals(outraDimensao, saga.getProximoGolpe());
+    }
+
+    @Test
+    public void getProximoGolpeComDois() throws Exception {
+        Saint saga = new Saint("Saga", new Armadura(new Constelacao("Gêmeos"), Categoria.OURO));
+        Golpe outraDimensao = new Golpe("Outra dimensão", 10);
+        Golpe explosaoGalatica = new Golpe("Explosão Galáctica", 11);
+        saga.aprenderGolpe(outraDimensao);
+        saga.aprenderGolpe(explosaoGalatica);
+        assertEquals(outraDimensao, saga.getProximoGolpe());
+        assertEquals(explosaoGalatica, saga.getProximoGolpe());
+    }
+
+    @Test
+    public void getProximoGolpeComTres() throws Exception {
+        Saint saga = new Saint("Saga", new Armadura(new Constelacao("Gêmeos"), Categoria.OURO));
+        Golpe outraDimensao = new Golpe("Outra dimensão", 10);
+        Golpe explosaoGalatica = new Golpe("Explosão Galáctica", 11);
+        Golpe sataImperial = new Golpe("Satã Imperial", 42);
+        saga.aprenderGolpe(outraDimensao);
+        saga.aprenderGolpe(explosaoGalatica);
+        saga.aprenderGolpe(sataImperial);
+        assertEquals(outraDimensao, saga.getProximoGolpe());
+        assertEquals(explosaoGalatica, saga.getProximoGolpe());
+        assertEquals(sataImperial, saga.getProximoGolpe());
+    }
+
+    @Test
+    public void getProximoGolpeComQuatroChamadas() throws Exception {
+        Saint saga = new Saint("Saga", new Armadura(new Constelacao("Gêmeos"), Categoria.OURO));
+        Golpe outraDimensao = new Golpe("Outra dimensão", 10);
+        Golpe explosaoGalatica = new Golpe("Explosão Galáctica", 11);
+        Golpe sataImperial = new Golpe("Satã Imperial", 42);
+        saga.aprenderGolpe(outraDimensao);
+        saga.aprenderGolpe(explosaoGalatica);
+        saga.aprenderGolpe(sataImperial);
+        assertEquals(outraDimensao, saga.getProximoGolpe());
+        assertEquals(explosaoGalatica, saga.getProximoGolpe());
+        assertEquals(sataImperial, saga.getProximoGolpe());
+        assertEquals(outraDimensao, saga.getProximoGolpe());
+    }
+
+}

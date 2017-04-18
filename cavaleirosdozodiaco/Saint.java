@@ -7,7 +7,7 @@ public class Saint {
     private Status status = Status.VIVO;
     private double vida = 100.;
     protected int qtdSentidosDespertados;
-    int cont = 0;
+      private int acumuladorProximoGolpe = 0; 
 
     public Saint(String nome, Armadura armadura) throws Exception {
         this.nome = nome;
@@ -49,16 +49,23 @@ public class Saint {
         if (dano > 0) {  
             if (this.getStatus() != Status.MORTO) {
                 this.vida -= dano;
-                this.status = (this.vida < 1) ? Status.MORTO : this.status;
+                if (vida < 1) {
+                    this.status = Status.MORTO;
+                    this.vida = 0;
+                }
             }
             
         } else {
-            throw new InvalidParameterException("Parâmetro inválido");
+            throw new InvalidParameterException("Dano inválido");
         }
     }
 
     public Armadura getArmadura() {
         return this.armadura;
+    }
+    
+    private Constelacao getConstelacao () {
+        return this.armadura.getConstelacao();
     }
 
     public int getQtdSentidosDespertados() {
@@ -66,19 +73,19 @@ public class Saint {
     }
     
     public Golpe[] getGolpes () {
-        return this.armadura.getConstelacao().getGolpes();
+        return this.getConstelacao().getGolpes();
     }
     
     public void aprenderGolpe (Golpe golpe) {
-        this.armadura.getConstelacao().adicionarGolpe(golpe);
+        this.getConstelacao().adicionarGolpe(golpe);
     }
     
-    public Golpe getProximoGolpe () {      
-        if (cont == this.armadura.getConstelacao().getGolpes().length) {
-            cont = 0;
-        }
-        return this.armadura.getConstelacao().getGolpes()[cont++];
-    }
+    public Golpe getProximoGolpe() { 
+        Golpe[] golpes = getGolpes(); 
+        int posicao = this.acumuladorProximoGolpe % golpes.length; 
+        this.acumuladorProximoGolpe++; 
+        return golpes[posicao]; 
+    } 
     
 
 }
