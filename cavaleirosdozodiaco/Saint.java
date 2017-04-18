@@ -1,3 +1,4 @@
+import java.security.InvalidParameterException;
 public class Saint {
     private String nome;
     protected Armadura armadura;
@@ -6,7 +7,7 @@ public class Saint {
     private Status status = Status.VIVO;
     private double vida = 100.;
     protected int qtdSentidosDespertados;
-    int cont = -1;
+    int cont = 0;
 
     public Saint(String nome, Armadura armadura) throws Exception {
         this.nome = nome;
@@ -73,11 +74,10 @@ public class Saint {
     }
     
     public Golpe getProximoGolpe () {      
-        cont++;
         if (cont == this.armadura.getConstelacao().getGolpes().length) {
             cont = 0;
         }
-        return this.armadura.getConstelacao().getGolpes()[cont];
+        return this.armadura.getConstelacao().getGolpes()[cont++];
     }
     
 
