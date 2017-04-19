@@ -8,8 +8,11 @@ public class Saint {
     private Status status = Status.VIVO;
     private double vida = 100.;
     protected int qtdSentidosDespertados;
-      private int acumuladorProximoGolpe = 0; 
-
+    private int acumuladorProximoGolpe = 0; 
+    
+    public Saint () {
+    }
+    
     public Saint(String nome, Armadura armadura) throws Exception {
         this.nome = nome;
         this.armadura = armadura;
@@ -17,6 +20,10 @@ public class Saint {
         this.qtdSentidosDespertados += valorCategoria;*/
     }
 
+    public String getNome () {
+        return this.nome;
+    }
+    
     public void vestirArmadura() {
         this.armaduraVestida = true;
     }
