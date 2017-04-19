@@ -7,16 +7,10 @@ import java.util.ArrayList;
 public class ListaSaintTest { 
 
     @Test 
-    public void buscarPorNomeRetornaOSaintCorreto () throws Exception { 
+    public void buscarSaintExistentePorNome () throws Exception { 
         ListaSaint lista = new ListaSaint(); 
-        Saint saga = new Saint("Saga", new Armadura(new Constelacao("Gêmeos"), Categoria.OURO)); 
-        Saint shiryu = new Saint("Shiryu", new Armadura((new Constelacao("Dragão")), Categoria.BRONZE)); 
-        Saint afrodite = new Saint("Afrodite", new Armadura((new Constelacao("Peixes")), Categoria.OURO)); 
         Saint marin = new SilverSaint("Marin", new Armadura((new Constelacao("Águia")), Categoria.PRATA)); 
 
-        lista.adicionarSaint(saga); 
-        lista.adicionarSaint(shiryu); 
-        lista.adicionarSaint(afrodite); 
         lista.adicionarSaint(marin); 
 
         assertEquals(marin, lista.buscarPorNome("Marin")); 
@@ -24,107 +18,95 @@ public class ListaSaintTest {
     } 
 
     @Test 
-    public void buscarPorCategoriaRetornaTodosDaCategoriaOuro () throws Exception { ListaSaint lista = new ListaSaint(); 
-        Saint saga = new Saint("Saga", new Armadura(new Constelacao("Gêmeos"), Categoria.OURO)); 
-        Saint shiryu = new Saint("Shiryu", new Armadura((new Constelacao("Dragão")), Categoria.BRONZE)); 
-        Saint afrodite = new Saint("Afrodite", new Armadura((new Constelacao("Peixes")), Categoria.OURO)); 
+    public void buscarSaintInexistentePorNome () throws Exception { 
+        ListaSaint lista = new ListaSaint(); 
         Saint marin = new SilverSaint("Marin", new Armadura((new Constelacao("Águia")), Categoria.PRATA)); 
 
-        lista.adicionarSaint(saga); 
-        lista.adicionarSaint(shiryu); 
-        lista.adicionarSaint(afrodite); 
         lista.adicionarSaint(marin); 
 
-        ArrayList<Saint> categorias = new ArrayList<Saint>(); 
-        categorias = lista.buscarPorCategoria(Categoria.OURO); 
+        assertNull(lista.buscarPorNome("Shiryu")); 
 
-        boolean verifica = false; 
-        for (int i = 0; i < categorias.size(); i++) { 
-            if (categorias.get(i).getArmadura().getCategoria() != Categoria.OURO) { 
-                verifica = true; 
-            }  
-        } 
-        assertEquals(verifica, false);  
-        assertEquals(categorias.size(), 2);
-    }
-
-    @Test 
-    public void buscarPorCategoriaRetornaTodosDaCategoriaPrata () throws Exception { 
-        ListaSaint lista = new ListaSaint(); 
-        Saint saga = new Saint("Saga", new Armadura(new Constelacao("Gêmeos"), Categoria.PRATA)); 
-        Saint shiryu = new Saint("Shiryu", new Armadura((new Constelacao("Dragão")), Categoria.BRONZE)); 
-        Saint afrodite = new Saint("Afrodite", new Armadura((new Constelacao("Peixes")), Categoria.PRATA)); 
-        Saint marin = new SilverSaint("Marin", new Armadura((new Constelacao("Águia")), Categoria.PRATA)); 
-
-        lista.adicionarSaint(saga); 
-        lista.adicionarSaint(shiryu); 
-        lista.adicionarSaint(afrodite); 
-        lista.adicionarSaint(marin); 
-
-        ArrayList<Saint> categorias = new ArrayList<Saint>(); 
-        categorias = lista.buscarPorCategoria(Categoria.PRATA); 
-
-        boolean verifica = false; 
-        for (int i = 0; i < categorias.size(); i++) { 
-            if (categorias.get(i).getArmadura().getCategoria() != Categoria.PRATA) { 
-                verifica = true; 
-            }  
-        } 
-        assertEquals(verifica, false);        
-        assertEquals(categorias.size(), 3);
-    }
-
-    @Test 
-    public void buscarPorCategoriaRetornaTodosDaCategoriaBronze () throws Exception { 
-        ListaSaint lista = new ListaSaint(); 
-        Saint saga = new Saint("Saga", new Armadura(new Constelacao("Gêmeos"), Categoria.OURO)); 
-        Saint shiryu = new Saint("Shiryu", new Armadura((new Constelacao("Dragão")), Categoria.BRONZE)); 
-        Saint afrodite = new Saint("Afrodite", new Armadura((new Constelacao("Peixes")), Categoria.OURO)); 
-        Saint marin = new SilverSaint("Marin", new Armadura((new Constelacao("Águia")), Categoria.BRONZE)); 
-
-        lista.adicionarSaint(saga); 
-        lista.adicionarSaint(shiryu); 
-        lista.adicionarSaint(afrodite); 
-        lista.adicionarSaint(marin); 
-
-        ArrayList<Saint> categorias = new ArrayList<Saint>(); 
-        categorias = lista.buscarPorCategoria(Categoria.BRONZE); 
-
-        boolean verifica = false; 
-        for (int i = 0; i < categorias.size(); i++) { 
-            if (categorias.get(i).getArmadura().getCategoria() != Categoria.BRONZE) { 
-                verifica = true; 
-            }  
-        } 
-        assertEquals(verifica, false);        
-        assertEquals(categorias.size(), 2);
-    }
-
-    @Test 
-    public void buscarPorStatusRetornaTodosDoStatusEscolhido () throws Exception{ 
-        ListaSaint lista = new ListaSaint(); 
-        Saint saga = new Saint("Saga", new Armadura(new Constelacao("Gêmeos"), Categoria.OURO)); 
-        Saint shiryu = new Saint("Shiryu", new Armadura((new Constelacao("Dragão")), Categoria.BRONZE)); 
-        Saint afrodite = new Saint("Afrodite", new Armadura((new Constelacao("Peixes")), Categoria.OURO)); 
-        Saint marin = new SilverSaint("Marin", new Armadura((new Constelacao("Águia")), Categoria.PRATA)); 
-
-        lista.adicionarSaint(saga); 
-        lista.adicionarSaint(shiryu); 
-        lista.adicionarSaint(afrodite); 
-        lista.adicionarSaint(marin); 
-
-        ArrayList<Saint> status = new ArrayList<Saint>(); 
-        status = lista.buscarPorStatus(Status.VIVO); 
-
-        boolean verifica = false; 
-        for (int i = 0; i < status.size(); i++) { 
-            if (status.get(i).getStatus() != Status.VIVO) { 
-                verifica = true; 
-            }  
-        } 
-
-        assertEquals(verifica, false); 
     } 
+
+    @Test 
+    public void buscarSaintExistenteComRepeticaoDeNomes () throws Exception { 
+        ListaSaint lista = new ListaSaint(); 
+        Saint saga = new Saint("Saga", new Armadura(new Constelacao("Gêmeos"), Categoria.OURO)); 
+        Saint saga2 = new Saint("Saga", new Armadura((new Constelacao("Dragão")), Categoria.BRONZE)); 
+
+        lista.adicionarSaint(saga); 
+        lista.adicionarSaint(saga2); 
+
+        assertEquals(saga, lista.buscarPorNome("Saga")); 
+
+    } 
+
+    @Test 
+    public void buscarSaintPorNomeComListaVazia () throws Exception { 
+        ListaSaint lista = new ListaSaint(); 
+
+        assertNull(lista.buscarPorNome("Marin")); 
+
+    }
+
+    @Test
+    public void buscarPorCategoriaListaVazia() {
+        ListaSaint ListaSaint = new ListaSaint();
+        ArrayList<Saint> resultadoBusca = ListaSaint.buscarPorCategoria(Categoria.BRONZE);
+        assertEquals(new ArrayList<Saint>(), resultadoBusca);
+    }
+
+    @Test
+    public void buscarPorCategoriaInexistente() throws Exception {
+        ListaSaint ListaSaint = new ListaSaint();
+        Saint june = new Saint("June", new Armadura(new Constelacao("Camaleão"), Categoria.BRONZE));
+        ListaSaint.adicionarSaint(june);
+        ArrayList<Saint> resultadoBusca = ListaSaint.buscarPorCategoria(Categoria.PRATA);
+        assertEquals(new ArrayList<Saint>(), resultadoBusca);
+    }
+
+    @Test
+    public void buscarPorCategoriaExistente() throws Exception {
+        ListaSaint ListaSaint = new ListaSaint();
+        Saint june = new Saint("June", new Armadura(new Constelacao("Camaleão"), Categoria.BRONZE));
+        Saint misty = new SilverSaint("Misty", new Armadura(new Constelacao("Lagarto"), Categoria.PRATA));
+        ListaSaint.adicionarSaint(misty);
+        ListaSaint.adicionarSaint(june);
+        ArrayList<Saint> resultadoBusca = ListaSaint.buscarPorCategoria(Categoria.BRONZE);
+        assertEquals(june, resultadoBusca.get(0));
+        assertEquals(1, resultadoBusca.size());
+    }
+
+    @Test
+    public void buscarPorCategoriaComMaisDeUmExistenteNaCategoria() throws Exception {
+        ListaSaint ListaSaint = new ListaSaint();
+        Saint june = new Saint("June", new Armadura(new Constelacao("Camaleão"), Categoria.BRONZE));
+        Saint misty = new SilverSaint("Misty", new Armadura(new Constelacao("Lagarto"), Categoria.PRATA));
+        Saint shun = new Saint("June", new Armadura(new Constelacao("Andrômeda"), Categoria.BRONZE));
+        ListaSaint.adicionarSaint(shun);
+        ListaSaint.adicionarSaint(misty);
+        ListaSaint.adicionarSaint(june);
+        ArrayList<Saint> resultadoBusca = ListaSaint.buscarPorCategoria(Categoria.BRONZE);
+        assertEquals(shun, resultadoBusca.get(0));
+        assertEquals(june, resultadoBusca.get(1));
+        assertEquals(2, resultadoBusca.size());
+    }
+
+    @Test
+    public void buscarPorStatusListaVazia() {
+        ListaSaint ListaSaint = new ListaSaint();
+        ArrayList<Saint> resultadoBusca = ListaSaint.buscarPorStatus(Status.VIVO);
+        assertEquals(new ArrayList<Saint>(), resultadoBusca);
+    }
+
+    @Test
+    public void buscarPorStatusInexistente() throws Exception {
+        ListaSaint ListaSaint = new ListaSaint();
+        Saint june = new Saint("June", new Armadura(new Constelacao("Camaleão"), Categoria.BRONZE));
+        ListaSaint.adicionarSaint(june);
+        ArrayList<Saint> resultadoBusca = ListaSaint.buscarPorStatus(Status.MORTO);
+        assertEquals(new ArrayList<Saint>(), resultadoBusca);
+    }
 
     @Test 
     public void getSaintMaiorVidaRetornaSaintComMaiorVida () throws Exception { 

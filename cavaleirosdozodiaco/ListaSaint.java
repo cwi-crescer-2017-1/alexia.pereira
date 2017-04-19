@@ -1,4 +1,6 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+
 public class ListaSaint {
     ArrayList<Saint> lista = new ArrayList<>();
 
@@ -23,34 +25,53 @@ public class ListaSaint {
     }
 
     public Saint buscarPorNome (String nome) {
+		/*
         for (int i = 0; i < this.lista.size(); i++) {
             if (lista.get(i).getNome().equals(nome)) {
                 return lista.get(i);
             }
         }
         return null;
+		*/
+
+        return this.lista.stream()
+        .filter(s -> s.getNome().equals(nome))
+        .findFirst().
+        orElse(null);
+        
+
     }
 
     public ArrayList<Saint> buscarPorCategoria (Categoria categoria) {
+        /*
         ArrayList<Saint> listaCat = new ArrayList<>();
-        for (int i = 0; i < this.lista.size(); i++) {
-            if (lista.get(i).getArmadura().getCategoria() == categoria) {
-                listaCat.add(lista.get(i));
-            }
+        for (int i=0; i< this.lista.size(); i++) {
+        if (this.lista.get(i).getArmadura().getCategoria().equals(categoria)) {
+        listaCat.add(this.lista.get(i));
         }
-
+        }
         return listaCat;
-
+         */
+        return (ArrayList<Saint>)this.lista.stream()
+        .filter(s -> s.getArmadura().getCategoria().equals(categoria))
+        .collect(Collectors.toList());
     }
 
     public ArrayList<Saint> buscarPorStatus (Status status) {
-        ArrayList<Saint> listaStatus = new ArrayList<>();
+		/* 
+       ArrayList<Saint> listaStatus = new ArrayList<>();
         for (int i = 0; i < this.lista.size(); i++) {
             if (lista.get(i).getStatus() == status) {
                 listaStatus.add(lista.get(i));
             }
         }
         return listaStatus;    
+		*/
+
+        return (ArrayList<Saint>)this.lista.stream()
+        .filter(s -> s.getArmadura().getCategoria().equals(status))
+        .collect(Collectors.toList());
+ 
     }    
 
     public Saint getSaintMaiorVida () {
