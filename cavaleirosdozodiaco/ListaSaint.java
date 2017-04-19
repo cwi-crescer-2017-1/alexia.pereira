@@ -140,7 +140,29 @@ public class ListaSaint {
             }
         } while (posicoesSendoTrocadas);   
     
-   
     }
+    
+    public void ordenar (TipoOrdenacao tipoOrdenacao) {
+        if (tipoOrdenacao.equals(TipoOrdenacao.ASCENDENTE)) {
+            this.ordenar();
+        } else if (tipoOrdenacao.equals(TipoOrdenacao.DESCENDENTE)) {
+            boolean posicoesSendoTrocadas;
+        do {
+            posicoesSendoTrocadas = false;
+            for (int i = 0; i < this.lista.size() - 1; i++) {
+                Saint atual = this.lista.get(i);
+                Saint proximo = this.lista.get(i + 1);
+                boolean precisaTrocar = atual.getVida() < proximo.getVida();
+                if (precisaTrocar) {
+                    this.lista.set(i, proximo);
+                    this.lista.set(i + 1, atual);
+                    posicoesSendoTrocadas = true;
+                }
+            }
+        } while (posicoesSendoTrocadas); 
+        }
+    }
+    
+    
 
 }
