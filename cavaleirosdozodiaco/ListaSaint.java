@@ -25,14 +25,10 @@ public class ListaSaint {
     public Saint buscarPorNome (String nome) {
         for (int i = 0; i < this.lista.size(); i++) {
             if (lista.get(i).getNome().equals(nome)) {
-                Saint saint = new Saint();
-                saint = lista.get(i);
-                return saint;
+                return lista.get(i);
             }
         }
-
         return null;
-
     }
 
     public ArrayList<Saint> buscarPorCategoria (Categoria categoria) {
@@ -83,7 +79,7 @@ public class ListaSaint {
         return saint;
     }
 
-    private void trocar(List<Saint> sort, int i, int j) {
+    private void trocar(ArrayList<Saint> sort, int i, int j) {
         Saint tmp = new Saint();
         tmp = sort.get(i);
         sort.set(i, sort.get(j));
