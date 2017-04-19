@@ -83,10 +83,6 @@ public class ListaSaint {
         return saint;
     }
 
-   // public void ordenar () {
-   //        Collections.sort(this.lista, new CustomComparator());
-   // }
-
     private void trocar(List<Saint> sort, int i, int j) {
         Saint tmp = new Saint();
         tmp = sort.get(i);
