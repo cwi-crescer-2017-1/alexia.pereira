@@ -364,13 +364,34 @@ public class ListaSaintTest {
         assertEquals(listaDois.get(0), listaRetorno.get(2));
         assertEquals(listaDois.get(1), listaRetorno.get(3));        
         assertEquals(listaRetorno.size(), listaDois.size()+lista.getSize());
-        
+
     }
-    
-    
-    
-    
+
+    @Test
+    public void diferenciar2ListasComUmValorDeDiferença () throws Exception {
+        ListaSaint lista = new ListaSaint();
+
+        Saint shiryu = new Saint("Shiryu", new Armadura(new Constelacao("Shyriu"), Categoria.BRONZE));
+        Saint dohko = new Saint("Dohko", new Armadura(new Constelacao(""), Categoria.OURO));
+
+        lista.adicionarSaint(shiryu);
+        lista.adicionarSaint(dohko);
+
+        ArrayList<Saint> listaDois = new ArrayList<>();
+
+        Saint marin = new Saint("Marin", new Armadura(new Constelacao("Águia"), Categoria.PRATA));
+
+        listaDois.add(shiryu);
+        listaDois.add(marin);
+
+        ArrayList<Saint> listaRetorno = new ArrayList<>();
+        listaRetorno = lista.diff(listaDois);
+        
+        assertEquals(listaRetorno.get(0), lista.get(1));
+        assertEquals(listaRetorno.size(), 1);
+
+    }
+
     
 } 
-
 

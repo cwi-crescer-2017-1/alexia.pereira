@@ -179,14 +179,32 @@ public class ListaSaint {
         }
         return csv;
     }
-    
+
     public ArrayList<Saint> unir (ArrayList<Saint> listaDois) {
         ArrayList<Saint> listaRetorno = new ArrayList<>();
         listaRetorno.addAll(this.lista);
         listaRetorno.addAll(listaDois);
         return listaRetorno;
     }
-    
-    
+
+    private ArrayList<Saint> clonarLista() {
+        ArrayList<Saint> listaClone = new ArrayList();
+        for (Saint saint : this.lista) {
+            listaClone.add(saint);
+        }
+        return listaClone;
+    }
+
+    public ArrayList<Saint> diff (ArrayList<Saint> listaDois) {
+        ArrayList<Saint> listaRetorno = new ArrayList<>();
+        listaRetorno = this.clonarLista();
+        for (Saint saint : listaDois) {
+            listaRetorno.remove(saint);
+        }
+        return listaRetorno;
+
+    }
+
     
 }
+
