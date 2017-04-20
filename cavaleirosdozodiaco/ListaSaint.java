@@ -179,4 +179,14 @@ public class ListaSaint {
         }
         return csv;
     }
+    
+    public ArrayList<Saint> unir (ArrayList<Saint> listaDois) {
+        ArrayList<Saint> listaRetorno = new ArrayList<>();
+        listaRetorno.addAll(this.lista);
+        listaRetorno.addAll(listaDois);
+        return listaRetorno;
+    }
+    
+    
+    
 }

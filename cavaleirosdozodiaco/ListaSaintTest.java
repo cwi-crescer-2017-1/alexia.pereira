@@ -330,15 +330,47 @@ public class ListaSaintTest {
         dohko.perderVida(90);
         dohko.vestirArmadura();
         lista.adicionarSaint(dohko);
-        
+
         String real = "June,84.5,Camaleão,BRONZE,VIVO,FEMININO,false"
-                       + System.lineSeparator()
-                       + "Dohko,10.0,,OURO,VIVO,NAO_INFORMADO,true";
+            + System.lineSeparator()
+            + "Dohko,10.0,,OURO,VIVO,NAO_INFORMADO,true";
         String csv = lista.getCSV();
         assertEquals (real, csv);
-        
+
     }
 
+    @Test
+    public void unirListasCom2ListasExistentes () throws Exception {
+        ListaSaint lista = new ListaSaint();
+
+        Saint june = new Saint("June", new Armadura(new Constelacao("Camaleão"), Categoria.BRONZE));
+        Saint dohko = new Saint("Dohko", new Armadura(new Constelacao(""), Categoria.OURO));
+
+        lista.adicionarSaint(june);
+        lista.adicionarSaint(dohko);
+
+        ArrayList<Saint> listaDois = new ArrayList<>();
+
+        Saint shiryu = new Saint("Shiryu", new Armadura(new Constelacao("Shyriu"), Categoria.BRONZE));
+        Saint marin = new Saint("Marin", new Armadura(new Constelacao("Águia"), Categoria.PRATA));
+
+        listaDois.add(shiryu);
+        listaDois.add(marin);
+
+        ArrayList<Saint> listaRetorno = lista.unir(listaDois);
+
+        assertEquals(lista.get(0), listaRetorno.get(0));
+        assertEquals(lista.get(1), listaRetorno.get(1));        
+        assertEquals(listaDois.get(0), listaRetorno.get(2));
+        assertEquals(listaDois.get(1), listaRetorno.get(3));        
+        assertEquals(listaRetorno.size(), listaDois.size()+lista.getSize());
+        
+    }
+    
+    
+    
     
     
 } 
+
+
