@@ -9,10 +9,10 @@ public class Saint {
     private double vida = 100.;
     protected int qtdSentidosDespertados;
     private int acumuladorProximoGolpe = 0; 
-    
+
     public Saint () {
     }
-    
+
     public Saint(String nome, Armadura armadura) throws Exception {
         this.nome = nome;
         this.armadura = armadura;
@@ -23,7 +23,7 @@ public class Saint {
     public String getNome() {
         return this.nome;
     }
-    
+
     public void vestirArmadura() {
         this.armaduraVestida = true;
     }
@@ -44,11 +44,11 @@ public class Saint {
     public Status getStatus() {
         return this.status;
     } 
-    
+
     public void setStatus (Status status) {
         this.status = status;
     }
-        
+
     public double getVida() {
         return this.vida;
     }
@@ -62,7 +62,7 @@ public class Saint {
                     this.vida = 0;
                 }
             }
-            
+
         } else {
             throw new InvalidParameterException("Dano inválido");
         }
@@ -71,7 +71,7 @@ public class Saint {
     public Armadura getArmadura() {
         return this.armadura;
     }
-    
+
     private Constelacao getConstelacao () {
         return this.armadura.getConstelacao();
     }
@@ -79,44 +79,42 @@ public class Saint {
     public int getQtdSentidosDespertados() {
         return this.qtdSentidosDespertados;
     }
-    
+
     public ArrayList<Golpe> getGolpes () {
         return this.getConstelacao().getGolpes();
     }
-    
+
     public void aprenderGolpe (Golpe golpe) {
         this.getConstelacao().adicionarGolpe(golpe);
     }
-    
+
     public Golpe getProximoGolpe() { 
         ArrayList<Golpe> golpes = this.getGolpes(); 
         int posicao = this.acumuladorProximoGolpe % golpes.size(); 
         this.acumuladorProximoGolpe++; 
         return golpes.get(posicao); 
     } 
-    
-     public boolean equals(Object object) {
-     Saint outroSaint = (Saint)object;
-/*
-    private Genero genero = Genero.NAO_INFORMADO;
-    private Status status = Status.VIVO;
-    private double vida = 100.;
-    protected int qtdSentidosDespertados;
-    private int acumuladorProximoGolpe = 0; 
-    */
-     
-     return this.nome.equals(outroSaint.getNome()) && this.getArmadura().getCategoria().equals(outroSaint.getArmadura().getCategoria()) 
+
+    public boolean equals(Object object) {
+        Saint outroSaint = (Saint)object;
+        return this.nome.equals(outroSaint.getNome()) && this.getArmadura().getCategoria().equals(outroSaint.getArmadura().getCategoria()) 
         && this.getArmadura().getConstelacao().getNome().equals(outroSaint.getArmadura().getConstelacao().getNome())
         && this.getArmaduraVestida() == outroSaint.getArmaduraVestida() 
         &&  this.getGenero().equals(outroSaint.getGenero())
         && this.getStatus().equals(outroSaint.getStatus())
         && this.getVida() == outroSaint.getVida()
         && this.qtdSentidosDespertados == outroSaint.getQtdSentidosDespertados();
-     
+
     }
-    
-    
-    
+
+    public String getCSV () {
+        return this.getNome() + ","
+        + this.getVida() + "," 
+        + this.getArmadura().getConstelacao().getNome() + "," 
+        + this.getArmadura().getCategoria() + ","
+        + this.getStatus() + "," 
+        + this.getGenero() + "," 
+        + this.getArmaduraVestida(); 
+    }
 
 }
-

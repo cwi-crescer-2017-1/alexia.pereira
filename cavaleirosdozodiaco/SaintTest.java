@@ -150,7 +150,7 @@ public class SaintTest {
         Golpe golpe = new Golpe ("Cólera do Dragão", 20);
         shiryu.aprenderGolpe(golpe);
         assertEquals(golpe, shiryu.getArmadura().getConstelacao().getGolpes().get(0));
-                assertEquals(1, shiryu.getArmadura().getConstelacao().getGolpes().size());
+        assertEquals(1, shiryu.getArmadura().getConstelacao().getGolpes().size());
     }
 
     @Test
@@ -230,4 +230,30 @@ public class SaintTest {
         assertEquals(outraDimensao, saga.getProximoGolpe());
     }
 
+    @Test
+    public void getCSVComArmaduraVestida () throws Exception {
+        ListaSaint lista = new ListaSaint();
+        Saint dohko = new Saint("Dohko", new Armadura(new Constelacao(""), Categoria.OURO));
+        dohko.perderVida(90);
+        dohko.vestirArmadura();
+        lista.adicionarSaint(dohko);
+        String esperado = "Dohko,10.0,,OURO,VIVO,NAO_INFORMADO,true";
+        assertEquals(esperado, dohko.getCSV());
+
+    }
+
+    public void getCSVSemArmaduraVestida () throws Exception {
+        ListaSaint lista = new ListaSaint();
+        Saint june = new Saint("June", new Armadura(new Constelacao("Camaleão"), Categoria.BRONZE));
+        june.setGenero(Genero.FEMININO);
+        june.perderVida(15.5);
+        lista.adicionarSaint(june);
+        String esperado = "June,84.5,Camaleão,BRONZE,VIVO,FEMININO,false";
+        assertEquals(esperado, june.getCSV());
+
+    }
+
+    
+    
+    
 }
