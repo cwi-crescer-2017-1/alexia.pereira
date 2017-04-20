@@ -137,19 +137,14 @@ public class ListaSaint {
 
     public String getCSV () {
         String csv = "";
+        StringBuilder builder = new StringBuilder(512);
         for (Saint saint : this.lista) {
-            csv += saint.getNome() + ","
-            + saint.getVida() + "," 
-            + saint.getArmadura().getConstelacao().getNome() + "," 
-            + saint.getArmadura().getCategoria() + ","
-            + saint.getStatus() + "," 
-            + saint.getGenero() + "," 
-            + saint.getArmaduraVestida(); 
+            builder.append(saint.getCSV());
             if (this.lista.indexOf(saint) != this.lista.size()-1) {
-                csv = csv + System.lineSeparator();
+                builder.append(System.lineSeparator());
             }
         }
-        return csv;
+        return builder.toString();
     }
 
     public ArrayList<Saint> unir (ArrayList<Saint> listaDois) {
