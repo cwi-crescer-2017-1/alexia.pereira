@@ -204,15 +204,28 @@ public class ListaSaint {
         return listaRetorno;
 
     }
-    
+
     public ArrayList<Saint> intersec (ArrayList<Saint> listaDois) {
         ArrayList<Saint> listaRetorno = new ArrayList<>();
         for (Saint saint : this.lista) {
-            if (this.lista.contains(saint) && listaDois.contains(saint)) {
-                listaRetorno.add(saint);
+            for (Saint saintDois : listaDois) {
+                if (saint.equals(saintDois)) {
+                    listaRetorno.add(saint);
+                }
             }
         }
-        return listaRetorno;
+        return listaRetorno;    
     }
-}
+        /*
+        public ArrayList<Saint> intersec (ArrayList<Saint> listaDois) {
+        ArrayList<Saint> listaRetorno = new ArrayList<>();
+        for (Saint saint : this.lista) {
+        if (this.lista.contains(saint) && listaDois.contains(saint)) {
+        listaRetorno.add(saint);
+        }
+        }
+        return listaRetorno;
+        }
+         */
+    }
 
