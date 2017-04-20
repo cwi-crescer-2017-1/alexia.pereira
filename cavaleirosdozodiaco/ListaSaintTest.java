@@ -184,7 +184,7 @@ public class ListaSaintTest {
         assertEquals(misty, resultado.get(1));
         assertEquals(shun, resultado.get(2));
     }
-    
+
     @Test
     public void ordenarComListaTotalmenteOrdenada() throws Exception {
         ListaSaint ListaSaint = new ListaSaint();
@@ -203,7 +203,7 @@ public class ListaSaintTest {
         assertEquals(misty, resultado.get(1));
         assertEquals(june, resultado.get(2));
     }
-    
+
     @Test
     public void ordenarComListaVazia() throws Exception {
         ListaSaint ListaSaint = new ListaSaint();
@@ -211,7 +211,7 @@ public class ListaSaintTest {
         ArrayList<Saint> resultado = ListaSaint.todos();
         assertEquals(new ArrayList<Saint>(), resultado);
     }
-    
+
     @Test
     public void ordenarComListaApenasUm() throws Exception {
         ListaSaint ListaSaint = new ListaSaint();
@@ -225,7 +225,7 @@ public class ListaSaintTest {
         assertEquals(shun, resultado.get(0));
         assertEquals(1, resultado.size());
     }
-    
+
     @Test
     public void ordenarComListaDeValoresIguais() throws Exception {
         ListaSaint ListaSaint = new ListaSaint();
@@ -241,7 +241,7 @@ public class ListaSaintTest {
         assertEquals(misty, resultado.get(1));
         assertEquals(june, resultado.get(2));
     }
-    
+
     @Test
     public void ordenarDescendenciaComListaTotalmenteDesordenada() throws Exception {
         ListaSaint ListaSaint = new ListaSaint();
@@ -260,7 +260,7 @@ public class ListaSaintTest {
         assertEquals(misty, resultado.get(1));
         assertEquals(june, resultado.get(2));
     }
-    
+
     @Test
     public void ordenarDescendenciaComListaTotalmenteOrdenada() throws Exception {
         ListaSaint listaSaint = new ListaSaint();
@@ -279,7 +279,7 @@ public class ListaSaintTest {
         assertEquals(misty, resultado.get(1));
         assertEquals(shun, resultado.get(2));
     }
-    
+
     @Test
     public void ordenarDescendenciaComListaVazia() throws Exception {
         ListaSaint ListaSaint = new ListaSaint();
@@ -287,7 +287,7 @@ public class ListaSaintTest {
         ArrayList<Saint> resultado = ListaSaint.todos();
         assertEquals(new ArrayList<Saint>(), resultado);
     }
-    
+
     @Test
     public void ordenarDescendenciaComListaApenasUm() throws Exception {
         ListaSaint ListaSaint = new ListaSaint();
@@ -301,7 +301,7 @@ public class ListaSaintTest {
         assertEquals(shun, resultado.get(0));
         assertEquals(1, resultado.size());
     }
-    
+
     @Test
     public void ordenarDescendenciaComListaDeValoresIguais() throws Exception {
         ListaSaint ListaSaint = new ListaSaint();
@@ -317,10 +317,28 @@ public class ListaSaintTest {
         assertEquals(misty, resultado.get(1));
         assertEquals(june, resultado.get(2));
     }
- 
-    
-    
-    
+
+    @Test 
+    public void getCSVComDoisSaints () throws Exception {
+        ListaSaint lista = new ListaSaint();
+        Saint june = new Saint("June", new Armadura(new Constelacao("Camaleão"), Categoria.BRONZE));
+        june.setGenero(Genero.FEMININO);
+        june.perderVida(15.5);
+        lista.adicionarSaint(june);
+
+        Saint dohko = new Saint("Dohko", new Armadura(new Constelacao(""), Categoria.OURO));
+        dohko.perderVida(90);
+        dohko.vestirArmadura();
+        lista.adicionarSaint(dohko);
+        
+        String real = "June,84.5,Camaleão,BRONZE,VIVO,FEMININO,false"
+                       + System.lineSeparator()
+                       + "Dohko,10.0,,OURO,VIVO,NAO_INFORMADO,true";
+        String csv = lista.getCSV();
+        assertEquals (real, csv);
+        
+    }
+
     
     
 } 
