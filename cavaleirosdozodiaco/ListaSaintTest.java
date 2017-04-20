@@ -339,6 +339,7 @@ public class ListaSaintTest {
 
     }
 
+    //TODO: fazer outros cenários  
     @Test
     public void unirListasCom2ListasExistentes () throws Exception {
         ListaSaint lista = new ListaSaint();
@@ -366,7 +367,7 @@ public class ListaSaintTest {
         assertEquals(listaRetorno.size(), listaDois.size()+lista.getSize());
 
     }
-
+    //TODO: fazer outros cenários  
     @Test
     public void diferenciar2ListasComUmValorDeDiferença () throws Exception {
         ListaSaint lista = new ListaSaint();
@@ -386,12 +387,36 @@ public class ListaSaintTest {
 
         ArrayList<Saint> listaRetorno = new ArrayList<>();
         listaRetorno = lista.diff(listaDois);
-        
+
         assertEquals(listaRetorno.get(0), lista.get(1));
         assertEquals(listaRetorno.size(), 1);
 
     }
 
-    
+    //TODO: fazer outros cenários
+    @Test
+    public void intersecComUmSaint () throws Exception{
+        ListaSaint lista = new ListaSaint();
+
+        Saint shiryu = new Saint("Shiryu", new Armadura(new Constelacao("Shyriu"), Categoria.BRONZE));
+        Saint dohko = new Saint("Dohko", new Armadura(new Constelacao(""), Categoria.OURO));
+
+        lista.adicionarSaint(shiryu);
+        lista.adicionarSaint(dohko);
+
+        ArrayList<Saint> listaDois = new ArrayList<>();
+
+        Saint marin = new Saint("Marin", new Armadura(new Constelacao("Águia"), Categoria.PRATA));
+
+        listaDois.add(shiryu);
+        listaDois.add(marin);
+
+        ArrayList<Saint> listaRetorno = new ArrayList<>();
+        listaRetorno = lista.intersec(listaDois);
+
+        assertEquals(listaRetorno.get(0), lista.get(0));
+        assertEquals(listaRetorno.size(), 1);
+    }
+
 } 
 
