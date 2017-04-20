@@ -20,7 +20,7 @@ public class Saint {
         this.qtdSentidosDespertados += valorCategoria;*/
     }
 
-    public String getNome () {
+    public String getNome() {
         return this.nome;
     }
     
@@ -94,6 +94,28 @@ public class Saint {
         this.acumuladorProximoGolpe++; 
         return golpes.get(posicao); 
     } 
+    
+     public boolean equals(Object object) {
+     Saint outroSaint = (Saint)object;
+/*
+    private Genero genero = Genero.NAO_INFORMADO;
+    private Status status = Status.VIVO;
+    private double vida = 100.;
+    protected int qtdSentidosDespertados;
+    private int acumuladorProximoGolpe = 0; 
+    */
+     
+     return this.nome.equals(outroSaint.getNome()) && this.getArmadura().getCategoria().equals(outroSaint.getArmadura().getCategoria()) 
+        && this.getArmadura().getConstelacao().getNome().equals(outroSaint.getArmadura().getConstelacao().getNome())
+        && this.getArmaduraVestida() == outroSaint.getArmaduraVestida() 
+        &&  this.getGenero().equals(outroSaint.getGenero())
+        && this.getStatus().equals(outroSaint.getStatus())
+        && this.getVida() == outroSaint.getVida()
+        && this.qtdSentidosDespertados == outroSaint.getQtdSentidosDespertados();
+     
+    }
+    
+    
     
 
 }
