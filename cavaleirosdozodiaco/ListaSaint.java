@@ -113,46 +113,18 @@ public class ListaSaint {
     }
 
     public void ordenar() {
-        /*
-        int min;
-        for (int i = 0; i < this.lista.size(); ++i) {
-        min = i;
-        for (int j = i + 1; j < this.lista.size(); ++j) {
-        if (this.lista.get(j).getVida() < this.lista.get(min).getVida()) {
-        min = j;
-        }
-        }
-        this.trocar(this.lista, i, min);
-        }
-         */
-        boolean posicoesSendoTrocadas;
-        do {
-            posicoesSendoTrocadas = false;
-            for (int i = 0; i < this.lista.size() - 1; i++) {
-                Saint atual = this.lista.get(i);
-                Saint proximo = this.lista.get(i + 1);
-                boolean precisaTrocar = atual.getVida() > proximo.getVida();
-                if (precisaTrocar) {
-                    this.lista.set(i, proximo);
-                    this.lista.set(i + 1, atual);
-                    posicoesSendoTrocadas = true;
-                }
-            }
-        } while (posicoesSendoTrocadas);   
-
+        this.ordenar(TipoOrdenacao.ASCENDENTE);
     }
 
     public void ordenar (TipoOrdenacao tipoOrdenacao) {
-        if (tipoOrdenacao.equals(TipoOrdenacao.ASCENDENTE)) {
-            this.ordenar();
-        } else if (tipoOrdenacao.equals(TipoOrdenacao.DESCENDENTE)) {
-            boolean posicoesSendoTrocadas;
-            do {
+        boolean ascendente = tipoOrdenacao.equals(TipoOrdenacao.ASCENDENTE);
+        boolean posicoesSendoTrocadas;
+           do {
                 posicoesSendoTrocadas = false;
                 for (int i = 0; i < this.lista.size() - 1; i++) {
                     Saint atual = this.lista.get(i);
                     Saint proximo = this.lista.get(i + 1);
-                    boolean precisaTrocar = atual.getVida() < proximo.getVida();
+                    boolean precisaTrocar = ascendente ? atual.getVida() > proximo.getVida() : atual.getVida() < proximo.getVida();
                     if (precisaTrocar) {
                         this.lista.set(i, proximo);
                         this.lista.set(i + 1, atual);
@@ -161,7 +133,7 @@ public class ListaSaint {
                 }
             } while (posicoesSendoTrocadas); 
         }
-    }
+    
 
     public String getCSV () {
         String csv = "";
