@@ -33,7 +33,7 @@ public class GoldSaint extends Saint {
     }
     
     public String getNome() {
-        return super.getNome() + "!!!";
+        return super.getNome();
     }
 
 }

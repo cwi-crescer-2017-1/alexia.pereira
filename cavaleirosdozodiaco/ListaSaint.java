@@ -25,20 +25,20 @@ public class ListaSaint {
     }
 
     public Saint buscarPorNome (String nome) {
-        /*
-        for (int i = 0; i < this.lista.size(); i++) {
-        if (lista.get(i).getNome().equals(nome)) {
-        return lista.get(i);
-        }
+
+        for (Saint saint : this.lista) {
+            boolean temMesmoNome = saint.getNome().equals(nome);
+            if (temMesmoNome) {
+                return saint;
+            }
         }
         return null;
-         */
 
-        return this.lista.stream()
+        /*return this.lista.stream()
         .filter(s -> s.getNome().equals(nome))
         .findFirst().
         orElse(null);
-
+         */
     }
 
     public ArrayList<Saint> buscarPorCategoria (Categoria categoria) {
@@ -77,9 +77,8 @@ public class ListaSaint {
         if (this.lista.isEmpty()) {
             return null;
         }
-        Saint saint = new Saint();
         double maior = lista.get(0).getVida();
-        saint = this.lista.get(0);
+        Saint saint = this.lista.get(0);
         for (int i = 0; i < this.lista.size(); i++) {
             if (this.lista.get(i).getVida() > maior) {
                 maior = this.lista.get(i).getVida();               
@@ -93,7 +92,7 @@ public class ListaSaint {
         if (this.lista.isEmpty()) {
             return null;
         }
-        Saint saint = new Saint();
+        Saint saint;
         double menor = lista.get(0).getVida();
         saint = this.lista.get(0);
         for (int i = 0; i < this.lista.size(); i++) {
@@ -106,7 +105,7 @@ public class ListaSaint {
     }
 
     private void trocar(ArrayList<Saint> sort, int i, int j) {
-        Saint tmp = new Saint();
+        Saint tmp;
         tmp = sort.get(i);
         sort.set(i, sort.get(j));
         sort.set(j, tmp);
@@ -119,21 +118,20 @@ public class ListaSaint {
     public void ordenar (TipoOrdenacao tipoOrdenacao) {
         boolean ascendente = tipoOrdenacao.equals(TipoOrdenacao.ASCENDENTE);
         boolean posicoesSendoTrocadas;
-           do {
-                posicoesSendoTrocadas = false;
-                for (int i = 0; i < this.lista.size() - 1; i++) {
-                    Saint atual = this.lista.get(i);
-                    Saint proximo = this.lista.get(i + 1);
-                    boolean precisaTrocar = ascendente ? atual.getVida() > proximo.getVida() : atual.getVida() < proximo.getVida();
-                    if (precisaTrocar) {
-                        this.lista.set(i, proximo);
-                        this.lista.set(i + 1, atual);
-                        posicoesSendoTrocadas = true;
-                    }
+        do {
+            posicoesSendoTrocadas = false;
+            for (int i = 0; i < this.lista.size() - 1; i++) {
+                Saint atual = this.lista.get(i);
+                Saint proximo = this.lista.get(i + 1);
+                boolean precisaTrocar = ascendente ? atual.getVida() > proximo.getVida() : atual.getVida() < proximo.getVida();
+                if (precisaTrocar) {
+                    this.lista.set(i, proximo);
+                    this.lista.set(i + 1, atual);
+                    posicoesSendoTrocadas = true;
                 }
-            } while (posicoesSendoTrocadas); 
-        }
-    
+            }
+        } while (posicoesSendoTrocadas); 
+    }
 
     public String getCSV () {
         String csv = "";
@@ -183,16 +181,16 @@ public class ListaSaint {
         }
         return listaRetorno;    
     }
-        /*
-        public ArrayList<Saint> intersec (ArrayList<Saint> listaDois) {
-        ArrayList<Saint> listaRetorno = new ArrayList<>();
-        for (Saint saint : this.lista) {
-        if (this.lista.contains(saint) && listaDois.contains(saint)) {
-        listaRetorno.add(saint);
-        }
-        }
-        return listaRetorno;
-        }
-         */
+    /*
+    public ArrayList<Saint> intersec (ArrayList<Saint> listaDois) {
+    ArrayList<Saint> listaRetorno = new ArrayList<>();
+    for (Saint saint : this.lista) {
+    if (this.lista.contains(saint) && listaDois.contains(saint)) {
+    listaRetorno.add(saint);
     }
+    }
+    return listaRetorno;
+    }
+     */
+}
 
