@@ -136,7 +136,7 @@ public class SaintTest {
 
     @Test
     public void saintNaoPerdeVidaQuandoMorto () throws Exception {
-               Saint shiryu = new BronzeSaint("Shiryu", "Dragão");
+        Saint shiryu = new BronzeSaint("Shiryu", "Dragão");
         shiryu.perderVida(100);
         shiryu.perderVida(100);
         assertEquals(0, shiryu.getVida(), 0.01);
@@ -251,7 +251,24 @@ public class SaintTest {
 
     }
 
-    
-    
-    
+    @Test
+    public void getProximoMovimentoComUm() throws Exception {
+        Saint saga = new GoldSaint("Saga", "Gêmeos");
+        Movimento vestir = new VestirArmadura(saga);
+        saga.adicionarMovimento(vestir);
+        assertEquals(vestir, saga.getProximoMovimento());
+    }
+
+    @Test
+    public void getProximoMovimentoComDois() throws Exception {
+        Saint saga = new GoldSaint("Saga", "Gêmeos");
+        Movimento vestir = new VestirArmadura(saga);
+        Golpear golpear = new Golpear (saga, new BronzeSaint("Seya", "Pégaso"));
+        saga.adicionarMovimento(vestir);
+        saga.adicionarMovimento(golpear);
+        assertEquals(vestir, saga.getProximoMovimento());
+        assertEquals(golpear, saga.getProximoMovimento());
+        assertEquals(vestir, saga.getProximoMovimento());
+    }
+
 }
