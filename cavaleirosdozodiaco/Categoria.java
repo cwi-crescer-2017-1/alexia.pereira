@@ -1,5 +1,5 @@
 public enum Categoria {
-    OURO(2), PRATA(1), BRONZE(0);
+    OURO(3), PRATA(2), BRONZE(1);
     private int valor;
     private Categoria (int valor) {
         this.valor = valor;
