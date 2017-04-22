@@ -94,7 +94,7 @@ public abstract class Saint {
 
     public boolean equals(Object object) {
         Saint outroSaint = (Saint)object;
-        return this.nome.equals(outroSaint.getNome()) && this.getArmadura().getCategoria().equals(outroSaint.getArmadura().getCategoria()) 
+        return this.nome.equals(outroSaint.getNome()) && this.getCategoria().equals(outroSaint.getCategoria()) 
         && this.getArmadura().getConstelacao().getNome().equals(outroSaint.getArmadura().getConstelacao().getNome())
         && this.getArmaduraVestida() == outroSaint.getArmaduraVestida() 
         &&  this.getGenero().equals(outroSaint.getGenero())
@@ -108,10 +108,15 @@ public abstract class Saint {
         return this.getNome() + ","
         + this.getVida() + "," 
         + this.getArmadura().getConstelacao().getNome() + "," 
-        + this.getArmadura().getCategoria() + ","
+        + this.getCategoria() + ","
         + this.getStatus() + "," 
         + this.getGenero() + "," 
         + this.getArmaduraVestida(); 
     }
+    
+    public Categoria getCategoria () {
+        return this.armadura.getCategoria();
+    }
+    
 
 }
