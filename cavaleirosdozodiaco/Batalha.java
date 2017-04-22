@@ -8,12 +8,21 @@ public class Batalha {
     }
 
     public void iniciar () throws Exception {
-        final double dano = 10;
-        if (this.saint1.getArmadura().getCategoria().getValor() >= this.saint2.getArmadura().getCategoria().getValor()) {
-            this.saint2.perderVida(dano);
+        int cont;
+        if (this.saint1.getCategoria().getValor() >= this.saint2.getCategoria().getValor()) {
+            this.saint1.getProximoMovimento().executar();
+            cont = 0;
         } else {
-            this.saint1.perderVida(dano);
+            this.saint2.getProximoMovimento().executar();
+            cont = 1;
         }
+        
+        while (!saint1.getStatus().equals(Status.MORTO) && !saint2.getStatus().equals(Status.MORTO)) {
+            Saint turno = (cont % 2 == 0) ? this.saint2 : this.saint1;
+            turno.getProximoMovimento().executar();
+            cont++;
+        }
+       
     }
 
 }

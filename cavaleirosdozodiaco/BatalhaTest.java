@@ -7,33 +7,84 @@ public class BatalhaTest {
 
     @Test
     public void categoriaSaint1MaiorQueSaint2 () throws Exception {
-        Saint seiya = new BronzeSaint ("Seiya", "Pegaso");
-        Saint marin = new SilverSaint ("Marin", "Águia");
-        Batalha batalha = new Batalha (seiya, marin);
+        Saint saga = new GoldSaint("Saga", "Gêmeos");
+        Golpe explosao = new Golpe ("Explosão Galáctica", 10);
+        saga.aprenderGolpe(explosao);
+        Movimento vestirSaga = new VestirArmadura(saga);
+        saga.adicionarMovimento(vestirSaga);
+
+        Saint seiya = new BronzeSaint("Seiya", "Pégaso");
+        Golpe meteoro = new Golpe ("Meteoro de Pégaso", 20);
+        seiya.aprenderGolpe(meteoro);
+        Movimento vestirSeiya = new VestirArmadura(seiya);
+        seiya.adicionarMovimento(vestirSeiya);
+
+        Golpear golpearSagaGolpeador = new Golpear (saga, seiya);
+        saga.adicionarMovimento(golpearSagaGolpeador);
+
+        Golpear golpearSeiyaGolpeador = new Golpear (seiya, saga);
+        seiya.adicionarMovimento(golpearSeiyaGolpeador);
+
+        Batalha batalha = new Batalha (saga, seiya);
         batalha.iniciar();
-        assertEquals(90.0, seiya.getVida(), 0.001);
-        assertEquals(100.0, marin.getVida(), 0.001);
+
+        assertEquals(seiya.getStatus(), Status.MORTO);
+        assertEquals(saga.getStatus(), Status.VIVO);
     }
 
     @Test
     public void iniciarVerificaEmpateDeCategoria ()  throws Exception {
-        Saint alderbaran = new GoldSaint ("Alderbaran", "Touro");
-        Saint mascaraMorte = new GoldSaint ("Máscara da Morte", "Câncer");
-        Batalha batalha = new Batalha (alderbaran, mascaraMorte);
+        Saint shiryu = new BronzeSaint("Shiryu", "Dragão");
+        Golpe colera = new Golpe ("Cólera do Dragão", 20);
+        shiryu.aprenderGolpe(colera);
+        Movimento vestirShiryu = new VestirArmadura(shiryu);
+        shiryu.adicionarMovimento(vestirShiryu);
+
+        Saint seiya = new BronzeSaint("Seiya", "Pégaso");
+        Golpe meteoro = new Golpe ("Meteoro de Pégaso", 20);
+        seiya.aprenderGolpe(meteoro);
+        Movimento vestirSeiya = new VestirArmadura(seiya);
+        seiya.adicionarMovimento(vestirSeiya);
+
+        Golpear golpearSagaGolpeador = new Golpear (shiryu, seiya);
+        shiryu.adicionarMovimento(golpearSagaGolpeador);
+
+        Golpear golpearSeiyaGolpeador = new Golpear (seiya, shiryu);
+        seiya.adicionarMovimento(golpearSeiyaGolpeador);
+
+        Batalha batalha = new Batalha (shiryu, seiya);
         batalha.iniciar();
-        assertEquals(90.0, mascaraMorte.getVida(), 0.001);
-        assertEquals(100.0, alderbaran.getVida(), 0.001);
+
+        assertEquals(seiya.getStatus(), Status.MORTO);
+        assertEquals(shiryu.getStatus(), Status.VIVO);
     }
-    
+
     @Test
     public void categoriaSaint2MaiorQueSaint1 () throws Exception {
-        Saint ikki = new BronzeSaint ("Ikki", "Fênix");
-        Saint mascaraMorte = new GoldSaint ("Máscara da Morte", "Câncer");
-        Batalha batalha = new Batalha (ikki, mascaraMorte);
+        Saint saga = new GoldSaint("Saga", "Gêmeos");
+        Golpe explosao = new Golpe ("Explosão Galáctica", 10);
+        saga.aprenderGolpe(explosao);
+        Movimento vestirSaga = new VestirArmadura(saga);
+        saga.adicionarMovimento(vestirSaga);
+
+        Saint seiya = new BronzeSaint("Seiya", "Pégaso");
+        Golpe meteoro = new Golpe ("Meteoro de Pégaso", 20);
+        seiya.aprenderGolpe(meteoro);
+        Movimento vestirSeiya = new VestirArmadura(seiya);
+        seiya.adicionarMovimento(vestirSeiya);
+
+        Golpear golpearSagaGolpeador = new Golpear (saga, seiya);
+        saga.adicionarMovimento(golpearSagaGolpeador);
+
+        Golpear golpearSeiyaGolpeador = new Golpear (seiya, saga);
+        seiya.adicionarMovimento(golpearSeiyaGolpeador);
+
+        Batalha batalha = new Batalha (seiya, saga);
         batalha.iniciar();
-        assertEquals(100.0, mascaraMorte.getVida(), 0.001);
-        assertEquals(90.0, ikki.getVida(), 0.001);
+
+        assertEquals(seiya.getStatus(), Status.MORTO);
+        assertEquals(saga.getStatus(), Status.VIVO);
+
     }
-    
 
 }
