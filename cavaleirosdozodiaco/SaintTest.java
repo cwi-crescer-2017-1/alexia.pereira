@@ -256,7 +256,7 @@ public class SaintTest {
         Saint seiya = new BronzeSaint ("Seiya", "Pégaso");
         Movimento movimento = seiya.getProximoMovimento();
     }
-    
+
     @Test
     public void getProximoMovimentoComUm() throws Exception {
         Saint saga = new GoldSaint("Saga", "Gêmeos");
@@ -276,15 +276,25 @@ public class SaintTest {
         assertEquals(golpear, saga.getProximoMovimento());
         assertEquals(vestir, saga.getProximoMovimento());
     }
-    
+
     @Test
     public void qtdDeSaintsIncrementa () throws Exception {
         int quantidadeAntiga = Saint.getQtdSaints();
-        Saint seyia = new BronzeSaint("Seiya", "Pégaso");
+        Saint seiya = new BronzeSaint("Seiya", "Pégaso");
         Saint marin = new SilverSaint("Marin", "Águia");
         Saint camus = new GoldSaint ("Camus", "Aquário");
         int quantidadeAtual = Saint.getQtdSaints();
         assertEquals(quantidadeAntiga+3, quantidadeAtual);
     }
 
+    @Test
+    public void idUnicoIncrementaUnitariamente () throws Exception {
+        Saint seiya = new BronzeSaint("Seiya", "Pégaso");
+        Saint marin = new SilverSaint("Marin", "Águia");
+        Saint camus = new GoldSaint ("Camus", "Aquário");
+        assertEquals (seiya.getId(), marin.getId()-1);
+        assertEquals (seiya.getId(), camus.getId()-2);
+    }
+
+    
 }
