@@ -12,7 +12,7 @@ public class GolpearTest {
         saga.aprenderGolpe(new Golpe("Outra dimensão", 10));
         saga.vestirArmadura();
         Saint seiya = new BronzeSaint("Seiya", "Pégaso");
-        Golpear golpear = new Golpear (saga, seiya);
+        Movimento golpear = new Golpear (saga, seiya);
         golpear.executar();
 
         //Golpe posui originalmente 10 de dano, multiplicado por 3+1 = 40
@@ -91,4 +91,16 @@ public class GolpearTest {
         assertEquals(shiryu.getVida(), 100, 0.1);
         assertEquals(seiya.getVida(), 95, 0.1);        
     }
+    
+    @Test (expected = NullPointerException.class) 
+    public void naoGolpear () throws Exception {
+        Saint shiryu = new BronzeSaint("Shiryu", "Dragão");
+        Golpe coleraDoDragao = new Golpe("Cólera do Dragão", 5);
+        Saint seiya = new BronzeSaint("Seiya", "Pégaso");
+        Golpear golpear = new Golpear (shiryu, seiya);
+        golpear.executar();
+    }
+    
+    
+    
 }
