@@ -10,8 +10,8 @@ public class Golpear implements Movimento {
     }
 
     public void executar () {
-        int fatorDano = golpeador.getArmaduraVestida() ? 
-        (golpeador.getProximoGolpe().getFatorDano()*(1+golpeador.getCategoria().getValor())) 
+        int fatorDano = golpeador.getArmaduraVestida() 
+        ? (golpeador.getProximoGolpe().getFatorDano()*(1+golpeador.getCategoria().getValor())) 
         : golpeador.getProximoGolpe().getFatorDano();
         
         golpeado.perderVida(fatorDano);
