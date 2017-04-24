@@ -10,15 +10,13 @@ public class Batalha {
     public void iniciar () throws Exception {
         int cont;
         if (this.saint1.getCategoria().getValor() >= this.saint2.getCategoria().getValor()) {
-            this.saint1.getProximoMovimento().executar();
             cont = 0;
         } else {
-            this.saint2.getProximoMovimento().executar();
             cont = 1;
         }
         
         while (!saint1.getStatus().equals(Status.MORTO) && !saint2.getStatus().equals(Status.MORTO)) {
-            Saint turno = (cont % 2 == 0) ? this.saint2 : this.saint1;
+            Saint turno = (cont % 2 == 0) ? this.saint1 : this.saint2;
             turno.getProximoMovimento().executar();
             cont++;
         }
