@@ -88,6 +88,9 @@ public abstract class Saint {
     }
 
     public Golpe getProximoGolpe() { 
+        if (this.getGolpes().isEmpty()) {
+            return null;
+        }   
         ArrayList<Golpe> golpes = this.getGolpes(); 
         int posicao = this.acumuladorProximoGolpe % golpes.size(); 
         this.acumuladorProximoGolpe++; 
