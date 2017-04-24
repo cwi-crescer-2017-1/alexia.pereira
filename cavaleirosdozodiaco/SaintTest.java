@@ -251,6 +251,12 @@ public class SaintTest {
 
     }
 
+    @Test (expected = ArithmeticException.class)
+    public void getProximoMovimentoComListaVazia () throws Exception {
+        Saint seiya = new BronzeSaint ("Seiya", "Pégaso");
+        Movimento movimento = seiya.getProximoMovimento();
+    }
+    
     @Test
     public void getProximoMovimentoComUm() throws Exception {
         Saint saga = new GoldSaint("Saga", "Gêmeos");
