@@ -12,6 +12,7 @@ public abstract class Saint {
     private int acumuladorProximoMovimento = 0; 
     private ArrayList<Movimento> movimentos = new ArrayList<>();
     private static int qtdSaints = 0;
+	private static int acumuladorSaint = 0;
     private int id = 0;
     
     
@@ -19,15 +20,19 @@ public abstract class Saint {
         this.nome = nome;
         this.armadura = armadura;
         Saint.qtdSaints++;
-        this.id = Saint.qtdSaints;
+        this.id = ++acumuladorSaint;
         /*int valorCategoria = this.armadura.getCategoria().getValor();
         this.qtdSentidosDespertados += valorCategoria;*/
     }
 
+    public static int getAcumuladorSaint () {
+        return Saint.acumuladorSaint;
+    }
+    
 	protected void finalize () throws Throwable {
 		Saint.qtdSaints--;		
 	}
-    
+
     public int getId () {
         return this.id;
     }

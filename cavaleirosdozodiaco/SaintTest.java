@@ -317,12 +317,28 @@ public class SaintTest {
     }
 
     @Test
-    public void idUnicoIncrementaUnitariamente () throws Exception {
+    public void criarUmSaintIncrementaId () throws Exception {
+        int idAntes = Saint.getAcumuladorSaint();
         Saint seiya = new BronzeSaint("Seiya", "Pégaso");
-        Saint marin = new SilverSaint("Marin", "Águia");
-        Saint camus = new GoldSaint ("Camus", "Aquário");
-        assertEquals (seiya.getId(), marin.getId()-1);
-        assertEquals (seiya.getId(), camus.getId()-2);
+        assertEquals (idAntes+1, seiya.getId());
     }
 
+    
+    @Test
+    public void criarDoisSaintsIncrementaId () throws Exception {
+        int idAntes = Saint.getAcumuladorSaint();
+        Saint seiya = new BronzeSaint("Seiya", "Pégaso");
+        Saint camus = new GoldSaint("Camus", "Aquário");
+        assertEquals (idAntes+2, camus.getId());
+    }
+    
+    @Test
+    public void criarTresSaintsIncrementaId () throws Exception {
+        int idAntes = Saint.getAcumuladorSaint();
+        Saint seiya = new BronzeSaint("Seiya", "Pégaso");
+        Saint camus = new GoldSaint("Camus", "Aquário");
+        Saint marin = new SilverSaint("Marin", "Águia");
+        assertEquals (idAntes+3, marin.getId());
+    }
+    
 }
