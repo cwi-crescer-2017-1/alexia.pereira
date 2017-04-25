@@ -340,5 +340,15 @@ public class SaintTest {
         Saint marin = new SilverSaint("Marin", "Águia");
         assertEquals (idAntes+3, marin.getId());
     }
-    
+
+    @Test
+    public void criarSaintEDepoisLimpaEDeveIncrementarId() throws Exception {
+        int idAntes = Saint.getAcumuladorSaint();
+        Saint hyoga = new BronzeSaint("Hyoga", "Cisne");
+        // limpar hyoga da memória
+        hyoga = null;
+        Saint miro = new GoldSaint("Miro", "Escorpião");
+        assertEquals(idAntes + 2, miro.getId()); 
+    }
+
 }
