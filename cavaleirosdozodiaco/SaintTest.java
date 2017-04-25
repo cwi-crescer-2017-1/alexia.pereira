@@ -5,6 +5,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class SaintTest {
+
+    @After
+    public void tearDown () {
+        System.gc();
+    }
+
     @Test
     public void vestirArmaduraDeixaArmaduraVestida() throws Exception {
         // AAA
@@ -278,13 +284,36 @@ public class SaintTest {
     }
 
     @Test
-    public void qtdDeSaintsIncrementa () throws Exception {
-        int quantidadeAntiga = Saint.getQtdSaints();
+    public void criarUmSaintPopulacaoDeveSerUm () throws Exception {
+        Saint seiya = new BronzeSaint("Seiya", "Pégaso");
+        int quantidadeAtual = Saint.getQtdSaints();
+        assertEquals(1, quantidadeAtual);
+    }
+
+    @Test
+    public void criarDoisSaintPopulacaoDeveSerMaisDois () throws Exception {
+        Saint seiya = new BronzeSaint("Seiya", "Pégaso");
+        Saint marin = new SilverSaint("Marin", "Águia");
+        int quantidadeAtual = Saint.getQtdSaints();
+        assertEquals(2, quantidadeAtual);
+    }  
+
+    @Test
+    public void criarTresSaintsPopulacaoDeveSerMaisTres () throws Exception {
         Saint seiya = new BronzeSaint("Seiya", "Pégaso");
         Saint marin = new SilverSaint("Marin", "Águia");
         Saint camus = new GoldSaint ("Camus", "Aquário");
         int quantidadeAtual = Saint.getQtdSaints();
-        assertEquals(quantidadeAntiga+3, quantidadeAtual);
+        assertEquals(3, quantidadeAtual);
+    }
+
+    @Test
+    public void criarDuzentosSaintsQtdSaintsDeveTerDuzentosAMais() throws Exception {
+        final int quantidade = 200;
+        for (int i = 0; i < quantidade; i++) {
+            new BronzeSaint("Bronze " + i, "Constelação " + i);
+        }
+        assertEquals(quantidade, Saint.getQtdSaints());
     }
 
     @Test
@@ -296,5 +325,4 @@ public class SaintTest {
         assertEquals (seiya.getId(), camus.getId()-2);
     }
 
-    
 }

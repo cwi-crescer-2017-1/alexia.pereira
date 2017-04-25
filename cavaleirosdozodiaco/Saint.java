@@ -23,6 +23,10 @@ public abstract class Saint {
         /*int valorCategoria = this.armadura.getCategoria().getValor();
         this.qtdSentidosDespertados += valorCategoria;*/
     }
+
+	protected void finalize () throws Throwable {
+		Saint.qtdSaints--;		
+	}
     
     public int getId () {
         return this.id;
