@@ -247,15 +247,27 @@ public class SaintTest {
     }
 
     public void getCSVSemArmaduraVestida () throws Exception {
-        ListaSaint lista = new ListaSaint();
         Saint june = new BronzeSaint("June", "Camaleão");
         june.setGenero(Genero.FEMININO);
         june.perderVida(15.5);
-        lista.adicionarSaint(june);
         String esperado = "June,84.5,Camaleão,BRONZE,VIVO,FEMININO,false";
         assertEquals(esperado, june.getCSV());
 
     }
+    
+    @Test
+    public void getSaintByCSV () throws Exception {
+        Saint june = new BronzeSaint("June", "Camaleão");
+        june.setGenero(Genero.FEMININO);
+        june.perderVida(15.5);
+        String esperado = "June,84.5,Camaleão,BRONZE,VIVO,FEMININO,false";
+        Saint saintEsperado = june.getSaintByCSV(esperado);
+        
+        assertEquals(june, saintEsperado);
+        assertEquals(esperado, saintEsperado.getCSV());
+                
+    }
+    
 
     @Test (expected = ArithmeticException.class)
     public void getProximoMovimentoComListaVazia () throws Exception {

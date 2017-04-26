@@ -12,10 +12,9 @@ public abstract class Saint {
     private int acumuladorProximoMovimento = 0; 
     private ArrayList<Movimento> movimentos = new ArrayList<>();
     private static int qtdSaints = 0;
-	private static int acumuladorSaint = 0;
+    private static int acumuladorSaint = 0;
     private int id = 0;
-    
-    
+
     protected Saint(String nome, Armadura armadura) throws Exception {
         this.nome = nome;
         this.armadura = armadura;
@@ -28,17 +27,17 @@ public abstract class Saint {
     public static int getAcumuladorSaint () {
         return Saint.acumuladorSaint;
     }
-    
-	protected void finalize () throws Throwable {
-		Saint.qtdSaints--;		
-	}
+
+    protected void finalize () throws Throwable {
+        Saint.qtdSaints--;      
+    }
 
     public int getId () {
         return this.id;
     }
 
     public static int getQtdSaints () {
-    return Saint.qtdSaints;
+        return Saint.qtdSaints;
     }
 
     public String getNome() {
@@ -132,6 +131,17 @@ public abstract class Saint {
     }
 
     public String getCSV () {
+        return String.format(
+            "%s,%s,%s,%s,%s,%s,%s",
+            this.nome,
+            this.vida,
+            this.getConstelacao().getNome(),
+            this.armadura.getCategoria(),
+            this.status,
+            this.genero,
+            this.armaduraVestida);
+
+        /*
         return this.getNome() + ","
         + this.getVida() + "," 
         + this.getArmadura().getConstelacao().getNome() + "," 
@@ -139,8 +149,36 @@ public abstract class Saint {
         + this.getStatus() + "," 
         + this.getGenero() + "," 
         + this.getArmaduraVestida(); 
+         */
     }
 
+    public Saint getSaintByCSV  (String csv) throws Exception {
+        String [] atributos = csv.split(",");
+        Saint saint = null;
+        if (atributos[3].equals("BRONZE")) {
+            saint = new BronzeSaint(atributos[0], atributos[2]);
+        } else if (atributos[3].equals("PRATA")) {
+            saint = new SilverSaint(atributos[0], atributos[2]);
+        } else {
+            saint = new GoldSaint(atributos[0], atributos[2]);
+        }
+        
+        saint.setVida(Double.parseDouble(atributos[1]));
+        saint.setStatus(Status.valueOf(atributos[4]));
+        saint.setGenero(Genero.valueOf(atributos[5]));
+        saint.setArmaduraVestida(Boolean.getBoolean(atributos[6]));
+        
+        return saint;
+    }
+    
+    private void setVida (double vida) {
+        this.vida = vida;
+    }
+    
+    private void setArmaduraVestida (boolean armaduraVestida) {
+        this.armaduraVestida = armaduraVestida;
+    }
+    
     public Categoria getCategoria () {
         return this.armadura.getCategoria();
     }
