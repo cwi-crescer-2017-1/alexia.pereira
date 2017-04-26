@@ -14,16 +14,20 @@ public class GoldSaint extends Saint {
         && !cons.equals("Aquário") 
         && !cons.equals("Peixes")) { 
             // dar erro
-            throw new Exception("Constelação inválida");
+            throw new ConstelacaoInvalidaException("Constelação inválida"); 
         }
-        this.qtdSentidosDespertados = 7;
-        
-    }
 
+        try { 
+            this.qtdSentidosDespertados = 7; 
+        } catch (Exception e) { 
+            System.out.println("Erro de atribuição dos sentidos"); 
+        }
+
+    }
     public void moverNaVelocidadeDaLuz() {
         System.out.println(this.getNome() + " na velocidade da Luz!");
     }
-    
+
     public String getNome() {
         return super.getNome();
     }
