@@ -22,8 +22,9 @@ CREATE TABLE produto (
 
 --4
 INSERT INTO produto (id_produto, nome_curto, nome_descritivo, data_criacao, local_no_estoque, quantidade, preco)
-VALUES (1, 'Computador', 'Computador Dell', '17/04/28', 'A12', 3, 2800);
+VALUES (1, 'Computador', 'Computador Dell', '28/04/17', 'A12', 3, 2800);
 
 INSERT INTO produto (id_produto, nome_curto, nome_descritivo, data_criacao, local_no_estoque, quantidade, preco)
-VALUES (2, 'Celular', 'Zenfone 2', '17/04/28', 'B20', 5, 1000);
+VALUES (2, 'Celular', 'Zenfone 2', '28/04/17', 'B20', 5, 1000);
+
 
