@@ -1,17 +1,19 @@
 public class AtaqueDuplo implements Movimento {
     private Saint golpeador;
     private Saint golpeado;
-
-    public AtaqueDuplo (Saint golpeador, Saint golpeado, Golpear golpear) {
+    private Sorteador sorteador;
+    
+    public AtaqueDuplo (Saint golpeador, Saint golpeado, Sorteador sorteador) {
         this.golpeador = golpeador;
         this.golpeado = golpeado;
+        this.sorteador = sorteador;
     }
 
     public void executar () {
         Golpear golpear = new Golpear(this.golpeador, this.golpeado);
         if (this.podeExecutarAtaqueDuplo()) {
-            //Implementar comparacao de vida do saint golpeado
             golpear.executar();
+            this.golpeado.perderVida(CalculaFatorDano.getFatorDano(this.golpeador));
         } else {
             golpear.executar();
             this.golpeador.perderVida(this.golpeador.getVida()*0.05);
@@ -19,7 +21,6 @@ public class AtaqueDuplo implements Movimento {
     }
 
     private boolean podeExecutarAtaqueDuplo () {
-        Sorteador sorteador = new DadoD6();
         return sorteador.sortear() % 3 == 0 ? true : false;
     }
 
