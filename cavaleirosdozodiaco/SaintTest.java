@@ -297,9 +297,10 @@ public class SaintTest {
 
     @Test
     public void criarUmSaintPopulacaoDeveSerUm () throws Exception {
+        int quantidadeAntiga = Saint.getQtdSaints();
         Saint seiya = new BronzeSaint("Seiya", "Pégaso");
         int quantidadeAtual = Saint.getQtdSaints();
-        assertEquals(1, quantidadeAtual);
+        assertEquals(quantidadeAntiga+1, quantidadeAtual);
     }
 
     @Test
