@@ -99,8 +99,5 @@ public class GolpearTest {
         Saint seiya = new BronzeSaint("Seiya", "Pégaso");
         Golpear golpear = new Golpear (shiryu, seiya);
         golpear.executar();
-    }
-    
-    
-    
+    }    
 }
