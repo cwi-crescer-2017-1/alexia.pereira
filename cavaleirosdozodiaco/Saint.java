@@ -3,26 +3,29 @@ import java.util.ArrayList;
 public abstract class Saint {
     private String nome;
     protected Armadura armadura;
-    private boolean armaduraVestida;
+    private boolean armaduraVestida, contraAtacar = false;
     private Genero genero = Genero.NAO_INFORMADO;
     private Status status = Status.VIVO;
     private double vida = 100.;
-    protected int qtdSentidosDespertados;
-    private int acumuladorProximoGolpe = 0; 
-    private int acumuladorProximoMovimento = 0; 
+    protected int qtdSentidosDespertados, acumuladorProximoGolpe = 0,acumuladorProximoMovimento = 0, id = 0;
     private ArrayList<Movimento> movimentos = new ArrayList<>();
-    private static int qtdSaints = 0;
-    private static int acumuladorSaint = 0;
-    private int id = 0;
-
+    private static int qtdSaints = 0, acumuladorSaint = 0;
+    
     protected Saint(String nome, Armadura armadura) throws Exception {
         this.nome = nome;
         this.armadura = armadura;
         Saint.qtdSaints++;
         this.id = ++acumuladorSaint;
-        /*int valorCategoria = this.armadura.getCategoria().getValor();
-        this.qtdSentidosDespertados += valorCategoria;*/
     }
+    
+    public boolean getContraAtacar () {
+        return this.contraAtacar;
+    }
+    
+    public void setContraAtacar (boolean contraAtacar) {
+        this.contraAtacar = contraAtacar;
+    }
+    
 
     public static int getAcumuladorSaint () {
         return Saint.acumuladorSaint;
