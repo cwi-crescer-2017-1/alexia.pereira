@@ -1,9 +1,9 @@
 public abstract class CalculaFatorDano {
     
-    public static int getFatorDano (Saint golpeador) {
+    public static int getFatorDano (Saint golpeador, Golpe golpe) {
         return golpeador.getArmaduraVestida() 
-        ? (golpeador.getProximoGolpe().getFatorDano()*(1+golpeador.getCategoria().getValor())) 
-        : golpeador.getProximoGolpe().getFatorDano();
+        ? golpe.getFatorDano()*(1+golpeador.getCategoria().getValor())
+        : golpe.getFatorDano();
     }
    
 }
