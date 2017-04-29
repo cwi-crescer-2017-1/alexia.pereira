@@ -9,6 +9,7 @@ public class AtaqueDuploTest {
         Saint saga = new GoldSaint("Saga", "Gêmeos");
         Golpe outraDimensao = new Golpe("Outra dimensão", 10);
         saga.aprenderGolpe(outraDimensao);
+        saga.aprenderGolpe(new Golpe ("Sei lá", 20));
         saga.vestirArmadura();
         Saint seiya = new BronzeSaint("Seiya", "Pégaso");
         Movimento ataqueDuplo = new AtaqueDuplo (saga, seiya, new DadoFalso(3));
@@ -27,7 +28,6 @@ public class AtaqueDuploTest {
         Saint seiya = new BronzeSaint("Seiya", "Pégaso");
         Movimento ataqueDuplo = new AtaqueDuplo (saga, seiya, new DadoFalso(6));
         ataqueDuplo.executar();
-
         //Golpe posui originalmente 10 de dano, multiplicado por 2 = 20
         assertEquals(100, saga.getVida(), 0.1);
         assertEquals(80, seiya.getVida(), 0.1);
