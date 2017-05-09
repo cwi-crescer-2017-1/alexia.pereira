@@ -1,0 +1,51 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.square {
+  position: absolute;
+  bottom: 3px;
+  left: 0px;
+  right: 0px;
+  height: 50px;
+  background: rgba(0, 191, 255, 0.5);
+}
+
+.square > .maoe {
+  color: white;
+  font-weight: bold;
+  position: absolute;
+  left: 10px;
+  font-size: 30px;
+  margin: 0;
+}
+
+#lorem {
+  color: white;
+  display: none;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.square:hover {
+  height: 180px;
+}
+
+.square:hover > #lorem {
+  position: absolute;
+  display: block;
+  top: 50%;
+  left: 20%;
+  transform: translate(-20%, -50%);
+}
