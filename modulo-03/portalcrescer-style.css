@@ -9,28 +9,26 @@ body {
 }
 
 header {
-  width: 100%;
   display: block;
-  height: 50px;
+  height: 65px;
   background: #c4170c;
   text-align: center;
 }
 
 header .title {
-  text-align: center;
   display: inline-block;
   color: white;
-  font-weight: bold;
   text-transform: uppercase;
   font-size: 25px;
-  margin-top: 5px;
+  margin-top: 15px;
+  font-weight: 800;
 }
 
 .container {
   font-size: 0;
   height: 100%;
   width: 80%;
-  margin: 20px auto;
+  margin: 30px auto;
 }
 
 .title {
@@ -39,25 +37,60 @@ header .title {
   font-size: 30px;
 }
 
-.wrapper-l {
+.wrapper {
   font-size: initial;
-  display: inline-block;
+  float: left;
   width: 50%;
+}
+
+
+.l {
   padding-right: 20px;
 }
 
-.wrapper-r {
-  font-size: initial;
-  display: inline-block;
-  width: 50%;
+.r {
   padding-left: 20px;
 }
 
 .col {
-  font-size: initial;
-  display: inline-block;
   width: 100%;
   background: white;
-  border: 1px solid #d3d3d3;
-  padding: 20px;
+  border: 1px solid #dddddd;
+  padding: 30px;
+  margin-bottom: 40px;
+
+}
+
+.capitular::first-letter {
+  margin: 15px 4px 0px 0px;
+  float:left;
+  color:#c4170c;
+  font-size:70px;''
+  float: left;
+  clear: left;
+}
+
+img {
+  margin-top: 30px;
+  max-width: 160px;
+  max-height: 160px;
+  width: auto;
+  height: auto;
+  float: right;
+  clear: right;
+}
+
+.date {
+  text-transform: uppercase;
+  color: #dddddd;
+  float: right;
+  margin: 0;
+  margin-top: -10px;
+  font-size: 14px;
+}
+
+.subtitulo {
+  color: #bbbbbb;
+  line-height: normal;
+  margin-top: 10px;
 }
