@@ -7,43 +7,104 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
-header {
-      width: 100%;
-      height: 400px;
-      background-image: url(https://slack-imgs.com/?c=1&url=https%3A%2F%2Fassets.vg247.it%2Fcurrent%2F%2F2016%2F02%2Fstreet-fighter-5-guida-mosse-trucchi.jpg);
-      background-size: cover;
-      position: relative;
+.menu {
+  width: 100%;
+  height: 390px;
+  background-image: url(http://www.wallpapersbyte.com/wp-content/uploads/2015/12/Street-Fighter-V-Fighting-Game-Boxing-Art-Fighter-WallpapersByte-com-3840x2400.jpg);
+  background-size: cover;
+  position: relative;
 }
 
 /*ul*/
 .menu .menu-itens {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    position: absolute;
-    top: 70%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
-    border-radius: 20px;
-    border: 1px solid white;
-    background: rgba(255, 255, 255, 0.2);
-    width: 400px;
-    height: 50px;
+  border-radius: 13px;
+  border: 1px solid #9b8d8c;
+  background: rgba(155,141,140, 0.6);
+  width: 500px;
+  height: 50px;
 }
 
 /*li*/
 .menu .menu-itens .menu-item {
   display: inline-block;
-  margin: 10px 15px;
+  margin: 13px 25px;
 
 }
 
 .menu .menu-itens .menu-item .menu-link {
-
   text-decoration: none;
   color: white;
   font-weight: bold;
   margin: 0;
   padding: 0;
+}
+
+.faixa {
+  margin-top: 390px;
+  background: #444444;
+  height: 80px;
+  width: 52%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.page-title {
+  color: white;
+  font-size: 30px;
+}
+
+h1 {
+  margin: 0;
+}
+
+.container {
+  background: #ededed;
+  height: 100%;
+  width: 52%;
+  margin: 0 auto;
+  padding: 20px;
+  overflow: auto;
+}
+
+.line {
+  border-bottom: 2px solid #a5a5a5;
+  width: 100%;
+  margin: 10px 0;
+}
+
+p {
+  text-align: justify;
+}
+
+.container .wrapper {
+  margin-top: 20px;
+}
+
+.l {
+  width: 40%;
+  float: left;
+  clear: left;
+}
+
+.l > img {
+  width: 100%;
+}
+
+.r {
+  width: 60%;
+  float: right;
+  clear: right;
+  padding-left: 16px;
+}
+
+.container > .wrapper > .texto {
+  font-size: 15px;
 }
