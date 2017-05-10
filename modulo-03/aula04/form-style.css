@@ -1,0 +1,20 @@
+* {
+  box-sizing: border-box;
+}
+
+h1 {
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+.container form {
+    margin-bottom: 20px;
+}
+
+.container > form > .pull-right {
+  padding-right: 15px;
+}
+
+.container > form >.row > button {
+  margin-left: 5px;
+}
