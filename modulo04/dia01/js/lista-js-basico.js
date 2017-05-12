@@ -1,9 +1,8 @@
 // Exercicio 01
 function daisyGame (numero) {
-  var res = (numero%2===0)
+  return (numero%2===0)
   ? "Love me not"
-  : "Love me"
-  return res;
+  : "Love me";
 }
 console.log(daisyGame(4));
 
