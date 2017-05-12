@@ -1,15 +1,15 @@
 // Exercicio 01
 function daisyGame (numero) {
-  return (numero%2===0)
-  ? "Love me not"
-  : "Love me";
+  return numero%2===0 ? "Love me not" : "Love me";
+  //ECMA 2015
+  // return `Love me${ numero % 2 === 0 ? ' not' : ''}`;
 }
 console.log(daisyGame(4));
 
 // Exercicio 02
 function maiorTexto (strings) {
-  var max = strings[0].length;
-  for (var i=0; i<strings.length; i++) {
+  var max = strings.length > 0 ? strings[0] : "";
+  for (let i=1; i<strings.length; i++) {
     max = (max.length > strings[i].length) ? max : strings[i];
   }
   return max;
@@ -68,12 +68,11 @@ function queroCafe (mascada, precos) {
   var x = 0;
   var precosMenoresQueMascada = [];
   for (var i = 0; i < precos.length; i++) {
-    if (precos[i] < mascada) {
+    if (precos[i] <= mascada) {
       precosMenoresQueMascada[x] = precos[i];
       x++;
     }
   }
-  precosMenoresQueMascada.sort();
-  return precosMenoresQueMascada.join();
+  return precosMenoresQueMascada.sort((a,b) => a-b).join(',');
 }
 console.log(queroCafe(3.14, [5.16, 2.12, 1.15, 3.11, 17.5]));
