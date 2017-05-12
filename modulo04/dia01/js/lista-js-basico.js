@@ -52,6 +52,16 @@ function fiboSum (num) {
   }
   return soma;
 }
+
+function fiboSum(n) {
+    if (n === 1) {
+        return 1;
+    }
+    if (n === 0) {
+      return 0;
+    }
+    return fiboSum(n-1) + fiboSum(n-2) + 1;
+}
 console.log(fiboSum(7));
 
 // Exercicio 06
@@ -64,7 +74,7 @@ function queroCafe (mascada, precos) {
       x++;
     }
   }
-  precosMenoresQueMascada.sort(function(a, b){return a-b});
+  precosMenoresQueMascada.sort();
   return precosMenoresQueMascada.join();
 }
 console.log(queroCafe(3.14, [5.16, 2.12, 1.15, 3.11, 17.5]));
