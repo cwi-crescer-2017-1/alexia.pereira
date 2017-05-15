@@ -25,13 +25,15 @@ console.log(filtrarSeriesPorAno(series, 2017));
 
 // Exercicio 03
 function mediaDeEpisodios(series) {
-  return series.reduce(function (a,b) { return a + b.numeroEpisodios; }, 0) / series.length;
+  // return series.reduce(function (a,b) { return a + b.numeroEpisodios; }, 0) / series.length;
+  return series.map(s => s.numeroEpisodios).reduce((a, b) => a + b) / series.length;
 }
 console.log(mediaDeEpisodios(series));
 
 // Exercicio 04
 function procurarPorNome(series, nome) {
-  return series.filter(e => e.elenco.toString().includes(nome)).length > 0;
+  // return series.filter(e => e.elenco.toString().includes(nome)).length > 0;
+  return series.some(s => s.elenco.some(e => e.includes(nome)));
 }
 console.log(procurarPorNome(series, "Alexia"));
 
@@ -59,15 +61,15 @@ function creditosIlluminatis (serie) {
   console.log("Elenco: ");
   serie.elenco.sort(sortPorUltimoNome).forEach(logElements);
 }
-console.log(creditosIlluminatis(series[4]));
+// console.log(creditosIlluminatis(series[4]));
 
 function logElements (e) {
   console.log(e);
 }
 
 function sortPorUltimoNome (a, b) {
-  var aName = a.split(" ");
-  var bName = b.split(" ");
+  var aName = a.trim().split(" ");
+  var bName = b.trim().split(" ");
   var aLastName = aName[aName.length - 1];
   var bLastName = bName[bName.length - 1];
   if (aLastName < bLastName) return -1;
@@ -76,15 +78,12 @@ function sortPorUltimoNome (a, b) {
 }
 
 // Exercicio 08
-
 function serieIlluminati (series) {
-  var elenco = contemTodosOsNomesAbreviados(series.filter(e => e.elenco.toString().includes(".")))[0];
-  return "#"+elenco.map(nome => nome.match(/[A-Z]\./g)).map(nome => nome[0].replace('.', '')).join("");
+  var serie = series.find(s => s.elenco.every(e => e.match(/[A-Z]\./g)));
+  return "#"+serie.elenco.map(nome => nome.match(/[A-Z]\./g)).map(nome => nome[0].replace('.', '')).join("");
+  // var elenco = series.filter(e => (e.elenco.filter(e => e.match(/[A-Z]\./g) !== null).length === e.elenco.length)).map(e => e.elenco);
+  // return "#"+elenco.shift().map(nome => nome.match(/[A-Z]\./g)).map(nome => nome[0].replace('.', '')).join("");
 
-}
-
-function contemTodosOsNomesAbreviados (seriesQueContemAlgumPonto) {
-  return seriesQueContemAlgumPonto.filter(e => (e.elenco.filter(e => e.match(/[A-Z]\./g)).length === e.elenco.length)).map(e => e.elenco);
 }
 
 console.log(serieIlluminati(series));
