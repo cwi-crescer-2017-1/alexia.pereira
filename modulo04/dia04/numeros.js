@@ -1,5 +1,5 @@
 Number.prototype.arredonda = function (casasDecimais) {
   return (typeof casasDecimais !== 'undefined' && casasDecimais !== null) ?
-   this.toFixed(casasDecimais) :
-   this.toFixed(2);
+   Number(this.toFixed(casasDecimais)) :
+   Number(this.toFixed(2));
 };
