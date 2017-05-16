@@ -6,5 +6,6 @@
 
 Number.prototype.arredondar = function(casasDecimais) {
   casasDecimais = casasDecimais || 2;
- return Math.round(this * Math.pow(10, casasDecimais)) / (Math.pow(10, casasDecimais));
+  marcador = Math.pow(10, casasDecimais);
+  return Math.round(this * marcador) / marcador;
 };
