@@ -1,0 +1,7 @@
+progress {
+  display: block;
+}
+.pokemon {
+  display: inline-block;
+  margin: 0 40px;
+}
