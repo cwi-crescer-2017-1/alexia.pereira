@@ -1,7 +1,16 @@
+body {
+  box-sizing: border-box;
+}
 progress {
   display: block;
 }
 .pokemon {
+  padding: 30px;
   display: inline-block;
-  margin: 0 40px;
+  margin: 10px 20px;
+  border: 2px solid #ddd;
+  vertical-align:top;
+  min-height: 518px;
+  height: auto;
+  width: 270px;
 }
