@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <title>Exercicio Pokemon</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Khula:400,600,700,800" rel="stylesheet">
+    <script  type="text/javascript" src="https://code.angularjs.org/1.6.4/angular.js"> </script>
+    <script type="text/javascript" src="js/controller.js"> </script>
+  </head>
+  <body>
+    <!-- <div ng-controller="MainController">
+      <input type="text" ng-model="pokemon.nome">
+      <p> {{pokemon.nome}} </p>
+    </div> -->
+    <div class="container" ng-controller="MainController2">
+      <h1>Pesquise pokemon por nome ou por tipo:</h1>
+      <input type="text" ng-model="filtro">
+      <ul class="lista">
+        <li ng-repeat="pokemon in pokemons | filter:filtro">
+          <strong>Nome</strong> {{pokemon.nome}}
+          <br>
+          <strong>Tipo:</strong> {{pokemon.tipo}}
+        </li>
+      </ul>
+    </div>
+
+  </body>
+</html>

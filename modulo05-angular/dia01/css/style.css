@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC:400,700');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #fafafa;
+  margin: 0;
+  font-family: 'Khula', sans-serif;
+}
+
+.lista {
+  list-style: none;
+  width: 55%;
+  margin: 10px auto 0 auto;
+}
+
+ul.lista > li {
+  padding: 10px;
+}
+
+ul.lista > li:nth-child(odd) {
+  margin-left: -47px;
+  float: left;
+  clear: left;
+  text-align: left;
+}
+ul.lista > li:nth-child(even) {
+  float: right;
+  clear: right;
+  text-align: right;
+}
+.container {
+  text-align: center;
+  width: 80%;
+  margin: 50px auto;
+}
+input[type=text] {
+  border-color: #317ef9;
+  height: 20px;
+  width: 55%;
+  padding: 12px 20px;
+}
+
+h1 {
+  font-size: 55px;
+  font-family: 'Amatic SC', cursive;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  color: #317ef9;
+}
