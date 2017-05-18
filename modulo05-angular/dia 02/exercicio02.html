@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html ng-app="ex02">
+  <head>
+    <title>Exercicio Mascada</title>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Khula:400,600,700,800" rel="stylesheet">
+    <script  type="text/javascript" src="https://code.angularjs.org/1.6.4/angular.js"> </script>
+    <script type="text/javascript" src="js/exercicio02.js"> </script>
+  </head>
+  <body ng-controller="Controller">
+   <ul>
+       <li ng-repeat="instrutor in instrutores"> 
+           {{instrutor.nome | mascada}}
+       </li>
+  </ul>
+  </body>
+</html>
