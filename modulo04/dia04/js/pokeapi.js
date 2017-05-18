@@ -1,34 +1,16 @@
-//$(function() {})
-//$(document).ready(function() {})
-//$.ready(function() {})
-
 let btnPesquisar = document.getElementById('btnPesquisar');
-const input = document.getElementById('pesquisa');
+let input = document.getElementById('pesquisa');
 
 btnPesquisar.onclick = function() {
   valor = input.value;
   procuraPorNumero(valor);
 }
 
-// fetch('http://pokeapi.co/api/v2/stat/6/').then(response => response.json()).then(json => console.log(json));
-// fetch("http://pokeapi.co/api/v2/pokemon/5/").then(response => response.json())
-//   .then(json => {
-//     console.log("JSON 1", json)
-//     fetch("http://pokeapi.co/api/v2/pokemon/6/").then(response => response.json())
-//       .then(json => {
-//         console.log("JSON 2", json)
-//         fetch("http://pokeapi.co/api/v2/pokemon/7/").then(response => response.json())
-//           .then(json => {
-//             console.log("JSON 3", json)
-//           })
-//       })
-//   })
-
-  function procurarStatus (obj, div) {
-    var b =  obj.map(function (e) {
-      let a = {name: e.stat.name, base_stat: e.base_stat};
-      return a;
-    });
+function procurarStatus (obj, div) {
+  var b =  obj.map(function (e) {
+    let a = {name: e.stat.name, base_stat: e.base_stat};
+    return a;
+  });
   b.forEach(function(e) {
     let progress = document.createElement('progress');
     texto = document.createElement('h3').appendChild(document.createTextNode(e.name));
@@ -39,7 +21,6 @@ btnPesquisar.onclick = function() {
   });
 }
 
-
 function procuraPorNumero (input) {
   let url = "http://pokeapi.co/api/v2/pokemon/" + input;
   fetch(url)
@@ -49,12 +30,22 @@ function procuraPorNumero (input) {
     let divPokemon = document.createElement('div');
     divPokemon.className = "pokemon";
     let div = document.getElementById('detalhesPokemon');
+
     let h1 = document.createElement('h1');
-    h1.appendChild(document.createTextNode(json.name + " - " + json.id));
+    h1.appendChild(document.createTextNode(json.name));
     divPokemon.append(h1);
+
+    let spanID = document.createElement('span')
+    let id = (document.createTextNode(" Número: " + json.id));
+    spanID.append(id);
+    divPokemon.append(spanID);
+
     let img = document.createElement('img');
     img.src = json.sprites.front_default;
     divPokemon.append(img);
+
+    let spanUl = document.createElement('span');
+    spanUl.append(document.createTextNode('Tipos:'))
     let ul = document.createElement('ul');
     let tipos = json.types;
     tipos.forEach(function (e) {
@@ -62,7 +53,9 @@ function procuraPorNumero (input) {
       li.appendChild(document.createTextNode(e['type'].name));
       ul.appendChild(li);
     });
-    divPokemon.append(ul);
+    spanUl.append(ul)
+    divPokemon.append(spanUl);
+
     procurarStatus(json.stats, divPokemon);
     div.append(divPokemon);
   })

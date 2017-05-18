@@ -1,16 +1,97 @@
-body {
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC:400,700');
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+
+* {
   box-sizing: border-box;
 }
+
+body {
+  margin: 0;
+  font-family: 'Josefin Sans', sans-serif;
+  background-color: #fafafa;
+}
+
 progress {
   display: block;
 }
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
+
 .pokemon {
+  background: white;
   padding: 30px;
   display: inline-block;
-  margin: 10px 20px;
+  margin: 10px 30px;
   border: 2px solid #ddd;
   vertical-align:top;
-  min-height: 518px;
+  min-height: 560px;
   height: auto;
   width: 270px;
+}
+
+#detalhesPokemon {
+  width: 1002px;
+  margin: 0 auto;
+}
+
+.interacao {
+  text-align: center;
+  margin: 10px auto;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 0;
+  font-size: 55px;
+  font-family: 'Amatic SC', cursive;
+  margin-bottom: 5px;
+  color: black;
+}
+
+#detalhesPokemon > h1 {
+  font-size: 20px;
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+}
+
+ul {
+  list-style-type: circle;
+}
+
+h1 + span {
+  display: block;
+  text-align: center;
+}
+
+input[type=text] {
+  border-bottom: 2px solid black;
+}
+input {
+  border: none;
+  background-color: transparent;
+}
+
+*:focus {
+  outline: none;
+}
+
+
+#btnPesquisar {
+  background-color: #555555;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 5px;
+  cursor: pointer;
+  width: 100px;
+  height: 30px;
 }
