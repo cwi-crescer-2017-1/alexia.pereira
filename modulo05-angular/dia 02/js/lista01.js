@@ -11,7 +11,7 @@ aplicacao.filter('listarAulas', function() {
     var str = "" + aula.numeroAula;
     var pad = "000"
     var num = pad.substring(0, pad.length - str.length) + str
-    let formatacao = num + " - " + aula.nomeAula;
+    let formatacao = num + " - " + aula.nomeAula.toUpperCase();
     return formatacao;
   }
 });

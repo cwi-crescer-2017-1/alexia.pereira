@@ -9,8 +9,6 @@
   <script type="text/javascript" src="js/lista01.js"> </script>
 </head>
 <body ng-controller="Controller">
-  <br>
-  <br>
   <!-- Mostra modulo - instrutor -->
   <ul>
     <li ng-repeat="aula in aulas | orderBy: 'numeroAula'">
@@ -20,9 +18,9 @@
 
     <!-- Mostra Numero - Modulo -->
     <ul>
-        <li ng-repeat="aula in aulas | orderBy: 'numeroAula'">
-          {{aula | listarAulas}}
-        </li>
+      <li ng-repeat="aula in aulas | orderBy: 'numeroAula'">
+        {{aula | listarAulas}}
+      </li>
     </ul>
 </body>
 </html>
