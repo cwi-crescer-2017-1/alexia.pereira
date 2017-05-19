@@ -55,10 +55,10 @@
         <label for="email">Email:</label>
         <input type="email" class="form-control" name="email" ng-model="i.email" required/>
         <!-- Email:Validar -->
-        <span ng-if="meuForm.email.$error.required">
+        <span ng-show="meuForm.email.$error.required">
           Campo Obrigatório
         </span>
-        <span ng-if="meuForm.email.$invalid">
+        <span ng-show="meuForm.email.$error.email">
           Campo Inválido
         </span>
       </div>
