@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+  <meta charset="utf-8">
+  <title>Exercicio</title>
+  <!-- <link rel="stylesheet" href="../dia01/css/style.css"> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/ex01-style.css">
+
+</head>
+<body>
+  <div class="container" ng-controller="Controller">
+
+    <form novalidate name="meuForm" ng-submit="incluir(novoNome)">
+      <h1>Insira o novo Instrutor</h1>
+
+      <div class="form-group">
+        <!-- Nome: Inserir -->
+        <label for="nome">Nome:</label>
+        <input type="text" class="form-control" name="nome" ng-model="i.nome" required ng-minlength="3" ng-maxlength="20"/>
+        <!-- Nome: Validar -->
+        <span ng-if="meuForm.nome.$error.required">
+          Campo Obrigatório
+        </span>
+        <span ng-if="meuForm.nome.$error.minlength">
+          Campo deve possuir no mínimo 3 caracteres
+        </span>
+        <span ng-if="meuForm.nome.$error.maxlength">
+          Campo deve possuir no máximo 20 caracteres
+        </span>
+      </div>
+
+      <div class="form-group">
+        <!-- Sobrenome: Inserir -->
+        <label for="sobrenome">Sobrenome:</label>
+        <input type="text" class="form-control" name="sobrenome" ng-model="i.sobrenome" ng-maxlength="30"/>
+        <!-- Sobrenome:Validar -->
+        <span ng-if="meuForm.sobrenome.$error.maxlength">
+          Campo deve possuir no máximo 30 caracteres
+        </span>
+      </div>
+
+      <div class="form-group">
+        <!-- Idade: Inserir -->
+        <label for="idade">Idade:</label>
+        <input type="number" class="form-control" name="idade" required ng-model="i.idade"/>
+        <!-- Idade: Validar -->
+        <span ng-if="meuForm.idade.$error.required">
+          Campo Obrigatório
+        </span>
+      </div>
+
+      <div class="form-group">
+        <!-- Email: Inserir -->
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" name="email" ng-model="i.email" required/>
+        <!-- Email:Validar -->
+        <span ng-if="meuForm.email.$error.required">
+          Campo Obrigatório
+        </span>
+        <span ng-if="meuForm.email.$invalid">
+          Campo Inválido
+        </span>
+      </div>
+
+      <div class="form-group">
+        <!-- Ja Deu Aula: Inserir -->
+        <label for="jaDeuAula">Já deu aula </label>
+        <input type="checkbox" name="i.jaDeuAula"  ng-model="i.jaDeuAula" value="deuAula">
+      </div>
+
+      <div class="form-group">
+        <!-- Aula: Inserir -->
+        <label for="listaAulas">Aula</label>
+        <select name="listaAulas" ng-model="i.aula" ng-options="aula for aula in aulas">
+          <option value="">
+            {{aula}}
+          </option>
+        </select>
+      </div>
+
+      <button type="submit" ng-click="incluir(i)">Incluir</button>
+
+    </form>
+
+    <h1>Instrutores</h1>
+    <table class="table">
+      <tr>
+        <td>Nome</td>
+        <td>Sobrenome</td>
+        <td>Idade</td>
+        <td>Email</td>
+        <td>Já Deu Aula</td>
+        <td>Aula</td>
+      </tr>
+      <tr ng-repeat="instrutor in instrutores">
+        <th>{{instrutor.nome}}</th>
+        <th>{{instrutor.sobrenome}}</th>
+        <th>{{instrutor.idade}}</th>
+        <th>{{instrutor.email}}</th>
+        <th>{{instrutor.jaDeuAula}}</th>
+        <th>{{instrutor.aula}}</th>
+      </tr>
+    </table>
+
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.6.4/angular-locale_pt-br.min.js"></script>
+  <script src="js/controller.js"></script>
+</body>
+</html>
