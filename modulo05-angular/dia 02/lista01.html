@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="ex02">
+<head>
+  <title>Exercicio Mascada</title>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css?family=Khula:400,600,700,800" rel="stylesheet">
+  <link rel="stylesheet" href="../dia01/css/style.css">
+  <script  type="text/javascript" src="https://code.angularjs.org/1.6.4/angular.js"> </script>
+  <script type="text/javascript" src="js/lista01.js"> </script>
+</head>
+<body ng-controller="Controller">
+  <br>
+  <br>
+  <!-- Mostra modulo - instrutor -->
+  <ul>
+    <li ng-repeat="aula in aulas | orderBy: 'numeroAula'">
+      {{aula.nomeAula}}   |   {{aula.nomeInstrutor | mascada}}
+      <br>
+    </ul>
+
+    <!-- Mostra Numero - Modulo -->
+    <ul>
+        <li ng-repeat="aula in aulas | orderBy: 'numeroAula'">
+          {{aula | listarAulas}}
+        </li>
+    </ul>
+</body>
+</html>
