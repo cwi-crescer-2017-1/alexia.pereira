@@ -12,7 +12,7 @@
 <body ng-controller="Controller">
   <!-- Mostra modulo - instrutor -->
   <div class="mod-inst">
-  <h1>Módulos e Instrutores: </h1>
+  <h1>Módulos | Instrutores: </h1>
   <ul>
     <li ng-repeat="aula in aulas | orderBy: 'numeroAula'">
       {{aula.nomeAula}}   |   {{aula.nomeInstrutor | mascada}}
@@ -22,7 +22,7 @@
 
     <!-- Mostra Numero - Modulo -->
   <div class="mod-inst">
-    <h1>Número do Modulo Nome do Módulo: </h1>
+    <h1>Número do Modulo | Nome do Módulo: </h1>
     <ul>
       <li ng-repeat="aula in aulas | orderBy: 'numeroAula'">
         {{aula | listarAulas}}

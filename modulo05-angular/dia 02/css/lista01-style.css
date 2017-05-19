@@ -20,3 +20,7 @@ body {
    position: relative;
    left: 35%;
  }
+
+ li:hover {
+   color: #898989;
+ }
