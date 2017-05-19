@@ -23,11 +23,12 @@ app.controller('Controller', ['$scope', function(model) {
 
   model.instrutores = instrutores;
   model.aulas = aulas;
-  model.incluir = function(instrutor) {
+  model.incluir = function(i) {
     if (model.meuForm.$invalid) {
       return;
     }
-      model.instrutores.push(angular.copy(instrutor));
+      model.instrutores.push(angular.copy(i));
+      model.i = {}
   };
 
 }]);
