@@ -1,0 +1,22 @@
+body {
+  text-align: center;
+}
+
+.mod-inst {
+  width: 50%;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+  margin: 10px 0;
+}
+ ul {
+   list-style: circle;
+   list-style-position: inside;
+   margin-left: -20px;
+ }
+
+ ul li {
+   text-align: left;
+   position: relative;
+   left: 35%;
+ }

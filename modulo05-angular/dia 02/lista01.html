@@ -5,22 +5,29 @@
   <meta charset="utf-8">
   <link href="https://fonts.googleapis.com/css?family=Khula:400,600,700,800" rel="stylesheet">
   <link rel="stylesheet" href="../dia01/css/style.css">
+  <link rel="stylesheet" href="css/lista01-style.css">
   <script  type="text/javascript" src="https://code.angularjs.org/1.6.4/angular.js"> </script>
   <script type="text/javascript" src="js/lista01.js"> </script>
 </head>
 <body ng-controller="Controller">
   <!-- Mostra modulo - instrutor -->
+  <div class="mod-inst">
+  <h1>Módulos e Instrutores: </h1>
   <ul>
     <li ng-repeat="aula in aulas | orderBy: 'numeroAula'">
       {{aula.nomeAula}}   |   {{aula.nomeInstrutor | mascada}}
       <br>
     </ul>
+  </div>
 
     <!-- Mostra Numero - Modulo -->
+  <div class="mod-inst">
+    <h1>Número do Modulo Nome do Módulo: </h1>
     <ul>
       <li ng-repeat="aula in aulas | orderBy: 'numeroAula'">
         {{aula | listarAulas}}
       </li>
     </ul>
+  </div>
 </body>
 </html>
