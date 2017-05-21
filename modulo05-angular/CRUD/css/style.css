@@ -1,0 +1,12 @@
+img {
+  max-width: 50px;
+  max-height: 50px;
+}
+
+body  {
+  margin-bottom: 100px;
+}
+
+.table th {
+  vertical-align: middle;
+}
