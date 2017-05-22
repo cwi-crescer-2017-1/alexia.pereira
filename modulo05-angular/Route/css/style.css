@@ -1,0 +1,21 @@
+img {
+  max-width: 50px;
+  max-height: 50px;
+}
+
+body  {
+  margin-bottom: 100px;
+}
+
+.table th {
+  vertical-align: middle;
+}
+
+.checkboxes > label {
+  margin: 30px;
+}
+
+h1 {
+  margin-top: 20px;
+  padding: 10px 0;
+}

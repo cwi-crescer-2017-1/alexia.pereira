@@ -1,0 +1,89 @@
+<div class="aulas">
+
+  <form novalidate name="meuForm" ng-submit="incluirAula(novaAula)">
+    <h1>Insira a nova aula: </h1>
+
+    <div class="form-group">
+      <!-- Nome: Inserir -->
+      <label for="nome">Nome:</label>
+      <input type="text" class="form-control" name="nome" ng-model="novaAula" required ng-minlength="3" ng-maxlength="20"/>
+      <!-- Nome: Validar -->
+      <span ng-if="meuForm.nome.$error.required">
+        Campo Obrigatório
+      </span>
+      <span ng-if="aulaJaCadastrada(novaAula, false)">
+        Essa aula já existe
+      </span>
+      <span ng-if="meuForm.nome.$error.minlength">
+        Campo deve possuir no mínimo 3 caracteres
+      </span>
+      <span ng-if="meuForm.nome.$error.maxlength">
+        Campo deve possuir no máximo 20 caracteres
+      </span>
+    </div>
+
+    <button type="submit">Incluir</button>
+
+  </form>
+
+  <h1>Aulas</h1>
+  <table class="table">
+    <tr>
+      <td>Id</td>
+      <td>Nome da Aula</td>
+    </tr>
+    <tr ng-repeat="aula in aulas | orderBy: 'nome'">
+      <th>{{aula.id}}</th>
+      <th>{{aula.nome}}</th>
+    </tr>
+  </table>
+  <div class="form-group">
+    <h1>Atualizar uma Aula:</h1>
+    <label for="listaAulas">Selecione a aula a ser atualizadas</label>
+    <select name="listaAulas" ng-model="aulaS" ng-options="aula.nome for aula in aulas">
+      <option value="">
+        {{aula.nome}}
+      </option>
+    </select>
+    <button type="submit" ng-click="aulaSelecionada(aulaS)"> Selecionar </button>
+  </div>
+
+
+  <div ng-show="showForm">
+
+    <form novalidate name="formUpdateAula" ng-submit="updateAula(novoNomeAula)">
+
+      <input type="text" class="form-control" name="novoNomeAula" ng-model="novoNomeAula" required ng-minlength="3" ng-maxlength="20"/>
+
+      <span ng-if="formUpdateAula.novoNomeAula.$error.required">
+        Campo Obrigatório
+      </span>
+      <span ng-if="aulaJaCadastrada(novoNomeAula, true)">
+        Essa aula já existe
+      </span>
+      <span ng-if="formUpdateAula.novoNomeAula.$error.minlength">
+        Campo deve possuir no mínimo 3 caracteres
+      </span>
+      <span ng-if="formUpdateAula.novoNomeAula.$error.maxlength">
+        Campo deve possuir no máximo 20 caracteres
+      </span>
+
+      <button type="submit" name="update" > Atualizar </button>
+    </form>
+
+  </div>
+
+  <div class="form-group">
+    <h1>Deletar uma aula</h1>
+    <label for="listaAulasD">Selecione a aula a ser deletada</label>
+    <select name="listaAulasD" ng-model="aulaPraDeletar" ng-change="aulaNaoEstaSendoUtilizada()" ng-options="aula.nome for aula in aulas">
+      <option value="">
+        {{aula.nome}}
+      </option>
+    </select>
+    <button type="submit" name="delete" ng-click="deletarAula(aulaPraDeletar)"> Deletar </button>
+    <span ng-show="aulaSendoUtilizada">
+      Não é possível excluir esta aula. Está sendo utilizada.
+    </span>
+  </div>
+</div>
