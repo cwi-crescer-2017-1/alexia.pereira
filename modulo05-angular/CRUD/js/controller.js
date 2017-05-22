@@ -95,7 +95,11 @@ app.controller('Controller', ['$scope', function(model) {
   model.instrutorS;
   model.selecionado = [];
   model.instrutorSendoUtilizado = false;
+
   model.incluirInstrutor = function (novoInstrutor) {
+    if (model.meuFormI.$invalid || !model.meuFormI.$valid) {
+      return;
+    }
     novoInstrutor.id = ++idInstrutor;
     novoInstrutor.urlFoto = novoInstrutor.urlFoto || "https://media.lovemondays.com.br/logos/e3b058/cwi-software-original.png";
     model.instrutores.push(angular.copy(novoInstrutor));
@@ -125,6 +129,13 @@ app.controller('Controller', ['$scope', function(model) {
       return validade;
     // }
   };
+
+  model.emailJaCadastrado = function (emailInstrutor) {
+    let validade = model.instrutores.filter(instrutor => instrutor.email === emailInstrutor).length > 0;
+    model.meuFormI.$invalid = validade;
+    return validade;
+
+  }
 
   model.instrutorSelecionado = function (instrutorS) {
     let taSelecionado = typeof instrutorS !== 'undefined';

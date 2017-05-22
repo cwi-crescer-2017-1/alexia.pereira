@@ -113,7 +113,7 @@
         <span ng-if="meuFormI.nome.$error.required">
           Campo Obrigatório
         </span>
-        <span ng-if="instrutorJaCadastrado(novoInstrutor)">
+        <span ng-if="instrutorJaCadastrado(novoInstrutor.nome)">
           Essa instrutor já está cadastrado
         </span>
         <span ng-if="meuForm.nome.$error.minlength">
@@ -157,6 +157,9 @@
         </span>
         <span ng-show="meuFormI.email.$error.email">
           Campo Inválido
+        </span>
+        <span ng-show="emailJaCadastrado(novoInstrutor.email)">
+          Email já está sendo utilizado.
         </span>
       </div>
 
