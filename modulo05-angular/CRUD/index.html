@@ -103,7 +103,7 @@
 
     <form novalidate name="meuFormI">
       <h1 ng-hide="showFormI">Insira o novo Instrutor: </h1>
-      <h1 ng-show="showFormI">Digite as novas informações do Instrutor</h1>
+      <h1 id="update" ng-show="showFormI">Digite as novas informações do Instrutor</h1>
 
       <div class="form-group">
         <!-- Nome: Inserir -->
@@ -189,7 +189,7 @@
       </div>
 
       <button type="submit" ng-click="incluirInstrutor(novoInstrutor)" ng-hide="showFormI">Incluir</button>
-      <button type="submit" ng-click="atualizarInstrutor(novoInstrutor)" ng-show="showFormI">Atualizar</button>
+      <button type="submit" ng-click="atualizarInstrutor(novoInstrutor)" ng-show="showFormI"> Atualizar</button>
 
     </form>
 
@@ -243,7 +243,11 @@
           {{instrutor.nome}}
         </option>
       </select>
-      <button type="submit" ng-click="instrutorSelecionado(instrutorS)">Selecionar</button>
+      <button type="submit" ng-click="instrutorSelecionado(instrutorS)">
+        <a href="#update">
+          Selecionar
+        </a>
+      </button>
     </div>
 
     <div class="form-group">

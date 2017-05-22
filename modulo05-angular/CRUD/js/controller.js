@@ -22,6 +22,16 @@ app.controller('Controller', ['$scope', function(model) {
       dandoAula: true,                  // true ou false
       aula: [1, 4],                     // Opcional (array)
       urlFoto: 'https://media.lovemondays.com.br/logos/e3b058/cwi-software-original.png'  // Opcional (porém tem uma default de livre escolha)
+    },
+    {
+      id: ++idInstrutor,                            // Gerado
+      nome: 'Teste',                     // Obrigatório (length = min 3, max 20)
+      sobrenome: 'Teste',           // Opcional (length = max 30)
+      idade: 25,                        // Obrigatório (max 90)
+      email: 'teste@cwi.com.br',        // Obrigatório (type=email)
+      dandoAula: false,                  // true ou false
+      aula: [3],                     // Opcional (array)
+      urlFoto: undefined  // Opcional (porém tem uma default de livre escolha)
     }
   ];
 
@@ -46,6 +56,7 @@ app.controller('Controller', ['$scope', function(model) {
     let novaAula = {id: ++idAula, nome: nomeAula };
     model.aulas.push(angular.copy(novaAula));
     model.novaAula = "";
+    alert("Aula incluída com sucesso");
   }
 
   model.aulaJaCadastrada = function(nomeAula, update) {
@@ -73,6 +84,7 @@ app.controller('Controller', ['$scope', function(model) {
     }
     model.aulaS.nome = nomeNovaAula;
     model.novoNomeAula = "";
+    alert("Aula atualizada com sucesso");
   }
 
   model.deletarAula = function (aulaPraDeletar) {
@@ -83,6 +95,7 @@ app.controller('Controller', ['$scope', function(model) {
     }
     let i = aulas.indexOf(aulaPraDeletar);
     aulas.splice(i, 1);
+    alert("Aula deletada com sucesso");
   }
 
   model.aulaNaoEstaSendoUtilizada = function () {
@@ -92,7 +105,7 @@ app.controller('Controller', ['$scope', function(model) {
   // INSTRUTORES
   model.instrutores = instrutores;
   model.showFormI = false;
-  model.instrutorS;
+  model.instrutorS = model.instrutores[0];
   model.selecionado = [];
   model.instrutorSendoUtilizado = false;
 
@@ -103,6 +116,8 @@ app.controller('Controller', ['$scope', function(model) {
     novoInstrutor.id = ++idInstrutor;
     novoInstrutor.urlFoto = novoInstrutor.urlFoto || "https://media.lovemondays.com.br/logos/e3b058/cwi-software-original.png";
     model.instrutores.push(angular.copy(novoInstrutor));
+    alert("Instrutor incluído com sucesso");
+    // model.novoInstrutor = {};
   }
 
   model.aulasDosInstrutores = function (idAula) {
@@ -124,15 +139,18 @@ app.controller('Controller', ['$scope', function(model) {
 
   model.instrutorJaCadastrado = function(nomeInstrutor) {
     // if(model.instrutorSelecionado(model.instrutorS)) {
-      let validade = model.instrutores.filter(instrutor => instrutor.nome === nomeInstrutor).length > 0;
-      model.meuFormI.$invalid = validade;
+      let validade = model.instrutores.filter(instrutor =>
+        instrutor.id !== model.instrutorS.id && instrutor.nome === nomeInstrutor).length > 0;
+
+      model.meuFormI.$invalid = model.meuFormI.$invalid || validade;
       return validade;
     // }
   };
 
   model.emailJaCadastrado = function (emailInstrutor) {
-    let validade = model.instrutores.filter(instrutor => instrutor.email === emailInstrutor).length > 0;
-    model.meuFormI.$invalid = validade;
+    let validade = model.instrutores.filter(instrutor =>
+      instrutor.id !== model.instrutorS.id && instrutor.email === emailInstrutor).length > 0;
+    model.meuFormI.$invalid = model.meuFormI.$invalid || validade;
     return validade;
 
   }
@@ -149,17 +167,20 @@ app.controller('Controller', ['$scope', function(model) {
       return;
     }
     let i = model.instrutores.indexOf(model.instrutorS);
-    model.instrutores[i] = novoInstrutor
-    model.novoInstrutor = "";
+    model.instrutores[i] = novoInstrutor;
+    model.novoInstrutor = {};
     model.showFormI = false;
+    alert("Instrutor atualizado com sucesso");
   }
 
   model.deletarInstrutor = function (instrutorParaDeletar) {
     let sendoUtilizado = instrutorParaDeletar.dandoAula;
     if(!sendoUtilizado) {
       model.instrutores = model.instrutores.filter(instrutor => instrutor.id !== instrutorParaDeletar.id);
+      alert("Instrutor deletado com sucesso");
     }
     model.instrutorSendoUtilizado = sendoUtilizado;
+
   }
 
   model.instrutorNaoEstaSendoUtilizado = function () {
