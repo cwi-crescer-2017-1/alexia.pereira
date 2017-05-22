@@ -113,6 +113,7 @@ app.controller('Controller', ['$scope', function(model) {
     if (model.meuFormI.$invalid || !model.meuFormI.$valid) {
       return;
     }
+    novoInstrutor.aula.sort(ordenarAulas);
     novoInstrutor.id = ++idInstrutor;
     novoInstrutor.dandoAula = novoInstrutor.dandoAula || false;
     novoInstrutor.urlFoto = novoInstrutor.urlFoto || "https://media.lovemondays.com.br/logos/e3b058/cwi-software-original.png";
@@ -189,5 +190,13 @@ app.controller('Controller', ['$scope', function(model) {
       model.instrutorNaoEstaSendoUtilizado = function () {
         model.instrutorSendoUtilizado = false;
       }
+
+      let ordenarAulas = function(aula1,aula2) {
+          if(model.aulas[aula1].nome.toLowerCase() > model.aulas[aula2].nome.toLowerCase()) return 1;
+          if(model.aulas[aula1].nome.toLowerCase() < model.aulas[aula2].nome.toLowerCase()) return -1;
+          return 0;
+      }
+
+
 
     }]);
