@@ -47,244 +47,214 @@
         <tr ng-repeat="aula in aulas | orderBy: 'nome'">
           <th>{{aula.id}}</th>
           <th>{{aula.nome}}</th>
-      </tr>
-    </table>
-    <div class="form-group">
-      <h1>Atualizar uma Aula:</h1>
-      <label for="listaAulas">Selecione a aula a ser atualizadas</label>
-      <select name="listaAulas" ng-model="aulaS" ng-options="aula.nome for aula in aulas">
-        <option value="">
-          {{aula.nome}}
-        </option>
-      </select>
+        </tr>
+      </table>
+      <div class="form-group">
+        <h1>Atualizar uma Aula:</h1>
+        <label for="listaAulas">Selecione a aula a ser atualizadas</label>
+        <select name="listaAulas" ng-model="aulaS" ng-options="aula.nome for aula in aulas">
+          <option value="">
+            {{aula.nome}}
+          </option>
+        </select>
+        <button type="submit" ng-click="aulaSelecionada(aulaS)"> Selecionar </button>
+      </div>
+
+
+      <div ng-show="showForm">
+
+        <form novalidate name="formUpdateAula" ng-submit="updateAula(novoNomeAula)">
+
+          <input type="text" class="form-control" name="novoNomeAula" ng-model="novoNomeAula" required ng-minlength="3" ng-maxlength="20"/>
+
+          <span ng-if="formUpdateAula.novoNomeAula.$error.required">
+            Campo Obrigatório
+          </span>
+          <span ng-if="aulaJaCadastrada(novoNomeAula, true)">
+            Essa aula já existe
+          </span>
+          <span ng-if="formUpdateAula.novoNomeAula.$error.minlength">
+            Campo deve possuir no mínimo 3 caracteres
+          </span>
+          <span ng-if="formUpdateAula.novoNomeAula.$error.maxlength">
+            Campo deve possuir no máximo 20 caracteres
+          </span>
+
+          <button type="submit" name="update" > Atualizar </button>
+        </form>
+
+      </div>
+
+      <div class="form-group">
+        <h1>Deletar uma aula</h1>
+        <label for="listaAulasD">Selecione a aula a ser deletada</label>
+        <select name="listaAulasD" ng-model="aulaPraDeletar" ng-change="aulaNaoEstaSendoUtilizada()" ng-options="aula.nome for aula in aulas">
+          <option value="">
+            {{aula.nome}}
+          </option>
+        </select>
+        <button type="submit" name="delete" ng-click="deletarAula(aulaPraDeletar)"> Deletar </button>
+        <span ng-show="aulaSendoUtilizada">
+          Não é possível excluir esta aula. Está sendo utilizada.
+        </span>
+      </div>
     </div>
 
+    <div class="instrutores">
 
-    <div ng-show="showForm">
+      <form novalidate name="meuFormI">
+        <h1 ng-hide="showFormI">Insira o novo Instrutor: </h1>
+        <h1 id="update" ng-show="showFormI">Digite as novas informações do Instrutor</h1>
 
-      <form novalidate name="formUpdateAula" ng-submit="updateAula(novoNomeAula)">
+        <div class="form-group">
+          <!-- Nome: Inserir -->
+          <label for="nome">Nome:</label>
+          <input type="text" class="form-control" name="nome" ng-model="novoInstrutor.nome" required ng-minlength="3" ng-maxlength="20"/>
+          <!-- Nome: Validar -->
+          <span ng-if="meuFormI.nome.$error.required">
+            Campo Obrigatório
+          </span>
+          <span ng-if="instrutorJaCadastrado(novoInstrutor.nome)">
+            Essa instrutor já está cadastrado
+          </span>
+          <span ng-if="meuForm.nome.$error.minlength">
+            Campo deve possuir no mínimo 3 caracteres
+          </span>
+          <span ng-if="meuForm.nome.$error.maxlength">
+            Campo deve possuir no máximo 20 caracteres
+          </span>
+        </div>
 
-        <input type="text" class="form-control" name="novoNomeAula" ng-model="novoNomeAula" required ng-minlength="3" ng-maxlength="20"/>
+        <div class="form-group">
+          <!-- Sobrenome: Inserir -->
+          <label for="sobrenome">Sobrenome:</label>
+          <input type="text" class="form-control" name="sobrenome" ng-model="novoInstrutor.sobrenome" ng-maxlength="30"/>
+          <!-- Sobrenome:Validar -->
+          <span ng-if="meuFormI.sobrenome.$error.maxlength">
+            Campo deve possuir no máximo 30 caracteres
+          </span>
+        </div>
 
-        <span ng-if="formUpdateAula.novoNomeAula.$error.required">
-          Campo Obrigatório
-        </span>
-        <span ng-if="aulaJaCadastrada(novoNomeAula, true)">
-          Essa aula já existe
-        </span>
-        <span ng-if="formUpdateAula.novoNomeAula.$error.minlength">
-          Campo deve possuir no mínimo 3 caracteres
-        </span>
-        <span ng-if="formUpdateAula.novoNomeAula.$error.maxlength">
-          Campo deve possuir no máximo 20 caracteres
-        </span>
+        <div class="form-group">
+          <!-- Idade: Inserir -->
+          <label for="idade">Idade:</label>
+          <input type="number" max="90" class="form-control" name="idade" required ng-model="novoInstrutor.idade"/>
+          <!-- Idade: Validar -->
+          <span ng-if="meuFormI.idade.$error.required">
+            Campo Obrigatório
+          </span>
+          <span ng-if="meuFormI.idade.$error.max">
+            O número máximo é 90
+          </span>
+        </div>
 
-        <button type="submit" name="update" > Atualizar </button>
+        <div class="form-group">
+          <!-- Email: Inserir -->
+          <label for="email">Email:</label>
+          <input type="email" class="form-control" name="email" ng-model="novoInstrutor.email" required/>
+          <!-- Email:Validar -->
+          <span ng-show="meuFormI.email.$error.required">
+            Campo Obrigatório
+          </span>
+          <span ng-show="meuFormI.email.$error.email">
+            Campo Inválido
+          </span>
+          <span ng-show="emailJaCadastrado(novoInstrutor.email)">
+            Email já está sendo utilizado.
+          </span>
+        </div>
+
+        <div class="form-group">
+          <!-- Ja Deu Aula: Inserir -->
+          <label for="jaDeuAula">Dando Aula</label>
+          <input type="checkbox" name="i.jaDeuAula"  ng-model="novoInstrutor.dandoAula" value="deuAula">
+        </div>
+
+        <div class="form-group">
+          <!-- Aulas: Inserir -->
+          <label ng-repeat="aula in aulas">
+            <input
+            type="checkbox"
+            name="aulaSelecionadaI[]"
+            value="{{aula}}"
+            ng-checked="selection.indexOf(aula) > -1"
+            ng-click="selecaoAlternada(aula)"
+            >
+            {{aula.nome}}
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label for="urlFoto">URL da Foto</label>
+          <input type="text" name="urlFoto" class="form-control" ng-model="novoInstrutor.urlFoto">
+        </div>
+
+        <button type="submit" ng-click="incluirInstrutor(novoInstrutor)" ng-hide="showFormI">Incluir</button>
+        <button type="submit" ng-click="atualizarInstrutor(novoInstrutor)" ng-show="showFormI"> Atualizar</button>
+
       </form>
+      <h1>Instrutores</h1>
+      <table class="table">
+        <tr>
+          <td>Id</td>
+          <td>Nome</td>
+          <td>Sobrenome</td>
+          <td>Idade</td>
+          <td>Email</td>
+          <td>Dando Aula</td>
+          <td>Aula(s)</td>
+          <td>Foto</td>
+        </tr>
+        <tr ng-repeat="instrutor in instrutores | orderBy: 'nome'">
+          <th>{{instrutor.id}}</th>
+          <th>{{instrutor.nome}}</th>
+          <th>{{instrutor.sobrenome}}</th>
+          <th>{{instrutor.idade}}</th>
+          <th>{{instrutor.email}}</th>
+          <th>{{instrutor.dandoAula}}</th>
+          <th>
+            <div ng-repeat="aula in instrutor.aula">
+              {{aulasDosInstrutores(aula)}}
+            </div>
+          </th>
+          <th>
+            <img src="{{instrutor.urlFoto}}">
+          </th>
+        </tr>
+      </table>
 
-    </div>
-
-    <div class="form-group">
-      <h1>Deletar uma aula</h1>
-      <label for="listaAulasD">Selecione a aula a ser deletada</label>
-      <select name="listaAulasD" ng-model="aulaPraDeletar" ng-change="aulaNaoEstaSendoUtilizada()" ng-options="aula.nome for aula in aulas">
-        <option value="">
-          {{aula.nome}}
-        </option>
-      </select>
-      <button type="submit" name="delete" ng-click="deletarAula(aulaPraDeletar)"> Deletar </button>
-      <span ng-show="aulaSendoUtilizada">
-        Não é possível excluir esta aula. Está sendo utilizada.
-      </span>
-    </div>
-  </div>
-
-  <div class="instrutores">
-
-    <form novalidate name="meuFormI">
-      <h1 ng-hide="showFormI">Insira o novo Instrutor: </h1>
-      <h1 id="update" ng-show="showFormI">Digite as novas informações do Instrutor</h1>
 
       <div class="form-group">
-        <!-- Nome: Inserir -->
-        <label for="nome">Nome:</label>
-        <input type="text" class="form-control" name="nome" ng-model="novoInstrutor.nome" required ng-minlength="3" ng-maxlength="20"/>
-        <!-- Nome: Validar -->
-        <span ng-if="meuFormI.nome.$error.required">
-          Campo Obrigatório
-        </span>
-        <span ng-if="instrutorJaCadastrado(novoInstrutor.nome)">
-          Essa instrutor já está cadastrado
-        </span>
-        <span ng-if="meuForm.nome.$error.minlength">
-          Campo deve possuir no mínimo 3 caracteres
-        </span>
-        <span ng-if="meuForm.nome.$error.maxlength">
-          Campo deve possuir no máximo 20 caracteres
-        </span>
-      </div>
-
-      <div class="form-group">
-        <!-- Sobrenome: Inserir -->
-        <label for="sobrenome">Sobrenome:</label>
-        <input type="text" class="form-control" name="sobrenome" ng-model="novoInstrutor.sobrenome" ng-maxlength="30"/>
-        <!-- Sobrenome:Validar -->
-        <span ng-if="meuFormI.sobrenome.$error.maxlength">
-          Campo deve possuir no máximo 30 caracteres
-        </span>
-      </div>
-
-      <div class="form-group">
-        <!-- Idade: Inserir -->
-        <label for="idade">Idade:</label>
-        <input type="number" max="90" class="form-control" name="idade" required ng-model="novoInstrutor.idade"/>
-        <!-- Idade: Validar -->
-        <span ng-if="meuFormI.idade.$error.required">
-          Campo Obrigatório
-        </span>
-        <span ng-if="meuFormI.idade.$error.max">
-          O número máximo é 90
-        </span>
-      </div>
-
-      <div class="form-group">
-        <!-- Email: Inserir -->
-        <label for="email">Email:</label>
-        <input type="email" class="form-control" name="email" ng-model="novoInstrutor.email" required/>
-        <!-- Email:Validar -->
-        <span ng-show="meuFormI.email.$error.required">
-          Campo Obrigatório
-        </span>
-        <span ng-show="meuFormI.email.$error.email">
-          Campo Inválido
-        </span>
-        <span ng-show="emailJaCadastrado(novoInstrutor.email)">
-          Email já está sendo utilizado.
-        </span>
-      </div>
-
-      <div class="form-group">
-        <!-- Ja Deu Aula: Inserir -->
-        <label for="jaDeuAula">Dando Aula</label>
-        <input type="checkbox" name="i.jaDeuAula"  ng-model="novoInstrutor.dandoAula" value="deuAula">
-      </div>
-
-      <div class="form-group">
-        <!-- Aulas: Inserir -->
-        <label ng-repeat="aula in aulas">
-          <input
-          type="checkbox"
-          name="aulaSelecionadaI[]"
-          value="{{aula}}"
-          ng-checked="selection.indexOf(aula) > -1"
-          ng-click="selecaoAlternada(aula)"
-          >
-          {{aula.nome}}
-        </label>
-      </div>
-
-      <div class="form-group">
-        <label for="urlFoto">URL da Foto</label>
-        <input type="text" name="urlFoto" class="form-control" ng-model="novoInstrutor.urlFoto">
-      </div>
-
-      <button type="submit" ng-click="incluirInstrutor(novoInstrutor)" ng-hide="showFormI">Incluir</button>
-      <button type="submit" ng-click="atualizarInstrutor(novoInstrutor)" ng-show="showFormI"> Atualizar</button>
-
-    </form>
-
-
-
-
-
-
-
-
-
-
-
-
-    <h1>Instrutores</h1>
-    <table class="table">
-      <tr>
-        <td>Id</td>
-        <td>Nome</td>
-        <td>Sobrenome</td>
-        <td>Idade</td>
-        <td>Email</td>
-        <td>Dando Aula</td>
-        <td>Aula(s)</td>
-        <td>Foto</td>
-      </tr>
-      <tr ng-repeat="instrutor in instrutores | orderBy: 'nome'">
-        <th>{{instrutor.id}}</th>
-        <th>{{instrutor.nome}}</th>
-        <th>{{instrutor.sobrenome}}</th>
-        <th>{{instrutor.idade}}</th>
-        <th>{{instrutor.email}}</th>
-        <th>{{instrutor.dandoAula}}</th>
-        <th>
-          <div ng-repeat="aula in instrutor.aula">
-            {{aulasDosInstrutores(aula)}}
-          </div>
-        </th>
-        <th>
-          <img src="{{instrutor.urlFoto}}">
-        </th>
-      </tr>
-    </table>
-
-
-    <div class="form-group">
-      <h1>Atualizar um Instrutor:</h1>
-      <label for="listaInstrutores">Selecione o instrutor a ser editado</label>
-      <select name="listaInstrutores" ng-model="instrutorS" ng-options="instrutor.nome for instrutor in instrutores">
-        <option value="">
-          {{instrutor.nome}}
-        </option>
-      </select>
-      <button type="submit" ng-click="instrutorSelecionado(instrutorS)">
+        <h1>Atualizar um Instrutor:</h1>
+        <label for="listaInstrutores">Selecione o instrutor a ser editado</label>
+        <select name="listaInstrutores" ng-model="instrutorS" ng-options="instrutor.nome for instrutor in instrutores">
+          <option value="">
+            {{instrutor.nome}}
+          </option>
+        </select>
         <a href="#update">
-          Selecionar
+          <button type="submit" ng-click="instrutorSelecionado(instrutorS)">
+            Selecionar
+          </button>
         </a>
-      </button>
-    </div>
+      </div>
 
-    <div class="form-group">
-      <h1>Deletar um Instrutor</h1>
-      <label for="listaInstrutoresD">Selecione o instrutor a ser deletado</label>
-      <select name="listaInstrutoresD" ng-change="instrutorNaoEstaSendoUtilizado()" ng-model="instrutorPraDeletar" ng-options="instrutor.nome for instrutor in instrutores">
-        <option value="">
-          {{instrutor.nome}}
-        </option>
-      </select>
-      <button type="submit" name="delete" ng-click="deletarInstrutor(instrutorPraDeletar)"> Deletar </button>
-      <span ng-show="instrutorSendoUtilizado">
-        Não é possível excluir este instrutor. Está dando aula.
-      </span>
+      <div class="form-group">
+        <h1>Deletar um Instrutor</h1>
+        <label for="listaInstrutoresD">Selecione o instrutor a ser deletado</label>
+        <select name="listaInstrutoresD" ng-change="instrutorNaoEstaSendoUtilizado()" ng-model="instrutorPraDeletar" ng-options="instrutor.nome for instrutor in instrutores">
+          <option value="">
+            {{instrutor.nome}}
+          </option>
+        </select>
+        <button type="submit" name="delete" ng-click="deletarInstrutor(instrutorPraDeletar)"> Deletar </button>
+        <span ng-show="instrutorSendoUtilizado">
+          Não é possível excluir este instrutor. Está dando aula.
+        </span>
+      </div>
     </div>
   </div>
-
-
-
-
-  </div>
-
-
-
-
-
-
-
-
-
-
-
 </div>
-
-
-
-
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.6.4/angular-locale_pt-br.min.js"></script>
 <script src="js/controller.js"></script>

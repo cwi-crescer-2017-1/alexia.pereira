@@ -60,7 +60,7 @@ app.controller('Controller', ['$scope', function(model) {
   }
 
   model.aulaJaCadastrada = function(nomeAula, update) {
-    if(model.aulaSelecionada(model.aulaS)) {
+    // if(model.aulaSelecionada(model.aulaS)) {
       let validade = model.aulas.filter(aula => aula.nome === nomeAula).length > 0;
       if (!update) {
         model.meuForm.$invalid = validade;
@@ -68,7 +68,7 @@ app.controller('Controller', ['$scope', function(model) {
         model.formUpdateAula.$invalid = validade;
       }
       return validade;
-    }
+    // }
   };
 
   model.aulaSelecionada = function (aulaS) {
@@ -139,52 +139,52 @@ app.controller('Controller', ['$scope', function(model) {
 
   model.instrutorJaCadastrado = function(nomeInstrutor) {
     // if(model.instrutorSelecionado(model.instrutorS)) {
-      let validade = model.instrutores.filter(instrutor =>
-        instrutor.id !== model.instrutorS.id && instrutor.nome === nomeInstrutor).length > 0;
+    let validade = model.instrutores.filter(instrutor =>
+      instrutor.id !== model.instrutorS.id && instrutor.nome === nomeInstrutor).length > 0;
 
       model.meuFormI.$invalid = model.meuFormI.$invalid || validade;
       return validade;
-    // }
-  };
+      // }
+    };
 
-  model.emailJaCadastrado = function (emailInstrutor) {
-    let validade = model.instrutores.filter(instrutor =>
-      instrutor.id !== model.instrutorS.id && instrutor.email === emailInstrutor).length > 0;
-    model.meuFormI.$invalid = model.meuFormI.$invalid || validade;
-    return validade;
+    model.emailJaCadastrado = function (emailInstrutor) {
+      let validade = model.instrutores.filter(instrutor =>
+        instrutor.id !== model.instrutorS.id && instrutor.email === emailInstrutor).length > 0;
+        model.meuFormI.$invalid = model.meuFormI.$invalid || validade;
+        return validade;
 
-  }
+      }
 
-  model.instrutorSelecionado = function (instrutorS) {
-    let taSelecionado = typeof instrutorS !== 'undefined';
-    model.showFormI = taSelecionado;
-    model.novoInstrutor = angular.copy(instrutorS);
-    return taSelecionado;
-  };
+      model.instrutorSelecionado = function (instrutorS) {
+        let taSelecionado = typeof instrutorS !== 'undefined';
+        model.showFormI = taSelecionado;
+        model.novoInstrutor = angular.copy(instrutorS);
+        return taSelecionado;
+      };
 
-  model.atualizarInstrutor = function (novoInstrutor) {
-    if (model.meuFormI.$invalid || !model.meuFormI.$valid) {
-      return;
-    }
-    let i = model.instrutores.indexOf(model.instrutorS);
-    model.instrutores[i] = novoInstrutor;
-    model.novoInstrutor = {};
-    model.showFormI = false;
-    alert("Instrutor atualizado com sucesso");
-  }
+      model.atualizarInstrutor = function (novoInstrutor) {
+        if (model.meuFormI.$invalid || !model.meuFormI.$valid) {
+          return;
+        }
+        let i = model.instrutores.indexOf(model.instrutorS);
+        model.instrutores[i] = novoInstrutor;
+        model.novoInstrutor = {};
+        model.showFormI = false;
+        alert("Instrutor atualizado com sucesso");
+      }
 
-  model.deletarInstrutor = function (instrutorParaDeletar) {
-    let sendoUtilizado = instrutorParaDeletar.dandoAula;
-    if(!sendoUtilizado) {
-      model.instrutores = model.instrutores.filter(instrutor => instrutor.id !== instrutorParaDeletar.id);
-      alert("Instrutor deletado com sucesso");
-    }
-    model.instrutorSendoUtilizado = sendoUtilizado;
+      model.deletarInstrutor = function (instrutorParaDeletar) {
+        let sendoUtilizado = instrutorParaDeletar.dandoAula;
+        if(!sendoUtilizado) {
+          model.instrutores = model.instrutores.filter(instrutor => instrutor.id !== instrutorParaDeletar.id);
+          alert("Instrutor deletado com sucesso");
+        }
+        model.instrutorSendoUtilizado = sendoUtilizado;
 
-  }
+      }
 
-  model.instrutorNaoEstaSendoUtilizado = function () {
-    model.instrutorSendoUtilizado = false;
-  }
+      model.instrutorNaoEstaSendoUtilizado = function () {
+        model.instrutorSendoUtilizado = false;
+      }
 
-}]);
+    }]);
