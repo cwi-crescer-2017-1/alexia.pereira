@@ -170,6 +170,7 @@ app.controller('Controller', ['$scope', function(model) {
         if (model.meuFormI.$invalid || !model.meuFormI.$valid) {
           return;
         }
+        novoInstrutor.aula.sort(ordenarAulas);
         let i = model.instrutores.indexOf(model.instrutorS);
         model.instrutores[i] = novoInstrutor;
         model.novoInstrutor = {};
