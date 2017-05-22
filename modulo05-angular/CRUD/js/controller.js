@@ -61,13 +61,13 @@ app.controller('Controller', ['$scope', function(model) {
 
   model.aulaJaCadastrada = function(nomeAula, update) {
     // if(model.aulaSelecionada(model.aulaS)) {
-      let validade = model.aulas.filter(aula => aula.nome === nomeAula).length > 0;
-      if (!update) {
-        model.meuForm.$invalid = validade;
-      } else {
-        model.formUpdateAula.$invalid = validade;
-      }
-      return validade;
+    let validade = model.aulas.filter(aula => aula.nome === nomeAula).length > 0;
+    if (!update) {
+      model.meuForm.$invalid = validade;
+    } else {
+      model.formUpdateAula.$invalid = validade;
+    }
+    return validade;
     // }
   };
 
@@ -141,63 +141,65 @@ app.controller('Controller', ['$scope', function(model) {
     // if(model.instrutorSelecionado(model.instrutorS)) {
     let validade = model.instrutores.filter(instrutor => {
       if (typeof model.instrutorS === 'undefined' || model.instrutorS === null) return false;
-      instrutor.id !== model.instrutorS.id && instrutor.nome === nomeInstrutor
+      return instrutor.id !== model.instrutorS.id && instrutor.nome === nomeInstrutor
     }).length > 0;
 
-      model.meuFormI.$invalid = model.meuFormI.$invalid || validade;
-      return validade;
-      // }
-    };
+    model.meuFormI.$invalid = model.meuFormI.$invalid || validade;
+    return validade;
+    // }
+  };
 
-    model.emailJaCadastrado = function (emailInstrutor) {
-      let validade = model.instrutores.filter(instrutor => {
-        if (typeof model.instrutorS === 'undefined' || model.instrutorS === null) return false;
-        return instrutor.id !== model.instrutorS.id && instrutor.email === emailInstrutor
-      }).length > 0;
-        model.meuFormI.$invalid = model.meuFormI.$invalid || validade;
-        return validade;
+  model.emailJaCadastrado = function (emailInstrutor) {
+    let validade = model.instrutores.filter(instrutor => {
+      if (typeof model.instrutorS === 'undefined' || model.instrutorS === null) return false;
+      return instrutor.id !== model.instrutorS.id && instrutor.email === emailInstrutor
+    }).length > 0;
+    model.meuFormI.$invalid = model.meuFormI.$invalid || validade;
+    return validade;
 
-      }
+  }
 
-      model.instrutorSelecionado = function (instrutorS) {
-        let taSelecionado = typeof instrutorS !== 'undefined';
-        model.showFormI = taSelecionado;
-        model.novoInstrutor = angular.copy(instrutorS);
-        return taSelecionado;
-      };
+  model.instrutorSelecionado = function (instrutorS) {
+    let taSelecionado = typeof instrutorS !== 'undefined';
+    model.showFormI = taSelecionado;
+    model.novoInstrutor = angular.copy(instrutorS);
+    return taSelecionado;
+  };
 
-      model.atualizarInstrutor = function (novoInstrutor) {
-        if (model.meuFormI.$invalid || !model.meuFormI.$valid) {
-          return;
-        }
-        novoInstrutor.aula.sort(ordenarAulas);
-        let i = model.instrutores.indexOf(model.instrutorS);
-        model.instrutores[i] = novoInstrutor;
-        model.novoInstrutor = {};
-        model.showFormI = false;
-        alert("Instrutor atualizado com sucesso");
-      }
+  model.atualizarInstrutor = function (novoInstrutor) {
+    if (model.meuFormI.$invalid || !model.meuFormI.$valid) {
+      return;
+    }
+    novoInstrutor.aula.sort(ordenarAulas);
+    let i = model.instrutores.indexOf(model.instrutorS);
+    model.instrutores[i] = novoInstrutor;
+    model.novoInstrutor = {};
+    model.showFormI = false;
+    alert("Instrutor atualizado com sucesso");
+  }
 
-      model.deletarInstrutor = function (instrutorParaDeletar) {
-        let sendoUtilizado = instrutorParaDeletar.dandoAula;
-        if(!sendoUtilizado) {
-          model.instrutores = model.instrutores.filter(instrutor => instrutor.id !== instrutorParaDeletar.id);
-          alert("Instrutor deletado com sucesso");
-        }
-        model.instrutorSendoUtilizado = sendoUtilizado;
+  model.deletarInstrutor = function (instrutorParaDeletar) {
+    let sendoUtilizado = instrutorParaDeletar.dandoAula;
+    if(!sendoUtilizado) {
+      model.instrutores = model.instrutores.filter(instrutor => instrutor.id !== instrutorParaDeletar.id);
+      alert("Instrutor deletado com sucesso");
+    }
+    model.instrutorSendoUtilizado = sendoUtilizado;
 
-      }
+  }
 
-      model.instrutorNaoEstaSendoUtilizado = function () {
-        model.instrutorSendoUtilizado = false;
-      }
+  model.instrutorNaoEstaSendoUtilizado = function () {
+    model.instrutorSendoUtilizado = false;
+  }
 
-      let ordenarAulas = function(aula1,aula2) {
-          if(model.aulas[aula1].nome.toLowerCase() > model.aulas[aula2].nome.toLowerCase()) return 1;
-          if(model.aulas[aula1].nome.toLowerCase() < model.aulas[aula2].nome.toLowerCase()) return -1;
-          return 0;
-      }
+  let ordenarAulas = function(aula1,aula2) {
+    console.log();
+    if (typeof model.aulas[aula1] === 'undefined' || typeof model.aulas[aula2] === 'undefined') return 0;
+    if(model.aulas[aula1].nome.toLowerCase() > model.aulas[aula2].nome.toLowerCase()) return 1;
+    if(model.aulas[aula1].nome.toLowerCase() < model.aulas[aula2].nome.toLowerCase()) return -1;
+    return 0;
+  }
 
 
 
-    }]);
+}]);
