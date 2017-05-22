@@ -127,11 +127,9 @@ app.controller('Controller', ['$scope', function(model) {
 
   model.selecaoAlternada = function (aula) {
     var idx = model.selecionado.indexOf(aula);
-    // Is currently selected
     if (idx > -1) {
       model.selecionado.splice(idx, 1);
     }
-    // Is newly selected
     else {
       model.selecionado.push(aula);
     }
@@ -140,8 +138,10 @@ app.controller('Controller', ['$scope', function(model) {
 
   model.instrutorJaCadastrado = function(nomeInstrutor) {
     // if(model.instrutorSelecionado(model.instrutorS)) {
-    let validade = model.instrutores.filter(instrutor =>
-      instrutor.id !== model.instrutorS.id && instrutor.nome === nomeInstrutor).length > 0;
+    let validade = model.instrutores.filter(instrutor => {
+      if (typeof model.instrutorS === 'undefined' || model.instrutorS === null) return false;
+      instrutor.id !== model.instrutorS.id && instrutor.nome === nomeInstrutor
+    }).length > 0;
 
       model.meuFormI.$invalid = model.meuFormI.$invalid || validade;
       return validade;
@@ -149,8 +149,10 @@ app.controller('Controller', ['$scope', function(model) {
     };
 
     model.emailJaCadastrado = function (emailInstrutor) {
-      let validade = model.instrutores.filter(instrutor =>
-        instrutor.id !== model.instrutorS.id && instrutor.email === emailInstrutor).length > 0;
+      let validade = model.instrutores.filter(instrutor => {
+        if (typeof model.instrutorS === 'undefined' || model.instrutorS === null) return false;
+        return instrutor.id !== model.instrutorS.id && instrutor.email === emailInstrutor
+      }).length > 0;
         model.meuFormI.$invalid = model.meuFormI.$invalid || validade;
         return validade;
 
