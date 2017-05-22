@@ -47,9 +47,6 @@
         <tr ng-repeat="aula in aulas | orderBy: 'nome'">
           <th>{{aula.id}}</th>
           <th>{{aula.nome}}</th>
-          <!-- <th>
-          <button type="submit" name="update" ng-submit="updateAula()"> Atualizar </button>
-        </th> -->
       </tr>
     </table>
     <div class="form-group">
@@ -90,19 +87,23 @@
     <div class="form-group">
       <h1>Deletar uma aula</h1>
       <label for="listaAulasD">Selecione a aula a ser deletada</label>
-      <select name="listaAulasD" ng-model="aulaPraDeletar" ng-options="aula.nome for aula in aulas">
+      <select name="listaAulasD" ng-model="aulaPraDeletar" ng-change="aulaNaoEstaSendoUtilizada()" ng-options="aula.nome for aula in aulas">
         <option value="">
           {{aula.nome}}
         </option>
       </select>
-      <button type="submit" name="delete" ng-click="deletar(aulaPraDeletar)" > Deletar </button>
+      <button type="submit" name="delete" ng-click="deletarAula(aulaPraDeletar)"> Deletar </button>
+      <span ng-show="aulaSendoUtilizada">
+        Não é possível excluir esta aula. Está sendo utilizada.
+      </span>
     </div>
   </div>
 
   <div class="instrutores">
 
-    <form novalidate name="meuFormI" ng-submit="incluirInstrutor(novoInstrutor)">
-      <h1>Insira o novo Instrutor: </h1>
+    <form novalidate name="meuFormI">
+      <h1 ng-hide="showFormI">Insira o novo Instrutor: </h1>
+      <h1 ng-show="showFormI">Digite as novas informações do Instrutor</h1>
 
       <div class="form-group">
         <!-- Nome: Inserir -->
@@ -112,7 +113,7 @@
         <span ng-if="meuFormI.nome.$error.required">
           Campo Obrigatório
         </span>
-        <span ng-if="instrutorJaCadastrado(novoInstrutor, false)">
+        <span ng-if="instrutorJaCadastrado(novoInstrutor)">
           Essa instrutor já está cadastrado
         </span>
         <span ng-if="meuForm.nome.$error.minlength">
@@ -184,7 +185,8 @@
         <input type="text" name="urlFoto" class="form-control" ng-model="novoInstrutor.urlFoto">
       </div>
 
-      <button type="submit">Incluir</button>
+      <button type="submit" ng-click="incluirInstrutor(novoInstrutor)" ng-hide="showFormI">Incluir</button>
+      <button type="submit" ng-click="atualizarInstrutor(novoInstrutor)" ng-show="showFormI">Atualizar</button>
 
     </form>
 
@@ -228,6 +230,35 @@
         </th>
       </tr>
     </table>
+
+
+    <div class="form-group">
+      <h1>Atualizar um Instrutor:</h1>
+      <label for="listaInstrutores">Selecione o instrutor a ser editado</label>
+      <select name="listaInstrutores" ng-model="instrutorS" ng-options="instrutor.nome for instrutor in instrutores">
+        <option value="">
+          {{instrutor.nome}}
+        </option>
+      </select>
+      <button type="submit" ng-click="instrutorSelecionado(instrutorS)">Selecionar</button>
+    </div>
+
+    <div class="form-group">
+      <h1>Deletar um Instrutor</h1>
+      <label for="listaInstrutoresD">Selecione o instrutor a ser deletado</label>
+      <select name="listaInstrutoresD" ng-change="instrutorNaoEstaSendoUtilizado()" ng-model="instrutorPraDeletar" ng-options="instrutor.nome for instrutor in instrutores">
+        <option value="">
+          {{instrutor.nome}}
+        </option>
+      </select>
+      <button type="submit" name="delete" ng-click="deletarInstrutor(instrutorPraDeletar)"> Deletar </button>
+      <span ng-show="instrutorSendoUtilizado">
+        Não é possível excluir este instrutor. Está dando aula.
+      </span>
+    </div>
+  </div>
+
+
 
 
   </div>

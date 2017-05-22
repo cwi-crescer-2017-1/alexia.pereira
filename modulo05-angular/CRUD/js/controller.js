@@ -37,13 +37,14 @@ app.controller('Controller', ['$scope', function(model) {
   model.aulaS = undefined;
   model.aulaPraDeletar = undefined;
   model.showForm = false;
+  model.aulaSendoUtilizada = false;
 
   model.incluirAula = function (nomeAula) {
     if (model.meuForm.$invalid || !model.meuForm.$valid) {
       return;
     }
     let novaAula = {id: ++idAula, nome: nomeAula };
-    model.aulas.push(novaAula);
+    model.aulas.push(angular.copy(novaAula));
     model.novaAula = "";
   }
 
@@ -72,19 +73,31 @@ app.controller('Controller', ['$scope', function(model) {
     }
     model.aulaS.nome = nomeNovaAula;
     model.novoNomeAula = "";
-    console.log(aulas);
   }
 
-  model.deletar = function (aulaPraDeletar) {
+  model.deletarAula = function (aulaPraDeletar) {
+    let aulaSendoUtilizada = model.instrutores.filter(i => i.aula.includes(aulaPraDeletar.id)).length > 0;
+    model.aulaSendoUtilizada = aulaSendoUtilizada;
+    if (aulaSendoUtilizada) {
+      return;
+    }
     let i = aulas.indexOf(aulaPraDeletar);
     aulas.splice(i, 1);
   }
 
+  model.aulaNaoEstaSendoUtilizada = function () {
+    model.aulaSendoUtilizada = false;
+  }
+
   // INSTRUTORES
   model.instrutores = instrutores;
-
+  model.showFormI = false;
+  model.instrutorS;
+  model.selecionado = [];
+  model.instrutorSendoUtilizado = false;
   model.incluirInstrutor = function (novoInstrutor) {
     novoInstrutor.id = ++idInstrutor;
+    novoInstrutor.urlFoto = novoInstrutor.urlFoto || "https://media.lovemondays.com.br/logos/e3b058/cwi-software-original.png";
     model.instrutores.push(angular.copy(novoInstrutor));
   }
 
@@ -92,9 +105,6 @@ app.controller('Controller', ['$scope', function(model) {
     return model.aulas.filter(aula => aula.id === idAula).map(e => e.nome).shift();
   };
 
-  model.selecionado = [];
-
-  // Toggle selection for a given fruit by name
   model.selecaoAlternada = function (aula) {
     var idx = model.selecionado.indexOf(aula);
     // Is currently selected
@@ -105,9 +115,44 @@ app.controller('Controller', ['$scope', function(model) {
     else {
       model.selecionado.push(aula);
     }
-    console.log(model.selecionado);
     model.novoInstrutor.aula = model.selecionado.map(aula => aula.id);
   };
 
+  model.instrutorJaCadastrado = function(nomeInstrutor) {
+    // if(model.instrutorSelecionado(model.instrutorS)) {
+      let validade = model.instrutores.filter(instrutor => instrutor.nome === nomeInstrutor).length > 0;
+      model.meuFormI.$invalid = validade;
+      return validade;
+    // }
+  };
+
+  model.instrutorSelecionado = function (instrutorS) {
+    let taSelecionado = typeof instrutorS !== 'undefined';
+    model.showFormI = taSelecionado;
+    model.novoInstrutor = angular.copy(instrutorS);
+    return taSelecionado;
+  };
+
+  model.atualizarInstrutor = function (novoInstrutor) {
+    if (model.meuFormI.$invalid || !model.meuFormI.$valid) {
+      return;
+    }
+    let i = model.instrutores.indexOf(model.instrutorS);
+    model.instrutores[i] = novoInstrutor
+    model.novoInstrutor = "";
+    model.showFormI = false;
+  }
+
+  model.deletarInstrutor = function (instrutorParaDeletar) {
+    let sendoUtilizado = instrutorParaDeletar.dandoAula;
+    if(!sendoUtilizado) {
+      model.instrutores = model.instrutores.filter(instrutor => instrutor.id !== instrutorParaDeletar.id);
+    }
+    model.instrutorSendoUtilizado = sendoUtilizado;
+  }
+
+  model.instrutorNaoEstaSendoUtilizado = function () {
+    model.instrutorSendoUtilizado = false;
+  }
 
 }]);
