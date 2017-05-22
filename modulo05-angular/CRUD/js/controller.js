@@ -114,6 +114,7 @@ app.controller('Controller', ['$scope', function(model) {
       return;
     }
     novoInstrutor.id = ++idInstrutor;
+    novoInstrutor.dandoAula = novoInstrutor.dandoAula || false;
     novoInstrutor.urlFoto = novoInstrutor.urlFoto || "https://media.lovemondays.com.br/logos/e3b058/cwi-software-original.png";
     model.instrutores.push(angular.copy(novoInstrutor));
     alert("Instrutor incluído com sucesso");
