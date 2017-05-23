@@ -89,7 +89,7 @@
     </div>
 
     <button type="submit" ng-click="create(novoInstrutor)" ng-hide="showFormI">Incluir</button>
-    <button type="submit" ng-click="atualizarInstrutor(novoInstrutor)" ng-show="showFormI"> Atualizar</button>
+    <button type="submit" ng-click="update(novoInstrutor)" ng-show="showFormI"> Atualizar</button>
 
   </form>
 
@@ -133,11 +133,11 @@
         {{instrutor.nome}}
       </option>
     </select>
-    <a href="#update">
+    <!-- <a href="#update"> -->
       <button type="submit" ng-click="instrutorSelecionado(instrutorS)">
         Selecionar
       </button>
-    </a>
+    <!-- </a> -->
   </div>
 
   <!-- DELETE -->
@@ -149,7 +149,7 @@
         {{instrutor.nome}}
       </option>
     </select>
-    <button type="submit" name="delete" ng-click="deletarInstrutor(instrutorPraDeletar)"> Deletar </button>
+    <button type="submit" name="delete" ng-click="delete(instrutorPraDeletar)"> Deletar </button>
     <span ng-show="instrutorSendoUtilizado">
       Não é possível excluir este instrutor. Está dando aula.
     </span>

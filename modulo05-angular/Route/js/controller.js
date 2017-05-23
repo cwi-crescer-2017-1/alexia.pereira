@@ -10,7 +10,7 @@ app.config(function ($routeProvider) {
     controller: 'InstrutoresController',
     templateUrl: 'instrutores.html'
   })
-  .otherwise({redirectTo: '/aulas'});
+  .otherwise({redirectTo: '/instrutores'});
 });
 
 app.filter('aulasDosInstrutores', function() {
@@ -77,7 +77,7 @@ app.controller('AulasController', function ($scope, $routeParams, aulaService) {
 
 });
 
-app.controller('InstrutoresController', function ($scope, $routeParams, instrutorService, aulaService) {
+app.controller('InstrutoresController', function ($scope, $routeParams, instrutorService, aulaService,  $location, $anchorScroll) {
 
   // INSTRUTORES
   $scope.selecionado = [];
@@ -125,7 +125,7 @@ app.controller('InstrutoresController', function ($scope, $routeParams, instruto
   };
 
   function deletar (instrutor) {
-    if (typeof aula === 'undefined') return;
+    if (typeof instrutor === 'undefined') return;
     instrutorService.delete(instrutor).then(function () {
       list();
     })
@@ -149,7 +149,7 @@ app.controller('InstrutoresController', function ($scope, $routeParams, instruto
     $scope.novoInstrutor.aula = $scope.selecionado.map(aula => aula.id);
   };
 
-   function aulasDosInstrutores (idAula) {
+  function aulasDosInstrutores (idAula) {
     return $scope.aulas.filter(aula => aula.id === idAula).map(e => e.nome).shift();
   };
 
@@ -159,5 +159,12 @@ app.controller('InstrutoresController', function ($scope, $routeParams, instruto
     if($scope.aulas[aula1].nome.toLowerCase() < $scope.aulas[aula2].nome.toLowerCase()) return -1;
     return 0;
   }
+
+  $scope.instrutorSelecionado = function (instrutorS) {
+    let taSelecionado = typeof instrutorS !== 'undefined';
+    $scope.showFormI = taSelecionado;
+    $scope.novoInstrutor = angular.copy(instrutorS);
+    return taSelecionado;
+  };
 
 });
