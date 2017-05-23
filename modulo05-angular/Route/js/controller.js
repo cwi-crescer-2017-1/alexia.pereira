@@ -16,105 +16,105 @@ app.config(function ($routeProvider) {
 var idAula = 0;
 var idInstrutor = 0;
 
-app.controller('PrincipalController', function ($scope) {
-  let instrutores = [
-    {
-      id: idInstrutor,                            // Gerado
-      nome: 'Nome',                     // Obrigatório (length = min 3, max 20)
-      sobrenome: 'Sobrenome',           // Opcional (length = max 30)
-      idade: 25,                        // Obrigatório (max 90)
-      email: 'email@cwi.com.br',        // Obrigatório (type=email)
-      dandoAula: true,                  // true ou false
-      aula: [1, 4],                     // Opcional (array)
-      urlFoto: 'https://media.lovemondays.com.br/logos/e3b058/cwi-software-original.png'  // Opcional (porém tem uma default de livre escolha)
-    },
-    {
-      id: ++idInstrutor,                            // Gerado
-      nome: 'Teste',                     // Obrigatório (length = min 3, max 20)
-      sobrenome: 'Teste',           // Opcional (length = max 30)
-      idade: 25,                        // Obrigatório (max 90)
-      email: 'teste@cwi.com.br',        // Obrigatório (type=email)
-      dandoAula: false,                  // true ou false
-      aula: [3],                     // Opcional (array)
-      urlFoto: undefined  // Opcional (porém tem uma default de livre escolha)
-    }
-  ];
-  let aulas = [
-    {
-      id: idAula,
-      nome: 'OO' // Obrigatório (length = min 3, max 20)
-    }
-  ];
-  $scope.instrutores = instrutores;
-  $scope.aulas = aulas;
-
-});
-
 app.filter('aulasDosInstrutores', function() {
   return function aulasDosInstrutores(idAula, aulas) {
     return aulas.filter(aula => aula.id === idAula).map(e => e.nome);
   }
 });
 
-app.controller('AulasController', function ($scope) {
+app.controller('AulasController', function ($scope, $routeParams, aulaService) {
   // AULAS
-  // $scope.aulas = undefined;
-  $scope.aulaPraDeletar = undefined;
-  $scope.showForm = false;
-  $scope.aulasendoUtilizada = false;
 
-  $scope.incluirAula = function (nomeAula) {
-    if ($scope.meuForm.$invalid || !$scope.meuForm.$valid) {
-      return;
-    }
-    let novaAula = {id: ++idAula, nome: nomeAula };
-    $scope.aulas.push(angular.copy(novaAula));
-    $scope.novaAula = "";
-    alert("Aula incluída com sucesso");
-  }
+  $scope.id = $routeParams.idUrl;
 
-  $scope.aulaJaCadastrada = function(nomeAula, update) {
-    // if($scope.aulaselecionada($scope.aulas)) {
-    let validade = $scope.aulas.filter(aula => aula.nome === nomeAula).length > 0;
-    if (!update) {
-      $scope.meuForm.$invalid = validade;
-    } else {
-      $scope.formUpdateAula.$invalid = validade;
-    }
-    return validade;
-    // }
+  $scope.update = update;
+  $scope.create = create;
+  console.log($scope.aulas);
+  // Ações executadas quando criar a controller
+  // findById($scope.id);
+  list(); // listar aulas
+
+  // Funções internas
+  function create(aula) {
+    aulaService.create(aula);
   };
 
-  $scope.aulaselecionada = function (aulaS) {
-    let taSelecionada = typeof aulaS !== 'undefined';
-    $scope.showForm = taSelecionada;
-    return taSelecionada;
+  function findById(id) {
+    aulaService.findById(id).then(function (response) {
+      $scope.aula = response.data;
+    });
   };
 
-  $scope.updateAula = function (nomeNovaAula) {
-    $scope.aulaJaCadastrada(nomeNovaAula, true);
-    if ($scope.formUpdateAula.$invalid || !$scope.formUpdateAula.$valid) {
-      return;
-    }
-    $scope.aulas.nome = nomeNovaAula;
-    $scope.novoNomeAula = "";
-    alert("Aula atualizada com sucesso");
+  function list() {
+    aulaService.list().then(function (response) {
+      $scope.aulas = response.data;
+    });
   }
 
-  $scope.deletarAula = function (aulaPraDeletar) {
-    let aulaSendoUtilizada = $scope.instrutores.filter(i => i.aula.includes(aulaPraDeletar.id)).length > 0;
-    $scope.aulasendoUtilizada = aulaSendoUtilizada;
-    if (aulaSendoUtilizada) {
-      return;
-    }
-    let i = aulas.indexOf(aulaPraDeletar);
-    aulas.splice(i, 1);
-    alert("Aula deletada com sucesso");
-  }
+  function update(aula) {
+    aulaService.update(aula).then(function () {
+      list();
+    });
+  };
 
-  $scope.aulaNaoEstaSendoUtilizada = function () {
-    $scope.aulasendoUtilizada = false;
-  }
+
+
+  // $scope.aulaPraDeletar = undefined;
+  // $scope.showForm = false;
+  // $scope.aulasendoUtilizada = false;
+  //
+  // $scope.incluirAula = function (nomeAula) {
+  //   if ($scope.meuForm.$invalid || !$scope.meuForm.$valid) {
+  //     return;
+  //   }
+  //   let novaAula = {id: ++idAula, nome: nomeAula };
+  //   $scope.aulas.push(angular.copy(novaAula));
+  //   $scope.novaAula = "";
+  //   alert("Aula incluída com sucesso");
+  // }
+  //
+  // $scope.aulaJaCadastrada = function(nomeAula, update) {
+  //   // if($scope.aulaselecionada($scope.aulas)) {
+  //   let validade = $scope.aulas.filter(aula => aula.nome === nomeAula).length > 0;
+  //   if (!update) {
+  //     $scope.meuForm.$invalid = validade;
+  //   } else {
+  //     $scope.formUpdateAula.$invalid = validade;
+  //   }
+  //   return validade;
+  //   // }
+  // };
+  //
+  // $scope.aulaselecionada = function (aulaS) {
+  //   let taSelecionada = typeof aulaS !== 'undefined';
+  //   $scope.showForm = taSelecionada;
+  //   return taSelecionada;
+  // };
+  //
+  // $scope.updateAula = function (nomeNovaAula) {
+  //   $scope.aulaJaCadastrada(nomeNovaAula, true);
+  //   if ($scope.formUpdateAula.$invalid || !$scope.formUpdateAula.$valid) {
+  //     return;
+  //   }
+  //   $scope.aulas.nome = nomeNovaAula;
+  //   $scope.novoNomeAula = "";
+  //   alert("Aula atualizada com sucesso");
+  // }
+  //
+  // $scope.deletarAula = function (aulaPraDeletar) {
+  //   let aulaSendoUtilizada = $scope.instrutores.filter(i => i.aula.includes(aulaPraDeletar.id)).length > 0;
+  //   $scope.aulasendoUtilizada = aulaSendoUtilizada;
+  //   if (aulaSendoUtilizada) {
+  //     return;
+  //   }
+  //   let i = aulas.indexOf(aulaPraDeletar);
+  //   aulas.splice(i, 1);
+  //   alert("Aula deletada com sucesso");
+  // }
+  //
+  // $scope.aulaNaoEstaSendoUtilizada = function () {
+  //   $scope.aulasendoUtilizada = false;
+  // }
 });
 
 app.controller('InstrutoresController', function ($scope) {
