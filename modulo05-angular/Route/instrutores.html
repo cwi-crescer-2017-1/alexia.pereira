@@ -1,5 +1,6 @@
 <div class="instrutores">
 
+  <!-- CREATE -->
   <form novalidate name="meuFormI">
     <h1 ng-hide="showFormI">Insira o novo Instrutor: </h1>
     <h1 id="update" ng-show="showFormI">Digite as novas informações do Instrutor</h1>
@@ -11,9 +12,6 @@
       <!-- Nome: Validar -->
       <span ng-if="meuFormI.nome.$error.required">
         Campo Obrigatório
-      </span>
-      <span ng-if="instrutorJaCadastrado(novoInstrutor.nome)">
-        Essa instrutor já está cadastrado
       </span>
       <span ng-if="meuFormI.nome.$error.minlength">
         Campo deve possuir no mínimo 3 caracteres
@@ -90,10 +88,12 @@
       <input type="text" name="urlFoto" class="form-control" ng-model="novoInstrutor.urlFoto">
     </div>
 
-    <button type="submit" ng-click="incluirInstrutor(novoInstrutor)" ng-hide="showFormI">Incluir</button>
+    <button type="submit" ng-click="create(novoInstrutor)" ng-hide="showFormI">Incluir</button>
     <button type="submit" ng-click="atualizarInstrutor(novoInstrutor)" ng-show="showFormI"> Atualizar</button>
 
   </form>
+
+  <!-- VIEW -->
   <h1>Instrutores</h1>
   <table class="table">
     <tr>
@@ -124,7 +124,7 @@
     </tr>
   </table>
 
-
+  <!-- UPDATE -->
   <div class="form-group">
     <h1>Atualizar um Instrutor:</h1>
     <label for="listaInstrutores">Selecione o instrutor a ser editado</label>
@@ -140,6 +140,7 @@
     </a>
   </div>
 
+  <!-- DELETE -->
   <div class="form-group">
     <h1>Deletar um Instrutor</h1>
     <label for="listaInstrutoresD">Selecione o instrutor a ser deletado</label>
