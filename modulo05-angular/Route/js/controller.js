@@ -36,8 +36,7 @@ app.controller('AulasController', function ($scope, $routeParams, aulaService) {
 
   // Funções internas
   function create(aula) {
-    aulaService.create(aula);
-    list();
+    aulaService.create(aula).then(response => $scope.aulas.push(response.data));
   };
 
   function findById(id) {
