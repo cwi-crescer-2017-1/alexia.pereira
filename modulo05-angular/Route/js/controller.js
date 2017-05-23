@@ -59,6 +59,7 @@ app.controller('AulasController', function ($scope, $routeParams, aulaService) {
   };
 
   function deletar (aula) {
+    if (typeof aula === 'undefined') return;
     aulaService.delete(aula).then(function () {
       list();
     })
