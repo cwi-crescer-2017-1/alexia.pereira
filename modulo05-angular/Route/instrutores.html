@@ -75,7 +75,7 @@
           type="checkbox"
           name="aulaSelecionadaI[]"
           value="{{aula}}"
-          ng-checked="selection.indexOf(aula) > -1"
+          ng-checked="novoInstrutor.aula.indexOf(aula.id) > -1"
           ng-click="selecaoAlternada(aula)"
           >
           {{aula.nome}}
