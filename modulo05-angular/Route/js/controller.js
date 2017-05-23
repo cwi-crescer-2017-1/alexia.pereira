@@ -26,8 +26,6 @@ app.controller('AulasController', function ($scope, $routeParams, aulaService) {
   $scope.update = update;
   $scope.create = create;
   $scope.delete = deletar;
-  $scope.selecionado = [];
-  $scope.aulasDosInstrutores = aulasDosInstrutores;
   // Ações executadas quando criar a controller
   list(); // listar aulas
 
@@ -99,7 +97,10 @@ app.controller('InstrutoresController', function ($scope, $routeParams, instruto
     instrutor.dandoAula = instrutor.dandoAula || false;
     instrutor.urlFoto = instrutor.urlFoto || 'https://media.lovemondays.com.br/logos/e3b058/cwi-software-original.png';
     instrutor.aula.sort(ordenarAulas);
-    instrutorService.create(instrutor).then(function() { list(); });
+    instrutorService.create(instrutor).then(function() {
+      list();
+      $scope.novoInstrutor = {};
+    });
   };
 
   function findById(id) {
