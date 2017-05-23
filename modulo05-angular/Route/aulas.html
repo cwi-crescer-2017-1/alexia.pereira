@@ -1,12 +1,12 @@
 <div class="aulas">
 
-  <form novalidate name="meuForm" ng-submit="incluirAula(novaAula)">
+  <form novalidate name="meuForm" ng-submit="create(novaAula)">
     <h1>Insira a nova aula: </h1>
 
     <div class="form-group">
       <!-- Nome: Inserir -->
       <label for="nome">Nome:</label>
-      <input type="text" class="form-control" name="nome" ng-model="novaAula" required ng-minlength="3" ng-maxlength="20"/>
+      <input type="text" class="form-control" name="nome" ng-model="novaAula.nome" required ng-minlength="3" ng-maxlength="20"/>
       <!-- Nome: Validar -->
       <span ng-if="meuForm.nome.$error.required">
         Campo Obrigatório
@@ -37,6 +37,8 @@
       <th>{{aula.nome}}</th>
     </tr>
   </table>
+
+
   <div class="form-group">
     <h1>Atualizar uma Aula:</h1>
     <label for="listaAulas">Selecione a aula a ser atualizadas</label>
