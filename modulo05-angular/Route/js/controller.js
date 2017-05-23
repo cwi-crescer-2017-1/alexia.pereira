@@ -118,9 +118,10 @@ app.controller('InstrutoresController', function ($scope, $routeParams, instruto
   }
 
   function update(instrutor) {
+    $scope.showFormI = false;
     instrutorService.update(instrutor).then(function () {
       list();
-      $scope.showForm = false;
+      $scope.novoInstrutor = {};
     });
   };
 
