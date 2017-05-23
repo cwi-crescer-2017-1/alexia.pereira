@@ -29,7 +29,6 @@ app.controller('AulasController', function ($scope, $routeParams, aulaService) {
 
   $scope.update = update;
   $scope.create = create;
-  console.log($scope.aulas);
   // Ações executadas quando criar a controller
   // findById($scope.id);
   list(); // listar aulas
@@ -51,9 +50,10 @@ app.controller('AulasController', function ($scope, $routeParams, aulaService) {
     });
   }
 
-  function update(aula) {
-    aulaService.update(aula).then(function () {
+  function update(aulaAntiga, novaAula) {
+    aulaService.update(aulaAntiga, novaAula).then(function () {
       list();
+      $scope.showForm = false;
     });
   };
 
@@ -85,11 +85,11 @@ app.controller('AulasController', function ($scope, $routeParams, aulaService) {
   //   // }
   // };
   //
-  // $scope.aulaselecionada = function (aulaS) {
-  //   let taSelecionada = typeof aulaS !== 'undefined';
-  //   $scope.showForm = taSelecionada;
-  //   return taSelecionada;
-  // };
+  $scope.aulaSelecionada = function (aulaS) {
+    let taSelecionada = typeof aulaS !== 'undefined';
+    $scope.showForm = taSelecionada;
+    return taSelecionada;
+  };
   //
   // $scope.updateAula = function (nomeNovaAula) {
   //   $scope.aulaJaCadastrada(nomeNovaAula, true);
@@ -209,7 +209,6 @@ app.controller('InstrutoresController', function ($scope) {
   }
 
   let ordenarAulas = function(aula1,aula2) {
-    console.log();
     if (typeof $scope.aulas[aula1] === 'undefined' || typeof $scope.aulas[aula2] === 'undefined') return 0;
     if($scope.aulas[aula1].nome.toLowerCase() > $scope.aulas[aula2].nome.toLowerCase()) return 1;
     if($scope.aulas[aula1].nome.toLowerCase() < $scope.aulas[aula2].nome.toLowerCase()) return -1;

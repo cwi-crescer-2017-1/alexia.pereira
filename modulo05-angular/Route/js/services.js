@@ -11,8 +11,9 @@ app.factory('aulaService', function ($http) {
     return $http.get(urlBase + '/aula' + '/' + id);
   };
 
-  function atualizar(aula) {
-    return $http.put(urlBase + '/aula' + '/' + aula.id, aula);
+  function atualizar(aulaAntiga, novaAula) {
+    console.log("hey", novaAula);
+    return $http.put(urlBase + '/aula' + '/' + aulaAntiga.id, novaAula);
   };
 
   // function criar(aula) {

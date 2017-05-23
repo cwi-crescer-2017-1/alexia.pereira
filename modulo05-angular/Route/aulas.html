@@ -41,7 +41,7 @@
 
   <div class="form-group">
     <h1>Atualizar uma Aula:</h1>
-    <label for="listaAulas">Selecione a aula a ser atualizadas</label>
+    <label for="listaAulas">Selecione a aula a ser atualizada</label>
     <select name="listaAulas" ng-model="aulaS" ng-options="aula.nome for aula in aulas">
       <option value="">
         {{aula.nome}}
@@ -51,11 +51,11 @@
   </div>
 
 
-  <div ng-show="showForm">
+  <div ng-if="showForm">
 
-    <form novalidate name="formUpdateAula" ng-submit="updateAula(novoNomeAula)">
+    <form novalidate name="formUpdateAula" ng-submit="update(aulaS, novaAula)">
 
-      <input type="text" class="form-control" name="novoNomeAula" ng-model="novoNomeAula" required ng-minlength="3" ng-maxlength="20"/>
+      <input type="text" class="form-control" name="novaAula" ng-model="novaAula.nome" required ng-minlength="3" ng-maxlength="20"/>
 
       <span ng-if="formUpdateAula.novoNomeAula.$error.required">
         Campo Obrigatório
