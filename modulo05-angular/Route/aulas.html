@@ -11,9 +11,6 @@
       <span ng-if="meuForm.nome.$error.required">
         Campo Obrigatório
       </span>
-      <span ng-if="aulaJaCadastrada(novaAula, false)">
-        Essa aula já existe
-      </span>
       <span ng-if="meuForm.nome.$error.minlength">
         Campo deve possuir no mínimo 3 caracteres
       </span>
@@ -51,22 +48,19 @@
   </div>
 
 
-  <div ng-if="showForm">
+  <div ng-show="showForm">
 
     <form novalidate name="formUpdateAula" ng-submit="update(aulaS)">
 
       <input type="text" class="form-control" name="novaAula" ng-model="aulaS.nome" required ng-minlength="3" ng-maxlength="20"/>
-
-      <span ng-if="formUpdateAula.novoNomeAula.$error.required">
+      
+      <span ng-show="formUpdateAula.novaAula.$error.required">
         Campo Obrigatório
       </span>
-      <span ng-if="aulaJaCadastrada(novoNomeAula, true)">
-        Essa aula já existe
-      </span>
-      <span ng-if="formUpdateAula.novoNomeAula.$error.minlength">
+      <span ng-show="formUpdateAula.novaAula.$error.minlength">
         Campo deve possuir no mínimo 3 caracteres
       </span>
-      <span ng-if="formUpdateAula.novoNomeAula.$error.maxlength">
+      <span ng-show="formUpdateAula.novaAula.$error.maxlength">
         Campo deve possuir no máximo 20 caracteres
       </span>
 
