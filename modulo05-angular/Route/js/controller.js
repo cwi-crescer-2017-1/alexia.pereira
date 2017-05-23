@@ -26,6 +26,8 @@ app.controller('AulasController', function ($scope, $routeParams, aulaService) {
   $scope.update = update;
   $scope.create = create;
   $scope.delete = deletar;
+  $scope.selecionado = [];
+  $scope.aulasDosInstrutores = aulasDosInstrutores;
   // Ações executadas quando criar a controller
   list(); // listar aulas
 
@@ -76,21 +78,27 @@ app.controller('AulasController', function ($scope, $routeParams, aulaService) {
 
 });
 
-app.controller('InstrutoresController', function ($scope, $routeParams, instrutorService) {
+app.controller('InstrutoresController', function ($scope, $routeParams, instrutorService, aulaService) {
 
   // INSTRUTORES
+  $scope.selecionado = [];
   $scope.showFormI = false;
   $scope.id = $routeParams.idUrl;
-
   $scope.update = update;
   $scope.create = create;
   $scope.delete = deletar;
+  $scope.selecaoAlternada = selecaoAlternada;
+
   // Ações executadas quando criar a controller
   // findById($scope.id);
+  listarAulas();
   list();
 
   // Funções internas
   function create(instrutor) {
+    instrutor.dandoAula = instrutor.dandoAula || false;
+    instrutor.urlFoto = instrutor.urlFoto || 'https://media.lovemondays.com.br/logos/e3b058/cwi-software-original.png';
+    instrutor.aula.sort(ordenarAulas);
     instrutorService.create(instrutor).then(function() { list(); });
   };
 
@@ -118,6 +126,35 @@ app.controller('InstrutoresController', function ($scope, $routeParams, instruto
     instrutorService.delete(instrutor).then(function () {
       list();
     })
+  }
+
+  function listarAulas() {
+    aulaService.list().then(function (response) {
+      $scope.aulas = response.data;
+    });
+  };
+
+  function selecaoAlternada(aula) {
+    console.log($scope.selecionado);
+    var idx = $scope.selecionado.indexOf(aula);
+    if (idx > -1) {
+      $scope.selecionado.splice(idx, 1);
+    }
+    else {
+      $scope.selecionado.push(aula);
+    }
+    $scope.novoInstrutor.aula = $scope.selecionado.map(aula => aula.id);
+  };
+
+   function aulasDosInstrutores (idAula) {
+    return $scope.aulas.filter(aula => aula.id === idAula).map(e => e.nome).shift();
+  };
+
+  function ordenarAulas (aula1,aula2) {
+    if (typeof $scope.aulas[aula1] === 'undefined' || typeof $scope.aulas[aula2] === 'undefined') return 0;
+    if($scope.aulas[aula1].nome.toLowerCase() > $scope.aulas[aula2].nome.toLowerCase()) return 1;
+    if($scope.aulas[aula1].nome.toLowerCase() < $scope.aulas[aula2].nome.toLowerCase()) return -1;
+    return 0;
   }
 
 });
