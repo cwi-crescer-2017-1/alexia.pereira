@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngRoute']);
+var app = angular.module('app', ['ngRoute', 'toastr', 'ngAnimate']);
 
 app.config(function ($routeProvider) {
   $routeProvider
@@ -20,7 +20,7 @@ app.filter('aulasDosInstrutores', function() {
 });
 
 // AULA
-app.controller('AulasController', function ($scope, $routeParams, aulaService) {
+app.controller('AulasController', function ($scope, $routeParams, aulaService, toastr) {
   // AULAS
   $scope.id = $routeParams.idUrl;
 
@@ -33,7 +33,10 @@ app.controller('AulasController', function ($scope, $routeParams, aulaService) {
   // Funções internas
   function create(aula) {
     if (formInvalido(false)) return;
-    aulaService.create(aula).then(function () {list();});
+    aulaService.create(aula).then(function () {
+      list();
+      toastr.success('Aula inserida com Sucesso');
+    });
   };
 
   function findById(id) {
@@ -52,6 +55,7 @@ app.controller('AulasController', function ($scope, $routeParams, aulaService) {
     if (formInvalido(true)) return;
     aulaService.update(aula).then(function () {
       list();
+      toastr.success('Aula atualizada com Sucesso');
       $scope.showForm = false;
     });
   };
@@ -60,6 +64,7 @@ app.controller('AulasController', function ($scope, $routeParams, aulaService) {
     if (typeof aula === 'undefined') return;
     aulaService.delete(aula).then(function () {
       list();
+      toastr.success('Aula deletada com Sucesso');
     })
   }
 
@@ -77,7 +82,7 @@ app.controller('AulasController', function ($scope, $routeParams, aulaService) {
 
 });
 
-app.controller('InstrutoresController', function ($scope, $routeParams, instrutorService, aulaService,  $location, $anchorScroll) {
+app.controller('InstrutoresController', function ($scope, $routeParams, instrutorService, aulaService,  toastr) {
 
   // INSTRUTORES
   $scope.selecionado = [];
@@ -101,6 +106,7 @@ app.controller('InstrutoresController', function ($scope, $routeParams, instruto
     instrutor.aula.sort(ordenarAulas);
     instrutorService.create(instrutor).then(function() {
       list();
+      toastr.success('instrutor inserido com Sucesso');
       $scope.novoInstrutor = {};
     });
   };
@@ -121,6 +127,7 @@ app.controller('InstrutoresController', function ($scope, $routeParams, instruto
     $scope.showFormI = false;
     instrutorService.update(instrutor).then(function () {
       list();
+      toastr.success('instrutor atualizado com Sucesso');
       $scope.novoInstrutor = {};
     });
   };
@@ -129,6 +136,7 @@ app.controller('InstrutoresController', function ($scope, $routeParams, instruto
     if (typeof instrutor === 'undefined') return;
     instrutorService.delete(instrutor).then(function () {
       list();
+      toastr.success('instrutor deletado com Sucesso');
     })
   }
 
