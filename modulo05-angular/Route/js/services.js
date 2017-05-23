@@ -20,8 +20,7 @@ app.factory('aulaService', function ($http) {
   //   aulas.push(angular.copy(aula));
   // };
   function criar (aula) {
-    aula.id = ++idAtual;
-    return $http.post(urlBase + '/aula')
+    return $http.post(urlBase + '/aula', aula);
   }
 
   return {
