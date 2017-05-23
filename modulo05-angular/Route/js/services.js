@@ -19,10 +19,15 @@ app.factory('aulaService', function ($http) {
     return $http.post(urlBase + '/aula', aula);
   }
 
+  function remover (aula) {
+    return $http.delete(urlBase + '/aula' + '/' + aula.id);
+  }
+
   return {
     list: getTodasAsAulas,
     findById: getAulaPorId,
     update: atualizar,
-    create: criar
+    create: criar,
+    delete: remover
   };
 });

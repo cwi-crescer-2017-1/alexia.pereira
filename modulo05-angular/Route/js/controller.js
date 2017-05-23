@@ -29,6 +29,7 @@ app.controller('AulasController', function ($scope, $routeParams, aulaService) {
 
   $scope.update = update;
   $scope.create = create;
+  $scope.delete = deletar;
   // Ações executadas quando criar a controller
   // findById($scope.id);
   list(); // listar aulas
@@ -57,6 +58,11 @@ app.controller('AulasController', function ($scope, $routeParams, aulaService) {
     });
   };
 
+  function deletar (aula) {
+    aulaService.delete(aula).then(function () {
+      list();
+    })
+  }
 
 
   // $scope.aulaPraDeletar = undefined;
