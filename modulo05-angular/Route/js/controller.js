@@ -19,6 +19,7 @@ app.filter('aulasDosInstrutores', function() {
   }
 });
 
+// AULA
 app.controller('AulasController', function ($scope, $routeParams, aulaService) {
   // AULAS
   $scope.id = $routeParams.idUrl;
@@ -86,6 +87,7 @@ app.controller('InstrutoresController', function ($scope, $routeParams, instruto
   $scope.create = create;
   $scope.delete = deletar;
   $scope.selecaoAlternada = selecaoAlternada;
+  $scope.aulasDosInstrutores = aulasDosInstrutores;
 
   // Ações executadas quando criar a controller
   // findById($scope.id);
