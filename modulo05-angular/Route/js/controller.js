@@ -50,8 +50,8 @@ app.controller('AulasController', function ($scope, $routeParams, aulaService) {
     });
   }
 
-  function update(aulaAntiga, novaAula) {
-    aulaService.update(aulaAntiga, novaAula).then(function () {
+  function update(aula) {
+    aulaService.update(aula).then(function () {
       list();
       $scope.showForm = false;
     });
@@ -86,6 +86,7 @@ app.controller('AulasController', function ($scope, $routeParams, aulaService) {
   // };
   //
   $scope.aulaSelecionada = function (aulaS) {
+    $scope.aulaS = angular.copy(aulaS);
     let taSelecionada = typeof aulaS !== 'undefined';
     $scope.showForm = taSelecionada;
     return taSelecionada;

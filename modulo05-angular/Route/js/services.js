@@ -11,15 +11,10 @@ app.factory('aulaService', function ($http) {
     return $http.get(urlBase + '/aula' + '/' + id);
   };
 
-  function atualizar(aulaAntiga, novaAula) {
-    console.log("hey", novaAula);
-    return $http.put(urlBase + '/aula' + '/' + aulaAntiga.id, novaAula);
+  function atualizar(aula) {
+    return $http.put(urlBase + '/aula' + '/' + aula.id, aula);
   };
 
-  // function criar(aula) {
-  //   aula.id = ++idAtual;
-  //   aulas.push(angular.copy(aula));
-  // };
   function criar (aula) {
     return $http.post(urlBase + '/aula', aula);
   }

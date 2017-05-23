@@ -53,9 +53,9 @@
 
   <div ng-if="showForm">
 
-    <form novalidate name="formUpdateAula" ng-submit="update(aulaS, novaAula)">
+    <form novalidate name="formUpdateAula" ng-submit="update(aulaS)">
 
-      <input type="text" class="form-control" name="novaAula" ng-model="novaAula.nome" required ng-minlength="3" ng-maxlength="20"/>
+      <input type="text" class="form-control" name="novaAula" ng-model="aulaS.nome" required ng-minlength="3" ng-maxlength="20"/>
 
       <span ng-if="formUpdateAula.novoNomeAula.$error.required">
         Campo Obrigatório
