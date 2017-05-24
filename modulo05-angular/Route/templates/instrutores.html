@@ -114,8 +114,8 @@
       <th>{{instrutor.email}}</th>
       <th>{{instrutor.dandoAula}}</th>
       <th>
-        <div ng-repeat="aula in instrutor.aula">
-          {{aulasDosInstrutores(aula)}}
+        <div ng-repeat="aula in geraNomeDasAulas(instrutor.aula)">
+          {{aula}}
         </div>
       </th>
       <th>

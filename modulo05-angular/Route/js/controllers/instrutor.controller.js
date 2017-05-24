@@ -1,9 +1,3 @@
-angular.module('app').filter('aulasDosInstrutores', function() {
-  return function aulasDosInstrutores(idAula, aulas) {
-    return aulas.filter(aula => aula.id === idAula).map(e => e.nome);
-  }
-});
-
 angular.module('app').controller('InstrutoresController', function ($anchorScroll, $location, $scope, $routeParams, instrutorService, aulaService,  toastr) {
 
   $scope.selecionado = [];
@@ -13,10 +7,10 @@ angular.module('app').controller('InstrutoresController', function ($anchorScrol
   $scope.create = create;
   $scope.delete = deletar;
   $scope.selecaoAlternada = selecaoAlternada;
-  $scope.aulasDosInstrutores = aulasDosInstrutores;
+  $scope.instrutorSelecionado = instrutorSelecionado;
+  $scope.viewUpdate = viewUpdate;
+  $scope.geraNomeDasAulas = geraNomeDasAulas;
 
-  // Ações executadas quando criar a controller
-  // findById($scope.id);
   listarAulas();
   list();
 
@@ -90,15 +84,24 @@ angular.module('app').controller('InstrutoresController', function ($anchorScrol
     return 0;
   }
 
-  $scope.instrutorSelecionado = function (instrutorS) {
+  function instrutorSelecionado (instrutorS) {
     let taSelecionado = typeof instrutorS !== 'undefined';
     $scope.showFormI = taSelecionado;
     $scope.novoInstrutor = angular.copy(instrutorS);
     return taSelecionado;
   };
 
-  $scope.viewUpdate = function() {
-     $anchorScroll();
-   };
+    function viewUpdate () {
+    $anchorScroll();
+  };
+
+  function geraNomeDasAulas (aulasDoInstrutor) {
+    //Aulas é um Array de id de aulas
+    let nomeDasAulas = [];
+    for (let idAula of aulasDoInstrutor) {
+      nomeDasAulas.push($scope.aulas.filter(a => a.id === idAula).map(a => a.nome).shift());
+    }
+    return nomeDasAulas.sort();
+  }
 
 });
