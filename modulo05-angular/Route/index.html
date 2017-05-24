@@ -9,13 +9,23 @@
 </head>
 
 <body>
-  <div class="container" id = "main">
 
-    <a href="#!/aulas">Aulas</a>
-    <a href="#!/instrutores">Instrutores</a>
-    <ng-view></ng-view>
-
+  <div class="nav">
+    <div class="crud">
+      C.R.U.D
+    </div>
+    <div class="ancora">
+      <a href="#!/aulas">Gerenciar e Ver Aulas</a>
+    </div>
+    <div class="ancora">
+      <a href="#!/instrutores">Gerenciar e Ver Instrutores</a>
+    </div>
   </div>
+
+  <div class="container" id = "main">
+    <ng-view></ng-view>
+  </div>
+
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.min.js"></script>

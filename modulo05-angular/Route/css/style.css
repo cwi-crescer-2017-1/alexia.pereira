@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Alfa+Slab+One');
+@import url('https://fonts.googleapis.com/css?family=Fredoka+One');
+
+* {
+  box-sizing: border-box;
+}
+
 img {
   max-width: 50px;
   max-height: 50px;
@@ -17,5 +24,70 @@ body  {
 
 h1 {
   margin-top: 20px;
-  padding: 10px 0;
+  color: #0275d8;
+}
+
+hr {
+  margin: 3px 0 15px 0;
+}
+
+.instrutores, .aulas {
+  margin: 0 auto;
+  width: 80%;
+}
+
+span {
+  font-style: italic;
+  font-size: 12px;
+  color: red;
+}
+
+
+label {
+  font-weight: 500;
+}
+
+.nav {
+  background: #0275d8;
+  height: auto;
+  display: block;
+  padding: 10px;
+  margin-bottom: 30px;
+}
+
+.crud {
+  width: 100%;
+  font-family: 'Alfa Slab One', cursive;
+  font-style: normal;
+  color: white;
+  text-align: center;
+  font-size: 40px;
+}
+
+.ancora {
+  text-align: center;
+  text-transform: uppercase;
+}
+
+a {
+  text-decoration: none;
+  font-family: 'Fredoka One', cursive;
+  color: white;
+  margin: 0px auto;
+}
+
+a:hover {
+  text-decoration: none;
+  font-style: italic;
+  color: white;
+}
+
+a:active {
+  color: white;
+  text-decoration: none;
+}
+
+a:visited {
+  color: white;
+  text-decoration: none;
 }

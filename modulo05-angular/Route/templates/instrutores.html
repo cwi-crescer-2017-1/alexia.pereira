@@ -3,8 +3,9 @@
   <!-- CREATE -->
   <form novalidate name="meuFormI">
     <h1 ng-hide="showFormI">Insira o novo Instrutor: </h1>
+    <hr ng-hide="showFormI">
     <h1 id="update" ng-show="showFormI">Digite as novas informações do Instrutor</h1>
-
+    <hr ng-show="showFormI">
     <div class="form-group">
       <!-- Nome: Inserir -->
       <label for="nome">Nome:</label>
@@ -63,7 +64,7 @@
     <div class="form-group">
       <!-- Ja Deu Aula: Inserir -->
       <label for="jaDeuAula">Dando Aula</label>
-      <input type="checkbox" name="i.jaDeuAula"  ng-model="novoInstrutor.dandoAula" value="deuAula">
+      <input type="checkbox" nclass="input-group-addon" ame="i.jaDeuAula"  ng-model="novoInstrutor.dandoAula" value="deuAula">
     </div>
 
     <div class="form-group">
@@ -88,14 +89,15 @@
       <input type="text" name="urlFoto" class="form-control" ng-model="novoInstrutor.urlFoto">
     </div>
 
-    <button type="submit" ng-click="create(novoInstrutor)" ng-hide="showFormI">Incluir</button>
-    <button type="submit" ng-click="update(novoInstrutor)" ng-show="showFormI"> Atualizar</button>
+    <button class="btn btn-primary" type="submit" ng-click="create(novoInstrutor)" ng-hide="showFormI">Incluir</button>
+    <button class="btn btn-primary" type="submit" ng-click="update(novoInstrutor)" ng-show="showFormI"> Atualizar</button>
 
   </form>
 
   <!-- VIEW -->
   <h1>Instrutores</h1>
-  <table class="table">
+  <hr>
+  <table class="table table-striped table-hover">
     <tr>
       <td>Id</td>
       <td>Nome</td>
@@ -127,32 +129,32 @@
   <!-- UPDATE -->
   <div class="form-group">
     <h1>Atualizar um Instrutor:</h1>
+    <hr>
     <label for="listaInstrutores">Selecione o instrutor a ser editado</label>
-    <select name="listaInstrutores" ng-model="instrutorS" ng-options="instrutor.nome for instrutor in instrutores">
+    <select class="form-control" name="listaInstrutores" ng-model="instrutorS" ng-options="instrutor.nome for instrutor in instrutores">
       <option value="">
         {{instrutor.nome}}
       </option>
     </select>
-    <!-- <a href="#update"> -->
-      <button type="submit" ng-click="instrutorSelecionado(instrutorS); viewUpdate()">
-        Selecionar
-      </button>
-    <!-- </a> -->
   </div>
+  <button class="btn btn-primary" type="submit" ng-click="instrutorSelecionado(instrutorS); viewUpdate()">
+    Selecionar
+  </button>
 
   <!-- DELETE -->
   <div class="form-group">
     <h1>Deletar um Instrutor</h1>
+    <hr>
     <label for="listaInstrutoresD">Selecione o instrutor a ser deletado</label>
-    <select name="listaInstrutoresD" ng-change="instrutorNaoEstaSendoUtilizado()" ng-model="instrutorPraDeletar" ng-options="instrutor.nome for instrutor in instrutores">
+    <select class="form-control" name="listaInstrutoresD" ng-change="instrutorNaoEstaSendoUtilizado()" ng-model="instrutorPraDeletar" ng-options="instrutor.nome for instrutor in instrutores">
       <option value="">
         {{instrutor.nome}}
       </option>
     </select>
-    <button type="submit" name="delete" ng-click="delete(instrutorPraDeletar)"> Deletar </button>
     <span ng-show="instrutorSendoUtilizado">
       Não é possível excluir este instrutor. Está dando aula.
     </span>
   </div>
+  <button class="btn btn-primary" type="submit" name="delete" ng-click="delete(instrutorPraDeletar)"> Deletar </button>
 </div>
 </div>
