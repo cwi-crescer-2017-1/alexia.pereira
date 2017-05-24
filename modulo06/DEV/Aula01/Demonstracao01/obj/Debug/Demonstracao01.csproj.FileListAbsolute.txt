@@ -1,0 +1,6 @@
+C:\Users\alexia.pereira\Documents\alexia.pereira\DEV\Aula01\Demonstracao01\bin\Debug\Demonstracao01.exe.config
+C:\Users\alexia.pereira\Documents\alexia.pereira\DEV\Aula01\Demonstracao01\bin\Debug\Demonstracao01.exe
+C:\Users\alexia.pereira\Documents\alexia.pereira\DEV\Aula01\Demonstracao01\bin\Debug\Demonstracao01.pdb
+C:\Users\alexia.pereira\Documents\alexia.pereira\DEV\Aula01\Demonstracao01\obj\Debug\Demonstracao01.csprojResolveAssemblyReference.cache
+C:\Users\alexia.pereira\Documents\alexia.pereira\DEV\Aula01\Demonstracao01\obj\Debug\Demonstracao01.exe
+C:\Users\alexia.pereira\Documents\alexia.pereira\DEV\Aula01\Demonstracao01\obj\Debug\Demonstracao01.pdb
