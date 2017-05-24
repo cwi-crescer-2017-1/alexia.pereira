@@ -51,18 +51,20 @@
   <div ng-show="showForm">
 
     <form novalidate name="formUpdateAula" ng-submit="update(aulaS)">
+      <div class="form-group">
 
-      <input type="text" class="form-control" name="novaAula" ng-model="aulaS.nome" required ng-minlength="3" ng-maxlength="20"/>
+        <input type="text" class="form-control" name="novaAula" ng-model="aulaS.nome" required ng-minlength="3" ng-maxlength="20"/>
 
-      <span ng-show="formUpdateAula.novaAula.$error.required">
-        Campo Obrigatório
-      </span>
-      <span ng-show="formUpdateAula.novaAula.$error.minlength">
-        Campo deve possuir no mínimo 3 caracteres
-      </span>
-      <span ng-show="formUpdateAula.novaAula.$error.maxlength">
-        Campo deve possuir no máximo 20 caracteres
-      </span>
+        <span ng-show="formUpdateAula.novaAula.$error.required">
+          Campo Obrigatório
+        </span>
+        <span ng-show="formUpdateAula.novaAula.$error.minlength">
+          Campo deve possuir no mínimo 3 caracteres
+        </span>
+        <span ng-show="formUpdateAula.novaAula.$error.maxlength">
+          Campo deve possuir no máximo 20 caracteres
+        </span>
+      </div>
 
       <button class="btn btn-primary" type="submit" name="update" > Atualizar </button>
     </form>

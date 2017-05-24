@@ -91,3 +91,7 @@ a:visited {
   color: white;
   text-decoration: none;
 }
+
+button {
+  margin-bottom: 10px;
+}
