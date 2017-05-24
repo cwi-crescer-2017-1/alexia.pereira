@@ -16,9 +16,9 @@ angular.module('app').controller('InstrutoresController', function ($anchorScrol
 
   // Funções internas
   function create(instrutor) {
+    if (formInvalido()) return;
     instrutor.dandoAula = instrutor.dandoAula || false;
     instrutor.urlFoto = instrutor.urlFoto || 'https://media.lovemondays.com.br/logos/e3b058/cwi-software-original.png';
-    instrutor.aula.sort(ordenarAulas);
     instrutorService.create(instrutor).then(function() {
       list();
       toastr.success('instrutor inserido com Sucesso');
@@ -40,6 +40,7 @@ angular.module('app').controller('InstrutoresController', function ($anchorScrol
 
   function update(instrutor) {
     $scope.showFormI = false;
+    if (formInvalido()) return;
     instrutorService.update(instrutor).then(function () {
       list();
       toastr.success('instrutor atualizado com Sucesso');
@@ -77,13 +78,6 @@ angular.module('app').controller('InstrutoresController', function ($anchorScrol
     return $scope.aulas.filter(aula => aula.id === idAula).map(e => e.nome).shift();
   };
 
-  function ordenarAulas (aula1,aula2) {
-    if (typeof $scope.aulas[aula1] === 'undefined' || typeof $scope.aulas[aula2] === 'undefined') return 0;
-    if($scope.aulas[aula1].nome.toLowerCase() > $scope.aulas[aula2].nome.toLowerCase()) return 1;
-    if($scope.aulas[aula1].nome.toLowerCase() < $scope.aulas[aula2].nome.toLowerCase()) return -1;
-    return 0;
-  }
-
   function instrutorSelecionado (instrutorS) {
     let taSelecionado = typeof instrutorS !== 'undefined';
     $scope.showFormI = taSelecionado;
@@ -102,6 +96,10 @@ angular.module('app').controller('InstrutoresController', function ($anchorScrol
       nomeDasAulas.push($scope.aulas.filter(a => a.id === idAula).map(a => a.nome).shift());
     }
     return nomeDasAulas.sort();
+  }
+
+  function formInvalido () {
+    return $scope.meuForm.$invalid || !$scope.meuForm.$valid;
   }
 
 });
