@@ -82,7 +82,7 @@ app.controller('AulasController', function ($scope, $routeParams, aulaService, t
 
 });
 
-app.controller('InstrutoresController', function ($scope, $routeParams, instrutorService, aulaService,  toastr) {
+app.controller('InstrutoresController', function ($anchorScroll, $location, $scope, $routeParams, instrutorService, aulaService,  toastr) {
 
   // INSTRUTORES
   $scope.selecionado = [];
@@ -175,5 +175,9 @@ app.controller('InstrutoresController', function ($scope, $routeParams, instruto
     $scope.novoInstrutor = angular.copy(instrutorS);
     return taSelecionado;
   };
+
+  $scope.viewUpdate = function() {
+     $anchorScroll();
+   };
 
 });
