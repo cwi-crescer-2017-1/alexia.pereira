@@ -8,12 +8,24 @@ namespace Alexia.Pereira
 
         public Demonstrativo GerarDemonstrativo(int horasCategoria, double salarioBase, double horasExtras, double horasDescontadas)
         {
+            //Quanto o colaborador ganha por hora
             var ValorHora = TruncarValor(salarioBase / horasCategoria);
-            var TotalHorasExtras = new HorasCalculadas(horasExtras, (horasExtras * ValorHora));
-            var TotalHorasDescontadas = new HorasCalculadas(horasDescontadas, horasDescontadas*ValorHora);
+            //Calcula valor das horas (extras e descontadas)
+            var valorHorasExtras = calcularHoras(horasExtras, ValorHora);
+            var valorHorasDesconto = calcularHoras(horasDescontadas, ValorHora);
+            //Inicia o objeto de horas extras e horas descontadas
+            var TotalHorasExtras = new HorasCalculadas(horasExtras, valorHorasExtras);
+            var TotalHorasDescontadas = new HorasCalculadas(horasDescontadas, valorHorasDesconto);
+
+
             var TotalDeProventos = TruncarValor(salarioBase + TotalHorasExtras.ValorTotalHoras - TotalHorasDescontadas.ValorTotalHoras);
-            var INSS = new Desconto(CalcularAliquotaINSS(TotalDeProventos), TruncarValor(CalcularAliquotaINSS(TotalDeProventos)*TotalDeProventos));
-            var IRRF = new Desconto(CalcularAliquotaIRRF(TotalDeProventos - INSS.Valor), TruncarValor(CalcularAliquotaIRRF(TotalDeProventos - INSS.Valor) * (TotalDeProventos - INSS.Valor)));
+
+            var aliquotaINSS = CalcularAliquotaINSS(TotalDeProventos);
+            var INSS = new Desconto(aliquotaINSS, TruncarValor(aliquotaINSS * TotalDeProventos));
+
+            var aliquotaIRRF = CalcularAliquotaIRRF(TotalDeProventos - INSS.Valor);
+            var IRRF = new Desconto(aliquotaIRRF, TruncarValor(aliquotaIRRF * (TotalDeProventos - INSS.Valor)));
+
             var TotalDescontos = INSS.Valor + IRRF.Valor;
             var SalarioLiquido = TruncarValor(TotalDeProventos - TotalDescontos);
             var FGTS = new Desconto((11d / 100d), TruncarValor((11d / 100d)*TotalDeProventos));
@@ -75,6 +87,7 @@ namespace Alexia.Pereira
             else
             {
                 return 27.5d / 100d;
+
             }
         }
 
@@ -82,5 +95,12 @@ namespace Alexia.Pereira
         {
             return Math.Truncate(valor * 100) / 100;
         }
+
+        private double calcularHoras (double horasExtras, double valorPorHora)
+        {
+            return TruncarValor(horasExtras * valorPorHora);
+        }
+
+
     }
 }
