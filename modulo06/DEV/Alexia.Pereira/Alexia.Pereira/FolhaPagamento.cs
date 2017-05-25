@@ -8,17 +8,17 @@ namespace Alexia.Pereira
 
         public Demonstrativo GerarDemonstrativo(int horasCategoria, double salarioBase, double horasExtras, double horasDescontadas)
         {
-            var ValorHora = Math.Round(salarioBase / horasCategoria, 2);
+            var ValorHora = TruncarValor(salarioBase / horasCategoria);
             var TotalHorasExtras = new HorasCalculadas(horasExtras, ValorHora);
             var TotalHorasDescontadas = new HorasCalculadas(horasDescontadas, ValorHora);
-            var TotalDeProventos = Math.Round(salarioBase + TotalHorasExtras.calcularTotal() - TotalHorasDescontadas.calcularTotal(), 2);
-            var INSS = new Desconto(calcularAliquotaINSS(TotalDeProventos), TotalDeProventos);
-            var IRRF = new Desconto(calcularAliquotaIRRF(TotalDeProventos - INSS.calcularDesconto()), TotalDeProventos - INSS.calcularDesconto());
+            var TotalDeProventos = TruncarValor(salarioBase + TotalHorasExtras.calcularTotal() - TotalHorasDescontadas.calcularTotal());
+            var INSS = new Desconto(CalcularAliquotaINSS(TotalDeProventos), TotalDeProventos);
+            var IRRF = new Desconto(CalcularAliquotaIRRF(TotalDeProventos - INSS.calcularDesconto()), TotalDeProventos - INSS.calcularDesconto());
             var TotalDescontos = INSS.calcularDesconto() + IRRF.calcularDesconto();
-            var SalarioLiquido = Math.Round(TotalDeProventos - TotalDescontos, 2);
+            var SalarioLiquido = TruncarValor(TotalDeProventos - TotalDescontos);
             var FGTS = new Desconto((11d / 100d), TotalDeProventos);
 
-            Demonstrativo demonstrativo = new Demonstrativo
+            Demonstrativo Demonstrativo = new Demonstrativo
             (
             salarioBase,
             horasCategoria,
@@ -32,13 +32,13 @@ namespace Alexia.Pereira
             FGTS
             );
 
-            demonstrativo.LogarDemonstrativo();
+            Demonstrativo.LogarDemonstrativo();
 
-            return demonstrativo;
+            return Demonstrativo;
 
         }
 
-        public double calcularAliquotaINSS(double proventos)
+        public double CalcularAliquotaINSS(double proventos)
         {
             if (proventos <= 1000)
             {
@@ -54,7 +54,7 @@ namespace Alexia.Pereira
             }
         }
 
-        public double calcularAliquotaIRRF(double proventosDeduzidos)
+        public double CalcularAliquotaIRRF(double proventosDeduzidos)
         {
             if (proventosDeduzidos <= 1710.78)
             {
@@ -76,6 +76,11 @@ namespace Alexia.Pereira
             {
                 return 27.5d / 100d;
             }
+        }
+
+        public double TruncarValor(double valor)
+        {
+            return Math.Truncate(valor * 100) / 100;
         }
     }
 }
