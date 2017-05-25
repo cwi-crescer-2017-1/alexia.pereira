@@ -16,11 +16,6 @@ namespace Alexia.Pereira
         public double QtdHoras { get; private set; }
         public double ValorTotalHoras { get; private set; }
 
-        public double calcularTotal()
-        {
-            return Math.Round(this.QtdHoras * this.ValorTotalHoras, 2);
-        }
-
     }
 
 }

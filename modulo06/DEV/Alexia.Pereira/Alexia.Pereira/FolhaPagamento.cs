@@ -9,14 +9,14 @@ namespace Alexia.Pereira
         public Demonstrativo GerarDemonstrativo(int horasCategoria, double salarioBase, double horasExtras, double horasDescontadas)
         {
             var ValorHora = TruncarValor(salarioBase / horasCategoria);
-            var TotalHorasExtras = new HorasCalculadas(horasExtras, ValorHora);
-            var TotalHorasDescontadas = new HorasCalculadas(horasDescontadas, ValorHora);
-            var TotalDeProventos = TruncarValor(salarioBase + TotalHorasExtras.calcularTotal() - TotalHorasDescontadas.calcularTotal());
-            var INSS = new Desconto(CalcularAliquotaINSS(TotalDeProventos), TotalDeProventos);
-            var IRRF = new Desconto(CalcularAliquotaIRRF(TotalDeProventos - INSS.calcularDesconto()), TotalDeProventos - INSS.calcularDesconto());
-            var TotalDescontos = INSS.calcularDesconto() + IRRF.calcularDesconto();
+            var TotalHorasExtras = new HorasCalculadas(horasExtras, (horasExtras * ValorHora));
+            var TotalHorasDescontadas = new HorasCalculadas(horasDescontadas, horasDescontadas*ValorHora);
+            var TotalDeProventos = TruncarValor(salarioBase + TotalHorasExtras.ValorTotalHoras - TotalHorasDescontadas.ValorTotalHoras);
+            var INSS = new Desconto(CalcularAliquotaINSS(TotalDeProventos), TruncarValor(CalcularAliquotaINSS(TotalDeProventos)*TotalDeProventos));
+            var IRRF = new Desconto(CalcularAliquotaIRRF(TotalDeProventos - INSS.Valor), TruncarValor(CalcularAliquotaIRRF(TotalDeProventos - INSS.Valor) * (TotalDeProventos - INSS.Valor)));
+            var TotalDescontos = INSS.Valor + IRRF.Valor;
             var SalarioLiquido = TruncarValor(TotalDeProventos - TotalDescontos);
-            var FGTS = new Desconto((11d / 100d), TotalDeProventos);
+            var FGTS = new Desconto((11d / 100d), TruncarValor((11d / 100d)*TotalDeProventos));
 
             Demonstrativo Demonstrativo = new Demonstrativo
             (
@@ -32,7 +32,7 @@ namespace Alexia.Pereira
             FGTS
             );
 
-            Demonstrativo.LogarDemonstrativo();
+            //Demonstrativo.LogarDemonstrativo();
 
             return Demonstrativo;
 

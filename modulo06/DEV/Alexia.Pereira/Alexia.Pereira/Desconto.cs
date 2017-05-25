@@ -17,10 +17,6 @@ namespace Alexia.Pereira
         public double Aliquota { get; private set; }
         public double Valor { get; private set; }
 
-        public double calcularDesconto()
-        {
-            return Math.Round(this.Valor * this.Aliquota, 2);
-        }
 
     }
 
