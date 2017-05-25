@@ -8,14 +8,14 @@ namespace Alexia.Pereira
 
         public Demonstrativo GerarDemonstrativo(int horasCategoria, double salarioBase, double horasExtras, double horasDescontadas)
         {
-            var ValorHora = salarioBase / horasCategoria;
+            var ValorHora = Math.Round(salarioBase / horasCategoria, 2);
             var TotalHorasExtras = new HorasCalculadas(horasExtras, ValorHora);
             var TotalHorasDescontadas = new HorasCalculadas(horasDescontadas, ValorHora);
-            var TotalDeProventos = salarioBase + TotalHorasExtras.calcularTotal() - TotalHorasDescontadas.calcularTotal();
+            var TotalDeProventos = Math.Round(salarioBase + TotalHorasExtras.calcularTotal() - TotalHorasDescontadas.calcularTotal(), 2);
             var INSS = new Desconto(calcularAliquotaINSS(TotalDeProventos), TotalDeProventos);
             var IRRF = new Desconto(calcularAliquotaIRRF(TotalDeProventos - INSS.calcularDesconto()), TotalDeProventos - INSS.calcularDesconto());
             var TotalDescontos = INSS.calcularDesconto() + IRRF.calcularDesconto();
-            var SalarioLiquido = TotalDeProventos - TotalDescontos;
+            var SalarioLiquido = Math.Round(TotalDeProventos - TotalDescontos, 2);
             var FGTS = new Desconto((11d / 100d), TotalDeProventos);
 
             Demonstrativo demonstrativo = new Demonstrativo
@@ -39,22 +39,22 @@ namespace Alexia.Pereira
             //demonstrativo.IRRF.calcularDesconto();
 
             return demonstrativo;
-         
+
         }
 
         public double calcularAliquotaINSS(double proventos)
         {
             if (proventos <= 1000)
             {
-                return 8d / 100d;
+                return Math.Round(8d / 100d, 2);
             }
             else if (proventos <= 1500)
             {
-                return 9d / 100d;
+                return Math.Round(9d / 100d, 2);
             }
             else
             {
-                return 1d / 10d;
+                return Math.Round(1d / 10d, 2);
             }
         }
 
