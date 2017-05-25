@@ -33,10 +33,6 @@ namespace Alexia.Pereira
             );
 
             demonstrativo.LogarDemonstrativo();
-            //demonstrativo.TotalHorasExtras.calcularTotal();
-            //demonstrativo.TotalHorasExtras.calcularTotal();
-            //demonstrativo.INSS.calcularDesconto();
-            //demonstrativo.IRRF.calcularDesconto();
 
             return demonstrativo;
 
