@@ -116,12 +116,28 @@ namespace Repositorio
         private int CalcularIdade(DateTime dataNascimento)
         {
             return DateTime.Now.Year - dataNascimento.Year;
-            
+
         }
 
         public double SalarioMedio(TurnoTrabalho? turno = null)
         {
-            throw new NotImplementedException();
+            if (turno != null)
+            {
+                var FuncionariosPorTurno = Funcionarios
+                    .Where(f => f.TurnoTrabalho == turno);
+
+                double SomaDosSalarios = FuncionariosPorTurno
+                    .Select(f => f.Cargo.Salario)
+                    .Aggregate( (a, b) => a + b);
+
+                return SomaDosSalarios / FuncionariosPorTurno.Count();
+            }
+            else
+            {
+                return Funcionarios
+                    .Select(f => f.Cargo.Salario)
+                    .Aggregate((a, b) => a + b) / Funcionarios.Count();
+            }
         }
 
         public IList<Funcionario> AniversariantesDoMes()
