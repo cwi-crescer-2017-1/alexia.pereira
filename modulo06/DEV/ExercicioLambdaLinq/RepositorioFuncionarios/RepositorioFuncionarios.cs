@@ -13,7 +13,7 @@ namespace Repositorio
     public class RepositorioFuncionarios
     {
         public List<Funcionario> Funcionarios { get; private set; }
-        
+
         public RepositorioFuncionarios()
         {
             CriarBase();
@@ -90,18 +90,18 @@ namespace Repositorio
 
         public IList<Funcionario> OrdenadosPorCargo()
         {
-            throw new NotImplementedException();
+            return Funcionarios.OrderBy(funcionario => funcionario.Cargo.Titulo).ThenBy(funcionario => funcionario.Nome).ToList();
         }
 
         public IList<Funcionario> BuscarPorNome(string nome)
         {
             throw new NotImplementedException();
-        }        
+        }
 
         public IList<Funcionario> BuscarPorTurno(params TurnoTrabalho[] turnos)
         {
             throw new NotImplementedException();
-        }        
+        }
 
         public IList<Funcionario> FiltrarPorIdadeAproximada(int idade)
         {
