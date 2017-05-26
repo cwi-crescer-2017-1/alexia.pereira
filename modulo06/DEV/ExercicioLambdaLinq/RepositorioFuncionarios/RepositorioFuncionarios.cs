@@ -110,12 +110,13 @@ namespace Repositorio
 
         public IList<Funcionario> FiltrarPorIdadeAproximada(int idade)
         {
-            return Funcionarios.Where(f => Enumerable.Range(idade-5, 10).Contains(DateTime.Now.Year - f.DataNascimento.Year)).ToList(); 
+            return Funcionarios.Where(f => Enumerable.Range(idade-5, 10).Contains(CalcularIdade(f.DataNascimento))).ToList(); 
         }
 
         private int CalcularIdade(DateTime dataNascimento)
         {
-            throw new NotImplementedException();
+            return DateTime.Now.Year - dataNascimento.Year;
+            
         }
 
         public double SalarioMedio(TurnoTrabalho? turno = null)
