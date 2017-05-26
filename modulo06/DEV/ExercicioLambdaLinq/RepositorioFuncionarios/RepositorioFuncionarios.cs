@@ -148,7 +148,9 @@ namespace Repositorio
 
         public IList<dynamic> BuscaRapida()
         {
-            throw new NotImplementedException();
+            var listaFuncionario = new List<dynamic>();
+            listaFuncionario.AddRange(Funcionarios.Select(f => new {NomeFuncionario = f.Nome, TituloCargo = f.Cargo.Titulo }).ToList());
+            return listaFuncionario;
         }
 
         public IList<dynamic> QuantidadeFuncionariosPorTurno()
