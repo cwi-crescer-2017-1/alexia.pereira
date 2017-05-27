@@ -6,9 +6,14 @@
   </head>
   <body>
     <div ng-controller="UsuariosController" ng-init="entrarNaConversa()">
-      <button type="button" name="button" ng-click="create()">Criar Usuario</button>
     </div>
 
+    <div ng-controller="MensagensController">
+      <form ng-submit="create(novaMensagem)">
+        <input type="text" name="" placeholder="Digite aqui sua mensagem" ng-model="novaMensagem.texto">
+        <!-- <button type="submit" name="Enviar">Enviar</button> -->
+      </form>
+      {{mensagens}}
     </div>
 
 
@@ -17,5 +22,8 @@
     <script src="js/app.module.js"></script>
     <script src="js/services/usuario.service.js"></script>
     <script src="js/controllers/usuario.controller.js"></script>
+    <script src="js/services/mensagem.service.js"></script>
+    <script src="js/controllers/mensagem.controller.js"></script>
+
   </body>
 </html>
