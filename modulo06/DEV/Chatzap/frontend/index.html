@@ -5,14 +5,9 @@
     <title></title>
   </head>
   <body>
-    <div ng-controller="UsuariosController">
-      <ul>
-        <li ng-repeat="usuario in usuarios">
-          {{usuario.Nome}}
-        </li>
-      </ul>
-
-      <button type="button" name="button" ng-click="create({Id:0, Nome: 'Oie', Foto:'Não'})">Criar Usuario</button>
+    <div ng-controller="UsuariosController" ng-init="entrarNaConversa()">
+      <button type="button" name="button" ng-click="create()">Criar Usuario</button>
+    </div>
 
     </div>
 
