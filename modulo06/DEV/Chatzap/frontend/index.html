@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div ng-controller="UsuariosController">
+      <ul>
+        <li ng-repeat="usuario in usuarios">
+          {{usuario.Nome}}
+        </li>
+      </ul>
+
+      <button type="button" name="button" ng-click="create({Id:0, Nome: 'Oie', Foto:'Não'})">Criar Usuario</button>
+
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.6.4/angular-locale_pt-br.min.js"></script>
+    <script src="js/app.module.js"></script>
+    <script src="js/services/usuario.service.js"></script>
+    <script src="js/controllers/usuario.controller.js"></script>
+  </body>
+</html>
