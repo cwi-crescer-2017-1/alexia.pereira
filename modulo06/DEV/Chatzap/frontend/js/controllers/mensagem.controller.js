@@ -1,3 +1,12 @@
+angular.module('app').filter('formatarData', function() {
+  return function formatarData(data) {
+    var dataFormatada = ("0" + data.getHours()).slice(-2)
+    + ":"
+    + ("0" + data.getMinutes()).slice(-2);
+    return dataFormatada
+  }
+})
+
 angular.module('app').controller('MensagensController', function ($scope, mensagemService, usuarioService) {
 
   $scope.create = create;
