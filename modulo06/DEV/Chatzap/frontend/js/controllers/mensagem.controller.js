@@ -24,6 +24,9 @@ angular.module('app').controller('MensagensController', function ($scope, mensag
 
   $scope.create = create;
   $scope.minhaMensagem = minhaMensagem;
+  $scope.$watch('mensagens', function() {
+        list();
+  });
   list();
 
   // Funções internas
@@ -55,4 +58,5 @@ angular.module('app').controller('MensagensController', function ($scope, mensag
   function minhaMensagem (mensagem) {
     return mensagem.usuario.Id == localStorage.getItem('userId');
   }
+
 });
