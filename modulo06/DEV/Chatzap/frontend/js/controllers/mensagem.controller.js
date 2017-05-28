@@ -21,6 +21,12 @@ angular.module('app').controller('MensagensController', function ($scope, mensag
   function list() {
     mensagemService.list().then(function (response) {
       $scope.mensagens = response.data;
+      $scope.mensagens.forEach(arrumarDatas);
     });
   }
+
+  function arrumarDatas (e, i, a) {
+    e.DataMensagem = new Date(Date.parse(e.DataMensagem));
+  }
+
 });
