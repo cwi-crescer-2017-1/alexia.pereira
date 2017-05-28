@@ -18,21 +18,6 @@ body {
 	border-radius: 5px;
 }
 
-input {
-	border-radius: 3px;
-	border: none;
-	padding: 14px;
-	color: white;
-	background: #6A6C75;
-	width: 90%;
-	font-size: 14px;
-}
-
-.fa-search {
-	position: relative;
-	left: -25px;
-}
-
 ul {
 	padding: 20px;
 	height: 770px;
@@ -44,10 +29,6 @@ ul li {
 
 img {
 	float: left;
-}
-
-.status {
-	color: #92959E;
 }
 
 .chat {
@@ -158,12 +139,6 @@ img {
 	resize: none;
 }
 
-.chat .chat-message .fa-file-o, .chat .chat-message .fa-file-image-o {
-	font-size: 16px;
-	color: gray;
-	cursor: pointer;
-}
-
 .chat .chat-message button {
 	float: right;
 	color: #94C2ED;
@@ -177,12 +152,6 @@ img {
 
 .chat .chat-message button:hover {
 	color: #75b1e8;
-}
-
-.me {
-	margin-right: 3px;
-	font-size: 10px;
-	color: #94C2ED;
 }
 
 .align-left {
