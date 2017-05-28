@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Chatzap.Models;
+using System.Text.RegularExpressions;
 
 namespace Chatzap.Controllers
 {
@@ -16,7 +17,12 @@ namespace Chatzap.Controllers
 
         public IEnumerable<Mensagem> Get()
         {
-            return mensagens;
+            var regex = new Regex("andré nunes", RegexOptions.IgnoreCase);
+            foreach (var mensagem in mensagens)
+            {
+                mensagem.texto = regex.Replace(mensagem.texto, "$$$$$ $$$$$");
+            }
+            return mensagens.OrderBy(m => m.DataMensagem);
         }
 
         public IHttpActionResult Post(Mensagem mensagem)
