@@ -14,13 +14,14 @@
     <div class="container clearfix">
       <div class="chat">
         <div class="chat-header clearfix">
-
+          <div class="image"></div>
         </div> <!-- end chat-header -->
 
         <div class="chat-history">
           <ul>
             <li class="clearfix" ng-repeat="mensagem in mensagens">
               <div ng-class="{true:'message-data', false:'message-data align-right'}[minhaMensagem(mensagem)]">
+                <img src="{{mensagem.usuario.Foto}}" ng-class="{false:'float-right'}[minhaMensagem(mensagem)]">
                 <span class="message-data-time" >{{mensagem.DataMensagem | formatarData}}</span> &nbsp; &nbsp;
                 <span class="message-data-name" >{{mensagem.usuario.Nome}}</span> <i class="fa fa-circle me"></i>
               </div> <!-- end data-time -->
