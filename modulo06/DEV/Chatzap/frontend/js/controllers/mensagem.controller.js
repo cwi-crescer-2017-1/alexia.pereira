@@ -1,6 +1,7 @@
 angular.module('app').controller('MensagensController', function ($scope, mensagemService, usuarioService) {
 
   $scope.create = create;
+  $scope.minhaMensagem = minhaMensagem;
   list();
 
   // Funções internas
@@ -29,4 +30,7 @@ angular.module('app').controller('MensagensController', function ($scope, mensag
     e.DataMensagem = new Date(Date.parse(e.DataMensagem));
   }
 
+  function minhaMensagem (mensagem) {
+    return mensagem.usuario.Id == localStorage.getItem('userId');
+  }
 });
