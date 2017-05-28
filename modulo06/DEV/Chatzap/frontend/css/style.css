@@ -23,6 +23,7 @@ body {
 ul {
   padding: 20px;
   height: 770px;
+  list-style: none;
 }
 
 ul li {
@@ -115,7 +116,7 @@ img {
 
 .chat .chat-history .message:after {
   bottom: 100%;
-  left: 7%;
+  left: 4%;
   border: solid transparent;
   content: " ";
   height: 0;
@@ -137,7 +138,7 @@ img {
 
 .chat .chat-history .other-message:after {
   border-bottom-color: #94C2ED;
-  left: 93%;
+  left: 96%;
 }
 
 .chat .chat-message {
