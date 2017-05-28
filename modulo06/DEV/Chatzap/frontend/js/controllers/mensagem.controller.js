@@ -5,9 +5,12 @@ angular.module('app').controller('MensagensController', function ($scope, mensag
 
   // Funções internas
   function create(mensagem) {
-    console.log(mensagem);
-    mensagem.Usuario = usuarioService.usuario;
-    console.log(mensagem.Usuario);
+    var usuario = {
+      Id: localStorage.getItem('userId'),
+      Nome: localStorage.getItem('userName'),
+      Foto: localStorage.getItem('userPic')
+    };
+    mensagem.usuario = usuario;
     mensagem.Id = 0;
     $scope.novaMensagem = {}
     mensagemService.create(mensagem).then(function () {
