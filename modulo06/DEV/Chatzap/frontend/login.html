@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <title></title>
+</head>
+<body ng-controller="UsuariosController">
+  <div class="form-group">
+  <form action="index.html" novalidate name="login" ng-sumit="create(usuario)" >
+    <label for="nome">Digite o seu Nome</label>
+    <input  class="form-control" type="text" required name="nome" ng-model="usuario.Nome">
+    <span ng-if="login.nome.$error.required">
+      Campo Obrigatório
+    </span>
+  </div>
+  <div class="form-group">
+    <label for="nome">Digite uma URL pública para a sua foto</label>
+    <input class="form-control" type="text" name="foto"ng-model="usuario.Foto">
+  </div>
+    <button type="submit" name="button">Entrar</button>
+  </form>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.6.4/angular-locale_pt-br.min.js"></script>
+  <script src="js/app.module.js"></script>
+  <script src="js/services/usuario.service.js"></script>
+  <script src="js/controllers/usuario.controller.js"></script>
+  <script src="js/services/mensagem.service.js"></script>
+  <script src="js/controllers/mensagem.controller.js"></script>
+</body>
+</html>
