@@ -11,6 +11,7 @@ namespace Demo1.Infraestrutura.Repositorios
     public class PedidoRepositorio : IPedidoRepositorio
     {
         string stringConexao = "Server=13.65.101.67;User Id=alexia.pereira;Password=123456;Database=aluno16db";
+        ItemPedidoRepositorio _itemPedidoRepositorio = new ItemPedidoRepositorio();
 
         public void Alterar(Pedido pedido)
         {
@@ -62,28 +63,10 @@ namespace Demo1.Infraestrutura.Repositorios
             // obter o ultimo id do ItemPedido (SELECT @@IDENTITY)
             foreach (var itemPedido in pedido.Itens)
             {
-                using (var conexao = new SqlConnection(stringConexao))
-                {
-                    conexao.Open();
-                    using (var comando = conexao.CreateCommand())
-                    {
-                        comando.CommandText = @"INSERT INTO ItemPedido (PedidoId, ProdutoId, Quantidade) 
-                                                VALUES (@pedidoId, @produtoId, @quantidade)";
-                        comando.Parameters.AddWithValue("@pedidoId", pedido.Id);
-                        comando.Parameters.AddWithValue("@produtoId", itemPedido.ProdutoId);
-                        comando.Parameters.AddWithValue("@quantidade", itemPedido.Quantidade);
-
-                        comando.ExecuteNonQuery();
-                    }
-                    //Obtem o ID criado
-                    using (var comando = conexao.CreateCommand())
-                    {
-                        comando.CommandText = "SELECT @@IDENTITY";
-                        //Executa o comando e lê o primeiro comando de retorno
-                        var result = (decimal)comando.ExecuteScalar();
-                        itemPedido.Id = (int)result;
-                    }
-                }
+                var mensagens = new List<string>();
+                if (!itemPedido.Validar(out mensagens))
+                    break;
+                _itemPedidoRepositorio.Criar(itemPedido, pedido);
             }
         }
 
@@ -92,19 +75,7 @@ namespace Demo1.Infraestrutura.Repositorios
             var pedido = this.Obter(id);
             foreach (var item in pedido.Itens)
             {
-                using (var conexao = new SqlConnection(stringConexao))
-                {
-                    conexao.Open();
-
-                    using (var comando = conexao.CreateCommand())
-                    {
-                        comando.CommandText = "DELETE ItemPedido WHERE Id = @id";
-
-                        comando.Parameters.AddWithValue("@id", item.Id);
-
-                        comando.ExecuteNonQuery();
-                    }
-                }
+                _itemPedidoRepositorio.Excluir(item.Id);
             }
 
             using (var conexao = new SqlConnection(stringConexao))
@@ -139,6 +110,8 @@ namespace Demo1.Infraestrutura.Repositorios
                         pedido.Id = (int)dataReader["Id"];
                         pedido.NomeCliente = (string)dataReader["NomeCliente"];
 
+                        pedido.Itens = _itemPedidoRepositorio.ListarPorPedido(pedido.Id);
+                        
                         pedidos.Add(pedido);
                     }
                 }
@@ -157,7 +130,7 @@ namespace Demo1.Infraestrutura.Repositorios
                 using (var comando = conexao.CreateCommand())
                 {
                     comando.CommandText =
-                        "SELECT Id, NomeCliente FROM Produto WHERE Id = @id";
+                        "SELECT Id, NomeCliente FROM Pedido WHERE Id = @id";
 
                     comando.Parameters.AddWithValue("@id", id);
 
@@ -167,6 +140,8 @@ namespace Demo1.Infraestrutura.Repositorios
                         pedido = new Pedido();
                         pedido.Id = (int)dataReader["Id"];
                         pedido.NomeCliente = (string)dataReader["NomeCliente"];
+
+                        pedido.Itens = _itemPedidoRepositorio.ListarPorPedido(pedido.Id);
 
                         return pedido;
                     }
