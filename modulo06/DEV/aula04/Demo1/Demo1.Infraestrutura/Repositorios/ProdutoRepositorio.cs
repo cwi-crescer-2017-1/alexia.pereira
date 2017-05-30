@@ -142,5 +142,24 @@ namespace Demo1.Infraestrutura.Repositorios
 
             return produto;
         }
+
+        public void AtualizarEstoque(int id, int quantidade)
+        {
+            using (var conexao = new SqlConnection(stringConexao))
+            {
+                conexao.Open();
+
+                using (var comando = conexao.CreateCommand())
+                {
+                    comando.CommandText =
+                        "UPDATE Produto SET Estoque = Estoque-@quantidade WHERE Id = @id";
+
+                    comando.Parameters.AddWithValue("@quantidade", quantidade);
+                    comando.Parameters.AddWithValue("@id", id);
+
+                    comando.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
