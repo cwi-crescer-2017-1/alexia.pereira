@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EditoraCrescer.Infraesturtu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplicationTeste", "ConsoleApplicationTeste\ConsoleApplicationTeste.csproj", "{B5054C30-D16E-475D-82FA-B0E029B6FCF7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EditoraCrescer.Api", "EditoraCrescer.Api\EditoraCrescer.Api.csproj", "{192ED91A-9D12-4027-BCE0-E4063653E45D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B5054C30-D16E-475D-82FA-B0E029B6FCF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5054C30-D16E-475D-82FA-B0E029B6FCF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5054C30-D16E-475D-82FA-B0E029B6FCF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{192ED91A-9D12-4027-BCE0-E4063653E45D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{192ED91A-9D12-4027-BCE0-E4063653E45D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{192ED91A-9D12-4027-BCE0-E4063653E45D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{192ED91A-9D12-4027-BCE0-E4063653E45D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
