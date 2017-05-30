@@ -21,6 +21,7 @@ namespace EditoraCrescer.Infraesturtura
         {
             modelBuilder.Configurations.Add(new AutorMap());
             modelBuilder.Configurations.Add(new LivroMap());
+            modelBuilder.Configurations.Add(new RevisorMap());
         }
 
     }
