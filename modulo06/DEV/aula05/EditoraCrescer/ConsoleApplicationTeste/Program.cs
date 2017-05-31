@@ -18,17 +18,20 @@ namespace ConsoleApplicationTeste
             using (var contexto = new Contexto())
             {
                 //Inclusão
-                contexto.Autores.Add(autor1);
-                contexto.Autores.Add(autor2);
-                contexto.SaveChanges();
+                //contexto.Autores.Add(autor1);
+                //contexto.Autores.Add(autor2);
+                //contexto.SaveChanges();
 
                 var livro = new Livro()
                 {
-                    Autor = autor1,
-                    Titulo = "O senhor dos anéis",
+                    IdAutor = 3,
+                    Titulo = "O Hobbit",
                     Descricao = "Um livro bem legal",
                     Genero = "Aventura",
-                    DataPublicacao = DateTime.Now
+                    DataPublicacao = DateTime.Now,
+                    DataRevisão = DateTime.Now,
+                    Capa = "",
+                    IdRevisor = 2
                 };
 
                 contexto.Livros.Add(livro);
