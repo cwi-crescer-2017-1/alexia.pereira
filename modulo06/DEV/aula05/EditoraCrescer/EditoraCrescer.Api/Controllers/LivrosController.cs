@@ -39,5 +39,11 @@ namespace EditoraCrescer.Api.Controllers
             return Ok();
         }
 
+        protected override void Dispose(bool disposing)
+        {
+            repositorio.Dispose();
+            base.Dispose(disposing);
+        }
+
     }
 }
