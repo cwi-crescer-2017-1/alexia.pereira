@@ -1,6 +1,6 @@
 
 <div class="form-group">
-  <form action="index.html" novalidate name="login" ng-sumit="create(usuario)" >
+  <form action="index.html" novalidate name="login" ng-submit="create(usuario)" >
     <label for="nome">Digite o seu Nome</label>
     <input  class="form-control" type="text" required name="nome" ng-model="usuario.Nome">
     <span ng-if="login.nome.$error.required">
@@ -11,5 +11,5 @@
     <label for="nome">Digite uma URL pública para a sua foto</label>
     <input class="form-control" type="text" name="foto"ng-model="usuario.Foto">
   </div>
-  <button type="submit" name="button">Entrar</button>
+  <button type="submit" name="button" ng-click="create(usuario)">Entrar</button>
 </form>
