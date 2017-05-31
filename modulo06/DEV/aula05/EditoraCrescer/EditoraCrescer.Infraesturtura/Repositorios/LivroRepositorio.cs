@@ -23,5 +23,11 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
             contexto.SaveChanges();
         }
 
+        public Livro Obter (int id)
+        {
+            return contexto.Livros.FirstOrDefault(l => l.Isbn == id);
+        }
+
+
     }
 }

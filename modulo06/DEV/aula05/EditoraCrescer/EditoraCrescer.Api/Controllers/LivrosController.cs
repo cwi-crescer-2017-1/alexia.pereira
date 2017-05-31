@@ -20,6 +20,13 @@ namespace EditoraCrescer.Api.Controllers
             return Ok(livros);
         }
 
+
+        public IHttpActionResult Get(int id)
+        {
+            var livro = repositorio.Obter(id);
+            return Ok(livro);
+        }
+
         public IHttpActionResult Post(Livro livro)
         {
             repositorio.Cadastrar(livro);
