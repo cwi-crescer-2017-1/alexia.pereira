@@ -23,6 +23,11 @@ namespace EditoraCrescer.Api.Controllers
             repositorio.Cadastrar(revisor);
             return Ok(revisor);
         }
+
+        public IHttpActionResult Get (int id)
+        {
+            return Ok(repositorio.Obter(id));
+        }
         
     }
 }

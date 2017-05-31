@@ -23,6 +23,11 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
             contexto.SaveChanges();
         }
 
+        public Revisor Obter (int id)
+        {
+            return contexto.Revisores.FirstOrDefault(r => r.Id == id);
+        }
+
 
     }
 }
