@@ -6,57 +6,18 @@
   <title></title>
 </head>
 <body>
-  <div ng-controller="UsuariosController" ng-init="entrarNaConversa()">
-  </div>
-
-  <div ng-controller="MensagensController" class="mensagens">
-
-    <div class="container clearfix">
-      <div class="chat">
-        <div class="chat-header clearfix">
-          <div class="image"></div>
-        </div> <!-- end chat-header -->
-
-        <div class="chat-history">
-          <ul>
-            <li class="clearfix" ng-repeat="mensagem in mensagens">
-              <div ng-class="{true:'message-data', false:'message-data align-right'}[minhaMensagem(mensagem)]">
-                <img src="{{mensagem.usuario.Foto}}" ng-class="{false:'float-right'}[minhaMensagem(mensagem)]">
-                <span class="message-data-time" >{{mensagem.DataMensagem | date : "dd/MM hh:mm" }}</span> &nbsp; &nbsp;
-                <span class="message-data-name" >{{mensagem.usuario.Nome}}</span> <i class="fa fa-circle me"></i>
-              </div> <!-- end data-time -->
-              <div ng-class="{true:'message my-message', false:'message other-message float-right'}[minhaMensagem(mensagem)]">
-                {{mensagem.texto}}
-              </div>
-            </div> <!-- end chat-history -->
-
-            <form ng-submit="create(novaMensagem)">
-
-              <div class="chat-message clearfix">
-                <textarea name="message-to-send" id="message-to-send"
-                  ng-model="novaMensagem.texto" placeholder ="Digite aqui sua mensagem"
-                  rows="3" ng-enter="create(novaMensagem)"/>
-                </textarea>
-                <i class="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;
-                <i class="fa fa-file-image-o"></i>
-
-                <button type="submit">Enviar</button>
-
-              </div> <!-- end chat-message -->
-            </form>
-
-          </div> <!-- end chat -->
-
-        </div> <!-- end container -->
-
-      </div> <!-- end controller -->
+      <div class="container" id = "main">
+        <ng-view></ng-view>
+      </div>
 
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.6.4/angular-locale_pt-br.min.js"></script>
       <script src="js/app.module.js"></script>
+      <script src="js/app.route.js"></script>
       <script src="js/services/usuario.service.js"></script>
-      <script src="js/controllers/usuario.controller.js"></script>
       <script src="js/services/mensagem.service.js"></script>
+      <script src="js/controllers/usuario.controller.js"></script>
       <script src="js/controllers/mensagem.controller.js"></script>
 
     </body>
