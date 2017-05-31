@@ -35,6 +35,13 @@ namespace EditoraCrescer.Api.Controllers
             return Ok();
         }
 
+        public IHttpActionResult Put(int id, Revisor revisor)
+        {
+            if (id != revisor.Id)
+                return BadRequest();
+            return Ok(repositorio.Atualizar(revisor));
+        }
+
         protected override void Dispose(bool disposing)
         {
             repositorio.Dispose();

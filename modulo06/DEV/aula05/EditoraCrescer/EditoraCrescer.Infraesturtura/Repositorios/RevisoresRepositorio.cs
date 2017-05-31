@@ -1,6 +1,7 @@
 ﻿using EditoraCrescer.Infraesturtura.Entidades;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +33,13 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
         {
             contexto.Revisores.Remove(Obter(id));
             contexto.SaveChanges();
+        }
+
+        public Revisor Atualizar(Revisor revisor)
+        {
+            contexto.Entry(revisor).State = EntityState.Modified;
+            contexto.SaveChanges();
+            return revisor;
         }
 
         public void Dispose ()
