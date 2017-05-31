@@ -67,6 +67,10 @@
     <Compile Include="Migrations\201705310015041_AdicionandoRevisorEDataRevisaoAosLivros.Designer.cs">
       <DependentUpon>201705310015041_AdicionandoRevisorEDataRevisaoAosLivros.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705311838589_CriacaoDeCapaParaOLivro.cs" />
+    <Compile Include="Migrations\201705311838589_CriacaoDeCapaParaOLivro.Designer.cs">
+      <DependentUpon>201705311838589_CriacaoDeCapaParaOLivro.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositorios\AutoresRepositorio.cs" />
@@ -86,6 +90,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705310015041_AdicionandoRevisorEDataRevisaoAosLivros.resx">
       <DependentUpon>201705310015041_AdicionandoRevisorEDataRevisaoAosLivros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705311838589_CriacaoDeCapaParaOLivro.resx">
+      <DependentUpon>201705311838589_CriacaoDeCapaParaOLivro.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
