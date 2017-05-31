@@ -13,9 +13,18 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
 
         private Contexto contexto = new Contexto();
 
-        public List<Livro> Obter()
+        public object Obter()
         {
-            return contexto.Livros.ToList();
+            return contexto.Livros
+                .Select(l => new
+                {
+                    Isbn = l.Isbn,
+                    Titulo = l.Titulo,
+                    Capa = l.Capa,
+                    NomeAutor = l.Autor.Nome,
+                    Genero = l.Genero
+                })
+                .ToList();
         }
 
         public void Cadastrar(Livro livro)
