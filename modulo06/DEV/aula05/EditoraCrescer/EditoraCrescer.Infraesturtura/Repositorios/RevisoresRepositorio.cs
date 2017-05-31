@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EditoraCrescer.Infraesturtura.Repositorios
 {
-    public class RevisoresRepositorio
+    public class RevisoresRepositorio : IDisposable
     {
 
         Contexto contexto = new Contexto();
@@ -32,6 +32,11 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
         {
             contexto.Revisores.Remove(Obter(id));
             contexto.SaveChanges();
+        }
+
+        public void Dispose ()
+        {
+            contexto.Dispose();
         }
 
     }
