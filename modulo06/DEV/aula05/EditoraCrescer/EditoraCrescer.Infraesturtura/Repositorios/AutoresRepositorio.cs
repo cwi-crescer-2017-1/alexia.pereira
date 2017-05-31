@@ -1,6 +1,7 @@
 ﻿using EditoraCrescer.Infraesturtura.Entidades;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,6 +32,13 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
         public Autor Obter(int id)
         {
             return contexto.Autores.FirstOrDefault(l => l.Id == id);
+        }
+
+        public Autor Atualizar(Autor autor)
+        {
+            contexto.Entry(autor).State = EntityState.Modified;
+            contexto.SaveChanges();
+            return autor;
         }
 
         public void Dispose()
