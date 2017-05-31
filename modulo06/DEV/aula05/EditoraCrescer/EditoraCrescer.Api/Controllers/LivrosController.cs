@@ -48,6 +48,15 @@ namespace EditoraCrescer.Api.Controllers
             return Ok();
         }
 
+        [Route("{isbn:int}")]
+        public IHttpActionResult Put (int isbn, Livro livro)
+        {
+            if (isbn != livro.Isbn)
+                return BadRequest();
+            return Ok(repositorio.Atualizar(livro));
+        }
+        
+
         protected override void Dispose(bool disposing)
         {
             repositorio.Dispose();
