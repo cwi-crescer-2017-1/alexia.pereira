@@ -28,6 +28,11 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
             return contexto.Revisores.FirstOrDefault(r => r.Id == id);
         }
 
+        public void Remover (int id)
+        {
+            contexto.Revisores.Remove(Obter(id));
+            contexto.SaveChanges();
+        }
 
     }
 }

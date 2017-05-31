@@ -28,6 +28,12 @@ namespace EditoraCrescer.Api.Controllers
         {
             return Ok(repositorio.Obter(id));
         }
+
+        public IHttpActionResult Delete (int id)
+        {
+            repositorio.Remover(id);
+            return Ok();
+        }
         
     }
 }
