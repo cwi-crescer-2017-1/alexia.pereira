@@ -46,8 +46,8 @@ namespace EditoraCrescer.Api.Controllers
             return Ok(repositorio.Atualizar(autor));
         }
 
-        [Route("{id}/Livros")]
-        [HttpGet]
+      
+        [HttpGet, Route("{id:int}/Livros")]
         public IHttpActionResult ObterLivros(int id)
         {
             return Ok(repositorio.BuscarLivros(id));
