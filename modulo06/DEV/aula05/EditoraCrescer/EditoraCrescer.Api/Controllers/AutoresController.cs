@@ -9,6 +9,7 @@ using System.Web.Http;
 
 namespace EditoraCrescer.Api.Controllers
 {
+    [RoutePrefix("api/autores")]
     public class AutoresController : ApiController
     {
         private AutoresRepositorio repositorio = new AutoresRepositorio();
@@ -43,6 +44,13 @@ namespace EditoraCrescer.Api.Controllers
             if (id != autor.Id)
                 return BadRequest();
             return Ok(repositorio.Atualizar(autor));
+        }
+
+        [Route("{id}/Livros")]
+        [HttpGet]
+        public IHttpActionResult ObterLivros(int id)
+        {
+            return Ok(repositorio.BuscarLivros(id));
         }
 
         protected override void Dispose(bool disposing)
