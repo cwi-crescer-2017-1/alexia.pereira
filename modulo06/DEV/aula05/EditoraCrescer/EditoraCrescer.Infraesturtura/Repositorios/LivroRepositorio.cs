@@ -23,6 +23,12 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
             contexto.SaveChanges();
         }
 
+        public void Remover(int id)
+        {
+            contexto.Livros.Remove(Obter(id));
+            contexto.SaveChanges();
+        }
+
         public Livro Obter (int id)
         {
             return contexto.Livros.FirstOrDefault(l => l.Isbn == id);
