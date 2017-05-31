@@ -30,6 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Accessibility" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -50,11 +51,21 @@
     <Compile Include="Contexto.cs" />
     <Compile Include="Entidades\Autor.cs" />
     <Compile Include="Entidades\Livro.cs" />
+    <Compile Include="Entidades\Revisor.cs" />
     <Compile Include="Mappings\AutorMap.cs" />
     <Compile Include="Mappings\LivroMap.cs" />
+    <Compile Include="Mappings\RevisorMap.cs" />
     <Compile Include="Migrations\201705301929580_CriacaoDoBanco.cs" />
     <Compile Include="Migrations\201705301929580_CriacaoDoBanco.Designer.cs">
       <DependentUpon>201705301929580_CriacaoDoBanco.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705302347312_CriacaoRevisor.cs" />
+    <Compile Include="Migrations\201705302347312_CriacaoRevisor.Designer.cs">
+      <DependentUpon>201705302347312_CriacaoRevisor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705310015041_AdicionandoRevisorEDataRevisaoAosLivros.cs" />
+    <Compile Include="Migrations\201705310015041_AdicionandoRevisorEDataRevisaoAosLivros.Designer.cs">
+      <DependentUpon>201705310015041_AdicionandoRevisorEDataRevisaoAosLivros.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -67,6 +78,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201705301929580_CriacaoDoBanco.resx">
       <DependentUpon>201705301929580_CriacaoDoBanco.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705302347312_CriacaoRevisor.resx">
+      <DependentUpon>201705302347312_CriacaoRevisor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705310015041_AdicionandoRevisorEDataRevisaoAosLivros.resx">
+      <DependentUpon>201705310015041_AdicionandoRevisorEDataRevisaoAosLivros.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
