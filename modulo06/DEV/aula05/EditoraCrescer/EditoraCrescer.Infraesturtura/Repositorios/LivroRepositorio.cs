@@ -1,6 +1,7 @@
 ﻿using EditoraCrescer.Infraesturtura.Entidades;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,16 +30,26 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
             contexto.SaveChanges();
         }
 
-        public Livro Obter (int id)
+        public Livro Obter(int id)
         {
             return contexto.Livros.FirstOrDefault(l => l.Isbn == id);
         }
 
+        public List<Livro> Obter(string genero)
+        {
+            return contexto.Livros.Where(l => l.Genero.Contains(genero)).ToList();
+        }
+
+        public Livro Atualizar(Livro livro)
+        {
+            contexto.Entry(livro).State = EntityState.Modified;
+            contexto.SaveChanges();
+            return livro;
+        }
+        
         public void Dispose()
         {
             contexto.Dispose();
         }
-
-
     }
 }
