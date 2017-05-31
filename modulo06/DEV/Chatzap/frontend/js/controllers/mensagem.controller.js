@@ -11,22 +11,15 @@ angular.module('app').directive('ngEnter', function() {
     };
 });
 
-angular.module('app').filter('formatarData', function() {
-  return function formatarData(data) {
-    var dataFormatada = ("0" + data.getHours()).slice(-2)
-    + ":"
-    + ("0" + data.getMinutes()).slice(-2);
-    return dataFormatada
-  }
-})
 
-angular.module('app').controller('MensagensController', function ($scope, mensagemService, usuarioService) {
+angular.module('app').controller('MensagensController', function ($scope, mensagemService, usuarioService, $location) {
 
   $scope.create = create;
   $scope.minhaMensagem = minhaMensagem;
   $scope.$watch('mensagens', function() {
         list();
   });
+  usuarioLogado();
   list();
 
   // Funções internas
@@ -57,6 +50,13 @@ angular.module('app').controller('MensagensController', function ($scope, mensag
 
   function minhaMensagem (mensagem) {
     return mensagem.usuario.Id == localStorage.getItem('userId');
+  }
+
+  function usuarioLogado () {
+    var logado = localStorage.getItem('userId');
+    if (logado === null) {
+      $location.path('/login').replace();
+    }
   }
 
 });
