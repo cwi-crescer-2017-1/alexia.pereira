@@ -17,5 +17,12 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
             return contexto.Revisores.ToList();
         }
 
+        public void Cadastrar (Revisor revisor)
+        {
+            contexto.Revisores.Add(revisor);
+            contexto.SaveChanges();
+        }
+
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using EditoraCrescer.Infraesturtura.Repositorios;
+﻿using EditoraCrescer.Infraesturtura.Entidades;
+using EditoraCrescer.Infraesturtura.Repositorios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,12 @@ namespace EditoraCrescer.Api.Controllers
         public IHttpActionResult Get()
         {
             return Ok(repositorio.Obter());
+        }
+
+        public IHttpActionResult Post (Revisor revisor)
+        {
+            repositorio.Cadastrar(revisor);
+            return Ok(revisor);
         }
         
     }
