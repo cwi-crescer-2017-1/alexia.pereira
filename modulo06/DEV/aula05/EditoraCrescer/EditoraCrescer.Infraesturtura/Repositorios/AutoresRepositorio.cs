@@ -41,6 +41,11 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
             return autor;
         }
 
+        public List<Livro> BuscarLivros(int idAutor)
+        {
+            return contexto.Livros.Where(l => l.IdAutor == idAutor).ToList();
+        }
+        
         public void Dispose()
         {
             contexto.Dispose();
