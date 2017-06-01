@@ -42,6 +42,11 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
             return revisor;
         }
 
+        public bool RevisorExiste(int id)
+        {
+            return contexto.Revisores.Count(r => r.Id == id) > 0;
+        }
+
         public void Dispose ()
         {
             contexto.Dispose();
