@@ -38,7 +38,11 @@ namespace EditoraCrescer.Api.Controllers
         public IHttpActionResult Put(int id, Revisor revisor)
         {
             if (id != revisor.Id)
-                return BadRequest();
+                return BadRequest("O revisor que você informou não corresponde com o selecionado");
+
+            if (!repositorio.RevisorExiste(revisor.Id))
+                return BadRequest("O revisor que você informou não corresponde a nenhum revisor cadastrado no sistema");
+
             return Ok(repositorio.Atualizar(revisor));
         }
 
