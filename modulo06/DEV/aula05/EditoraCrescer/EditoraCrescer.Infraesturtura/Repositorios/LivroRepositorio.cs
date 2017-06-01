@@ -81,6 +81,11 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
                 .ToList();
         }
 
+        public bool LivroExiste (int isbn)
+        {
+            return contexto.Livros.Count(l => l.Isbn == isbn) > 0;
+        }
+
         public void Dispose()
         {
             contexto.Dispose();
