@@ -68,7 +68,7 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
 
         public object ObterLancamentos()
         {
-            
+
             return contexto.Livros.Where(l => SqlFunctions.DateDiff("dd", l.DataPublicacao, DateTime.Now) <= 7)
                 .Select(l => new
                 {
@@ -81,9 +81,24 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
                 .ToList();
         }
 
-        public bool LivroExiste (int isbn)
+        public bool LivroExiste(int isbn)
         {
             return contexto.Livros.Count(l => l.Isbn == isbn) > 0;
+        }
+
+        public object Paginar(int quantidade, int skip)
+        {
+
+            return contexto.Livros.OrderBy(x => x.Isbn).Skip(skip).Take(quantidade).Select(l => new
+            {
+                Isbn = l.Isbn,
+                Titulo = l.Titulo,
+                Capa = l.Capa,
+                NomeAutor = l.Autor.Nome,
+                Genero = l.Genero
+            })
+            .ToList();
+
         }
 
         public void Dispose()

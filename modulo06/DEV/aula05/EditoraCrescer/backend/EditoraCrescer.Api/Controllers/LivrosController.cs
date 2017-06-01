@@ -68,6 +68,12 @@ namespace EditoraCrescer.Api.Controllers
             return Ok(repositorio.ObterLancamentos());
         }
 
+        [HttpGet, Route("{skip:int}/{quantidade:int}")]
+        public IHttpActionResult livrosPaginados (int skip, int quantidade)
+        {
+            return Ok(repositorio.Paginar(skip, quantidade));
+        }
+
         protected override void Dispose(bool disposing)
         {
             repositorio.Dispose();
