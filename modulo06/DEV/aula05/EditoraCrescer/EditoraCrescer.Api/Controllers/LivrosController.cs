@@ -54,7 +54,11 @@ namespace EditoraCrescer.Api.Controllers
         public IHttpActionResult Put(int isbn, Livro livro)
         {
             if (isbn != livro.Isbn)
-                return BadRequest();
+                return BadRequest("O livro que você informou não corresponde com o selecionado"); 
+                   
+            if (!repositorio.LivroExiste(livro.Isbn))
+                return BadRequest("O livro que você informou não corresponde a nenhum livro cadastrado");
+
             return Ok(repositorio.Atualizar(livro));
         }
 
