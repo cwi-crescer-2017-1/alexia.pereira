@@ -30,11 +30,16 @@ angular.module('app').factory('livrosService', function ($http) {
     return $http.get(urlBase + genero);
   }
 
+  function lancamentos () {
+    return $http.get(urlBase + "lancamentos");
+  }
+
   return {
     listar: getTodosOsLivros,
     procurarPorIsbn: getLivroPorIsbn,
     procurarPorGenero: procurarPorGenero,
     paginarLivros: paginarLivros,
+    lancamentos: lancamentos,
     atualizar: atualizar,
     criar: criar,
     deletar: remover
