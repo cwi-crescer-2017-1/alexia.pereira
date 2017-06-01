@@ -58,6 +58,11 @@ namespace EditoraCrescer.Api.Controllers
             return Ok(repositorio.Atualizar(livro));
         }
 
+        [HttpGet, Route("lancamentos")]
+        public IHttpActionResult Lancamentos ()
+        {
+            return Ok(repositorio.ObterLancamentos());
+        }
 
         protected override void Dispose(bool disposing)
         {

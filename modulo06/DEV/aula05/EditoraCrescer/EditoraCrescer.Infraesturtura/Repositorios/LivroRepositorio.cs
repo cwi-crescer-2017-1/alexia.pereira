@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.SqlServer;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -64,7 +65,22 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
             contexto.SaveChanges();
             return livro;
         }
-        
+
+        public object ObterLancamentos()
+        {
+            
+            return contexto.Livros.Where(l => SqlFunctions.DateDiff("dd", l.DataPublicacao, DateTime.Now) <= 7)
+                .Select(l => new
+                {
+                    Isbn = l.Isbn,
+                    Titulo = l.Titulo,
+                    Capa = l.Capa,
+                    NomeAutor = l.Autor.Nome,
+                    Genero = l.Genero
+                })
+                .ToList();
+        }
+
         public void Dispose()
         {
             contexto.Dispose();
