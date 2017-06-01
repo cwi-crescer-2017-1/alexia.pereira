@@ -1,12 +1,18 @@
 angular.module('app').controller('LivrosController', function ($scope, livrosService) {
 
   listar();
+  lancamentos();
 
   function listar () {
-    console.log("na function");
-    livrosService.listar().then(function (response) {
+    livrosService.paginarLivros(1, 0).then(function (response) {
           $scope.livros = response.data;
         });
   };
+
+  function lancamentos () {
+    livrosService.lancamentos().then(function (response) {
+          $scope.lancamentos = response.data;
+        });
+  }
 
 });
