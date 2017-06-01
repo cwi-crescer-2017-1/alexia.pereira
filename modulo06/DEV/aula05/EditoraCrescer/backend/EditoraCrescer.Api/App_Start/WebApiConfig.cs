@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace EditoraCrescer.Api
 {
@@ -10,7 +11,7 @@ namespace EditoraCrescer.Api
         public static void Register(HttpConfiguration config)
         {
             // Serviços e configuração da API da Web
-
+            config.EnableCors(new EnableCorsAttribute("*", "*", "*"));
             // Rotas da API da Web
             config.MapHttpAttributeRoutes();
 
