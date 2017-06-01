@@ -6,6 +6,10 @@ angular.module('app').factory('livrosService', function ($http) {
     return $http.get(urlBase);
   };
 
+  function paginarLivros(skip, quantidade) {
+    return $http.get(urlBase + skip + "/" + quantidade);
+  };
+
   function getLivroPorIsbn(isbn) {
     return $http.get(urlBase + isbn);
   };
@@ -30,6 +34,7 @@ angular.module('app').factory('livrosService', function ($http) {
     listar: getTodosOsLivros,
     procurarPorIsbn: getLivroPorIsbn,
     procurarPorGenero: procurarPorGenero,
+    paginarLivros: paginarLivros,
     atualizar: atualizar,
     criar: criar,
     deletar: remover
