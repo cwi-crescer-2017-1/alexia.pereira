@@ -45,6 +45,11 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
         {
             return contexto.Livros.Where(l => l.IdAutor == idAutor).ToList();
         }
+
+        public bool AutorExiste(int id)
+        {
+            return contexto.Autores.Count(a => a.Id == id) > 0;
+        }
         
         public void Dispose()
         {
