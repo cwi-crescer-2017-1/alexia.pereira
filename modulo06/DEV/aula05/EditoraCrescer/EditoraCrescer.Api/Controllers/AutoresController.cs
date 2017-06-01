@@ -42,7 +42,11 @@ namespace EditoraCrescer.Api.Controllers
         public IHttpActionResult Put(int id, Autor autor)
         {
             if (id != autor.Id)
-                return BadRequest();
+                return BadRequest("O autor que você informou não corresponde com o selecionado");
+
+            if (!repositorio.AutorExiste(autor.Id))
+                return BadRequest("O autor que você informou não corresponde a nenhum autor cadastrado no sistema");
+
             return Ok(repositorio.Atualizar(autor));
         }
 
@@ -52,7 +56,7 @@ namespace EditoraCrescer.Api.Controllers
         {
             return Ok(repositorio.BuscarLivros(id));
         }
-
+        
         protected override void Dispose(bool disposing)
         {
             repositorio.Dispose();
