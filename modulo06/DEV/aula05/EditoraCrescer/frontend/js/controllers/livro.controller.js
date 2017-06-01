@@ -1,4 +1,6 @@
-angular.module('app').controller('LivrosController', function ($scope, livrosService) {
+angular.module('app').controller('LivrosController', function ($location, $scope, livrosService) {
+
+  $scope.visualizar = visualizar;
 
   listar();
   lancamentos();
@@ -13,6 +15,10 @@ angular.module('app').controller('LivrosController', function ($scope, livrosSer
     livrosService.lancamentos().then(function (response) {
           $scope.lancamentos = response.data;
         });
+  }
+
+  function visualizar(livro) {
+    $location.path('/livros/visualizar/' + livro.Isbn);
   }
 
 });

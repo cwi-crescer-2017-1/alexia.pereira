@@ -1,0 +1,23 @@
+<h1>Home</h1>
+
+
+<span>Lançamentos</span>
+<div ng-repeat="lancamento in lancamentos">
+  <div class="">
+    <img src="{{livro.Capa}}">
+    {{lancamento.Titulo}}
+    {{lancamento.NomeAutor}}
+    {{lancamento.Genero}}
+    <button type="button" ng-click="visualizar(lancamento)">Visualizar</button>
+  </div>
+</div>
+
+  <div ng-repeat="livro in livros">
+    <div class="">
+      <img src="{{livro.Capa}}">
+      {{livro.Titulo}}
+      {{livro.NomeAutor}}
+      {{livro.Genero}}
+      <button type="button" ng-click="visualizar(livro)">Visualizar</button>
+    </div>
+  </div>
