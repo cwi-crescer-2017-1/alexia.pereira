@@ -7,13 +7,13 @@ angular.module('app').controller('LivrosController', function ($location, $scope
 
   function listar () {
     livrosService.paginarLivros(1, 0).then(function (response) {
-          $scope.livros = response.data;
+          $scope.livros = response.data.dados;
         });
   };
 
   function lancamentos () {
     livrosService.lancamentos().then(function (response) {
-          $scope.lancamentos = response.data;
+          $scope.lancamentos = response.data.dados;
         });
   }
 

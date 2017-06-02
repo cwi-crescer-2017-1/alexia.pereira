@@ -19,28 +19,28 @@ namespace EditoraCrescer.Api.Controllers
         public IHttpActionResult Get()
         {
             var livros = repositorio.Obter();
-            return Ok(livros);
+            return Ok( new { dados = livros });
         }
 
         [Route("{isbn:int}"), HttpGet]
         public IHttpActionResult Get(int isbn)
         {
             var livro = repositorio.Obter(isbn);
-            return Ok(livro);
+            return Ok(new { dados = livro });
         }
 
         [Route("{genero}"), HttpGet]
         public IHttpActionResult Get(string genero)
         {
             var livro = repositorio.Obter(genero);
-            return Ok(livro);
+            return Ok(new { dados = livro });
         }
 
         [HttpPost, Route]
         public IHttpActionResult Post(Livro livro)
         {
             repositorio.Cadastrar(livro);
-            return Ok(livro);
+            return Ok(new { dados = livro });
         }
 
         [Route("{isbn:int}"), HttpDelete]
@@ -59,19 +59,19 @@ namespace EditoraCrescer.Api.Controllers
             if (!repositorio.LivroExiste(livro.Isbn))
                 return BadRequest("O livro que você informou não corresponde a nenhum livro cadastrado");
 
-            return Ok(repositorio.Atualizar(livro));
+            return Ok(new { dados = repositorio.Atualizar(livro) });
         }
 
         [HttpGet, Route("lancamentos")]
         public IHttpActionResult Lancamentos ()
         {
-            return Ok(repositorio.ObterLancamentos());
+            return Ok(new { dados = repositorio.ObterLancamentos() });
         }
 
         [HttpGet, Route("{skip:int}/{quantidade:int}")]
         public IHttpActionResult livrosPaginados (int skip, int quantidade)
         {
-            return Ok(repositorio.Paginar(skip, quantidade));
+            return Ok(new { dados = repositorio.Paginar(skip, quantidade) });
         }
 
         protected override void Dispose(bool disposing)

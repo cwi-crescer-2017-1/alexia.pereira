@@ -7,7 +7,7 @@ angular.module('app')
 
     function buscarLivro(isbn) {
     livrosService.procurarPorIsbn(isbn).then(function (response) {
-        $scope.livro = response.data;
+        $scope.livro = response.data.dados;
       })
     };
 
