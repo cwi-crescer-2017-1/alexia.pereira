@@ -69,7 +69,7 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
         public object ObterLancamentos()
         {
 
-            return contexto.Livros.Where(l => SqlFunctions.DateDiff("dd", l.DataPublicacao, DateTime.Now) <= 7)
+            return contexto.Livros.Where(l => l.DataPublicacao != null && SqlFunctions.DateDiff("dd", l.DataPublicacao, DateTime.Now) <= 7)
                 .Select(l => new
                 {
                     Isbn = l.Isbn,
