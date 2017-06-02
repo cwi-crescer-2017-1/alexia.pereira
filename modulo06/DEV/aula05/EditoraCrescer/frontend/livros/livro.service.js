@@ -6,8 +6,12 @@ angular.module('app').factory('livrosService', function ($http) {
     return $http.get(urlBase);
   };
 
-  function paginarLivros(skip, quantidade) {
-    return $http.get(urlBase + skip + "/" + quantidade);
+  function paginarLivros(parametros) {
+    return $http({
+      url: urlBase,
+      method: 'GET',
+      params: parametros
+    });
   };
 
   function getLivroPorIsbn(isbn) {

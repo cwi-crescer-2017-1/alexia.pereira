@@ -6,7 +6,8 @@ angular.module('app').controller('LivrosController', function ($location, $scope
   lancamentos();
 
   function listar () {
-    livrosService.paginarLivros(1, 0).then(function (response) {
+    let parametros = {skip:0, quantidade: 1};
+    livrosService.paginarLivros(parametros).then(function (response) {
           $scope.livros = response.data.dados;
         });
   };
