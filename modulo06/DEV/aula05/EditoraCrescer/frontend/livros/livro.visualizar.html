@@ -2,7 +2,9 @@
 
   <div class="livro">
     <img src="{{livro.Capa}}">
-    {{livro.Titulo}}
-    {{livro.NomeAutor}}
-    {{livro.Genero}}
+    Título: {{livro.Titulo}}
+    Autor: {{livro.NomeAutor}}
+    Gênero: {{livro.Genero}}
+    Descrição {{livro.Descricao}}
+    Data de Publicação: {{livro.DataPublicacao | date : "dd/MM/yyyy"}}
   </div>
