@@ -9,19 +9,19 @@ using System.Web.Http;
 
 namespace EditoraCrescer.Api.Controllers
 {
-    public class RevisoresController : ApiController
+    public class UsuariosController : ApiController
     {
-        private RevisoresRepositorio repositorio = new RevisoresRepositorio();
+        private UsuariosRepositorio repositorio = new UsuariosRepositorio();
 
         public IHttpActionResult Get()
         {
             return Ok(repositorio.Obter());
         }
 
-        public IHttpActionResult Post (Revisor revisor)
+        public IHttpActionResult Post (Usuario usuario)
         {
-            repositorio.Cadastrar(revisor);
-            return Ok(revisor);
+            repositorio.Cadastrar(usuario);
+            return Ok(usuario);
         }
 
         public IHttpActionResult Get (int id)
@@ -35,15 +35,15 @@ namespace EditoraCrescer.Api.Controllers
             return Ok();
         }
 
-        public IHttpActionResult Put(int id, Revisor revisor)
+        public IHttpActionResult Put(int id, Usuario usuario)
         {
-            if (id != revisor.Id)
-                return BadRequest("O revisor que você informou não corresponde com o selecionado");
+            if (id != usuario.Id)
+                return BadRequest("O usuario que você informou não corresponde com o selecionado");
 
-            if (!repositorio.RevisorExiste(revisor.Id))
-                return BadRequest("O revisor que você informou não corresponde a nenhum revisor cadastrado no sistema");
+            if (!repositorio.RevisorExiste(usuario.Id))
+                return BadRequest("O usuario que você informou não corresponde a nenhum revisor cadastrado no sistema");
 
-            return Ok(repositorio.Atualizar(revisor));
+            return Ok(repositorio.Atualizar(usuario));
         }
 
         protected override void Dispose(bool disposing)
