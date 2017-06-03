@@ -8,14 +8,11 @@ using System.Threading.Tasks;
 
 namespace EditoraCrescer.Infraesturtura.Mappings
 {
-    public class RevisorMap : EntityTypeConfiguration<Revisor>
+    public class PermissaoMap : EntityTypeConfiguration<Permissao>
     {
-
-        public RevisorMap()
+        public PermissaoMap()
         {
-            ToTable("Revisores");
-            Property(p => p.Nome).HasMaxLength(300);
+            ToTable("Permissao");
         }
-
     }
 }
