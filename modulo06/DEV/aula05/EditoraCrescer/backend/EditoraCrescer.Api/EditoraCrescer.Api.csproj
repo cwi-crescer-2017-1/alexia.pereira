@@ -104,7 +104,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AutoresController.cs" />
     <Compile Include="Controllers\LivrosController.cs" />
-    <Compile Include="Controllers\RevisoresController.cs" />
+    <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Controllers\TesteController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
