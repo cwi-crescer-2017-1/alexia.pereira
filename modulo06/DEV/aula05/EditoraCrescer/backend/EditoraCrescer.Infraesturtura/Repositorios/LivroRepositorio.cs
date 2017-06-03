@@ -86,7 +86,7 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
             return contexto.Livros.Count(l => l.Isbn == isbn) > 0;
         }
 
-        public object Paginar(int quantidade, int skip)
+        public object Paginar(int skip, int quantidade)
         {
 
             return contexto.Livros.OrderBy(x => x.Isbn).Skip(skip).Take(quantidade).Select(l => new

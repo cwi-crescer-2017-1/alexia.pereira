@@ -68,7 +68,7 @@ namespace EditoraCrescer.Api.Controllers
             return Ok(new { dados = repositorio.ObterLancamentos() });
         }
 
-        [HttpGet]
+        [HttpGet, Route]
         public IHttpActionResult livrosPaginados (int skip, int quantidade)
         {
             return Ok(new { dados = repositorio.Paginar(skip, quantidade) });
