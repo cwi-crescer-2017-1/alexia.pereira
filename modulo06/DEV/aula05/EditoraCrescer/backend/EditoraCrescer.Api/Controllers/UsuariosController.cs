@@ -1,56 +1,85 @@
-﻿using EditoraCrescer.Infraesturtura.Entidades;
+﻿using EditoraCrescer.Api.Models;
+using EditoraCrescer.Infraesturtura.Entidades;
 using EditoraCrescer.Infraesturtura.Repositorios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Web.Http;
 
 namespace EditoraCrescer.Api.Controllers
 {
-    public class UsuariosController : ApiController
+    // Permite usuário não autenticados acessarem a controller
+    [AllowAnonymous]
+    [RoutePrefix("api/acessos")]
+    public class UsuarioController : ControllerBasica
     {
-        private UsuariosRepositorio repositorio = new UsuariosRepositorio();
+        readonly UsuariosRepositorio _usuarioRepositorio;
 
-        public IHttpActionResult Get()
+        public UsuarioController()
         {
-            return Ok(repositorio.Obter());
+            _usuarioRepositorio = new UsuariosRepositorio();
         }
 
-        public IHttpActionResult Post (Usuario usuario)
+        [HttpPost, Route("registrar")]
+        public HttpResponseMessage Registrar([FromBody]RegistrarUsuarioModel model)
         {
-            repositorio.Cadastrar(usuario);
-            return Ok(usuario);
+            if (_usuarioRepositorio.Obter(model.Email) == null)
+            {
+                var usuario = new Usuario(model.Nome, model.Email, model.Senha);
+
+                if (usuario.Validar())
+                {
+                    _usuarioRepositorio.Cadastrar(usuario);
+                    return ResponderOK(usuario);
+                }
+                else
+                {
+                    return ResponderErro(usuario.Mensagens);
+                }
+            }
+            else
+            {
+                return ResponderErro("Usuário já existe.");
+            }
+
+           
         }
 
-        public IHttpActionResult Get (int id)
+        [HttpPost, Route("resetarsenha")]
+        public HttpResponseMessage ResetarSenha(string email)
         {
-            return Ok(repositorio.Obter(id));
+            var usuario = _usuarioRepositorio.Obter(email);
+            if (usuario == null)
+                return ResponderErro(new string[] { "Usuário não encontrado." });
+
+            var novaSenha = usuario.ResetarSenha();
+
+            if (usuario.Validar())
+            {
+                _usuarioRepositorio.Atualizar(usuario);
+                // EmailService.Enviar(usuario.Email, "Crescer 2017-1", $"Olá! sua senha foi alterada para: {novaSenha}");
+            }
+            else
+                return ResponderErro(usuario.Mensagens);
+
+            return ResponderOK();
         }
 
-        public IHttpActionResult Delete (int id)
+        // Exige que o usuário se autentique
+        [BasicAuthorization]
+        [HttpGet, Route("usuario")]
+        public HttpResponseMessage Obter()
         {
-            repositorio.Remover(id);
-            return Ok();
+            // só pode obter as informações do usuário corrente (logado, autenticado)
+            var usuario = _usuarioRepositorio.Obter(Thread.CurrentPrincipal.Identity.Name);
+
+            if (usuario == null)
+                return ResponderErro("Usuário não encontrado.");
+
+            return ResponderOK(new { usuario.Nome, usuario.Permissoes, usuario.Email });
         }
-
-        public IHttpActionResult Put(int id, Usuario usuario)
-        {
-            if (id != usuario.Id)
-                return BadRequest("O usuario que você informou não corresponde com o selecionado");
-
-            if (!repositorio.RevisorExiste(usuario.Id))
-                return BadRequest("O usuario que você informou não corresponde a nenhum revisor cadastrado no sistema");
-
-            return Ok(repositorio.Atualizar(usuario));
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            repositorio.Dispose();
-            base.Dispose(disposing);
-        }
-
     }
 }
