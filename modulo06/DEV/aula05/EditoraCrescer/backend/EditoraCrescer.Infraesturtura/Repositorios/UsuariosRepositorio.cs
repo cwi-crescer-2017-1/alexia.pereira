@@ -10,12 +10,23 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
 {
     public class UsuariosRepositorio : IDisposable
     {
+        Contexto contexto;
 
-        Contexto contexto = new Contexto();
+        public UsuariosRepositorio()
+        {
+            contexto = new Contexto();     
+        }
 
         public List<Usuario> Obter()
         {
             return contexto.Usuarios.ToList();
+        }
+
+        public Usuario Obter(string login)
+        {
+            return contexto.Usuarios
+                .Include("Permissoes")
+                .FirstOrDefault(u => u.Email == login);
         }
 
         public void Cadastrar(Usuario usuario)
@@ -42,7 +53,7 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
             return usuario;
         }
 
-        public bool RevisorExiste(int id)
+        public bool UsuarioExiste(int id)
         {
             return contexto.Usuarios.Count(u => u.Id == id) > 0;
         }
@@ -51,6 +62,6 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
         {
             contexto.Dispose();
         }
-
+        
     }
 }
