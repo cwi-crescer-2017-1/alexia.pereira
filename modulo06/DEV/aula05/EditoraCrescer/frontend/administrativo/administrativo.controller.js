@@ -1,8 +1,9 @@
-angular.module('app').controller('AdministrativoController', function ($location, $scope, livrosService) {
+angular.module('app').controller('AdministrativoController', function ($location, $scope, livrosService, authService) {
 
   $scope.visualizar = visualizar;
   $scope.editar = editar;
   $scope.remover = removerLivro;
+  $scope.logout = logout;
   listarLivros();
 
   function listarLivros () {
@@ -30,5 +31,9 @@ angular.module('app').controller('AdministrativoController', function ($location
       })
     }
   };
+
+  function logout () {
+    authService.logout()
+  }
 
 });
