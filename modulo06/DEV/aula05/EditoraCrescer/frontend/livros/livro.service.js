@@ -38,12 +38,21 @@ angular.module('app').factory('livrosService', function ($http) {
     return $http.get(urlBase + "lancamentos");
   }
 
+  function quantidadePaginas(parametro) {
+    return $http({
+      url: urlBase + "quantidadepaginas",
+      method: 'GET',
+      params: parametro
+    });
+  };
+
   return {
     listar: getTodosOsLivros,
     procurarPorIsbn: getLivroPorIsbn,
     procurarPorGenero: procurarPorGenero,
     paginarLivros: paginarLivros,
     lancamentos: lancamentos,
+    quantidadePaginas: quantidadePaginas,
     atualizar: atualizar,
     criar: criar,
     deletar: remover
