@@ -9,10 +9,6 @@ namespace EditoraCrescer.Infraesturtura.Migrations
         {
             DropForeignKey("dbo.Livros", "IdRevisor", "dbo.Usuario");
             DropIndex("dbo.Livros", new[] { "IdRevisor" });
-            RenameColumn(table: "dbo.Livros", name: "IdRevisor", newName: "Revisor_Id");
-            AlterColumn("dbo.Livros", "Revisor_Id", c => c.Int());
-            CreateIndex("dbo.Livros", "Revisor_Id");
-            AddForeignKey("dbo.Livros", "Revisor_Id", "dbo.Usuario", "Id");
         }
         
         public override void Down()
