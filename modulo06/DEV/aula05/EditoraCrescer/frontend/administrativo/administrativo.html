@@ -1,0 +1,23 @@
+<h1>administrativo</h1>
+<div class="livro" ng-repeat="livro in livros">
+  <button ng-click="remover(livro)">Remover</button>
+  <div class="col-sm-4">
+    <img src="{{livro.Capa}}">
+    <div class="text">
+      <div class="info">
+        <span>
+          <strong>Título:</strong>
+          {{livro.Titulo}}
+        </span>
+        <span>
+          <strong>Autor:</strong>
+          {{livro.NomeAutor}}
+        </span>
+        <span>
+          <strong>Gênero:</strong>
+          {{livro.Genero}}
+        </span>
+      </div>
+    </div>
+    <button class="visualizar" ng-click="visualizar(livro)">Visualizar</button>
+    <button class="editar" ng-click="editar(livro)">Editar</button>
