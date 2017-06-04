@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Contexto.cs" />
     <Compile Include="Entidades\Autor.cs" />
+    <Compile Include="Entidades\EntidadeBasica.cs" />
     <Compile Include="Entidades\Livro.cs" />
     <Compile Include="Entidades\Permissao.cs" />
     <Compile Include="Entidades\Revisor.cs" />
@@ -86,6 +87,22 @@
     <Compile Include="Migrations\201706031539287_RemoverFKIdRevisor.Designer.cs">
       <DependentUpon>201706031539287_RemoverFKIdRevisor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706032231047_DataRevisaoNullable.cs" />
+    <Compile Include="Migrations\201706032231047_DataRevisaoNullable.Designer.cs">
+      <DependentUpon>201706032231047_DataRevisaoNullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706032251066_IdUsuarioRevisor.cs" />
+    <Compile Include="Migrations\201706032251066_IdUsuarioRevisor.Designer.cs">
+      <DependentUpon>201706032251066_IdUsuarioRevisor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706032255370_MapearIdUsuarioRevisor.cs" />
+    <Compile Include="Migrations\201706032255370_MapearIdUsuarioRevisor.Designer.cs">
+      <DependentUpon>201706032255370_MapearIdUsuarioRevisor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706040022220_RemoverFKNaoUtilizada.cs" />
+    <Compile Include="Migrations\201706040022220_RemoverFKNaoUtilizada.Designer.cs">
+      <DependentUpon>201706040022220_RemoverFKNaoUtilizada.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositorios\AutoresRepositorio.cs" />
@@ -117,6 +134,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706031539287_RemoverFKIdRevisor.resx">
       <DependentUpon>201706031539287_RemoverFKIdRevisor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706032231047_DataRevisaoNullable.resx">
+      <DependentUpon>201706032231047_DataRevisaoNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706032251066_IdUsuarioRevisor.resx">
+      <DependentUpon>201706032251066_IdUsuarioRevisor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706032255370_MapearIdUsuarioRevisor.resx">
+      <DependentUpon>201706032255370_MapearIdUsuarioRevisor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706040022220_RemoverFKNaoUtilizada.resx">
+      <DependentUpon>201706040022220_RemoverFKNaoUtilizada.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
