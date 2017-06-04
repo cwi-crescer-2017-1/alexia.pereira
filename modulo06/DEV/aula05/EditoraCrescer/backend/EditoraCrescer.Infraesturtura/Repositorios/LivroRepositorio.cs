@@ -101,6 +101,13 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
 
         }
 
+        public object QuantidadePaginas(int quantidade)
+        {
+            double quantidadeLivros = contexto.Livros.Count();
+            double paginas = quantidadeLivros / quantidade;
+            return Math.Ceiling(paginas);
+        }
+
         public void Dispose()
         {
             contexto.Dispose();

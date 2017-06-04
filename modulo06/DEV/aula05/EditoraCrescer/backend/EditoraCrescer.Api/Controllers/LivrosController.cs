@@ -74,6 +74,12 @@ namespace EditoraCrescer.Api.Controllers
             return Ok(new { dados = repositorio.Paginar(skip, quantidade) });
         }
 
+        [HttpGet, Route("quantidadepaginas")]
+        public IHttpActionResult QuantidadePaginas(int quantidade)
+        {
+            return Ok(new { dados = repositorio.QuantidadePaginas(quantidade) });
+        }
+
         protected override void Dispose(bool disposing)
         {
             repositorio.Dispose();
