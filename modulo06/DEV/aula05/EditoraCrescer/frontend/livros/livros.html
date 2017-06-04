@@ -1,7 +1,7 @@
 <span>Lançamentos</span>
 <div ng-repeat="lancamento in lancamentos">
   <div class="">
-    <img src="{{livro.Capa}}">
+    <img ng-src="{{livro.Capa}}">
     {{lancamento.Titulo}}
     {{lancamento.NomeAutor}}
     {{lancamento.Genero}}
@@ -12,7 +12,7 @@
 <div class="container">
   <div class="livro" ng-repeat="livro in livros">
     <div class="col-sm-4">
-      <img src="{{livro.Capa}}">
+      <img ng-src="{{livro.Capa}}">
       <div class="text">
         <div class="info">
           <span>
