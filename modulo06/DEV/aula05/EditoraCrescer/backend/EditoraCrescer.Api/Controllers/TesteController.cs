@@ -1,5 +1,4 @@
-﻿using EditoraCrescer.Api.App_Start;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -8,7 +7,7 @@ using System.Web.Http;
 
 namespace EditoraCrescer.Api.Controllers
 {
-    [MeuBasicAuth(Roles = "Publicador")]
+    [BasicAuthorization(Roles = "Publicador")]
     public class TesteController : ApiController
     {
         public HttpResponseMessage Get()
