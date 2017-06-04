@@ -19,7 +19,7 @@ angular.module('app').factory('livrosService', function ($http) {
   };
 
   function atualizar(livro) {
-    return $http.put(urlBase + instrutor.id, instrutor);
+    return $http.put(urlBase + livro.Isbn, livro);
   };
 
   function criar (livro) {
@@ -27,7 +27,7 @@ angular.module('app').factory('livrosService', function ($http) {
   }
 
   function remover (livro) {
-    return $http.delete(urlBase + instrutor.id);
+    return $http.delete(urlBase + livro.Isbn);
   }
 
   function procurarPorGenero (genero) {
