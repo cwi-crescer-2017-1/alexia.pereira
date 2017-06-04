@@ -1,10 +1,28 @@
 <legend>Visualizar Livro</legend>
 
-  <div class="livro">
+  <div class="livro" ng-hide="edit">
+    <button ng-show="usuarioLogado()" ng-click="permitirEdicao()">Editar</button>
     <img src="{{livro.Capa}}">
     Título: {{livro.Titulo}}
     Autor: {{livro.NomeAutor}}
     Gênero: {{livro.Genero}}
     Descrição {{livro.Descricao}}
     Data de Publicação: {{livro.DataPublicacao | date : "dd/MM/yyyy"}}
+  </div>
+  <div ng-show="edit">
+    <form ng-submit="atualizarLivro(livro)">
+      <label for="titulo">Título</label>
+      <input type="text" name="titulo" value="" ng-model="livro.Titulo">
+      <label for="autor">Autor</label>
+      <select name="autor" ng-model="livro.Autor" ng-options="autor.Nome for autor in autores">
+        <option value="">
+          {{autor.Nome}}
+        </option>
+      </select>
+      <label for="genero">Título</label>
+      <input type="text" name="genero" value="" ng-model="livro.Genero">
+      <label for="descricao">Descrição</label>
+      <input type="text" name="descricao" value="" ng-model="livro.Descricao">
+      <button type="submit" ng-click="atualizarLivro(livro)" name="button">Atualizar</button>
+    </form>
   </div>
