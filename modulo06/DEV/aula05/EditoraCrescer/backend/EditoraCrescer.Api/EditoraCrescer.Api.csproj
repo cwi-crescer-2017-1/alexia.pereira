@@ -102,6 +102,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BasicAuthorization.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AssinantesController.cs" />
     <Compile Include="Controllers\AutoresController.cs" />
     <Compile Include="Controllers\ControllerBasica.cs" />
     <Compile Include="Controllers\LivrosController.cs" />

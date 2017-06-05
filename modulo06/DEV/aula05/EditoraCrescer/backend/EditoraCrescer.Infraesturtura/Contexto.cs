@@ -18,6 +18,7 @@ namespace EditoraCrescer.Infraesturtura
         public DbSet<Livro> Livros { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Permissao> Permissoes { get; set; }
+        public DbSet<Assinante> Assinantes { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -25,6 +26,7 @@ namespace EditoraCrescer.Infraesturtura
             modelBuilder.Configurations.Add(new LivroMap());
             modelBuilder.Configurations.Add(new UsuarioMap());
             modelBuilder.Configurations.Add(new PermissaoMap());
+            modelBuilder.Configurations.Add(new AssinanteMap());
         }
 
     }
