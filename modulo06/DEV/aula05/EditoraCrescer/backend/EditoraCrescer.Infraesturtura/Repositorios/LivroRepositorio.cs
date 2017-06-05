@@ -101,6 +101,13 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
 
         }
 
+        public object PaginarADM(int skip, int quantidade)
+        {
+
+            return contexto.Livros.OrderBy(x => x.Isbn).Skip(skip).Take(quantidade).ToList();
+
+        }
+
         public object QuantidadePaginas(int quantidade)
         {
             double quantidadeLivros = contexto.Livros.Count();
