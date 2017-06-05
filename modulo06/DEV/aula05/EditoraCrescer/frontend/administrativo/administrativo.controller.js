@@ -7,6 +7,12 @@ angular.module('app').controller('AdministrativoController', function ($location
   $scope.revisor = verificarPermissao("Revisor");
   $scope.livroPodeSerRevisado = livroPodeSerRevisado;
   $scope.revisarLivro = revisarLivro;
+  $scope.publicarLivro = publicarLivro;
+  $scope.pagina = 1;
+  $scope.decrementarPagina = decrementarPagina;
+  $scope.incrementarPagina = incrementarPagina;
+  quantidadePaginas(10);
+
   listarLivros();
 
   function listarLivros (skip = 0) {
@@ -62,5 +68,21 @@ angular.module('app').controller('AdministrativoController', function ($location
         })
     })
   };
+
+  function quantidadePaginas (quantidade) {
+    let parametro = {quantidade: quantidade};
+    livrosService.quantidadePaginas(parametro).then(function(response) {
+      $scope.totalPaginas = response.data.dados;
+    })
+  }
+
+  function decrementarPagina () {
+    listarLivros(($scope.pagina-2) * 10);
+    $scope.pagina = $scope.pagina-1;
+  }
+
+  function incrementarPagina () {
+    listarLivros($scope.pagina++ * 10);
+  }
 
 });

@@ -22,3 +22,12 @@
     </div>
     <button class="visualizar" ng-click="visualizar(livro)">Visualizar</button>
     <button class="editar" ng-click="editar(livro)">Editar</button>
+  </div>
+</div>
+
+<button ng-hide="pagina === 1" ng-click="decrementarPagina()">
+  Anterior
+</button>
+<button ng-hide="pagina === totalPaginas" ng-click="incrementarPagina()">
+  Próxima
+</button>
