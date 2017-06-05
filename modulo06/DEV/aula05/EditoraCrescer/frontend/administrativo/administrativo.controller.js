@@ -5,7 +5,9 @@ angular.module('app').controller('AdministrativoController', function ($location
   $scope.remover = removerLivro;
   $scope.logout = logout;
   $scope.revisor = verificarPermissao("Revisor");
+  $scope.publicador = verificarPermissao("Publicador");
   $scope.livroPodeSerRevisado = livroPodeSerRevisado;
+  $scope.livroPodeSerPublicado = livroPodeSerPublicado
   $scope.revisarLivro = revisarLivro;
   $scope.publicarLivro = publicarLivro;
   $scope.pagina = 1;
@@ -52,6 +54,11 @@ angular.module('app').controller('AdministrativoController', function ($location
   function livroPodeSerRevisado (revisor, livro) {
     return revisor && livro.DataRevisão == null;
   }
+
+  function livroPodeSerPublicado(publicador, livro) {
+    return publicador && livro.DataRevisão != null
+  }
+
   function revisarLivro (livro) {
     let parametros = {email: authService.getUsuario().Email};
       $http({
@@ -68,6 +75,14 @@ angular.module('app').controller('AdministrativoController', function ($location
         })
     })
   };
+
+  function publicarLivro (livro) {
+    livrosService.publicar(livro).then(function() {
+      alert("Livro publicado");
+    }, function () {
+      alert("Dia Inválido!");
+    })
+  }
 
   function quantidadePaginas (quantidade) {
     let parametro = {quantidade: quantidade};

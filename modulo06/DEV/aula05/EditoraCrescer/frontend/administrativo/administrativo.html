@@ -20,6 +20,12 @@
         </span>
       </div>
     </div>
+    <button ng-show="livroPodeSerRevisado($parent.revisor, livro)" ng-click="revisarLivro(livro)">
+       Revisar
+     </button>
+    <button ng-show="livroPodeSerPublicado($parent.publicador, livro)" ng-click="publicarLivro(livro)">
+       Publicar
+     </button>
     <button class="visualizar" ng-click="visualizar(livro)">Visualizar</button>
     <button class="editar" ng-click="editar(livro)">Editar</button>
   </div>
