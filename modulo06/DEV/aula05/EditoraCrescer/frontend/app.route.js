@@ -8,6 +8,10 @@ angular.module('app').config(function ($routeProvider) {
     controller: 'LivroVisualizarController',
     templateUrl: '/livros/livro.visualizar.html'
   })
+  .when('/assinante', {
+    controller: 'AssinantesController',
+    templateUrl: '/assinante/assinante.html'
+  })
   .when('/login', {
     controller: 'LoginController',
     templateUrl: 'login/login.html'
