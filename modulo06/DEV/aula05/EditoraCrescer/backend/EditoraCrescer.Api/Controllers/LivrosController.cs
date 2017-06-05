@@ -97,5 +97,12 @@ namespace EditoraCrescer.Api.Controllers
             base.Dispose(disposing);
         }
 
+        [BasicAuthorization(Roles = "Revisor")]
+        [Route("revisar"), HttpPut]
+        public IHttpActionResult Put(Livro livro)
+        {
+            return Ok(new { dados = repositorio.AdicionarRevisao(livro) });
+        }
+
     }
 }
