@@ -18,9 +18,8 @@ body {
 }
 
 .title {
-  padding-left: 30px;
   display: block;
-
+  text-align: center;
 }
 
 .editora {
@@ -34,12 +33,43 @@ body {
   font-family: 'Lobster', cursive;
   font-size: 30px;
   margin-top: -20px;
-  padding-left: 95px;
+  padding-left: 70px;
   padding-bottom: 10px;
 }
 
+.navbar {
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+  padding: 10px;
+}
 
+.navbar > a {
+  color: black;
+  padding: 30px;
+}
 
+a.nostyle:link {
+    text-decoration: none;
+    color: inherit;
+    cursor: auto;
+}
+
+a.nostyle:visited {
+    text-decoration: none;
+    color: inherit;
+    cursor: auto;
+}
+
+a:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.navbar > a > span {
+  text-transform: uppercase;
+
+}
 
 /*body*/
 
