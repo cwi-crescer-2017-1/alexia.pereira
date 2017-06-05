@@ -81,5 +81,15 @@ namespace EditoraCrescer.Api.Controllers
 
             return ResponderOK(new { usuario.Nome, usuario.Permissoes, usuario.Email });
         }
+
+        [HttpGet, Route("obtemlogin")]
+        public IHttpActionResult ObterPorEmail(string email)
+        {
+            var usuario = _usuarioRepositorio.Obter(email);
+            if (usuario == null)
+                return BadRequest("Usuário não encontrado.");
+            
+            return Ok(new { dados = usuario });
+        }
     }
 }
