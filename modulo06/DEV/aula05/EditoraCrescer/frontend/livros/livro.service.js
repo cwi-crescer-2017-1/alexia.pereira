@@ -6,6 +6,9 @@ angular.module('app').factory('livrosService', function ($http) {
     return $http.get(urlBase);
   };
 
+  function revisar(livro) {
+    return $http.put(urlBase + 'revisar', livro);
+  }
   function paginarLivros(parametros) {
     return $http({
       url: urlBase,
