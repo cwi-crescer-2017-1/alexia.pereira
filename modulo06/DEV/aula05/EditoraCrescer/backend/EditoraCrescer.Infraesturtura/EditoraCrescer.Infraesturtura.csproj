@@ -59,49 +59,9 @@
     <Compile Include="Mappings\LivroMap.cs" />
     <Compile Include="Mappings\PermissaoMap.cs" />
     <Compile Include="Mappings\UsuarioMap.cs" />
-    <Compile Include="Migrations\201705301929580_CriacaoDoBanco.cs" />
-    <Compile Include="Migrations\201705301929580_CriacaoDoBanco.Designer.cs">
-      <DependentUpon>201705301929580_CriacaoDoBanco.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705302347312_CriacaoRevisor.cs" />
-    <Compile Include="Migrations\201705302347312_CriacaoRevisor.Designer.cs">
-      <DependentUpon>201705302347312_CriacaoRevisor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705310015041_AdicionandoRevisorEDataRevisaoAosLivros.cs" />
-    <Compile Include="Migrations\201705310015041_AdicionandoRevisorEDataRevisaoAosLivros.Designer.cs">
-      <DependentUpon>201705310015041_AdicionandoRevisorEDataRevisaoAosLivros.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705311838589_CriacaoDeCapaParaOLivro.cs" />
-    <Compile Include="Migrations\201705311838589_CriacaoDeCapaParaOLivro.Designer.cs">
-      <DependentUpon>201705311838589_CriacaoDeCapaParaOLivro.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706021647116_SetarDataParaNullable.cs" />
-    <Compile Include="Migrations\201706021647116_SetarDataParaNullable.Designer.cs">
-      <DependentUpon>201706021647116_SetarDataParaNullable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706031357278_AdicionarUsuarios.cs" />
-    <Compile Include="Migrations\201706031357278_AdicionarUsuarios.Designer.cs">
-      <DependentUpon>201706031357278_AdicionarUsuarios.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706031539287_RemoverFKIdRevisor.cs" />
-    <Compile Include="Migrations\201706031539287_RemoverFKIdRevisor.Designer.cs">
-      <DependentUpon>201706031539287_RemoverFKIdRevisor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706032231047_DataRevisaoNullable.cs" />
-    <Compile Include="Migrations\201706032231047_DataRevisaoNullable.Designer.cs">
-      <DependentUpon>201706032231047_DataRevisaoNullable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706032251066_IdUsuarioRevisor.cs" />
-    <Compile Include="Migrations\201706032251066_IdUsuarioRevisor.Designer.cs">
-      <DependentUpon>201706032251066_IdUsuarioRevisor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706032255370_MapearIdUsuarioRevisor.cs" />
-    <Compile Include="Migrations\201706032255370_MapearIdUsuarioRevisor.Designer.cs">
-      <DependentUpon>201706032255370_MapearIdUsuarioRevisor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706040022220_RemoverFKNaoUtilizada.cs" />
-    <Compile Include="Migrations\201706040022220_RemoverFKNaoUtilizada.Designer.cs">
-      <DependentUpon>201706040022220_RemoverFKNaoUtilizada.cs</DependentUpon>
+    <Compile Include="Migrations\201706050032525_bancoAtualizado.cs" />
+    <Compile Include="Migrations\201706050032525_bancoAtualizado.Designer.cs">
+      <DependentUpon>201706050032525_bancoAtualizado.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -114,38 +74,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201705301929580_CriacaoDoBanco.resx">
-      <DependentUpon>201705301929580_CriacaoDoBanco.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705302347312_CriacaoRevisor.resx">
-      <DependentUpon>201705302347312_CriacaoRevisor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705310015041_AdicionandoRevisorEDataRevisaoAosLivros.resx">
-      <DependentUpon>201705310015041_AdicionandoRevisorEDataRevisaoAosLivros.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705311838589_CriacaoDeCapaParaOLivro.resx">
-      <DependentUpon>201705311838589_CriacaoDeCapaParaOLivro.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706021647116_SetarDataParaNullable.resx">
-      <DependentUpon>201706021647116_SetarDataParaNullable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706031357278_AdicionarUsuarios.resx">
-      <DependentUpon>201706031357278_AdicionarUsuarios.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706031539287_RemoverFKIdRevisor.resx">
-      <DependentUpon>201706031539287_RemoverFKIdRevisor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706032231047_DataRevisaoNullable.resx">
-      <DependentUpon>201706032231047_DataRevisaoNullable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706032251066_IdUsuarioRevisor.resx">
-      <DependentUpon>201706032251066_IdUsuarioRevisor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706032255370_MapearIdUsuarioRevisor.resx">
-      <DependentUpon>201706032255370_MapearIdUsuarioRevisor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706040022220_RemoverFKNaoUtilizada.resx">
-      <DependentUpon>201706040022220_RemoverFKNaoUtilizada.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706050032525_bancoAtualizado.resx">
+      <DependentUpon>201706050032525_bancoAtualizado.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
