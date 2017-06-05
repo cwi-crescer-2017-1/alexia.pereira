@@ -88,15 +88,16 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
 
         public object Paginar(int skip, int quantidade)
         {
-
-            return contexto.Livros.OrderBy(x => x.Isbn).Skip(skip).Take(quantidade).Select(l => new
-            {
-                Isbn = l.Isbn,
-                Titulo = l.Titulo,
-                Capa = l.Capa,
-                NomeAutor = l.Autor.Nome,
-                Genero = l.Genero
-            })
+            return contexto.Livros
+                .Where(l => l.DataPublicacao != null && SqlFunctions.DateDiff("dd", l.DataPublicacao, DateTime.Now) > 7)
+                .OrderBy(x => x.Isbn).Skip(skip).Take(quantidade).Select(l => new
+                {
+                    Isbn = l.Isbn,
+                    Titulo = l.Titulo,
+                    Capa = l.Capa,
+                    NomeAutor = l.Autor.Nome,
+                    Genero = l.Genero
+                })
             .ToList();
 
         }
@@ -110,7 +111,8 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
 
         public object QuantidadePaginas(int quantidade)
         {
-            double quantidadeLivros = contexto.Livros.Count();
+            var livrosExcetoLancamentos = contexto.Livros.Where(l => l.DataPublicacao != null && SqlFunctions.DateDiff("dd", l.DataPublicacao, DateTime.Now) > 7);
+            double quantidadeLivros = livrosExcetoLancamentos.Count();
             double paginas = quantidadeLivros / quantidade;
             return Math.Ceiling(paginas);
         }
