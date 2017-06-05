@@ -50,15 +50,15 @@ body {
 }
 
 a.nostyle:link {
-    text-decoration: none;
-    color: inherit;
-    cursor: auto;
+  text-decoration: none;
+  color: inherit;
+  cursor: auto;
 }
 
 a.nostyle:visited {
-    text-decoration: none;
-    color: inherit;
-    cursor: auto;
+  text-decoration: none;
+  color: inherit;
+  cursor: auto;
 }
 
 a:hover {
@@ -92,13 +92,13 @@ a:hover {
 }
 
 @media screen and (max-width: 1300px) {
-    .text {
-        display: none;
-    }
-    .livro {
-      width: 200px;
-      float: left !important;
-    }
+  .text {
+    display: none;
+  }
+  .livro {
+    width: 200px;
+    float: left !important;
+  }
 }
 
 .col-sm-4 > div > img {
@@ -209,9 +209,40 @@ a:hover {
 }
 
 
+/*Login*/
 
+.form {
+  margin: 0 auto;
+  width: 60%;
+}
 
+.grupo {
+  padding: 20px;
+}
 
+label {
+  padding-left: 10px;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+.login {
+  padding-top: 30px;
+  font-family: 'Anton', sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.logar {
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+  background-color: #ffca00;
+}
+
+.logar:hover {
+  background-color: white;
+}
 
 
 //
