@@ -115,6 +115,14 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
             return Math.Ceiling(paginas);
         }
 
+        public Livro AdicionarRevisao(Livro livro)
+        {
+            livro.DataRevisão = DateTime.Now;
+            contexto.Entry(livro).State = EntityState.Modified;
+            contexto.SaveChanges();
+            return livro;
+        }
+
         public void Dispose()
         {
             contexto.Dispose();
