@@ -10,6 +10,7 @@ using System.Web.Http;
 
 namespace EditoraCrescer.Api.Controllers
 {
+    [AllowAnonymous]
     [RoutePrefix("api/Livros")]
     public class LivrosController : ApiController
     {
@@ -19,7 +20,7 @@ namespace EditoraCrescer.Api.Controllers
         public IHttpActionResult Get()
         {
             var livros = repositorio.Obter();
-            return Ok( new { dados = livros });
+            return Ok(new { dados = livros });
         }
 
         [Route("{isbn:int}"), HttpGet]
@@ -36,6 +37,7 @@ namespace EditoraCrescer.Api.Controllers
             return Ok(new { dados = livro });
         }
 
+        [BasicAuthorization]
         [HttpPost, Route]
         public IHttpActionResult Post(Livro livro)
         {
@@ -43,6 +45,7 @@ namespace EditoraCrescer.Api.Controllers
             return Ok(new { dados = livro });
         }
 
+        [BasicAuthorization]
         [Route("{isbn:int}"), HttpDelete]
         public IHttpActionResult Delete(int isbn)
         {
@@ -50,12 +53,13 @@ namespace EditoraCrescer.Api.Controllers
             return Ok();
         }
 
+        [BasicAuthorization]
         [Route("{isbn:int}"), HttpPut]
         public IHttpActionResult Put(int isbn, Livro livro)
         {
             if (isbn != livro.Isbn)
-                return BadRequest("O livro que você informou não corresponde com o selecionado"); 
-                   
+                return BadRequest("O livro que você informou não corresponde com o selecionado");
+
             if (!repositorio.LivroExiste(livro.Isbn))
                 return BadRequest("O livro que você informou não corresponde a nenhum livro cadastrado");
 
@@ -63,13 +67,13 @@ namespace EditoraCrescer.Api.Controllers
         }
 
         [HttpGet, Route("lancamentos")]
-        public IHttpActionResult Lancamentos ()
+        public IHttpActionResult Lancamentos()
         {
             return Ok(new { dados = repositorio.ObterLancamentos() });
         }
 
         [HttpGet, Route]
-        public IHttpActionResult livrosPaginados (int skip, int quantidade)
+        public IHttpActionResult livrosPaginados(int skip, int quantidade)
         {
             return Ok(new { dados = repositorio.Paginar(skip, quantidade) });
         }
