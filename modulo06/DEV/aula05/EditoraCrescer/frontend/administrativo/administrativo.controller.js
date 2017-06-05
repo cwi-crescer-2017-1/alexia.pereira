@@ -4,6 +4,7 @@ angular.module('app').controller('AdministrativoController', function ($location
   $scope.editar = editar;
   $scope.remover = removerLivro;
   $scope.logout = logout;
+  $scope.criarLivro = criarLivro;
   $scope.revisor = verificarPermissao("Revisor");
   $scope.publicador = verificarPermissao("Publicador");
   $scope.livroPodeSerRevisado = livroPodeSerRevisado;
@@ -45,6 +46,10 @@ angular.module('app').controller('AdministrativoController', function ($location
 
   function logout () {
     authService.logout()
+  }
+
+  function criarLivro () {
+    $location.path('/livros/criar');
   }
 
   function verificarPermissao (nomePermissao) {

@@ -4,6 +4,7 @@ angular.module('app').controller('LivrosController', function ($location, $scope
   $scope.pagina = 1;
   $scope.decrementarPagina = decrementarPagina;
   $scope.incrementarPagina = incrementarPagina;
+  $scope.criarLivro = criarLivro;
   listar();
   lancamentos();
   quantidadePaginas(10);
@@ -39,6 +40,14 @@ angular.module('app').controller('LivrosController', function ($location, $scope
 
   function incrementarPagina () {
     listar($scope.pagina++ * 10);
+  }
+
+  function criarLivro (livro) {
+    livrosService.criar(livro).then(function(response) {
+      alert("Livro criado com sucesso")
+      console.log(response);
+      $location.path('/livros/visualizar/' + response.data.dados.Isbn);
+    })
   }
 
 });
