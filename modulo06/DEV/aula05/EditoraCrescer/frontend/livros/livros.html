@@ -1,17 +1,31 @@
-<span>Lançamentos</span>
-<div ng-repeat="lancamento in lancamentos">
-  <div class="">
-    <img ng-src="{{livro.Capa}}">
-    {{lancamento.Titulo}}
-    {{lancamento.NomeAutor}}
-    {{lancamento.Genero}}
-    <button type="button" ng-click="visualizar(lancamento)">Visualizar</button>
-  </div>
-</div>
+<div class="container clearfix">
+  <div class="lancamentos-grupo clearfix" ng-hide="pagina > 1">
+    <div class="lancamentos-title">Lançamentos</div>
 
-<div class="container">
-  <div class="livro" ng-repeat="livro in livros">
-    <div class="col-sm-4">
+    <div class="livro col-sm-4 clearfix" ng-repeat="lancamento in lancamentos">
+
+      <div>
+        <img ng-src="{{lancamento.Capa}}">
+        <div class="text">
+          <span class="lancamentos">LANÇAMENTO</span>
+          <div class="info">
+            {{lancamento.Titulo}}
+            {{lancamento.NomeAutor}}
+            {{lancamento.Genero}}
+          </div>
+        </div>
+        <button type="button" class="visualizar" ng-click="visualizar(lancamento)">Visualizar</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="lancamentos-title">
+    Outros Livros
+  </div>
+
+  <div class="livro col-sm-4" ng-repeat="livro in livros">
+    <div>
       <img ng-src="{{livro.Capa}}">
       <div class="text">
         <div class="info">
@@ -34,6 +48,8 @@
   </div>
 </div>
 
-<button type="button" name="button" ng-hide="pagina === 1" ng-click="decrementarPagina()">Anterior</button>
-<button type="button" name="button" ng-hide="pagina === totalPaginas" ng-click="incrementarPagina()">Próxima</button>
+<div class="paginas">
+  <button class="botoes" ng-hide="pagina === 1" ng-click="decrementarPagina()">Anterior</button>
+  <button class="botoes" ng-hide="pagina === totalPaginas" ng-click="incrementarPagina()">Próxima</button>
+</div>
 
