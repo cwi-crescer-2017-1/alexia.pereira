@@ -104,5 +104,16 @@ namespace EditoraCrescer.Api.Controllers
             return Ok(new { dados = repositorio.AdicionarRevisao(livro) });
         }
 
+        [BasicAuthorization(Roles = "Publicador")]
+        [Route("publicar"), HttpPut]
+        public IHttpActionResult Publicar (Livro livro)
+        {
+            DayOfWeek dia = DateTime.Now.DayOfWeek;
+            if (dia == DayOfWeek.Saturday || dia == DayOfWeek.Sunday)
+                return BadRequest("Dia inválido");
+
+            return Ok(new { dados = repositorio.PublicarLivro(livro) });
+        }
+
     }
 }
