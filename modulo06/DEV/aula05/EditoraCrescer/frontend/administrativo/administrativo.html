@@ -1,40 +1,45 @@
 <h1>administrativo</h1>
 <button type="button" ng-click="logout()" name="button">Logout</button>
 <button type="button" ng-click="criarLivro()" name="button">Criar Livro</button>
-<div class="livro" ng-repeat="livro in livros">
-  <button ng-click="remover(livro)">Remover</button>
-  <div class="col-sm-4">
-    <img src="{{livro.Capa}}">
-    <div class="text">
-      <div class="info">
-        <span>
-          <strong>Título:</strong>
-          {{livro.Titulo}}
-        </span>
-        <span>
-          <strong>Autor:</strong>
-          {{livro.NomeAutor}}
-        </span>
-        <span>
-          <strong>Gênero:</strong>
-          {{livro.Genero}}
-        </span>
+<div class="container clearfix">
+
+  <div class="livro col-sm-4" ng-repeat="livro in livros">
+    <button ng-click="remover(livro)">Remover</button>
+    <div>
+      <img src="{{livro.Capa}}">
+      <div class="text">
+        <div class="info">
+          <span>
+            <strong>Título:</strong>
+            {{livro.Titulo}}
+          </span>
+          <span>
+            <strong>Autor:</strong>
+            {{livro.NomeAutor}}
+          </span>
+          <span>
+            <strong>Gênero:</strong>
+            {{livro.Genero}}
+          </span>
+        </div>
       </div>
+      <button class="" ng-click="visualizar(livro)">Visualizar</button>
+      <button ng-show="livroPodeSerRevisado($parent.revisor, livro)" ng-click="revisarLivro(livro)">
+        Revisar
+      </button>
+      <button ng-show="livroPodeSerPublicado($parent.publicador, livro)" ng-click="publicarLivro(livro)">
+        Publicar
+      </button>
+      <button class="editar" ng-click="editar(livro)">Editar</button>
     </div>
-    <button ng-show="livroPodeSerRevisado($parent.revisor, livro)" ng-click="revisarLivro(livro)">
-       Revisar
-     </button>
-    <button ng-show="livroPodeSerPublicado($parent.publicador, livro)" ng-click="publicarLivro(livro)">
-       Publicar
-     </button>
-    <button class="visualizar" ng-click="visualizar(livro)">Visualizar</button>
-    <button class="editar" ng-click="editar(livro)">Editar</button>
   </div>
 </div>
 
-<button ng-hide="pagina === 1" ng-click="decrementarPagina()">
-  Anterior
-</button>
-<button ng-hide="pagina === totalPaginas" ng-click="incrementarPagina()">
-  Próxima
-</button>
+<div class="paginas">
+  <button class="botoes" ng-hide="pagina === 1" ng-click="decrementarPagina()">
+    Anterior
+  </button>
+  <button class="botoes" ng-hide="pagina === totalPaginas" ng-click="incrementarPagina()">
+    Próxima
+  </button>
+</div>

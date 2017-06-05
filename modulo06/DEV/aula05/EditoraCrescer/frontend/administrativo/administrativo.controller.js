@@ -14,12 +14,12 @@ angular.module('app').controller('AdministrativoController', function ($location
   $scope.pagina = 1;
   $scope.decrementarPagina = decrementarPagina;
   $scope.incrementarPagina = incrementarPagina;
-  quantidadePaginas(10);
+  quantidadePaginas(6);
 
   listarLivros();
 
   function listarLivros (skip = 0) {
-    let parametros = {skip:skip, quantidade: 10}
+    let parametros = {skip:skip, quantidade: 6}
     livrosService.paginarLivrosADM(parametros).then(function (response) {
           $scope.livros = response.data.dados;
         });
@@ -61,7 +61,8 @@ angular.module('app').controller('AdministrativoController', function ($location
   }
 
   function livroPodeSerPublicado(publicador, livro) {
-    return publicador && livro.DataRevisão != null
+    console.log(livro);
+    return publicador && livro.DataRevisão != null && livro.DataPublicacao == null;
   }
 
   function revisarLivro (livro) {
