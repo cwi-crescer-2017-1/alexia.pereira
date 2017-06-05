@@ -22,5 +22,15 @@ angular.module('app').config(function ($routeProvider) {
         }
       }
     })
+    .when('/livros/criar', {
+        controller: 'LivrosController',
+        templateUrl: 'livros/criar.html',
+        resolve: {
+          // define que para acessar esta página deve ser um usuário autenticado (mas não restringe o tipo de permissão)
+          autenticado: function (authService) {
+            return authService.isAutenticadoPromise();
+          }
+        }
+      })
   .otherwise({redirectTo: '/livros'});
 });
