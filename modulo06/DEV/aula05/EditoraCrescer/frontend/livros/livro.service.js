@@ -9,9 +9,22 @@ angular.module('app').factory('livrosService', function ($http) {
   function revisar(livro) {
     return $http.put(urlBase + 'revisar', livro);
   }
+
+  function publicar(livro) {
+    return $http.put(urlBase + 'publicar', livro);
+  }
+
   function paginarLivros(parametros) {
     return $http({
       url: urlBase,
+      method: 'GET',
+      params: parametros
+    });
+  };
+
+  function paginarLivrosADM(parametros) {
+    return $http({
+      url: urlBase + "adm",
       method: 'GET',
       params: parametros
     });
@@ -58,6 +71,9 @@ angular.module('app').factory('livrosService', function ($http) {
     quantidadePaginas: quantidadePaginas,
     atualizar: atualizar,
     criar: criar,
-    deletar: remover
+    deletar: remover,
+    revisar: revisar,
+    publicar: publicar,
+    paginarLivrosADM: paginarLivrosADM
   };
 });
