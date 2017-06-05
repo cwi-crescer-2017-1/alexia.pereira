@@ -123,6 +123,14 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
             return livro;
         }
 
+        public Livro PublicarLivro(Livro livro)
+        {
+            livro.DataPublicacao = DateTime.Now;
+            contexto.Entry(livro).State = EntityState.Modified;
+            contexto.SaveChanges();
+            return livro;
+        }
+
         public void Dispose()
         {
             contexto.Dispose();
