@@ -56,6 +56,10 @@
     <Compile Include="Mappings\PacoteMap.cs" />
     <Compile Include="Mappings\LocacaoMap.cs" />
     <Compile Include="Mappings\VeiculoMap.cs" />
+    <Compile Include="Migrations\201706062018503_CriacaoDoBanco.cs" />
+    <Compile Include="Migrations\201706062018503_CriacaoDoBanco.Designer.cs">
+      <DependentUpon>201706062018503_CriacaoDoBanco.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -68,6 +72,11 @@
       <Project>{3172DBCB-D9B2-476D-B96A-C0E9F143A664}</Project>
       <Name>LocadoraCrescer.Dominio</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201706062018503_CriacaoDoBanco.resx">
+      <DependentUpon>201706062018503_CriacaoDoBanco.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
