@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dominio.Entidades
+namespace LocadoraCrescer.Dominio.Entidades
 {
     public abstract class EntidadeBasica
     {

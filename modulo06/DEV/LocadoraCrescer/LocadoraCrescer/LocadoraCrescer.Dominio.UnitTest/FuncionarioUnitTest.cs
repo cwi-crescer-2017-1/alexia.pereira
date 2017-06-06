@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Dominio.Entidades;
+using LocadoraCrescer.Dominio.Entidades;
 using System.Linq;
 
 namespace LocadoraCrescer.Dominio.UnitTest

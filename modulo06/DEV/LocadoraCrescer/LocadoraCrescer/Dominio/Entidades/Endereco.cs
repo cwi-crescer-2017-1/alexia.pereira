@@ -1,5 +1,4 @@
 ﻿using System;
-using Dominio.Entidades;
 
 namespace LocadoraCrescer.Dominio.Entidades
 {
