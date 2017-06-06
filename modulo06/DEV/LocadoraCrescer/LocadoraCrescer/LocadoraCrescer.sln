@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraCrescer.Dominio", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraCrescer.Dominio.UnitTest", "LocadoraCrescer.Dominio.UnitTest\LocadoraCrescer.Dominio.UnitTest.csproj", "{723C3FDD-0068-44F7-BCC1-75930965B644}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraCrescer.Api", "LocadoraCrescer.Api\LocadoraCrescer.Api.csproj", "{9FFAB9D2-E73D-44B0-B806-BC87A2C20C3A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{723C3FDD-0068-44F7-BCC1-75930965B644}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{723C3FDD-0068-44F7-BCC1-75930965B644}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{723C3FDD-0068-44F7-BCC1-75930965B644}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FFAB9D2-E73D-44B0-B806-BC87A2C20C3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FFAB9D2-E73D-44B0-B806-BC87A2C20C3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FFAB9D2-E73D-44B0-B806-BC87A2C20C3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FFAB9D2-E73D-44B0-B806-BC87A2C20C3A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

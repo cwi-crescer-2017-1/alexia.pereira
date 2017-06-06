@@ -47,11 +47,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contexto.cs" />
+    <Compile Include="Mappings\ClienteMap.cs" />
+    <Compile Include="Mappings\EnderecoMap.cs" />
+    <Compile Include="Mappings\FuncionarioMap.cs" />
+    <Compile Include="Mappings\LocacaoOpcionalMap.cs" />
+    <Compile Include="Mappings\OpcionaisMap.cs" />
+    <Compile Include="Mappings\PacoteMap.cs" />
+    <Compile Include="Mappings\LocacaoMap.cs" />
+    <Compile Include="Mappings\VeiculoMap.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dominio\LocadoraCrescer.Dominio.csproj">
+      <Project>{3172DBCB-D9B2-476D-B96A-C0E9F143A664}</Project>
+      <Name>LocadoraCrescer.Dominio</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
