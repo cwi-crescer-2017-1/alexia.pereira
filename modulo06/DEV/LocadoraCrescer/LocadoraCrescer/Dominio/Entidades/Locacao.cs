@@ -17,5 +17,6 @@ namespace LocadoraCrescer.Dominio.Entidades
         public DateTime? DataEntregaReal { get; set; }
         public decimal ValorLocacao { get; set; }
         public decimal ValorDesconto { get; set; }
+        public List<LocacaoOpcional> LocacaoOpcionais { get; set; }
     }
 }
