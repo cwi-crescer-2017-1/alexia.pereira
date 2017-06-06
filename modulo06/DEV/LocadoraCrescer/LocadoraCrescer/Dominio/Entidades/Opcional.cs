@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dominio.Entidades
+namespace LocadoraCrescer.Dominio.Entidades
 {
-    public class Opcionais
+    public class Opcional
     {
         public int Id { get; set; }
         public string Descricao { get; set; }
         public decimal Preco { get; set; }
+        public int Quantidade { get; set; }
+
     }
 }
