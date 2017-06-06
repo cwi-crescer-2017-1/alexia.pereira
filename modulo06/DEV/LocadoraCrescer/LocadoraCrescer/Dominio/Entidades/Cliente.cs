@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dominio.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LocadoraCrescer.Dominio.Entidades
 {
-    public class Cliente
+    public class Cliente : EntidadeBasica
     {
         public int Id{ get; set; }
         public string Nome{ get; set; }
@@ -14,5 +15,27 @@ namespace LocadoraCrescer.Dominio.Entidades
         public DateTime DataNascimento { get; set; }
         public Endereco Endereco { get; set; }
         public Genero Genero { get; set; }
+
+        public Cliente(string nome, string cpf, DateTime dataNascimento, Genero genero)
+        {
+            Id = 0;
+            Nome = nome;
+            Cpf = cpf;
+            DataNascimento = dataNascimento;
+            Genero = genero;
+        }
+
+        public override bool Validar()
+        {
+            Mensagens.Clear();
+
+            if (string.IsNullOrWhiteSpace(Nome))
+                Mensagens.Add("Nome é inválido.");
+
+            if (string.IsNullOrWhiteSpace(Cpf))
+                Mensagens.Add("CPF é inválido.");
+
+            return Mensagens.Count == 0;
+        }
     }
 }

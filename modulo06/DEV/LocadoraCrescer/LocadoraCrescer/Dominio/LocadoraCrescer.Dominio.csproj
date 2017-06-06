@@ -45,8 +45,9 @@
     <Compile Include="Entidades\EntidadeBasica.cs" />
     <Compile Include="Entidades\Funcionario.cs" />
     <Compile Include="Entidades\Genero.cs" />
+    <Compile Include="Entidades\Opcionais.cs" />
+    <Compile Include="Entidades\Pacote.cs" />
     <Compile Include="Entidades\Pedido.cs" />
-    <Compile Include="Entidades\Produto.cs" />
     <Compile Include="Entidades\Veiculo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
