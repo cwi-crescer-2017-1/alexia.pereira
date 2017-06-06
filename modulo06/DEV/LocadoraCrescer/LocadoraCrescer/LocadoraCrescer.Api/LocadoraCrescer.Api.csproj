@@ -84,6 +84,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\BasicAuthorizationAttribute.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -103,6 +104,16 @@
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dominio\LocadoraCrescer.Dominio.csproj">
+      <Project>{3172DBCB-D9B2-476D-B96A-C0E9F143A664}</Project>
+      <Name>LocadoraCrescer.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LocadoraCrescer.Infraestrutura\LocadoraCrescer.Infraestrutura.csproj">
+      <Project>{93814F4F-4AF6-4A70-A4EE-BA752A24C639}</Project>
+      <Name>LocadoraCrescer.Infraestrutura</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
