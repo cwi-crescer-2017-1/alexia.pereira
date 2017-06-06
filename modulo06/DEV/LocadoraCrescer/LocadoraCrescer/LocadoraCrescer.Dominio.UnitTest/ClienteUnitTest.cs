@@ -11,8 +11,7 @@ namespace LocadoraCrescer.Dominio.UnitTest
         [TestMethod]
         public void Deve_Criar_Entidade_Cliente_Valida()
         {
-            var genero = new Genero("Masculino");
-            var cliente = new Cliente("Teste", "70707070707", DateTime.Now, genero);
+            var cliente = new Cliente("Teste", "70707070707", DateTime.Now, Genero.MASCULINO);
             Assert.IsTrue(cliente.Validar());
             Assert.IsFalse(cliente.Mensagens.Any());
         }
@@ -20,8 +19,7 @@ namespace LocadoraCrescer.Dominio.UnitTest
         [TestMethod]
         public void Nao_Deve_Validar_Entidade_Cliente_Sem_Nome()
         {
-            var genero = new Genero("Masculino");
-            var cliente = new Cliente("", "70707070707", DateTime.Now, genero);
+            var cliente = new Cliente("", "70707070707", DateTime.Now, Genero.MASCULINO);
             Assert.IsFalse(cliente.Validar());
             Assert.IsTrue(cliente.Mensagens.Any());
             Assert.IsTrue(cliente.Mensagens[0] == "Nome é inválido.");
@@ -30,8 +28,7 @@ namespace LocadoraCrescer.Dominio.UnitTest
         [TestMethod]
         public void Nao_Deve_Validar_Entidade_Cliente_Sem_Cpf()
         {
-            var genero = new Genero("Masculino");
-            var cliente = new Cliente("Teste", "", DateTime.Now, genero);
+            var cliente = new Cliente("Teste", "", DateTime.Now, Genero.MASCULINO);
             Assert.IsFalse(cliente.Validar());
             Assert.IsTrue(cliente.Mensagens.Any());
             Assert.IsTrue(cliente.Mensagens[0] == "CPF é inválido.");
