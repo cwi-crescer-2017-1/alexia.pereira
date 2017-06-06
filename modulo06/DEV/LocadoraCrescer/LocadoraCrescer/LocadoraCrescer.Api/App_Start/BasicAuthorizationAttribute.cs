@@ -1,10 +1,9 @@
-﻿using AutDemo.Dominio.Entidades;
-using AutDemo.Infraestrutura.Repositorios;
+﻿using LocadoraCrescer.Dominio.Entidades;
+using LocadoraCrescer.Infraestrutura.Repositorios;
 using System;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Security.Principal;
 using System.Text;
 using System.Threading;
@@ -12,15 +11,15 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 
-namespace AutDemo.WebApi
+namespace LocadoraCrescer.Api
 {
     public class BasicAuthorization : AuthorizeAttribute
     {
-        readonly UsuarioRepositorio _usuarioRepositorio;
+        readonly FuncionarioRepositorio _funcionarioRepositorio;
 
         public BasicAuthorization()
         {
-            _usuarioRepositorio = new UsuarioRepositorio();
+            _funcionarioRepositorio = new FuncionarioRepositorio();
         }
 
         public override void OnAuthorization(HttpActionContext actionContext)
@@ -44,15 +43,16 @@ namespace AutDemo.WebApi
                 string decodedTokenAutenticacao =
                     Encoding.Default.GetString(Convert.FromBase64String(tokenAutenticacao));
 
-                // obtém o login e senha (usuario:senha)
+                // obtém o login e senha (funcionario:senha)
                 string[] userNameAndPassword = decodedTokenAutenticacao.Split(':');
 
                 // validar as credenciais obtidas com as cadastradas no sistema
-                Usuario usuario = null;
-                if (ValidarUsuario(userNameAndPassword[0], userNameAndPassword[1], out usuario))
+                Funcionario funcionario = null;
+                if (ValidarFuncionario(userNameAndPassword[0], userNameAndPassword[1], out funcionario))
                 {
-                    string[] papeis = usuario.Permissoes.Select(papel => papel.Nome).ToArray();
-                    var identidade = new GenericIdentity(usuario.Email);
+                    string[] papeis = new string[1];
+                    papeis[0] = funcionario.Permissao;
+                    var identidade = new GenericIdentity(funcionario.Email);
                     var genericUser = new GenericPrincipal(identidade, papeis);
 
                     // confere o perfil da action com os do usuário
@@ -88,18 +88,18 @@ namespace AutDemo.WebApi
                 actionContext.Request.CreateResponse(HttpStatusCode.Unauthorized, new { mensagens = new string[] { "Usuário ou senha inválidos." } });
         }
 
-        private bool ValidarUsuario(string login, string senha, out Usuario usuarioRetorno)
+        private bool ValidarFuncionario(string login, string senha, out Funcionario funcionarioRetorno)
         {
-            usuarioRetorno = null;
+            funcionarioRetorno = null;
 
-            var usuario = _usuarioRepositorio.Obter(login);
+            var funcionario = _funcionarioRepositorio.Obter(login);
 
-            if (usuario != null && usuario.ValidarSenha(senha))
-                usuarioRetorno = usuario;
+            if (funcionario != null && funcionario.ValidarSenha(senha))
+                funcionarioRetorno = funcionario;
             else
-                usuario = null;
+                funcionario = null;
 
-            return usuario != null;
+            return funcionario != null;
         }
     }
 }
