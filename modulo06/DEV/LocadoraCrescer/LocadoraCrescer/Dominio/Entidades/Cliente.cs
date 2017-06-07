@@ -15,6 +15,11 @@ namespace LocadoraCrescer.Dominio.Entidades
         public Endereco Endereco { get; set; }
         public Genero Genero { get; set; }
 
+        public Cliente ()
+        {
+
+        }
+
         public Cliente(string nome, string cpf, DateTime dataNascimento, Genero genero)
         {
             Id = 0;
