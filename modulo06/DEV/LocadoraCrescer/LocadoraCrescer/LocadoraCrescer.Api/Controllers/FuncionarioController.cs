@@ -50,7 +50,7 @@ namespace LocadoraCrescer.Api.Controllers
         // Exige que o usuário se autentique
         [BasicAuthorization]
         [HttpGet, Route("todos")]
-        public HttpResponseMessage Obter()
+        public HttpResponseMessage ObterTodos()
         {
             // só pode obter as informações do usuário corrente (logado, autenticado)
             var funcionario = repositorio.Obter(Thread.CurrentPrincipal.Identity.Name);
@@ -69,6 +69,19 @@ namespace LocadoraCrescer.Api.Controllers
                 return BadRequest("Funcionátio não encontrado.");
 
             return Ok(new { dados = funcionario });
+        }
+
+        [BasicAuthorization]
+        [HttpGet, Route("usuario")]
+        public HttpResponseMessage Obter()
+        {
+            // só pode obter as informações do usuário corrente (logado, autenticado)
+            var usuario = repositorio.Obter(Thread.CurrentPrincipal.Identity.Name);
+
+            if (usuario == null)
+                return ResponderErro("Usuário não encontrado.");
+
+            return ResponderOK(new { dados = usuario.Nome, usuario.Permissao, usuario.Email });
         }
     }
 }
