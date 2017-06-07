@@ -1,5 +1,6 @@
-angular.module('app').controller('AdministrativoController', function ($location, $scope, authService, clienteService) {
+angular.module('app').controller('AdministrativoController', function ($location, $scope, authService, clienteService, veiculoService) {
 
+  listarVeiculos();
   $scope.generos = [
     {
       Numero: 1,
@@ -24,6 +25,10 @@ angular.module('app').controller('AdministrativoController', function ($location
     })
   }
 
-//  $scope.cliente.genero = {Numero: '3', Nome: 'Não Informado'};
+  function listarVeiculos() {
+    veiculoService.listar().then(function (response) {
+      $scope.veiculos = response.data.dados;
+    })
+  }
 
 });
