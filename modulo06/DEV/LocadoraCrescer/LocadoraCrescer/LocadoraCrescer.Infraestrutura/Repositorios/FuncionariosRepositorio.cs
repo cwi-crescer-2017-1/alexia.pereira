@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace LocadoraCrescer.Infraestrutura.Repositorios
 {
-    public class FuncionarioRepositorio : IDisposable
+    public class FuncionariosRepositorio : IDisposable
     {
         Contexto contexto;
         
-        public FuncionarioRepositorio()
+        public FuncionariosRepositorio()
         {
             contexto = new Contexto();
         }
