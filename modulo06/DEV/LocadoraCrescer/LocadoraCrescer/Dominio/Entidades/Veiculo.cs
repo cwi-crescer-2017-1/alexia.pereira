@@ -10,6 +10,7 @@ namespace LocadoraCrescer.Dominio.Entidades
     {
         public int Id { get; set; }
         public string Marca { get; set; }
+        public string Nome { get; set; }
         public int Quantidade { get; set; }
         public bool Status { get; set; }
         public decimal ValorDiario { get; set; }
