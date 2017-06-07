@@ -20,8 +20,21 @@ namespace LocadoraCrescer.Api.Controllers
         //public HttpResponseMessage Registrar([FromBody]RegistrarClienteModel model)
         public HttpResponseMessage CadastrarLocacao([FromBody]LocacaoModel model)
         {
-            var locacao = new Locacao(model.Veiculo, model.Cliente, model.Pacote, model.DataEntregaPrevista, model.ValorLocacao, model.LocacaoOpcionais);
+            //Buscar dados do banco
+            var veiculo = new VeiculoRepositorio().Obter(model.IdVeiculo);
+            var cliente = new ClientesRepositorio().ObterPorId(model.IdCliente);
+            var pacote = new PacotesRepositorio().Obter(model.IdPacote);
+            var listaLocacaoOpcional = new List<LocacaoOpcional>();
+            foreach (var locacaoOpcional in model.IdLocacaoOpcional)
+            {
+                listaLocacaoOpcional.Add(new LocacoesOpcionaisRepositorio().Obter(locacaoOpcional));
+            }
+
+            var locacao = new Locacao(veiculo, cliente, pacote, model.DataEntregaPrevista,
+                model.ValorLocacao, listaLocacaoOpcional);
+
             repositorio.Cadastrar(locacao);
+
             return ResponderOK(new { dados = locacao });
         }
 
