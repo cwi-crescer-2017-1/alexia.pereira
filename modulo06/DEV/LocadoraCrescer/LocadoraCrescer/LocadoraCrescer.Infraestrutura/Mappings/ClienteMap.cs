@@ -13,7 +13,7 @@ namespace LocadoraCrescer.Infraestrutura.Mappings
         public ClienteMap()
         {
             ToTable("Cliente");
-            HasRequired(x => x.Endereco).WithMany().Map(x => x.MapKey("IdEndereco"));
+            HasOptional(x => x.Endereco).WithMany().Map(x => x.MapKey("IdEndereco"));
             Property(x => x.Genero).IsRequired();
             Property(x => x.Nome).HasMaxLength(200);
             Property(x => x.Cpf).HasMaxLength(11);
