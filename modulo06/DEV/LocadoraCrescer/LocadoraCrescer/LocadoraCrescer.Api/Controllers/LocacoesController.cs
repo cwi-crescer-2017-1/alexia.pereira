@@ -9,10 +9,9 @@ using System.Web.Http;
 
 namespace LocadoraCrescer.Api.Controllers
 {
+    [BasicAuthorization]
     public class LocacoesController : ControllerBasica
     {
-        Contexto contexto;
         LocacoesRepositorio repositorio = new LocacoesRepositorio();
-
     }
 }
