@@ -28,6 +28,7 @@ namespace LocadoraCrescer.Dominio.Entidades
             DataEntregaPrevista = dataEntregaPrevista;
             ValorLocacao = valorLocacao;
             LocacaoOpcionais = locacaoOpcionais;
+            DataLocacao = DateTime.Now;
         }
     }
 }
