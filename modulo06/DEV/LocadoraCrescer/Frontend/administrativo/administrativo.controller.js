@@ -19,7 +19,7 @@ angular.module('app').controller('AdministrativoController', function ($location
 
   function registrarCliente (cliente) {
     cliente.genero = cliente.genero.Numero || 3;
-    administrativoService.criar(cliente).then(function(response){
+    clienteService.criar(cliente).then(function(response){
       alert("Cliente registrado");
     })
   }
