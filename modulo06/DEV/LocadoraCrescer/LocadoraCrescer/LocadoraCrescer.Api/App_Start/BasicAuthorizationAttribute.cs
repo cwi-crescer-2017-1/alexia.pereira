@@ -15,11 +15,11 @@ namespace LocadoraCrescer.Api
 {
     public class BasicAuthorization : AuthorizeAttribute
     {
-        readonly FuncionarioRepositorio _funcionarioRepositorio;
+        readonly FuncionariosRepositorio _funcionarioRepositorio;
 
         public BasicAuthorization()
         {
-            _funcionarioRepositorio = new FuncionarioRepositorio();
+            _funcionarioRepositorio = new FuncionariosRepositorio();
         }
 
         public override void OnAuthorization(HttpActionContext actionContext)
