@@ -60,6 +60,14 @@
     <Compile Include="Migrations\201706062018503_CriacaoDoBanco.Designer.cs">
       <DependentUpon>201706062018503_CriacaoDoBanco.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706070108171_AdicionarNomeAoVeiculo.cs" />
+    <Compile Include="Migrations\201706070108171_AdicionarNomeAoVeiculo.Designer.cs">
+      <DependentUpon>201706070108171_AdicionarNomeAoVeiculo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706070122264_AdicionarNomeAoPacote.cs" />
+    <Compile Include="Migrations\201706070122264_AdicionarNomeAoPacote.Designer.cs">
+      <DependentUpon>201706070122264_AdicionarNomeAoPacote.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositorios\ClienteRepositorio.cs" />
@@ -84,6 +92,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201706062018503_CriacaoDoBanco.resx">
       <DependentUpon>201706062018503_CriacaoDoBanco.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706070108171_AdicionarNomeAoVeiculo.resx">
+      <DependentUpon>201706070108171_AdicionarNomeAoVeiculo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706070122264_AdicionarNomeAoPacote.resx">
+      <DependentUpon>201706070122264_AdicionarNomeAoPacote.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
