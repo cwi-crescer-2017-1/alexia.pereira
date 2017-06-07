@@ -1,4 +1,4 @@
-angular.module('app').controller('AdministrativoController', function ($location, $scope, authService) {
+angular.module('app').controller('AdministrativoController', function ($location, $scope, authService, clienteService) {
 
   $scope.generos = [
     {
@@ -14,6 +14,15 @@ angular.module('app').controller('AdministrativoController', function ($location
       Nome: 'Não Informado'
     }
   ];
+
+  $scope.registrarCliente = registrarCliente;
+
+  function registrarCliente (cliente) {
+    cliente.genero = cliente.genero.Numero || 3;
+    administrativoService.criar(cliente).then(function(response){
+      alert("Cliente registrado");
+    })
+  }
 
 //  $scope.cliente.genero = {Numero: '3', Nome: 'Não Informado'};
 

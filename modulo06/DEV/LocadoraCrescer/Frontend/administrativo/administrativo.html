@@ -6,9 +6,10 @@
   <input type="text" placeholder="apenas números" ng-model="cliente.cpf">
   Data de Nascimento
   <input type="date" ng-model="cliente.dataNascimento">
-  <select ng-model="cliente.genero" ng-options="genero.Nome for genero in generos track by genero.id">
+  <select ng-model="cliente.genero" ng-options="genero.Nome for genero in generos track by genero.Numero">
     <option value="">
       {{genero.Nome}}
     </option>
   </select>
 </form>
+<button ng-click="registrarCliente(cliente)">Criar Cliente</button>
