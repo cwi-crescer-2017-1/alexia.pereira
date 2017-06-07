@@ -18,5 +18,16 @@ namespace LocadoraCrescer.Dominio.Entidades
         public decimal ValorLocacao { get; set; }
         public decimal ValorDesconto { get; set; }
         public List<LocacaoOpcional> LocacaoOpcionais { get; set; }
+
+        public Locacao(Veiculo veiculo, Cliente cliente, Pacote pacote,
+            DateTime dataEntregaPrevista, decimal valorLocacao, List<LocacaoOpcional> locacaoOpcionais)
+        {
+            Veiculo = veiculo;
+            Cliente = cliente;
+            Pacote = pacote;
+            DataEntregaPrevista = dataEntregaPrevista;
+            ValorLocacao = valorLocacao;
+            LocacaoOpcionais = locacaoOpcionais;
+        }
     }
 }
