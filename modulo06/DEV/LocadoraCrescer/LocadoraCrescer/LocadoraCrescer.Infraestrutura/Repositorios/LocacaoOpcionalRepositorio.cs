@@ -19,7 +19,10 @@ namespace LocadoraCrescer.Infraestrutura.Repositorios
 
         public List<LocacaoOpcional> Obter()
         {
-            return contexto.LocacoesOpcionais.ToList();
+            return contexto.LocacoesOpcionais
+                .Include("Locacao")
+                .Include("Opcional")
+                .ToList();
         }
 
         public void Cadastrar(LocacaoOpcional locacaoOpcional)
@@ -30,7 +33,10 @@ namespace LocadoraCrescer.Infraestrutura.Repositorios
 
         public LocacaoOpcional Obter(int id)
         {
-            return contexto.LocacoesOpcionais.FirstOrDefault(l => l.Id == id);
+            return contexto.LocacoesOpcionais
+                .Include("Locacao")
+                .Include("Opcional")
+                .FirstOrDefault(l => l.Id == id);
         }
 
         public List<LocacaoOpcional> ObterPorLocacao(int idLocacao)
