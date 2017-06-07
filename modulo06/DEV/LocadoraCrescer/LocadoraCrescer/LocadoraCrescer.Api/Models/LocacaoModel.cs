@@ -6,7 +6,7 @@ using System.Web;
 
 namespace LocadoraCrescer.Api.Models
 {
-    public class LocacaoOpcional
+    public class LocacaoModel
     {
         public int Id { get; set; }
         public Veiculo Veiculo { get; set; }
@@ -14,9 +14,7 @@ namespace LocadoraCrescer.Api.Models
         public Pacote Pacote { get; set; }
         public DateTime DataLocacao { get; set; }
         public DateTime DataEntregaPrevista { get; set; }
-        public DateTime? DataEntregaReal { get; set; }
         public decimal ValorLocacao { get; set; }
-        public decimal ValorDesconto { get; set; }
         public List<LocacaoOpcional> LocacaoOpcionais { get; set; }
     }
 }
