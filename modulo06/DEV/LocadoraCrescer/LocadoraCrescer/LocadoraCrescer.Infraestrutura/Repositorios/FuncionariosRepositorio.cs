@@ -9,11 +9,11 @@ namespace LocadoraCrescer.Infraestrutura.Repositorios
 {
     public class FuncionariosRepositorio : IDisposable
     {
-        Contexto contexto;
+        Contexto contexto = new Contexto();
         
         public FuncionariosRepositorio()
         {
-            contexto = new Contexto();
+            
         }
 
         public void Criar(Funcionario funcionario)

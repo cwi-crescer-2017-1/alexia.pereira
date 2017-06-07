@@ -1,4 +1,5 @@
-﻿using LocadoraCrescer.Dominio.Entidades;
+﻿using LocadoraCrescer.Api.Models;
+using LocadoraCrescer.Dominio.Entidades;
 using LocadoraCrescer.Infraestrutura.Repositorios;
 using System;
 using System.Collections.Generic;
@@ -21,8 +22,8 @@ namespace LocadoraCrescer.Api.Controllers
         }
 
         [HttpPost, Route("registrar")]
-        //public HttpResponseMessage Registrar([FromBody]RegistrarFuncionarioModel funcionarioParametro)
-        public HttpResponseMessage Registrar(Funcionario funcionarioParametro)
+        public HttpResponseMessage Registrar([FromBody]FuncionarioModel funcionarioParametro)
+        //public HttpResponseMessage Registrar(Funcionario funcionarioParametro)
         {
             if (repositorio.Obter(funcionarioParametro.Email) == null)
             {
