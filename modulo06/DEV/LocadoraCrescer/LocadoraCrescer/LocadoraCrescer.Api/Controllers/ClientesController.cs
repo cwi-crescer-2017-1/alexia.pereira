@@ -53,6 +53,13 @@ namespace LocadoraCrescer.Api.Controllers
             return ResponderOK(new { dados = repositorio.ObterTodos() });
         }
 
+        [HttpGet]
+        public HttpResponseMessage Obter(string cpf)
+        {
+            return ResponderOK(new { dados = repositorio.ObterPorCPF(cpf) });
+        }
+
+
         [HttpGet, Route("atualizar")]
         public HttpResponseMessage Atualizar([FromBody]Cliente model)
         {
