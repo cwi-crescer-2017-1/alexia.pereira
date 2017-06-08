@@ -1,5 +1,12 @@
-<label ng-repeat="veiculo in veiculos">
+Cpf do Cliente
+<input type="text" required ng-model="cpfDoCliente" maxlength="11">
+<button ng-click="buscarClientePorCpf(cpfDoCliente)">Buscar Por CPF</button>
+<span ng-hide="clienteCadastrado">
+  Não há nenhum cliente com esse CPF
+  <button ng-click="cadastrarCliente()">Cadastrar Cliente</button>
+</span>
 
+<label ng-repeat="veiculo in veiculos" ng-show="clienteCadastrado">
   <input
   type="radio"
   value="{{veiculo}}"

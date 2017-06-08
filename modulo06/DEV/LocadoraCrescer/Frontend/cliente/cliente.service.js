@@ -20,7 +20,7 @@ angular.module('app').factory('clienteService', function ($http) {
 
   return {
     listar: getTodosOsClientes,
-    procurarUsuarioPorCpf: getUsuarioPorCpf,
+    buscarClientePorCpf: getUsuarioPorCpf,
     atualizar: atualizar,
     criar: criar
   };
