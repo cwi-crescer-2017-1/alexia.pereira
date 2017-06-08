@@ -31,5 +31,14 @@ angular.module('app').config(function ($routeProvider) {
       }
     }
   })
+  .when('/locacao', {
+    controller: 'LocacaoController',
+    templateUrl: 'locacao/locacao.html',
+    resolve: {
+      autenticado: function (authService) {
+        return authService.isAutenticadoPromise();
+      }
+    }
+  })
   .otherwise({redirectTo: '/login'});
 });

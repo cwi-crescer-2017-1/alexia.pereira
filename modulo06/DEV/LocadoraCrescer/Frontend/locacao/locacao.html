@@ -1,0 +1,9 @@
+<label ng-repeat="veiculo in veiculos">
+
+  <input
+  type="radio"
+  value="{{veiculo}}"
+  ng-model="$parent.locacao.Veiculo"
+  >
+  {{veiculo.Marca}} - {{veiculo.Nome}}
+</label>
