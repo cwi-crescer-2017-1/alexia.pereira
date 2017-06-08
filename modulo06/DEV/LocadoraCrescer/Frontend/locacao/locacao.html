@@ -14,3 +14,34 @@ Cpf do Cliente
   >
   {{veiculo.Marca}} - {{veiculo.Nome}}
 </label>
+
+<div ng-show="clienteCadastrado">
+
+<h1>Pacotes</h1>
+<label ng-repeat="pacote in pacotes">
+  <input
+  type="radio"
+  value="{{veiculo}}"
+  ng-model="$parent.locacao.Pacote"
+  >
+  {{pacote.Nome}} - {{pacote.Descricao}}
+</label>
+
+</div>
+
+<div class="checkboxes" ng-show="clienteCadastrado">
+  <h1>Opcionais</h1>
+
+  <label ng-repeat="opcional in opcionais">
+    <input
+    type="checkbox"
+    name="aulaSelecionadaI[]"
+    value="{{opcional}}"
+    ng-click="selecaoAlternada(opcional)"
+    >
+    {{opcional.Descricao}}
+  </label>
+
+</div>
+
+<button ng-click="criarLocacao(locacao)">Cadastrar Locação</button>

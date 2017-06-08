@@ -1,13 +1,38 @@
-angular.module('app').controller('LocacaoController', function ($location, $scope, veiculoService, clienteService, locacaoService) {
+angular.module('app').controller('LocacaoController', function ($location, $scope, veiculoService,
+  clienteService, locacaoService, pacoteService, opcionalService) {
 
+  $scope.opcionaisSelecionados = [];
   $scope.locacao = {};
+  $scope.selecaoAlternada = selecaoAlternada;
   $scope.buscarClientePorCpf = buscarClientePorCpf;
   $scope.cadastrarCliente = cadastrarCliente;
+  $scope.criarLocacao = criarLocacao;
   listarVeiculos();
+  listarPacotes();
+  listarOpcionais();
+
+  function criarLocacao(locacao) {
+    locacaoService.criar(locacao).then(function (response) {
+      console.log(response);
+      alert("Locação cadastrada");
+    });
+  }
 
   function listarVeiculos() {
     veiculoService.listar().then(function (response) {
       $scope.veiculos = response.data.dados;
+    })
+  }
+
+  function listarPacotes() {
+    pacoteService.listar().then(function (response) {
+      $scope.pacotes = response.data.dados;
+    })
+  }
+
+  function listarOpcionais() {
+    opcionalService.listar().then(function (response) {
+      $scope.opcionais = response.data.dados;
     })
   }
 
@@ -25,6 +50,16 @@ angular.module('app').controller('LocacaoController', function ($location, $scop
     })
   };
 
+  function selecaoAlternada(opcional) {
+    var idx = $scope.opcionaisSelecionados.indexOf(opcional);
+    if (idx > -1) {
+      $scope.opcionaisSelecionados.splice(idx, 1);
+    }
+    else {
+      $scope.opcionaisSelecionados.push(opcional);
+    }
+    $scope.locacao.locacaoOpcionais = $scope.opcionaisSelecionados.map(opcional => opcional.id);
+  };
 
   function cadastrarCliente () {
     $location.path("/administrativo");
