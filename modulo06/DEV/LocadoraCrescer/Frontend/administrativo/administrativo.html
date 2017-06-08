@@ -12,4 +12,23 @@
     </option>
   </select>
 </form>
-<button ng-click="registrarCliente(cliente)">Criar Cliente</button>
+
+ <form>
+   Cidade
+   <input type="text" ng-model="cliente.endereco.cidade">
+   Rua
+   <input type="text" placeholder="apenas números" ng-model="cliente.endereco.rua">
+   Numero
+   <input type="number" ng-model="cliente.endereco.numero">
+   <select ng-model="cliente.endereco.uf" ng-options="uf for uf in ufs">
+     <option value="">
+       {{uf}}
+     </option>
+   </select>
+ </form>
+
+ <button ng-click="registrarCliente(cliente)">Criar Cliente</button>
+
+
+
+<!--  -->
