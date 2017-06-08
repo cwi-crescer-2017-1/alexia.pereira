@@ -3,7 +3,6 @@ angular.module('app').controller('LoginController', function ($location, $scope,
 $scope.login = login;
 
 function login (usuario) {
-  debugger;
   authService.login(usuario)
       .then(
         function (response) {
