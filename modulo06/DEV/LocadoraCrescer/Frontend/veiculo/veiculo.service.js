@@ -7,6 +7,6 @@ angular.module('app').factory('veiculoService', function ($http) {
   };
 
   return {
-    listar: getTodosOsVeiculos,
+    listar: getTodosOsVeiculos
   };
 });
