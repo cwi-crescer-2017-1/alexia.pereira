@@ -18,7 +18,7 @@ namespace LocadoraCrescer.Api.Controllers
 
         [HttpPost]
         //public HttpResponseMessage Registrar([FromBody]RegistrarClienteModel model)
-        public HttpResponseMessage CadastrarLocacao([FromBody]LocacaoModel model)
+        public HttpResponseMessage Post([FromBody]LocacaoModel model)
         {
             //Buscar dados do banco
             var veiculo = new VeiculoRepositorio().Obter(model.IdVeiculo);
@@ -35,13 +35,13 @@ namespace LocadoraCrescer.Api.Controllers
 
             repositorio.Cadastrar(locacao);
 
-            return ResponderOK(new { dados = locacao });
+            return ResponderOK(locacao);
         }
 
         [HttpGet]
         public HttpResponseMessage Obter()
         {
-            return ResponderOK(new { dados = repositorio.Obter() });
+            return ResponderOK(repositorio.Obter());
         }
 
 

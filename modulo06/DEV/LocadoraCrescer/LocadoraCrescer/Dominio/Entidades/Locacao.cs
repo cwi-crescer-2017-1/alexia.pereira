@@ -19,6 +19,11 @@ namespace LocadoraCrescer.Dominio.Entidades
         public decimal ValorDesconto { get; set; }
         public List<LocacaoOpcional> LocacaoOpcionais { get; set; }
 
+        public Locacao()
+        {
+
+        }
+
         public Locacao(Veiculo veiculo, Cliente cliente, Pacote pacote,
             DateTime dataEntregaPrevista, decimal valorLocacao, List<LocacaoOpcional> locacaoOpcionais)
         {

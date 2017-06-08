@@ -96,6 +96,8 @@
     <Compile Include="Controllers\ControllerBasica.cs" />
     <Compile Include="Controllers\FuncionarioController.cs" />
     <Compile Include="Controllers\LocacoesController.cs" />
+    <Compile Include="Controllers\OpcionaisController.cs" />
+    <Compile Include="Controllers\PacotesController.cs" />
     <Compile Include="Controllers\VeiculosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
