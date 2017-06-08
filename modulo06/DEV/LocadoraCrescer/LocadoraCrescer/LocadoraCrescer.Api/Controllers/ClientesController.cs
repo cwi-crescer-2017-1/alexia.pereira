@@ -27,8 +27,6 @@ namespace LocadoraCrescer.Api.Controllers
         //public HttpResponseMessage Registrar(Cliente cliente)
         {
             var endereco = new Endereco(model.Endereco.Cidade, model.Endereco.Rua, model.Endereco.Numero, model.Endereco.UF, model.Endereco.CEP);
-            var enderecoRepositorio = new EnderecosRepositorio();
-            enderecoRepositorio.Cadastrar(endereco);
             
             if (repositorio.ObterPorCPF(model.Cpf) == null)
             {
