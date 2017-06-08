@@ -22,7 +22,7 @@ angular.module('app').config(function ($routeProvider) {
     controller: 'LoginController',
     templateUrl: 'login/login.html'
   })
-  .when('/adminstrativo', {
+  .when('/administrativo', {
     controller: 'AdministrativoController',
     templateUrl: 'administrativo/administrativo.html',
     resolve: {
