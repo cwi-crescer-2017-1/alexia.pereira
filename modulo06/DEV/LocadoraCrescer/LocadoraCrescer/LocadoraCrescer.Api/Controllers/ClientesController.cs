@@ -1,4 +1,5 @@
-﻿using LocadoraCrescer.Dominio.Entidades;
+﻿using LocadoraCrescer.Api.Models;
+using LocadoraCrescer.Dominio.Entidades;
 using LocadoraCrescer.Infraestrutura.Repositorios;
 using System;
 using System.Collections.Generic;
@@ -22,12 +23,17 @@ namespace LocadoraCrescer.Api.Controllers
         }
 
         [HttpPost, Route("registrar")]
-        //public HttpResponseMessage Registrar([FromBody]RegistrarClienteModel model)
-        public HttpResponseMessage Registrar(Cliente cliente)
+        public HttpResponseMessage Registrar([FromBody]ClienteModel model)
+        //public HttpResponseMessage Registrar(Cliente cliente)
         {
-            if (repositorio.ObterPorCPF(cliente.Cpf) == null)
+            var endereco = new Endereco(model.Endereco.Cidade, model.Endereco.Rua, model.Endereco.Numero, model.Endereco.UF, model.Endereco.CEP);
+            var enderecoRepositorio = new EnderecosRepositorio();
+            enderecoRepositorio.Cadastrar(endereco);
+            
+            if (repositorio.ObterPorCPF(model.Cpf) == null)
             {
-                var novoCliente = new Cliente(cliente.Nome, cliente.Cpf, cliente.DataNascimento, cliente.Genero);
+                var cliente = new Cliente(model.Nome, model.Cpf, model.DataNascimento, model.Genero);
+                cliente.Endereco = endereco;
 
                 if (cliente.Validar())
                 {
