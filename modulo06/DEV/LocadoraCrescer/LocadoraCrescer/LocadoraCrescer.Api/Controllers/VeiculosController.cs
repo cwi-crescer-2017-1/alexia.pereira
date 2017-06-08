@@ -17,7 +17,7 @@ namespace LocadoraCrescer.Api.Controllers
         [HttpGet]
         public HttpResponseMessage Obter()
         {
-            return ResponderOK(new { dados = repositorio.Obter() });
+            return ResponderOK(repositorio.Obter());
         }
     }
 }
