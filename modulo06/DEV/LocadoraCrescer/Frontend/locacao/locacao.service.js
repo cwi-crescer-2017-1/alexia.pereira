@@ -20,9 +20,19 @@ angular.module('app').factory('locacaoService', function ($http) {
     });
   };
 
+  function gerarRelatorioMensal(data) {
+    let parametros = {data: data};
+    return $http({
+      url: urlBase + 'relatorio',
+      method: 'GET',
+      params: parametros
+    });
+  }
+
   return {
     listar: getTodasAsLocacoes,
     criar: criar,
-    obterValor: obterValor
+    obterValor: obterValor,
+    gerarRelatorioMensal: gerarRelatorioMensal
   };
 });
