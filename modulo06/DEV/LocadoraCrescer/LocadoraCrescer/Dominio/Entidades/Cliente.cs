@@ -29,7 +29,7 @@ namespace LocadoraCrescer.Dominio.Entidades
             Genero = genero;
         }
 
-        public override bool Validar()
+        public bool ValidarCliente()
         {
             Mensagens.Clear();
 
@@ -41,5 +41,11 @@ namespace LocadoraCrescer.Dominio.Entidades
 
             return Mensagens.Count == 0;
         }
+
+        public override bool Validar()
+        {
+            return ValidarCliente();     
+        }
+
     }
 }

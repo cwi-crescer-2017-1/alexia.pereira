@@ -17,7 +17,7 @@ namespace LocadoraCrescer.Dominio.Entidades
         public DateTime? DataEntregaReal { get; private set; }
         public decimal ValorLocacao { get; private set; }
         public decimal ValorDesconto { get; private set; }
-        public List<LocacaoOpcional> LocacaoOpcionais { get; private set; }
+        public List<LocacaoOpcional> LocacaoOpcionais { get; set; }
 
         public Locacao()
         {
@@ -50,9 +50,27 @@ namespace LocadoraCrescer.Dominio.Entidades
             return Mensagens.Count == 0;
         }
 
+        public bool ValidarQuantidades()
+        {
+            if (LocacaoOpcionais.Count > 0)
+            {
+                foreach (var locacaoOpcional in LocacaoOpcionais)
+                {
+                    if (locacaoOpcional.Opcional.Quantidade <= 0)
+                    {
+                        Mensagens.Add("Opcional com quantidade inválida.");
+                        return false;
+                    }
+                }
+            }
+
+            return Veiculo.Quantidade > 0;
+
+        }
+
         public override bool Validar()
         {
-            return ValidarVeiculoEOpcional() && Cliente.Validar();
+            return ValidarVeiculoEOpcional() && Cliente.Validar() && ValidarQuantidades();
         }
 
         public void calcularValorInicialLocacao()
@@ -61,9 +79,12 @@ namespace LocadoraCrescer.Dominio.Entidades
             var totalPacote = Pacote == null ? 0 : diasLocados * Pacote.Valor;
             var totalVeiculo = diasLocados * Veiculo.ValorDiario;
             decimal totalOpcionais = 0;
-            foreach (var locacaoOpcional in LocacaoOpcionais)
+            if (LocacaoOpcionais.Count > 0)
             {
-                totalOpcionais += locacaoOpcional.Opcional.Preco;
+                foreach (var locacaoOpcional in LocacaoOpcionais)
+                {
+                    totalOpcionais += locacaoOpcional.Opcional.Preco;
+                }
             }
             ValorLocacao = totalVeiculo + totalPacote + totalOpcionais;
         }
@@ -76,9 +97,18 @@ namespace LocadoraCrescer.Dominio.Entidades
             ValorDesconto = diasDeAtraso * Veiculo.ValorAdicional;
         }
 
-        public void AtribuirDataDevolucaoReal ()
+        public void AtribuirDataDevolucaoReal()
         {
             DataEntregaReal = DateTime.Now;
+            Veiculo.Quantidade++;
+            if (LocacaoOpcionais.Count > 0)
+            {
+                foreach (var locacaoOpcional in LocacaoOpcionais)
+                {
+                    locacaoOpcional.Opcional.Quantidade++;
+                }
+            }
+
         }
 
         public void atualizarEstoqueItens()
