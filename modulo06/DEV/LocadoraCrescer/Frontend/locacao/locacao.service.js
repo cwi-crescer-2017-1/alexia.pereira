@@ -29,10 +29,15 @@ angular.module('app').factory('locacaoService', function ($http) {
     });
   }
 
+  function devolver (id) {
+    return $http.put(urlBase + 'devolver/' + id);
+  }
+
   return {
     listar: getTodasAsLocacoes,
     criar: criar,
     obterValor: obterValor,
-    gerarRelatorioMensal: gerarRelatorioMensal
+    gerarRelatorioMensal: gerarRelatorioMensal,
+    devolver: devolver
   };
 });

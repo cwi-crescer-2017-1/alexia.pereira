@@ -54,3 +54,15 @@ Cpf do Cliente
   {{mostrarValor}}
 </span>
 <button ng-click="criarLocacao(locacao)">Cadastrar Locação</button>
+
+
+<h1> Locações </h1>
+<div ng-repeat="locacao in locacoes">
+  Veiculo: {{locacao.Veiculo.Nome}}
+  Cliente: {{locacao.Cliente.Nome}}
+  Pacote: {{locacao.Pacote.Nome}}
+  Valor: {{locacao.ValorLocacao}}
+  Data de Retirada: {{locacao.DataLocacao}}
+  Data de Entrega Prevista: {{locacao.DataEntregaPrevista}}
+  <button ng-show="locacao.DataEntregaReal == null" ng-click="devolver(locacao)"> Devolver </button>
+</div>

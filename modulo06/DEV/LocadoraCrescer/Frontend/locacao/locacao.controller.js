@@ -11,9 +11,11 @@ angular.module('app').controller('LocacaoController', function ($location, $scop
   $scope.cadastrarCliente = cadastrarCliente;
   $scope.criarLocacao = criarLocacao;
   $scope.consultarValor = consultarValor;
+  $scope.devolver = devolver;
   listarVeiculos();
   listarPacotes();
   listarOpcionais();
+  listarLocacoes();
 
   function criarLocacao(locacao) {
 
@@ -85,6 +87,19 @@ angular.module('app').controller('LocacaoController', function ($location, $scop
     locacaoService.obterValor(model).then(function (response) {
       $scope.valorConsultado = true;
       $scope.mostrarValor = response.data.dados;
+    })
+  }
+
+  function devolver (locacao) {
+    locacaoService.devolver(locacao.Id).then(function (response) {
+      console.log(response);
+      alert("Locação devolvida")
+    })
+  }
+
+  function listarLocacoes() {
+    return locacaoService.listar().then(function (response) {
+      $scope.locacoes = response.data.dados;
     })
   }
 
