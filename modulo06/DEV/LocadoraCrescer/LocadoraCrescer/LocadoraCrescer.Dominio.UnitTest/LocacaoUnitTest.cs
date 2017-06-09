@@ -12,11 +12,11 @@ namespace LocadoraCrescer.Dominio.UnitTest
         public void Deve_Criar_Locacao_Kombi_Cabo_Bateria()
         {
             var cliente = new Cliente("Teste", "70707070707", DateTime.Now, Genero.MASCULINO);
-            var veiculo = new Veiculo() { Nome = "Kombi" };
+            var veiculo = new Veiculo() { Nome = "Kombi", Quantidade = 2 };
             var locacao = new Locacao(veiculo, cliente, null, DateTime.Now);
             locacao.LocacaoOpcionais.Add
                 (new LocacaoOpcional(locacao, new Opcional()
-                { Descricao = "Cabo Bateria" }));
+                { Descricao = "Cabo Bateria", Quantidade = 2 }));
             Assert.IsTrue(locacao.Validar());
             Assert.IsFalse(locacao.Mensagens.Any());
         }
@@ -56,11 +56,11 @@ namespace LocadoraCrescer.Dominio.UnitTest
         public void Deve_Criar_Locacao_Mobi_Rack()
         {
             var cliente = new Cliente("Teste", "70707070707", DateTime.Now, Genero.MASCULINO);
-            var veiculo = new Veiculo() { Nome = "Mobi" };
+            var veiculo = new Veiculo() { Nome = "Mobi", Quantidade = 2 };
             var locacao = new Locacao(veiculo, cliente, null, DateTime.Now);
             locacao.LocacaoOpcionais.Add
                 (new LocacaoOpcional(locacao, new Opcional()
-                { Descricao = "Rack" }));
+                { Descricao = "Rack", Quantidade = 2 }));
             Assert.IsTrue(locacao.Validar());
             Assert.IsFalse(locacao.Mensagens.Any());
         }
@@ -69,11 +69,11 @@ namespace LocadoraCrescer.Dominio.UnitTest
         public void Deve_Criar_Locacao_Hilux_Reboque()
         {
             var cliente = new Cliente("Teste", "70707070707", DateTime.Now, Genero.MASCULINO);
-            var veiculo = new Veiculo() { Nome = "Hilux" };
+            var veiculo = new Veiculo() { Nome = "Hilux", Quantidade = 2 };
             var locacao = new Locacao(veiculo, cliente, null, DateTime.Now);
             locacao.LocacaoOpcionais.Add
                 (new LocacaoOpcional(locacao, new Opcional()
-                { Descricao = "Reboque" }));
+                { Descricao = "Reboque", Quantidade = 2 }));
             Assert.IsTrue(locacao.Validar());
             Assert.IsFalse(locacao.Mensagens.Any());
         }
@@ -108,7 +108,21 @@ namespace LocadoraCrescer.Dominio.UnitTest
             Assert.IsTrue(locacao.Mensagens.Any());
             Assert.IsTrue(locacao.Mensagens[0] == "Hilux não pode ter Rack.");
             Assert.IsTrue(locacao.Mensagens[1] == "Apenas Kombi pode ter Cabo Bateria.");
-
         }
+
+        [TestMethod]
+        public void Nao_Deve_Criar_Locacao_Hilux_Quantidade_Invalida()
+        {
+            var cliente = new Cliente("Teste", "70707070707", DateTime.Now, Genero.MASCULINO);
+            var veiculo = new Veiculo() { Nome = "Hilux", Quantidade = 2 };
+            var locacao = new Locacao(veiculo, cliente, null, DateTime.Now);
+            locacao.LocacaoOpcionais.Add
+                (new LocacaoOpcional(locacao, new Opcional()
+                { Descricao = "Reboque", Quantidade = 0 }));
+            Assert.IsFalse(locacao.Validar());
+            Assert.IsTrue(locacao.Mensagens.Any());
+            Assert.IsTrue(locacao.Mensagens[0] == "Opcional com quantidade inválida.");
+        }
+
     }
 }
