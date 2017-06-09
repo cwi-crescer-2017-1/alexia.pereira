@@ -52,6 +52,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ClienteUnitTest.cs" />
     <Compile Include="EnderecoUnitTest.cs" />
+    <Compile Include="LocacaoUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
