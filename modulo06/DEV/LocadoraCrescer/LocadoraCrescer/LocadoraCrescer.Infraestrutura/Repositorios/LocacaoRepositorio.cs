@@ -45,10 +45,7 @@ namespace LocadoraCrescer.Infraestrutura.Repositorios
                 var opcional = contexto.Opcionais.FirstOrDefault(o => o.Id == id);
                 locacao.LocacaoOpcionais.Add(new LocacaoOpcional(locacao, opcional));
             }
-
-            if (!locacao.Validar())
-                throw new Exception("Combinação inválida");
-
+            
             locacao.calcularValorInicialLocacao();
             locacao.atualizarEstoqueItens();
             

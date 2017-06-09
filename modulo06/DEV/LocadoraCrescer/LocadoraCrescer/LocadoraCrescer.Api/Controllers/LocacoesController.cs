@@ -24,6 +24,9 @@ namespace LocadoraCrescer.Api.Controllers
             var locacao = repositorio.Criar(model.IdCliente, model.IdVeiculo,
                 model.IdPacote, model.DataEntregaPrevista, model.IdLocacaoOpcional);
 
+            if (!locacao.Validar())
+                return ResponderErro(locacao.Mensagens);
+
             repositorio.Cadastrar(locacao);
 
             return ResponderOK(locacao);
