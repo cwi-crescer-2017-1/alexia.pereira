@@ -15,37 +15,16 @@ namespace LocadoraCrescer.Api.Controllers
     [RoutePrefix("api/locacoes")]
     public class LocacoesController : ControllerBasica
     {
+        //Contexto contexto = new Contexto();
         LocacoesRepositorio repositorio = new LocacoesRepositorio();
 
         [HttpPost, Route("cadastrar")]
-        
         public HttpResponseMessage Post([FromBody]LocacaoModel model)
         {
-            Pacote pacote = null;
-            var opcionais = new List<LocacaoOpcional>();
-            var cliente = new ClientesRepositorio().ObterPorId(model.IdCliente);
-            var veiculo = new VeiculoRepositorio().Obter(model.IdVeiculo);
-
-            if (model.IdPacote > 0)
-                pacote = new PacotesRepositorio().Obter(model.IdPacote);
-
-            
-            var locacao = new Locacao(veiculo, cliente, pacote, model.DataEntregaPrevista);
-            
-            foreach (var id in model.IdLocacaoOpcional)
-            {
-                var opcional = new OpcionaisRepositorio().Obter(id);
-                locacao.LocacaoOpcionais.Add(new LocacaoOpcional(locacao, opcional));
-            }
-
-            if (!locacao.Validar())
-                ResponderErro(locacao.Mensagens);
-
-            locacao.calcularValorInicialLocacao();
-            repositorio.Cadastrar(locacao);
+            var locacao = repositorio.Cadastrar(model.IdCliente, model.IdVeiculo,
+                model.IdPacote, model.DataEntregaPrevista, model.IdLocacaoOpcional);
 
             return ResponderOK(locacao);
-
         }
 
         [HttpGet, Route("obter")]
@@ -54,13 +33,26 @@ namespace LocadoraCrescer.Api.Controllers
             return ResponderOK(repositorio.Obter());
         }
 
-        [HttpPut, Route("devolver")]
-        public HttpResponseMessage Devolver(Locacao locacao)
+        [HttpPut, Route("devolver/{id:int}")]
+        public HttpResponseMessage Devolver(int id)
         {
+            var locacao = repositorio.Obter(id);
             locacao.AtribuirDataDevolucaoReal();
             return ResponderOK(repositorio.Atualizar(locacao));
         }
 
+        [HttpGet, Route("atrasados")]
+        public HttpResponseMessage ClientesAtrasados()
+        {
+            return ResponderOK(repositorio.ObterClientesComLocacoesAtrasadas());
+        }
+
+        [BasicAuthorization(Roles = "Gerente")]
+        [HttpGet, Route("relatorio")]
+        public HttpResponseMessage GerarRelatorioMensal(DateTime data)
+        {
+            return ResponderOK(repositorio.BuscarLocacoesPorMes(data));
+        }
 
     }
 }

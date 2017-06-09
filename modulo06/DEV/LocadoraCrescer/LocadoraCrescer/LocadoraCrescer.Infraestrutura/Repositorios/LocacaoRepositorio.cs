@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.SqlServer;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,10 +23,34 @@ namespace LocadoraCrescer.Infraestrutura.Repositorios
             return contexto.Locacoes.ToList();
         }
 
-        public void Cadastrar(Locacao locacao)
+        public Locacao Cadastrar(int idCliente, int idVeiculo, int idPacote, 
+            DateTime dataEntregaPrevista, List<int> idLocacaoOpcional)
         {
+            Pacote pacote = null;
+            var cliente = contexto.Clientes.FirstOrDefault(c => c.Id == idCliente);
+            var veiculo = contexto.Veiculos.FirstOrDefault(v => v.Id == idVeiculo);
+
+            if (idPacote > 0)
+                pacote = contexto.Pacotes.FirstOrDefault(p => p.Id == idPacote);
+
+
+            var locacao = new Locacao(veiculo, cliente, pacote, dataEntregaPrevista);
+
+            foreach (var id in idLocacaoOpcional)
+            {
+                var opcional = contexto.Opcionais.FirstOrDefault(o => o.Id == id);
+                locacao.LocacaoOpcionais.Add(new LocacaoOpcional(locacao, opcional));
+            }
+
+            if (!locacao.Validar())
+                throw new Exception(locacao.Mensagens.ToString());
+
+            locacao.calcularValorInicialLocacao();
+            locacao.atualizarEstoqueItens();
+
             contexto.Locacoes.Add(locacao);
             contexto.SaveChanges();
+            return locacao;
         }
 
         public Locacao Obter(int id)
@@ -37,7 +62,8 @@ namespace LocadoraCrescer.Infraestrutura.Repositorios
         {
             return contexto.Locacoes
                 .Include("Cliente")
-                .Where(l => l.DataEntregaReal == null && l.DataEntregaPrevista < DateTime.Now)
+                .Where(l => l.DataEntregaReal == null && DateTime.Compare(l.DataEntregaPrevista, DateTime.Now) < 0)
+                .OrderBy(l => SqlFunctions.DateDiff("dd", l.DataEntregaPrevista, DateTime.Now))
                 .Select(l => l.Cliente)
                 .ToList();
         }
@@ -65,5 +91,10 @@ namespace LocadoraCrescer.Infraestrutura.Repositorios
             contexto.Dispose();
         }
 
+        public List<Locacao> BuscarLocacoesPorMes(DateTime data)
+        {
+            return contexto.Locacoes.Where(l => l.DataEntregaReal != null
+            && DbFunctions.AddDays(l.DataEntregaReal, 30) >= data).ToList();
+        }
     }
 }
