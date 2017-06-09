@@ -9,8 +9,8 @@ Cpf do Cliente
 <label ng-repeat="veiculo in veiculos" ng-show="clienteCadastrado">
   <input
   type="radio"
-  value="{{veiculo}}"
-  ng-model="$parent.locacao.Veiculo"
+  ng-value="veiculo"
+  ng-model="$parent.locacao.veiculo"
   >
   {{veiculo.Marca}} - {{veiculo.Nome}}
 </label>
@@ -21,8 +21,8 @@ Cpf do Cliente
 <label ng-repeat="pacote in pacotes">
   <input
   type="radio"
-  value="{{veiculo}}"
-  ng-model="$parent.locacao.Pacote"
+  ng-value="pacote"
+  ng-model="$parent.locacao.pacote"
   >
   {{pacote.Nome}} - {{pacote.Descricao}}
 </label>
@@ -44,4 +44,13 @@ Cpf do Cliente
 
 </div>
 
+<div>
+  Data Entrega
+  <input type="date" ng-model="locacao.DataEntregaPrevista">
+</div>
+
+<button ng-click="consultarValor(locacao)"> Consultar Valor </button>
+<span ng-show="valorConsultado">
+  {{mostrarValor}}
+</span>
 <button ng-click="criarLocacao(locacao)">Cadastrar Locação</button>
