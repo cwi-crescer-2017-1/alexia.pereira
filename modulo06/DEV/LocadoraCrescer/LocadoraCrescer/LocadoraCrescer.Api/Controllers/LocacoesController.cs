@@ -48,6 +48,7 @@ namespace LocadoraCrescer.Api.Controllers
         {
             var locacao = repositorio.Obter(id);
             locacao.AtribuirDataDevolucaoReal();
+            locacao.calcularDevolucao();
             return ResponderOK(repositorio.Atualizar(locacao));
         }
 
