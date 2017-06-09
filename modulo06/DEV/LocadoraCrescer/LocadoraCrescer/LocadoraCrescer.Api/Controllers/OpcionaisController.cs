@@ -8,6 +8,7 @@ using System.Web.Http;
 
 namespace LocadoraCrescer.Api.Controllers
 {
+    [BasicAuthorization]
     public class OpcionaisController : ControllerBasica
     {
         OpcionaisRepositorio repositorio = new OpcionaisRepositorio();
