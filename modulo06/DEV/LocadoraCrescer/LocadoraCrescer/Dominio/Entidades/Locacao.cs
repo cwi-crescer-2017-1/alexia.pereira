@@ -52,7 +52,7 @@ namespace LocadoraCrescer.Dominio.Entidades
 
         public override bool Validar()
         {
-            return ValidarVeiculoEOpcional();
+            return ValidarVeiculoEOpcional() && Cliente.Validar();
         }
 
         public void calcularValorInicialLocacao()
@@ -77,6 +77,15 @@ namespace LocadoraCrescer.Dominio.Entidades
         public void AtribuirDataDevolucaoReal ()
         {
             DataEntregaReal = DateTime.Now;
+        }
+
+        public void atualizarEstoqueItens()
+        {
+            Veiculo.AtualizarEstoque();
+            foreach (var locacaoOpcional in LocacaoOpcionais)
+            {
+                locacaoOpcional.Opcional.AtualizarEstoque();
+            }
         }
 
     }
