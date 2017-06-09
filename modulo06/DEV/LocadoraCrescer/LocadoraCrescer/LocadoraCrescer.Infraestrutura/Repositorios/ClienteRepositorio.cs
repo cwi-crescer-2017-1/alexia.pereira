@@ -25,6 +25,7 @@ namespace LocadoraCrescer.Infraestrutura.Repositorios
         public Cliente ObterPorCPF(string cpf)
         {
             return contexto.Clientes
+                .Include("Endereco")
                 .FirstOrDefault(c => c.Cpf == cpf);
         }
 

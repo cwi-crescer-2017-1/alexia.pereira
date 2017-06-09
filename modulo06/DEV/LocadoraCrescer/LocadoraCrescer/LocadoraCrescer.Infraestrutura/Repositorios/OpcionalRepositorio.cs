@@ -19,7 +19,9 @@ namespace LocadoraCrescer.Infraestrutura.Repositorios
 
         public List<Opcional> Obter()
         {
-            return contexto.Opcionais.ToList();
+            return contexto.Opcionais
+                .Where(o => o.Quantidade > 0)
+                .ToList();
         }
 
         public Opcional Obter(int id)

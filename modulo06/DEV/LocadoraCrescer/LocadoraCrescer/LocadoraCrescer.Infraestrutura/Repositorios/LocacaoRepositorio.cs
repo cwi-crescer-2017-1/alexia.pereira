@@ -40,11 +40,15 @@ namespace LocadoraCrescer.Infraestrutura.Repositorios
 
             var locacao = new Locacao(veiculo, cliente, pacote, dataEntregaPrevista);
 
-            foreach (var id in idLocacaoOpcional)
+            if (idLocacaoOpcional != null)
             {
-                var opcional = contexto.Opcionais.FirstOrDefault(o => o.Id == id);
-                locacao.LocacaoOpcionais.Add(new LocacaoOpcional(locacao, opcional));
+                foreach (var id in idLocacaoOpcional)
+                {
+                    var opcional = contexto.Opcionais.FirstOrDefault(o => o.Id == id);
+                    locacao.LocacaoOpcionais.Add(new LocacaoOpcional(locacao, opcional));
+                }
             }
+            
             
             locacao.calcularValorInicialLocacao();
             locacao.atualizarEstoqueItens();
@@ -106,6 +110,14 @@ namespace LocadoraCrescer.Infraestrutura.Repositorios
         {
             return contexto.Locacoes.Where(l => l.DataEntregaReal != null
             && DbFunctions.AddDays(l.DataEntregaReal, 30) >= data).ToList();
+        }
+
+        public List<LocacaoOpcional> ObterLocacoesOpcionais (int idLocacao)
+        {
+            return contexto.LocacoesOpcionais
+                .Include("Opcional")
+                .Where(lo => lo.Locacao.Id == idLocacao)
+                .ToList();
         }
     }
 }
