@@ -23,7 +23,7 @@ namespace LocadoraCrescer.Infraestrutura.Repositorios
             return contexto.Locacoes.ToList();
         }
 
-        public Locacao Cadastrar(int idCliente, int idVeiculo, int idPacote, 
+        public Locacao Criar(int idCliente, int idVeiculo, int idPacote,
             DateTime dataEntregaPrevista, List<int> idLocacaoOpcional)
         {
             Pacote pacote = null;
@@ -43,14 +43,20 @@ namespace LocadoraCrescer.Infraestrutura.Repositorios
             }
 
             if (!locacao.Validar())
-                throw new Exception(locacao.Mensagens.ToString());
+                throw new Exception("Combinação inválida");
 
             locacao.calcularValorInicialLocacao();
             locacao.atualizarEstoqueItens();
+            
+            return locacao;
+        }
 
+        
+        public void Cadastrar(Locacao locacao)
+        {
             contexto.Locacoes.Add(locacao);
             contexto.SaveChanges();
-            return locacao;
+            
         }
 
         public Locacao Obter(int id)

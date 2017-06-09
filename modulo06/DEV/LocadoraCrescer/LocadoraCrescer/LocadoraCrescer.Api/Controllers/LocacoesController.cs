@@ -21,10 +21,20 @@ namespace LocadoraCrescer.Api.Controllers
         [HttpPost, Route("cadastrar")]
         public HttpResponseMessage Post([FromBody]LocacaoModel model)
         {
-            var locacao = repositorio.Cadastrar(model.IdCliente, model.IdVeiculo,
+            var locacao = repositorio.Criar(model.IdCliente, model.IdVeiculo,
                 model.IdPacote, model.DataEntregaPrevista, model.IdLocacaoOpcional);
 
+            repositorio.Cadastrar(locacao);
+
             return ResponderOK(locacao);
+        }
+
+        [HttpGet, Route("valor")]
+        public HttpResponseMessage ObterValorLocacao(LocacaoModel model)
+        {
+            var locacao = repositorio.Criar(model.IdCliente, model.IdVeiculo,
+                model.IdPacote, model.DataEntregaPrevista, model.IdLocacaoOpcional);
+            return ResponderOK(locacao.ValorLocacao);
         }
 
         [HttpGet, Route("obter")]
