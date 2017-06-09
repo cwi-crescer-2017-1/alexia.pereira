@@ -13,7 +13,7 @@ namespace LocadoraCrescer.Dominio.UnitTest
         {
             var cliente = new Cliente("Teste", "70707070707", DateTime.Now, Genero.MASCULINO);
             var veiculo = new Veiculo() { Nome = "Kombi" };
-            var locacao = new Locacao(veiculo, cliente, null, DateTime.Now, 1200);
+            var locacao = new Locacao(veiculo, cliente, null, DateTime.Now);
             locacao.LocacaoOpcionais.Add
                 (new LocacaoOpcional(locacao, new Opcional()
                 { Descricao = "Cabo Bateria" }));
@@ -26,7 +26,7 @@ namespace LocadoraCrescer.Dominio.UnitTest
         {
             var cliente = new Cliente("Teste", "70707070707", DateTime.Now, Genero.MASCULINO);
             var veiculo = new Veiculo() { Nome = "Mobi" };
-            var locacao = new Locacao(veiculo, cliente, null, DateTime.Now, 1200);
+            var locacao = new Locacao(veiculo, cliente, null, DateTime.Now);
             locacao.LocacaoOpcionais.Add
                 (new LocacaoOpcional(locacao, new Opcional()
                 { Descricao = "Cabo Bateria" }));
@@ -40,7 +40,7 @@ namespace LocadoraCrescer.Dominio.UnitTest
         {
             var cliente = new Cliente("Teste", "70707070707", DateTime.Now, Genero.MASCULINO);
             var veiculo = new Veiculo() { Nome = "Mobi" };
-            var locacao = new Locacao(veiculo, cliente, null, DateTime.Now, 1200);
+            var locacao = new Locacao(veiculo, cliente, null, DateTime.Now);
             locacao.LocacaoOpcionais.Add
                 (new LocacaoOpcional(locacao, new Opcional()
                 { Descricao = "Reboque" }));
@@ -57,7 +57,7 @@ namespace LocadoraCrescer.Dominio.UnitTest
         {
             var cliente = new Cliente("Teste", "70707070707", DateTime.Now, Genero.MASCULINO);
             var veiculo = new Veiculo() { Nome = "Mobi" };
-            var locacao = new Locacao(veiculo, cliente, null, DateTime.Now, 1200);
+            var locacao = new Locacao(veiculo, cliente, null, DateTime.Now);
             locacao.LocacaoOpcionais.Add
                 (new LocacaoOpcional(locacao, new Opcional()
                 { Descricao = "Rack" }));
@@ -70,7 +70,7 @@ namespace LocadoraCrescer.Dominio.UnitTest
         {
             var cliente = new Cliente("Teste", "70707070707", DateTime.Now, Genero.MASCULINO);
             var veiculo = new Veiculo() { Nome = "Hilux" };
-            var locacao = new Locacao(veiculo, cliente, null, DateTime.Now, 1200);
+            var locacao = new Locacao(veiculo, cliente, null, DateTime.Now);
             locacao.LocacaoOpcionais.Add
                 (new LocacaoOpcional(locacao, new Opcional()
                 { Descricao = "Reboque" }));
@@ -83,7 +83,7 @@ namespace LocadoraCrescer.Dominio.UnitTest
         {
             var cliente = new Cliente("Teste", "70707070707", DateTime.Now, Genero.MASCULINO);
             var veiculo = new Veiculo() { Nome = "Hilux" };
-            var locacao = new Locacao(veiculo, cliente, null, DateTime.Now, 1200);
+            var locacao = new Locacao(veiculo, cliente, null, DateTime.Now);
             locacao.LocacaoOpcionais.Add
                 (new LocacaoOpcional(locacao, new Opcional()
                 { Descricao = "Rack" }));
@@ -97,7 +97,7 @@ namespace LocadoraCrescer.Dominio.UnitTest
         {
             var cliente = new Cliente("Teste", "70707070707", DateTime.Now, Genero.MASCULINO);
             var veiculo = new Veiculo() { Nome = "Hilux" };
-            var locacao = new Locacao(veiculo, cliente, null, DateTime.Now, 1200);
+            var locacao = new Locacao(veiculo, cliente, null, DateTime.Now);
             locacao.LocacaoOpcionais.Add
                 (new LocacaoOpcional(locacao, new Opcional()
                 { Descricao = "Rack" }));

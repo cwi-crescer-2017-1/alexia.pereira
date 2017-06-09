@@ -13,7 +13,6 @@ namespace LocadoraCrescer.Api.Models
         public int IdCliente { get; set; }
         public int IdPacote { get; set; }
         public DateTime DataEntregaPrevista { get; set; }
-        public decimal ValorLocacao { get; set; }
         public List<int> IdLocacaoOpcional { get; set; }
     }
 }

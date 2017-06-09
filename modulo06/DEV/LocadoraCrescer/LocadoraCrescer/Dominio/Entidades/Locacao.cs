@@ -25,13 +25,12 @@ namespace LocadoraCrescer.Dominio.Entidades
         }
 
         public Locacao(Veiculo veiculo, Cliente cliente, Pacote pacote,
-            DateTime dataEntregaPrevista, decimal valorLocacao)
+            DateTime dataEntregaPrevista)
         {
             Veiculo = veiculo;
             Cliente = cliente;
             Pacote = pacote;
             DataEntregaPrevista = dataEntregaPrevista;
-            ValorLocacao = valorLocacao;
             DataLocacao = DateTime.Now;
             LocacaoOpcionais = new List<LocacaoOpcional>();
         }
