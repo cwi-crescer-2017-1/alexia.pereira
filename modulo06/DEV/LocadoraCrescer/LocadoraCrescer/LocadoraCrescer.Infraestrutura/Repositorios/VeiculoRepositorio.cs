@@ -25,7 +25,9 @@ namespace LocadoraCrescer.Infraestrutura.Repositorios
 
         public List<Veiculo> Obter()
         {
-            return contexto.Veiculos.ToList();
+            return contexto.Veiculos
+                .Where(v => v.Quantidade > 0)
+                .ToList();
         }
 
         public Veiculo Obter(int id)
