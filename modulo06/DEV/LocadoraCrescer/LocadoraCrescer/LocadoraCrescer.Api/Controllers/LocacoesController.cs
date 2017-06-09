@@ -12,33 +12,43 @@ using System.Web.Http;
 namespace LocadoraCrescer.Api.Controllers
 {
     [BasicAuthorization]
+    [RoutePrefix("api/locacoes")]
     public class LocacoesController : ControllerBasica
     {
         LocacoesRepositorio repositorio = new LocacoesRepositorio();
 
-        [HttpPost]
-        //public HttpResponseMessage Registrar([FromBody]RegistrarClienteModel model)
+        [HttpPost, Route("cadastrar")]
+        
         public HttpResponseMessage Post([FromBody]LocacaoModel model)
         {
-            //Buscar dados do banco
-            var veiculo = new VeiculoRepositorio().Obter(model.IdVeiculo);
+            Pacote pacote = null;
+            var opcionais = new List<LocacaoOpcional>();
             var cliente = new ClientesRepositorio().ObterPorId(model.IdCliente);
-            var pacote = new PacotesRepositorio().Obter(model.IdPacote);
-            var listaLocacaoOpcional = new List<LocacaoOpcional>();
-            foreach (var locacaoOpcional in model.IdLocacaoOpcional)
+            var veiculo = new VeiculoRepositorio().Obter(model.IdVeiculo);
+
+            if (model.IdPacote > 0)
+                pacote = new PacotesRepositorio().Obter(model.IdPacote);
+
+            
+            var locacao = new Locacao(veiculo, cliente, pacote, model.DataEntregaPrevista,
+                model.ValorLocacao);
+            
+            foreach (var id in model.IdLocacaoOpcional)
             {
-                listaLocacaoOpcional.Add(new LocacoesOpcionaisRepositorio().Obter(locacaoOpcional));
+                var opcional = new OpcionaisRepositorio().Obter(id);
+                locacao.LocacaoOpcionais.Add(new LocacaoOpcional(locacao, opcional));
             }
 
-            var locacao = new Locacao(veiculo, cliente, pacote, model.DataEntregaPrevista,
-                model.ValorLocacao, listaLocacaoOpcional);
+            if (locacao.Validar())
+                ResponderErro(locacao.Mensagens);
 
             repositorio.Cadastrar(locacao);
 
             return ResponderOK(locacao);
+
         }
 
-        [HttpGet]
+        [HttpGet, Route("obter")]
         public HttpResponseMessage Obter()
         {
             return ResponderOK(repositorio.Obter());
