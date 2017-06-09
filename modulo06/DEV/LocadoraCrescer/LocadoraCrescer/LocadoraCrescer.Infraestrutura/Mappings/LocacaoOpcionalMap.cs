@@ -13,8 +13,7 @@ namespace LocadoraCrescer.Infraestrutura.Mappings
         public LocacaoOpcionalMap()
         {
             ToTable("LocacaoOpcional");
-            HasRequired(x => x.Locacao).WithMany().Map(x => x.MapKey("IdLocacao"));
-            HasRequired(x => x.Opcional).WithMany().Map(x => x.MapKey("IdOpcional"));
+           
         }
     }
 }
