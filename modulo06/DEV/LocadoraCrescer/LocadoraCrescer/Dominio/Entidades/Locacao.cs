@@ -8,16 +8,16 @@ namespace LocadoraCrescer.Dominio.Entidades
 {
     public class Locacao : EntidadeBasica
     {
-        public int Id { get; set; }
-        public Veiculo Veiculo { get; set; }
-        public Cliente Cliente { get; set; }
-        public Pacote Pacote { get; set; }
-        public DateTime DataLocacao { get; set; }
-        public DateTime DataEntregaPrevista { get; set; }
-        public DateTime? DataEntregaReal { get; set; }
-        public decimal ValorLocacao { get; set; }
-        public decimal ValorDesconto { get; set; }
-        public List<LocacaoOpcional> LocacaoOpcionais { get; set; }
+        public int Id { get; private set; }
+        public Veiculo Veiculo { get; private set; }
+        public Cliente Cliente { get; private set; }
+        public Pacote Pacote { get; private set; }
+        public DateTime DataLocacao { get; private set; }
+        public DateTime DataEntregaPrevista { get; private set; }
+        public DateTime? DataEntregaReal { get; private set; }
+        public decimal ValorLocacao { get; private set; }
+        public decimal ValorDesconto { get; private set; }
+        public List<LocacaoOpcional> LocacaoOpcionais { get; private set; }
 
         public Locacao()
         {
@@ -54,5 +54,30 @@ namespace LocadoraCrescer.Dominio.Entidades
         {
             return ValidarVeiculoEOpcional();
         }
+
+        public void calcularValorInicialLocacao()
+        {
+            var diasLocados = Convert.ToInt32(DataEntregaPrevista.Subtract(DataLocacao).TotalDays);
+            var totalPacote = Pacote == null ? 0 : diasLocados * Pacote.Valor;
+            var totalVeiculo = diasLocados * Veiculo.ValorDiario;
+            decimal totalOpcionais = 0;
+            foreach (var locacaoOpcional in LocacaoOpcionais)
+            {
+                totalOpcionais += locacaoOpcional.Opcional.Preco;
+            }
+            ValorLocacao = totalVeiculo + totalPacote + totalOpcionais;
+        }
+
+        public void calcularDevolucao()
+        {
+            var diasDeAtraso = Convert.ToInt32(DataEntregaReal.Value.Subtract(DataEntregaPrevista).TotalDays);
+            ValorDesconto = diasDeAtraso * Veiculo.ValorAdicional;
+        }
+
+        public void AtribuirDataDevolucaoReal ()
+        {
+            DataEntregaReal = DateTime.Now;
+        }
+
     }
 }
