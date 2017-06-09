@@ -32,7 +32,7 @@ namespace LocadoraCrescer.Api.Controllers
             return ResponderOK(locacao);
         }
 
-        [HttpGet, Route("valor")]
+        [HttpPost, Route("valor")]
         public HttpResponseMessage ObterValorLocacao(LocacaoModel model)
         {
             var locacao = repositorio.Criar(model.IdCliente, model.IdVeiculo,
@@ -50,6 +50,7 @@ namespace LocadoraCrescer.Api.Controllers
         public HttpResponseMessage Devolver(int id)
         {
             var locacao = repositorio.Obter(id);
+            locacao.LocacaoOpcionais = repositorio.ObterLocacoesOpcionais(locacao.Id);
             locacao.AtribuirDataDevolucaoReal();
             locacao.calcularDevolucao();
             return ResponderOK(repositorio.Atualizar(locacao));
