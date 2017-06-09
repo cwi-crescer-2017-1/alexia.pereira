@@ -12,6 +12,17 @@ namespace LocadoraCrescer.Dominio.Entidades
         public int Id { get; set; }
         public Locacao Locacao { get; set; }
         public Opcional Opcional { get; set; }
-        public int Quantidade { get; set; }
+
+        public LocacaoOpcional()
+        {
+
+        }
+
+        public LocacaoOpcional(Locacao locacao, Opcional opcional)
+        {
+            Locacao = locacao;
+            Opcional = opcional;
+        }
     }
+
 }

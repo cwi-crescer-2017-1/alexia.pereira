@@ -21,6 +21,11 @@ namespace LocadoraCrescer.Dominio.Entidades
             CEP = cep;
         }
 
+        public Endereco()
+        {
+
+        }
+
         public override bool Validar()
         {
             Mensagens.Clear();
