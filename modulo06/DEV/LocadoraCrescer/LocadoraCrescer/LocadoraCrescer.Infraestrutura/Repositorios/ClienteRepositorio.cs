@@ -36,7 +36,9 @@ namespace LocadoraCrescer.Infraestrutura.Repositorios
 
         public Cliente ObterPorId(int id)
         {
-            return contexto.Clientes.FirstOrDefault(c => c.Id == id);
+            return contexto.Clientes
+                .Include("Endereco")
+                .FirstOrDefault(c => c.Id == id);
         }
 
         public void Remover(int id)
