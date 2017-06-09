@@ -13,5 +13,10 @@ namespace LocadoraCrescer.Dominio.Entidades
         public decimal Preco { get; set; }
         public int Quantidade { get; set; }
 
+        public void AtualizarEstoque()
+        {
+            Quantidade = Quantidade - 1;
+        }
+
     }
 }

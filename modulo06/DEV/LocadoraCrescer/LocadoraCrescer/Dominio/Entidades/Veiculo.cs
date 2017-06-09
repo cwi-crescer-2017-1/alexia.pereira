@@ -15,5 +15,11 @@ namespace LocadoraCrescer.Dominio.Entidades
         public bool Status { get; set; }
         public decimal ValorDiario { get; set; }
         public decimal ValorAdicional { get; set; }
+
+        public void AtualizarEstoque()
+        {
+            Quantidade = Quantidade - 1;
+        }
+
     }
 }
