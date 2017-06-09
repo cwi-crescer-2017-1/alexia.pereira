@@ -71,6 +71,8 @@ namespace LocadoraCrescer.Dominio.Entidades
         public void calcularDevolucao()
         {
             var diasDeAtraso = Convert.ToInt32(DataEntregaReal.Value.Subtract(DataEntregaPrevista).TotalDays);
+            if (diasDeAtraso < 0)
+                diasDeAtraso = 0;
             ValorDesconto = diasDeAtraso * Veiculo.ValorAdicional;
         }
 

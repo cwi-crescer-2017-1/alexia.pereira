@@ -20,7 +20,11 @@ namespace LocadoraCrescer.Infraestrutura.Repositorios
 
         public List<Locacao> Obter()
         {
-            return contexto.Locacoes.ToList();
+            return contexto.Locacoes
+                 .Include("Cliente")
+                .Include("Veiculo")
+                .Include("Pacote")
+                .ToList();
         }
 
         public Locacao Criar(int idCliente, int idVeiculo, int idPacote,
@@ -61,7 +65,11 @@ namespace LocadoraCrescer.Infraestrutura.Repositorios
 
         public Locacao Obter(int id)
         {
-            return contexto.Locacoes.FirstOrDefault(l => l.Id == id);
+            return contexto.Locacoes
+                .Include("Cliente")
+                .Include("Veiculo")
+                .Include("Pacote")
+                .FirstOrDefault(l => l.Id == id);
         }
 
         public List<Cliente> ObterClientesComLocacoesAtrasadas()
