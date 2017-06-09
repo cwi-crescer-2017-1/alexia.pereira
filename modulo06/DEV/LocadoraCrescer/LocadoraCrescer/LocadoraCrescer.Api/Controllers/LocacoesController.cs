@@ -30,8 +30,7 @@ namespace LocadoraCrescer.Api.Controllers
                 pacote = new PacotesRepositorio().Obter(model.IdPacote);
 
             
-            var locacao = new Locacao(veiculo, cliente, pacote, model.DataEntregaPrevista,
-                model.ValorLocacao);
+            var locacao = new Locacao(veiculo, cliente, pacote, model.DataEntregaPrevista);
             
             foreach (var id in model.IdLocacaoOpcional)
             {
@@ -39,9 +38,10 @@ namespace LocadoraCrescer.Api.Controllers
                 locacao.LocacaoOpcionais.Add(new LocacaoOpcional(locacao, opcional));
             }
 
-            if (locacao.Validar())
+            if (!locacao.Validar())
                 ResponderErro(locacao.Mensagens);
 
+            locacao.calcularValorInicialLocacao();
             repositorio.Cadastrar(locacao);
 
             return ResponderOK(locacao);
@@ -52,6 +52,13 @@ namespace LocadoraCrescer.Api.Controllers
         public HttpResponseMessage Obter()
         {
             return ResponderOK(repositorio.Obter());
+        }
+
+        [HttpPut, Route("devolver")]
+        public HttpResponseMessage Devolver(Locacao locacao)
+        {
+            locacao.AtribuirDataDevolucaoReal();
+            return ResponderOK(repositorio.Atualizar(locacao));
         }
 
 
