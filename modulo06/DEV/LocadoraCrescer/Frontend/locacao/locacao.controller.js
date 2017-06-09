@@ -30,6 +30,8 @@ angular.module('app').controller('LocacaoController', function ($location, $scop
     locacaoService.criar(model).then(function (response) {
       console.log(response);
       alert("Locação cadastrada");
+    }, function (response) {
+      response.data.mensagens.forEach(p => alert(p))
     });
   }
 
