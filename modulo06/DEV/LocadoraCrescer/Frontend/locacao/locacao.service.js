@@ -11,13 +11,8 @@ angular.module('app').factory('locacaoService', function ($http) {
   }
 
 
-  function obterValor(locacao) {
-    let parametros = {locacao: locacao};
-    return $http({
-      url: urlBase + 'valor',
-      method: 'GET',
-      params: parametros
-    });
+  function obterValor(model) {
+    return $http.post(urlBase + 'valor', model)
   };
 
   function gerarRelatorioMensal(data) {
