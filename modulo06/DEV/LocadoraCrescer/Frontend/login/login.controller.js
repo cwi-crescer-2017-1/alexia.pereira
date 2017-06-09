@@ -1,6 +1,7 @@
 angular.module('app').controller('LoginController', function ($location, $scope, authService) {
 
 $scope.login = login;
+usuarioLogado();
 
 function login (usuario) {
   authService.login(usuario)
@@ -15,4 +16,12 @@ function login (usuario) {
           alert('Erro no Login!');
         });
       }
+
+      function usuarioLogado() {
+        var logado = localStorage.getItem('ngStorage-usuarioLogado');
+        if (logado !== null) {
+          $location.path('/administrativo').replace();
+        }
+      }
+
 });
