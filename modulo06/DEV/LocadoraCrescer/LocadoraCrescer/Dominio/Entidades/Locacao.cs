@@ -43,7 +43,7 @@ namespace LocadoraCrescer.Dominio.Entidades
                 if (locacaoOpcional.Opcional.Descricao == "Reboque" && Veiculo.Nome == "Mobi")
                     Mensagens.Add("Mobi não pode ter Reboque.");
                 if (locacaoOpcional.Opcional.Descricao == "Rack" && Veiculo.Nome == "Hilux")
-                    Mensagens.Add("Hilux não pode ter hack.");
+                    Mensagens.Add("Hilux não pode ter Rack.");
                 if (locacaoOpcional.Opcional.Descricao == "Cabo Bateria" && Veiculo.Nome != "Kombi")
                     Mensagens.Add("Apenas Kombi pode ter Cabo Bateria.");
             }
