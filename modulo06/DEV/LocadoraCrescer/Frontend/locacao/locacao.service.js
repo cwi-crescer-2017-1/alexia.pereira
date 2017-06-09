@@ -33,11 +33,16 @@ angular.module('app').factory('locacaoService', function ($http) {
     return $http.put(urlBase + 'devolver/' + id);
   }
 
+  function gerarRelatorioAtrasos() {
+    return $http.get(urlBase + 'atrasados');
+  }
+
   return {
     listar: getTodasAsLocacoes,
     criar: criar,
     obterValor: obterValor,
     gerarRelatorioMensal: gerarRelatorioMensal,
-    devolver: devolver
+    devolver: devolver,
+    gerarRelatorioAtrasos: gerarRelatorioAtrasos
   };
 });

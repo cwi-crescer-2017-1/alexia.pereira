@@ -49,5 +49,14 @@ angular.module('app').config(function ($routeProvider) {
       }
     }
   })
+  .when('/relatorio/relatorioAtraso', {
+    controller: 'RelatorioAtrasoController',
+    templateUrl: 'relatorio/relatorio.atrasos.html',
+    resolve: {
+      autenticado: function (authService) {
+        return authService.isAutenticadoPromise();
+      }
+    }
+  })
   .otherwise({redirectTo: '/login'});
 });
