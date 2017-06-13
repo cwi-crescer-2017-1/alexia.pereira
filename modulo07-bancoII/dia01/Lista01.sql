@@ -16,13 +16,14 @@ UPDATE Produto SET SITUACAO = 'I' WHERE produto.IdProduto NOT IN
 -- Faça uma consulta que receba um parâmetro sendo o IDProduto e liste a quantidade de itens na tabela PedidoItem
 -- com este IDProduto foram vendidos no último ano (desde janeiro/2017).
 
-SELECT quantidade AS QuantidadeProdutos FROM 
-  (
-    SELECT pi.IdPedido, SUM(pi.quantidade) AS quantidade, pi.IdProduto  FROM PedidoItem pi INNER JOIN Produto p ON pi.IdProduto = p.IdProduto
+   SELECT SUM(pi.quantidade) AS quantidade FROM PedidoItem pi
     INNER JOIN Pedido pe ON pi.IdPedido = pe.IdPedido 
     WHERE pe.DataPedido BETWEEN date '2017-01-01' AND
     TO_DATE(sysdate)
-    AND p.IdProduto = :id
-  );
+    AND pi.IdProduto = :id;
+
+
+SELECT * FROM user_tables;
+EXEC dbms_stats.gather_schema_stats( USER );
 
 COMMIT;
