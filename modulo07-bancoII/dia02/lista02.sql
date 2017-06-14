@@ -9,7 +9,7 @@ DECLARE
         
     CURSOR C_ListaCli (nomeCidade in varchar2, ufCidade in varchar2) IS
      Select cli.Nome From Cliente cli INNER JOIN Cidade cid ON
-     cid.IdCidade = cli.IdCidade WHERE cid.Nome = nomeCidade;
+     cid.IdCidade = cli.IdCidade WHERE cid.Nome = nomeCidade AND cid.Uf = ufCidade;
 
 BEGIN
     FOR cid IN c_listacidaderepetida LOOP
@@ -25,20 +25,15 @@ END;
 
 -- Exercicio 02
 DECLARE
-
     CURSOR c_itemsPedido (p_idpedido in number) IS
         SELECT quantidade, idProduto, precoUnitario FROM PedidoItem pi WHERE pi.IdPedido = p_idpedido;
     soma NUMBER := 0;
     precoProduto NUMBER;
-    
 BEGIN
-
-    FOR reg IN c_itemsPedido(1) LOOP
+    FOR reg IN c_itemsPedido(:idPedido) LOOP
           soma := soma + reg.precoUnitario*reg.quantidade;    
     END LOOP;
-    
-    UPDATE Pedido SET ValorPedido = soma WHERE idPedido = 1;
-      
+    UPDATE Pedido SET ValorPedido = soma WHERE idPedido = :idPedido;
 END;
 
     -- Solucao alternativa 
