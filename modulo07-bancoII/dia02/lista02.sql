@@ -24,17 +24,15 @@ BEGIN
 END;
 
 -- Exercicio 02
-/* 
-Atualizando Valor do Pedido
-Faça uma rotina que permita atualizar o valor do pedido a partir dos seus itens. 
-Esta rotina deve receber por parametro o IDPedido e então verificar o valor total de seus itens (quantidade x valor unitário).
-*/
 DECLARE
+
     CURSOR c_itemsPedido (p_idpedido in number) IS
         SELECT quantidade, idProduto, precoUnitario FROM PedidoItem pi WHERE pi.IdPedido = p_idpedido;
     soma NUMBER := 0;
     precoProduto NUMBER;
+    
 BEGIN
+
     FOR reg IN c_itemsPedido(1) LOOP
           soma := soma + reg.precoUnitario*reg.quantidade;    
     END LOOP;
@@ -43,10 +41,16 @@ BEGIN
       
 END;
 
- -- Solucao alternativa 
+    -- Solucao alternativa 
     
      UPDATE Pedido SET ValorPedido = 
      (SELECT SUM(quantidade*precoUnitario) FROM 
        PedidoItem WHERE idPedido =: idPedido
      )
      WHERE idPedido =: idPedido;
+
+-- Exercicio 03
+UPDATE Cliente SET Situacao = 'I' WHERE IdCliente NOT IN
+    (SELECT IdCliente FROM Pedido WHERE MONTHS_BETWEEN 
+        (TO_DATE(sysdate), TO_DATE(pedido.DataPedido) ) < = 6);
+
