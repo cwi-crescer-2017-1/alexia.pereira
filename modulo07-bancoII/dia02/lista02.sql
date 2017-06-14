@@ -51,9 +51,12 @@ END;
 
 -- Exercicio 03
 UPDATE Cliente SET Situacao = 'I' WHERE IdCliente NOT IN
-    (SELECT IdCliente FROM Pedido WHERE MONTHS_BETWEEN 
-        (TO_DATE(sysdate), TO_DATE(pedido.DataPedido) ) < = 6);
+    (SELECT DISTINCT IdCliente FROM Pedido WHERE MONTHS_BETWEEN 
+        (TO_DATE(sysdate), TO_DATE(pedido.DataPedido) ) < 6);
 
+UPDATE Cliente SET Situacao = 'I' WHERE IdCliente NOT IN
+(SELECT DISTINCT IdCliente FROM Pedido  WHERE pedido.DataPedido > add_months(trunc(sysdate, 'MM'), -6));
+    
 -- Exercicio 04
 DECLARE
 
@@ -77,3 +80,4 @@ BEGIN
         END LOOP;
     END LOOP;
 END;
+
