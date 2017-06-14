@@ -54,3 +54,26 @@ UPDATE Cliente SET Situacao = 'I' WHERE IdCliente NOT IN
     (SELECT IdCliente FROM Pedido WHERE MONTHS_BETWEEN 
         (TO_DATE(sysdate), TO_DATE(pedido.DataPedido) ) < = 6);
 
+-- Exercicio 04
+DECLARE
+
+    CURSOR c_SomaProdutosPorData (p_idProduto in number, p_AnoMes in varchar2) IS
+            SELECT idProduto, SUM(pi.quantidade) AS quantidade FROM Pedido p 
+            INNER JOIN PEDIDOITEM pi ON p.IdPedido = pi.IdPedido 
+            WHERE TO_CHAR(p.DataPedido, 'YYYY/MM') = p_AnoMes 
+            AND pi.IdProduto = p_idProduto GROUP BY idProduto;
+            
+    CURSOR c_MateriaisPorProduto (p_idProduto in number) IS
+        SELECT mat.descricao, pm.quantidade FROM Material mat INNER JOIN ProdutoMaterial pm ON
+        pm.IdMaterial = mat.IdMaterial INNER JOIN Produto p ON p.IdProduto = pm.IdProduto WHERE
+        pm.idProduto = p_idProduto AND pm.quantidade IS NOT NULL;
+        
+        aux NUMBER := 0;
+    
+BEGIN
+    FOR soma IN c_SomaProdutosPorData (4246, '2017/04') LOOP
+        FOR reg IN c_MateriaisPorProduto (soma.IdProduto) LOOP
+           dbms_output.put_line(reg.descricao || ' - ' || TO_CHAR(reg.quantidade * soma.quantidade));
+        END LOOP;
+    END LOOP;
+END;
