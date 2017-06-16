@@ -2,12 +2,13 @@
   pck_cidades_duplicadas.corrigir_cidades_duplicadas;
 end;
 
-create or replace package pck_cidades_duplicadas as
-  procedure corrigir_cidades_duplicadas;
-  function busca_menor_id (pNome varchar2, pUf varchar2) return number;
-end;
+SELECT * FROM CIDADE WHERE NOME ='Caico' AND UF = 'RN';
 
-create or replace package body pck_cidades_duplicadas as
+SELECT * FROM CLIENTE INNER JOIN CIDADE ON cliente.IdCidade = cidade.IdCidade
+  WHERE cidade.Nome = 'Caico' AND cidade.UF = 'RN';
+  
+  
+  create or replace package body pck_cidades_duplicadas as
 
 FUNCTION busca_menor_id (pNome in varchar2, pUf in varchar2) RETURN NUMBER AS
   vMenorId NUMBER; 
@@ -23,6 +24,9 @@ procedure excluir_cidades(pNome in varchar2, pUf in varchar2, pMenorId in number
   END;
 -----------------------------------------------
   procedure corrigir_cidades_duplicadas is
+
+    vMenorIdAtual NUMBER;
+    
      CURSOR c_listacidaderepetida IS
         SELECT nome, uf, COUNT(*)
         FROM cidade
@@ -36,11 +40,12 @@ procedure excluir_cidades(pNome in varchar2, pUf in varchar2, pMenorId in number
 
 BEGIN
     FOR cid IN c_listacidaderepetida LOOP
-        FOR cliente IN C_ListaCli(cid.Nome, cid.uf) LOOP
-           UPDATE Cliente SET IdCidade = pck_cidades_duplicadas.busca_menor_id(cid.Nome, cid.Uf)
-           WHERE IdCliente = cliente.IdCliente;
+    vMenorIdAtual :=  pck_cidades_duplicadas.busca_menor_id(cid.Nome, cid.Uf);
+        FOR cli IN C_ListaCli(cid.Nome, cid.uf) LOOP
+           UPDATE Cliente SET IdCidade = vMenorIdAtual
+           WHERE IdCliente = cli.IdCliente;
         END LOOP;
-        excluir_cidades(cid.Nome, cid.Uf, pck_cidades_duplicadas.busca_menor_id(cid.Nome, cid.Uf));
+        excluir_cidades(cid.Nome, cid.Uf, vMenorIdAtual);
     END LOOP;
 END;
 END pck_cidades_duplicadas;
