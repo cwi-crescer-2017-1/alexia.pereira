@@ -302,3 +302,4 @@ __pycache__/
 
 # End of https://www.gitignore.io/api/visualstudio
 
+/modulo08-java/aula1/target/
