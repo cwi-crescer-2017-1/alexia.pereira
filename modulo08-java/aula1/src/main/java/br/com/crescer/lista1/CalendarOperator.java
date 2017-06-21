@@ -21,7 +21,7 @@ public class CalendarOperator implements CalendarUtils {
        
         long dataEmDias = TimeUnit.MILLISECONDS.toDays(diff);
         long meses = dataEmDias%365 / 30;
-        long dias = Math.abs((dataEmDias%365)%31);
+        int dias = (int)Math.abs((dataEmDias%365)%30.8);
         long anos = Math.abs(dataEmDias/365);
         
        return String
