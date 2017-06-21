@@ -61,7 +61,7 @@ public class Main {
 			sdf = new SimpleDateFormat("dd/MM/yyyy");
 			date = sdf.parse("30/06/2016");
 			Map<String, BigDecimal> conta = po.calcular(new BigDecimal(1000),
-					10, 0.1, date);
+					10, 10, date);
 			for (Entry<String, BigDecimal> pair : conta.entrySet()) {
 				System.out.println(pair.getKey() + " - " + pair.getValue());
 			}
