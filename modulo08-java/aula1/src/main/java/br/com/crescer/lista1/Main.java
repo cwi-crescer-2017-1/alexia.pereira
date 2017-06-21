@@ -28,12 +28,12 @@ public class Main {
 			System.out.println("-------------------------");
 			
 			System.out.println("Resultado do contaVogais com a frase: 'a ana estava l�'");
-			System.out.println(stringOperator.contaVogais("a ana estava l�"));
+			System.out.println(stringOperator.contaVogais("a ana estava la"));
 			System.out.println("-------------------------");
 			
-			System.out.println("Resultado do isPalindromo com a frase: 'A sogra m� e amargosa'");
+			System.out.println("Resultado do isPalindromo com a frase: 'A sogra ma e amargosa'");
 			System.out.println(stringOperator
-					.isPalindromo("A sogra m� e amargosa") + "\n");
+					.isPalindromo("A sogra ma e amargosa") + "\n");
 			System.out.println("-------------------------------------------------\n");
 			
 			
