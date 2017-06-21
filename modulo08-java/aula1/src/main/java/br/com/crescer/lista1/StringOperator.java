@@ -3,7 +3,7 @@ package br.com.crescer.lista1;
  *
  * @author alexiapereira
  */
- import java.text.Normalizer;
+import java.text.Normalizer;
 import java.util.Stack;
 
 public class StringOperator implements StringUtils {
