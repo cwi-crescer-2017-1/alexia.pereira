@@ -12,7 +12,7 @@ public class StringOperator implements StringUtils {
     public boolean isEmpty(String string) {
         return string == null
                 || string.length() < 1
-                || string.equals("");
+                || string.trim().isEmpty();
     }
 
     public String inverter(String string) {
