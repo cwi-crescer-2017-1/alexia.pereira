@@ -1,5 +1,8 @@
 package br.com.crescer.lista1;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
@@ -14,19 +17,11 @@ public class CalendarOperator implements CalendarUtils {
     }
 
     public String tempoDecorrido(Date date) {
-        Calendar cAtual = Calendar.getInstance();
-        Calendar c = Calendar.getInstance();
-        c.setTime(date);
-        long diff = cAtual.getTime().getTime() - c.getTime().getTime();
-       
-        long dataEmDias = TimeUnit.MILLISECONDS.toDays(diff);
-        long meses = dataEmDias%365 / 30;
-        int dias = (int)Math.abs((dataEmDias%365)%30.8);
-        long anos = Math.abs(dataEmDias/365);
-        
-       return String
+        LocalDate dataLD = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        Period periodo = Period.between(dataLD, new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        return String
                 .format("%d ano(s), %d messe(s) e %d dia(s)",
-                        anos, meses, dias);
+                        periodo.getYears(), periodo.getMonths(), periodo.getDays());
     }
 
     private DiaSemana descobrirDiaDaSemanaPorNumero(int numero) {

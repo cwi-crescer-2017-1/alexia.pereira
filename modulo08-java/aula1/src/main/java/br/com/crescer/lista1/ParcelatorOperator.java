@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -28,9 +27,12 @@ public class ParcelatorOperator implements Parcelator {
 
         BigDecimal valorMensal = multiplicadoValorPelaTaxa
                 .divide(BigDecimal.valueOf(numeroParcelas), 2, RoundingMode.UP);
-
+        
+        BigDecimal vlResto = valorMensal.multiply(BigDecimal.valueOf(numeroParcelas)).subtract(multiplicadoValorPelaTaxa);
+        
         for (int i = 0; i < numeroParcelas; i++) {
-            conta.put(sdf.format(c.getTime()), valorMensal);
+            conta.put(sdf.format(c.getTime()), valorMensal.subtract(vlResto));
+            vlResto = BigDecimal.ZERO;
             c.add(Calendar.MONTH, 1);
         }
 
