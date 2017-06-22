@@ -17,13 +17,14 @@ public class WriterUtilsImplementation implements WriterUtils {
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
-        }
-        try (final FileWriter fileWriter = new FileWriter(file);
-                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);) {
-            bufferedWriter.append(conteudo);
-            bufferedWriter.newLine();
-        } catch (IOException ex) {
-            ex.printStackTrace();
+        } else {
+            try (final FileWriter fileWriter = new FileWriter(file);
+                    BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);) {
+                bufferedWriter.append(conteudo);
+                bufferedWriter.newLine();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
     }
 }
