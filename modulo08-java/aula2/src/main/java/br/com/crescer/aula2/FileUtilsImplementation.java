@@ -50,33 +50,8 @@ public class FileUtilsImplementation implements FileUtils {
     @Override
     public boolean mv(String in, String out) {
         File fileOrigin = new File(in);
-        this.mk(out);
-        if (fileOrigin.isDirectory()) {
-            throw new RuntimeException("Arquivo inválido");
-        } else {
-            try (
-                    final Reader reader = new FileReader(in);
-                    final BufferedReader bufferReader = new BufferedReader(reader);
-                    final FileWriter fileWriter = new FileWriter(out);
-                    BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);) {
-
-                String linha = bufferReader.readLine();
-                while (!stringOperator.isEmpty(linha)) {
-                    bufferedWriter.append(linha);
-                    bufferedWriter.newLine();
-                    linha = bufferReader.readLine();
-                }
-
-                fileOrigin.deleteOnExit();
-                return true;
-
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-        return false;
+        File fileDestiny = new File(out);
+        return fileOrigin.renameTo(fileDestiny);
     }
 
 }
