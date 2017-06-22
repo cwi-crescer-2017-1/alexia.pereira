@@ -14,7 +14,7 @@ public class WriterUtilsImplementation implements WriterUtils {
         if (!file.endsWith(".txt")) {
             throw new RuntimeException("Arquivo inválido");
         } else {
-            try (final FileWriter fileWriter = new FileWriter(file);
+            try (final FileWriter fileWriter = new FileWriter(file, true);
                     BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);) {
                 bufferedWriter.append(conteudo);
                 bufferedWriter.newLine();
