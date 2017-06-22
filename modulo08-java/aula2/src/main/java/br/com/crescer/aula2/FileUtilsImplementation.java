@@ -10,9 +10,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /*
  * @author alexiapereira
@@ -34,11 +31,7 @@ public class FileUtilsImplementation implements FileUtils {
     public boolean rm(String string) {
         File file = new File(string);
         if (file.isDirectory()) {
-            try {
-                throw new Exception("Arquivo inválido");
-            } catch (Exception ex) {
-                Logger.getLogger(FileUtilsImplementation.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            throw new RuntimeException("Arquivo inválido");
         }
         return file.delete();
     }
@@ -59,18 +52,14 @@ public class FileUtilsImplementation implements FileUtils {
         File fileOrigin = new File(in);
         this.mk(out);
         if (fileOrigin.isDirectory()) {
-            try {
-                throw new Exception("Arquivo inválido");
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
+            throw new RuntimeException("Arquivo inválido");
         } else {
             try (
                     final Reader reader = new FileReader(in);
                     final BufferedReader bufferReader = new BufferedReader(reader);
                     final FileWriter fileWriter = new FileWriter(out);
                     BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);) {
-                
+
                 String linha = bufferReader.readLine();
                 while (!stringOperator.isEmpty(linha)) {
                     bufferedWriter.append(linha);

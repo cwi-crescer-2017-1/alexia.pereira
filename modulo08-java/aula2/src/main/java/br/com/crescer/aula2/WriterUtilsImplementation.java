@@ -12,11 +12,7 @@ public class WriterUtilsImplementation implements WriterUtils {
     @Override
     public void write(String file, String conteudo) {
         if (!file.endsWith(".txt")) {
-            try {
-                throw new Exception("Arquivo inválido");
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
+            throw new RuntimeException("Arquivo inválido");
         } else {
             try (final FileWriter fileWriter = new FileWriter(file);
                     BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);) {
