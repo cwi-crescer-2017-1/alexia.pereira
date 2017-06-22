@@ -20,7 +20,7 @@ public class ReaderUtilsImplementation implements ReaderUtils {
     @Override
     public String read(String string) {
         
-        if (!string.contains(".txt")) {
+        if (!string.endsWith(".txt")) {
             try {
                 throw new Exception("Arquivo inválido");
             } catch (Exception ex) {

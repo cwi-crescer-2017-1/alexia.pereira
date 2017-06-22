@@ -11,7 +11,7 @@ public class WriterUtilsImplementation implements WriterUtils {
 
     @Override
     public void write(String file, String conteudo) {
-        if (!file.contains(".txt")) {
+        if (!file.endsWith(".txt")) {
             try {
                 throw new Exception("Arquivo inválido");
             } catch (Exception ex) {
