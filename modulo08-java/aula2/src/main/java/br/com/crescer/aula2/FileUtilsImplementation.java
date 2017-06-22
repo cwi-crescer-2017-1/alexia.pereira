@@ -21,7 +21,12 @@ public class FileUtilsImplementation implements FileUtils {
     @Override
     public boolean mk(String string) {
         try {
-            return new File(string).createNewFile();
+            File file = new File(string);
+            if (file.isFile()) {
+                return file.createNewFile();
+            } else {
+               return file.mkdir();
+            }
         } catch (IOException e) {
             return false;
         }
