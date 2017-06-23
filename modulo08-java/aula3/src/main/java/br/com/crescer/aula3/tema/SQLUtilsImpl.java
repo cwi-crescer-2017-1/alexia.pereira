@@ -1,5 +1,7 @@
 package br.com.crescer.aula3.tema;
 
+import br.com.crescer.aula2.WriterUtils;
+import br.com.crescer.aula2.WriterUtilsImplementation;
 import br.com.crescer.aula3.ConnectionUtils;
 import java.io.BufferedReader;
 import java.io.File;
@@ -11,6 +13,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 /**
@@ -18,6 +23,8 @@ import java.util.stream.Collectors;
  * @author A
  */
 public class SQLUtilsImpl implements SQLUtils {
+    
+    WriterUtils writter = new WriterUtilsImplementation();
 
     @Override
     public void runFile(String fileName) {
@@ -54,7 +61,6 @@ public class SQLUtilsImpl implements SQLUtils {
             StringBuffer buffer = new StringBuffer();
             ResultSet rs = preparedStatement.executeQuery();
             ResultSetMetaData rsmd = rs.getMetaData();
-            buffer.append(rsmd.getTableName(2)).append("\n");
             int numeroColunas = rsmd.getColumnCount();
             for (int i = 1; i <= numeroColunas; i++) {
                 buffer.append(rsmd.getColumnName(i)).append("    |");
@@ -63,7 +69,7 @@ public class SQLUtilsImpl implements SQLUtils {
             while (rs.next()) {
                 for (int i = 1; i <= numeroColunas; i++) {
                     Object obj = rs.getObject(i);
-                    buffer.append(obj.toString()).append("   |   ");
+                    buffer.append(obj.toString()).append("   |");
                 }
                 buffer.deleteCharAt(buffer.length() - 1).append("\n");
             }
@@ -77,13 +83,85 @@ public class SQLUtilsImpl implements SQLUtils {
 
     @Override
     public void importCSV(File file) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        removerAutoCommit();
+        try (
+                final Reader reader = new FileReader(file);
+                final BufferedReader bufferReader = new BufferedReader(reader);) {
+
+            String linha;
+            Object objetos[] = null;
+            String query = montarQuery(file, bufferReader);
+
+            while ((linha = bufferReader.readLine()) != null && !linha.isEmpty()) {
+                objetos = linha.split(",");
+                PreparedStatement preparedStatement = ConnectionUtils.getConnection().prepareStatement(query);
+                for (int i = 1; i <= objetos.length; i++) {
+                    preparedStatement.setObject(i, objetos[i - 1]);
+                }
+                preparedStatement.executeQuery();
+                preparedStatement.close();
+            }
+            ConnectionUtils.getConnection().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String montarQuery(File file, BufferedReader bufferReader) throws IOException {
+        String nomeDoArquivo = file.getName().substring(0, file.getName().length() - 4);
+        StringBuffer stringBuffer = new StringBuffer("INSERT INTO ");
+        StringBuffer values = new StringBuffer("(");
+        stringBuffer.append(nomeDoArquivo).append(" (");
+        String[] cabecalho = bufferReader.readLine().split(",");
+        Arrays.asList(cabecalho).forEach(k -> {
+            stringBuffer.append(k).append(" ,");
+        });
+        stringBuffer.deleteCharAt(stringBuffer.length() - 1);
+        stringBuffer.append(" ) VALUES ");
+
+        for (int i = 0; i < cabecalho.length; i++) {
+            values.append("?,");
+        }
+        values.deleteCharAt(values.length() - 1);
+        values.append(")");
+        return stringBuffer.append(values).toString();
     }
 
     @Override
-    public File importCSV(String query
-    ) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public File importCSV(String query) {
+        try (PreparedStatement ps = ConnectionUtils.getConnection().prepareStatement(query)) {
+            StringBuffer buffer = new StringBuffer();
+            ResultSet rs = ps.executeQuery();
+            ResultSetMetaData rsmd = rs.getMetaData();
+            
+            int numeroColunas = rsmd.getColumnCount();
+            for (int i = 1; i <= numeroColunas; i++) {
+                buffer.append(rsmd.getColumnName(i)).append(",");
+            }
+            buffer.deleteCharAt(buffer.length() - 1).append("\n");
+            while (rs.next()) {
+                for (int i = 1; i <= numeroColunas; i++) {
+                    Object obj = rs.getObject(i);
+                    buffer.append(obj.toString()).append(",");
+                }
+                buffer.deleteCharAt(buffer.length() - 1).append("\n");
+            }
+            
+            writter.write("C:\\Users\\A\\Desktop\\teste.csv", buffer.toString());
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return new File("C:\\Users\\A\\Desktop\\teste.csv");
+        
     }
 
+    private void removerAutoCommit() {
+        try {
+            ConnectionUtils.getConnection().setAutoCommit(false);
+        } catch (SQLException ex) {
+            Logger.getLogger(SQLUtilsImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
