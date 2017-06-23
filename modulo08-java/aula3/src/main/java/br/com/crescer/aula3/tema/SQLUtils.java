@@ -13,6 +13,6 @@ public interface SQLUtils {
 
     void importCSV(File file);
 
-    File importCSV(String query);
+    File exportCSV(String query);
 
 }

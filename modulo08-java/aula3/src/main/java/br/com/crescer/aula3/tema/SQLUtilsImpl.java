@@ -86,7 +86,7 @@ public class SQLUtilsImpl implements SQLUtils {
     }
 
     @Override
-    public File importCSV(String query) {
+    public File exportCSV(String query) {
         writter.write("C:\\Users\\A\\Desktop\\teste.csv", renderizarResultSet(query, ","));
         return new File("C:\\Users\\A\\Desktop\\teste.csv");
     }
