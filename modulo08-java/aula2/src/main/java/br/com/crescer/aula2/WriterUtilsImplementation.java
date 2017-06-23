@@ -11,7 +11,7 @@ public class WriterUtilsImplementation implements WriterUtils {
 
     @Override
     public void write(String file, String conteudo) {
-        if (!file.endsWith(".txt")) {
+        if (!file.endsWith(".txt") && !file.endsWith(".csv")) {
             throw new RuntimeException("Arquivo inválido");
         } else {
             try (final FileWriter fileWriter = new FileWriter(file, true);
