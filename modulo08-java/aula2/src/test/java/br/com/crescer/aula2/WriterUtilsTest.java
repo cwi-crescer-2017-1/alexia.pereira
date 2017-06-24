@@ -19,8 +19,11 @@ public class WriterUtilsTest {
 
     private String filename;
 
+    private ReaderUtils reader;
+    
     public WriterUtilsTest() {
         this.writerUtils = new WriterUtilsImplementation();
+        this.reader = new ReaderUtilsImplementation();
     }
 
     @Before
@@ -36,7 +39,7 @@ public class WriterUtilsTest {
     public void testWrite() throws IOException {
         final String test = "teste de inclusão " + new Date().getTime();
         writerUtils.write(filename, test);
-        assertTrue(Files.readAllLines(Paths.get(filename)).contains(test));
+        assertTrue(reader.read(filename).contains(test));
     }
 
 }
