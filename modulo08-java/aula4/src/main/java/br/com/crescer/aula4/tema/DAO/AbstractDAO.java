@@ -11,21 +11,24 @@ import org.hibernate.Session;
  * @author alexia.pereira
  * @param <T>
  */
-public abstract class AbstractDAO<T, ID> implements CrudDao<T, ID> {
+public abstract class AbstractDAO<Entity, ID> implements CrudDao<Entity, ID> {
 
-    private final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("CRESCER");
-    private final EntityManager entityManager = entityManagerFactory.createEntityManager();
-    final Session session = entityManager.unwrap(Session.class);
+    private final EntityManagerFactory entityManagerFactory;
+    private final EntityManager entityManager;
+    final Session session;
     private Class classePersistida;
 
-    public Class<T> clazz;
+    public Class<Entity> clazz;
 
-    protected AbstractDAO(Class<T> clazz) {
+    protected AbstractDAO(Class<Entity> clazz, EntityManager entityManager, EntityManagerFactory entityManagerFactory) {
         this.classePersistida = clazz;
+        this.entityManager = entityManager;
+        this.entityManagerFactory = entityManagerFactory;
+        this.session = entityManager.unwrap(Session.class);
     }
-
+    
     @Override
-    public Object save(Object e) {
+    public Entity save(Entity e) {
         entityManager.getTransaction().begin();
         entityManager.persist(e);
         entityManager.getTransaction().commit();
@@ -33,15 +36,15 @@ public abstract class AbstractDAO<T, ID> implements CrudDao<T, ID> {
     }
 
     @Override
-    public void remove(Object e) {
+    public void remove(Entity e) {
         entityManager.getTransaction().begin();
-        entityManager.remove(e);
+        entityManager.remove(entityManager.contains(e) ? e : entityManager.merge(e));
         entityManager.getTransaction().commit();
     }
 
     @Override
-    public T loadById(ID id) {
-        return (T) entityManager.find(this.classePersistida, id);
+    public Entity loadById(ID id) {
+        return (Entity) entityManager.find(this.classePersistida, id);
     }
 
     @Override
