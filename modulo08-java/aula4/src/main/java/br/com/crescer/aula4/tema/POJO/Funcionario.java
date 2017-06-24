@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 /**
  *
@@ -20,6 +21,12 @@ public class Funcionario implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_FUNCIONARIO")
+    @SequenceGenerator(
+            name = "SEQ_FUNCIONARIO",
+            sequenceName = "SEQ_FUNCIONARIO",
+            allocationSize = 1
+    )
+
     private Long id;
 
     @Basic(optional = false)
@@ -174,6 +181,24 @@ public class Funcionario implements Serializable {
             String rua, String rg, String email, String telefone, String celular,
             double salario, String funcao, String cpf, Date dataNascimento) {
         this.id = id;
+        this.nome = nome;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.numeroCasa = numeroCasa;
+        this.rua = rua;
+        this.rg = rg;
+        this.email = email;
+        this.telefone = telefone;
+        this.celular = celular;
+        this.salario = salario;
+        this.funcao = funcao;
+        this.cpf = cpf;
+        this.dataNascimento = dataNascimento;
+    }
+
+    public Funcionario(String nome, String bairro, String cidade, String numeroCasa,
+            String rua, String rg, String email, String telefone, String celular,
+            double salario, String funcao, String cpf, Date dataNascimento) {
         this.nome = nome;
         this.bairro = bairro;
         this.cidade = cidade;
