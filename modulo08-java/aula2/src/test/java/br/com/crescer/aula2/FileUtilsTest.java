@@ -45,7 +45,8 @@ public class FileUtilsTest {
      */
     @Test
     public void testRm() {
-        final String testPath = TARGET_PATH + "/" + new Date().getTime() + "/testMk";
+        final String testPath = TARGET_PATH + "/" + new Date().getTime() + "/testRm";
+        fileUtils.mk(testPath.substring(0, testPath.length()-7));
         fileUtils.mk(testPath);
         fileUtils.mk(testPath + "/testRm.txt");
         assertTrue(fileUtils.rm(testPath + "/testRm.txt"));
@@ -63,10 +64,10 @@ public class FileUtilsTest {
     @Test
     public void testLs() {
         final String testPath = TARGET_PATH + "/" + new Date().getTime() + "/testLs";
-        fileUtils.mk(TARGET_PATH + "/" + new Date().getTime() + "/testLs");
+        fileUtils.mk(testPath.substring(0, testPath.length()-7));
         fileUtils.mk(testPath);
-        fileUtils.mk(testPath + "/testLs.txt");
         final File file = new File(testPath + "/testLs.txt");
+        fileUtils.mk(file.getAbsolutePath());
         assertEquals(file.getAbsolutePath(), fileUtils.ls(testPath + "/testLs.txt"));
         assertTrue(fileUtils.ls(testPath).contains("testLs.txt"));
     }
@@ -77,6 +78,8 @@ public class FileUtilsTest {
     @Test
     public void testMv() {
         final String testPath = TARGET_PATH + "/" + new Date().getTime() + "/testMv";
+        fileUtils.mk(testPath.substring(0, testPath.length()-7));
+        fileUtils.mk(testPath);
         final String origem = testPath + "/origem.txt";
         final String destino = testPath + "/destino.txt";
         fileUtils.mk(origem);

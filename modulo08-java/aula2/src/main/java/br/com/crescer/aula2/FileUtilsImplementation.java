@@ -2,14 +2,8 @@ package br.com.crescer.aula2;
 
 import br.com.crescer.lista1.StringUtils;
 import br.com.crescer.lista1.StringOperator;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Reader;
 
 /*
  * @author alexiapereira
@@ -22,7 +16,8 @@ public class FileUtilsImplementation implements FileUtils {
     public boolean mk(String string) {
         try {
             File file = new File(string);
-            if (file.isFile()) {
+            String extension = string.substring(string.lastIndexOf(".") + 1, string.length());
+            if (extension.length() == 3) {
                 return file.createNewFile();
             } else {
                return file.mkdir();
@@ -55,6 +50,9 @@ public class FileUtilsImplementation implements FileUtils {
     @Override
     public boolean mv(String in, String out) {
         File fileOrigin = new File(in);
+        if (!fileOrigin.isFile()) {
+            throw new RuntimeException("Diretório não pode ser movido");
+        }
         File fileDestiny = new File(out);
         return fileOrigin.renameTo(fileDestiny);
     }
