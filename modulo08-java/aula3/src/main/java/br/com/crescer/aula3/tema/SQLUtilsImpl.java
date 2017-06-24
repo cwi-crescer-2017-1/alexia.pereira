@@ -61,6 +61,9 @@ public class SQLUtilsImpl implements SQLUtils {
 
     @Override
     public void importCSV(File file) {
+        if (!file.getAbsolutePath().endsWith(".csv")) {
+            throw new RuntimeException("Caso o arquivo não é um .csv");
+        }
         removerAutoCommit();
         try (
                 final Reader reader = new FileReader(file);
