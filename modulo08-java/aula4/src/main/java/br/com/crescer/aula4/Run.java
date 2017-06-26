@@ -1,5 +1,6 @@
 package br.com.crescer.aula4;
 
+import br.com.crescer.aula4.tema.POJO.Cliente;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -21,7 +22,7 @@ public class Run {
 //        Cliente cliente = em.find(Cliente.class, 1l);
         em.getTransaction().begin();
 //        em.remove(cliente);
-        cliente.setID(1l);
+//        cliente.setID(1l);
         cliente.setNome("Aléxia Pereira");
         em.persist(cliente);
         em.getTransaction().commit();

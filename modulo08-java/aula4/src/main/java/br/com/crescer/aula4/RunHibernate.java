@@ -1,5 +1,6 @@
 package br.com.crescer.aula4;
 
+import br.com.crescer.aula4.tema.POJO.Cliente;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
