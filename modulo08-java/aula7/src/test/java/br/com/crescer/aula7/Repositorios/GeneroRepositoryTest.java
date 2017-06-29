@@ -1,7 +1,6 @@
 package br.com.crescer.aula7.Repositorios;
 
 import br.com.crescer.aula7.Entidades.Genero;
-import br.com.crescer.aula7.Repositorios.GeneroRepository;
 import static java.util.stream.Collectors.toList;
 import java.util.stream.StreamSupport;
 import static org.junit.Assert.assertEquals;
@@ -15,6 +14,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 @DataJpaTest
 @Transactional(propagation = Propagation.REQUIRED)
 @AutoConfigureTestDatabase(replace = Replace.NONE)
+@ActiveProfiles("test")
 public class GeneroRepositoryTest {
 
     @Autowired
