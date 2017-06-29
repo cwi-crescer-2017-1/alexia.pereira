@@ -1,10 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package br.com.crescer.aula7;
+package br.com.crescer.aula7.Services;
 
+import br.com.crescer.aula7.Entidades.Genero;
+import br.com.crescer.aula7.Repositorios.GeneroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,20 +15,24 @@ public class GeneroService {
     @Autowired
     GeneroRepository repositorio;
 
-    public Iterable<Genero> list() {
+    public Iterable<Genero> findAll() {
         return repositorio.findAll();
     }
-    
-    public Genero create(Genero genero) {
+
+    public Genero save(Genero genero) {
         return repositorio.save(genero);
     }
-    
-    public Genero update (Genero genero) {
+
+    public Genero update(Genero genero) {
         return repositorio.save(genero);
     }
-    
-    public void delete (Genero genero) {
+
+    public void remove(Genero genero) {
         repositorio.delete(genero);
     }
-    
+
+    public Genero loadById(Long id) {
+        return repositorio.findOne(id);
+    }
+
 }
