@@ -19,10 +19,10 @@ public class SocialUserDetailsService implements UserDetailsService {
 
     @Autowired
     UsuarioRepository repository;
-    
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-         if (username.isEmpty()) {
+        if (username.isEmpty()) {
             throw new UsernameNotFoundException(String.format("Usuario com email =%s não encontrado", username));
         }
         Usuario usuario = repository.findOneByEmail(username);

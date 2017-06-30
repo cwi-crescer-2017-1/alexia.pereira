@@ -19,16 +19,16 @@ public class UsuarioService {
         return repository.findAll();
     }
 
-    public Usuario save(Usuario cliente) {
-        return repository.save(cliente);
+    public Usuario save(Usuario usuario) {
+        return repository.save(usuario);
     }
 
-    public Usuario update(Usuario cliente) {
-        return repository.save(cliente);
+    public Usuario update(Usuario usuario) {
+        return repository.save(usuario);
     }
 
-    public void remove(Usuario cliente) {
-        repository.delete(cliente);
+    public void remove(Usuario usuario) {
+        repository.delete(usuario);
     }
 
     public Usuario loadById(Long id) {
