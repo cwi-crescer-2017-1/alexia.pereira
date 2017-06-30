@@ -41,27 +41,40 @@ public class Usuario implements Serializable {
     @NotNull
     @Column(name = "ID_USUARIO")
     private Long idUsuario;
+
     @Size(max = 100)
     @Column(name = "NOME")
     private String nome;
+
     @Column(name = "SEXO")
     private Character sexo;
+
     @Column(name = "DATA_NASCIMENTO")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataNascimento;
+
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="E-mail inválido")//if the field contains email address consider using this annotation to enforce field validation
     @Size(max = 100)
     @Column(name = "EMAIL")
     private String email;
+
     @Size(max = 100)
     @Column(name = "SENHA")
     private String senha;
+
+    @Size(max = 50)
+    @Column(name = "CASA")
+    private String casa;
+
     @OneToMany(mappedBy = "idUsuario")
     private Set<Post> postSet;
+
     @OneToMany(mappedBy = "idUsuario1")
     private Set<Amizade> amizadeSet;
+
     @OneToMany(mappedBy = "idUsuarioTarget")
     private Set<Solicitacao> solicitacaoSet;
+
     @OneToMany(mappedBy = "idUsuario")
     private Set<Curtidas> curtidasSet;
 
@@ -118,6 +131,14 @@ public class Usuario implements Serializable {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getCasa() {
+        return casa;
+    }
+
+    public void setCasa(String casa) {
+        this.casa = casa;
     }
 
     @XmlTransient
