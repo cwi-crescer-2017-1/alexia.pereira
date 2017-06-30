@@ -17,6 +17,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
  *
@@ -44,26 +45,32 @@ public class Usuario implements Serializable {
 
     @Size(max = 100)
     @Column(name = "NOME")
+    @NotNull
     private String nome;
 
     @Column(name = "SEXO")
+    @NotNull
     private Character sexo;
 
     @Column(name = "DATA_NASCIMENTO")
     @Temporal(TemporalType.TIMESTAMP)
+    @NotNull
     private Date dataNascimento;
 
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="E-mail inválido")//if the field contains email address consider using this annotation to enforce field validation
     @Size(max = 100)
-    @Column(name = "EMAIL")
+    @Column(name = "EMAIL", unique=true)
+    @NotNull
     private String email;
 
     @Size(max = 100)
     @Column(name = "SENHA")
+    @NotNull
     private String senha;
 
     @Size(max = 50)
     @Column(name = "CASA")
+    @NotNull
     private String casa;
 
     @OneToMany(mappedBy = "idUsuario")
@@ -195,6 +202,10 @@ public class Usuario implements Serializable {
             return false;
         }
         return true;
+    }
+    
+    public void criptografarSenha() {
+        this.senha = new BCryptPasswordEncoder().encode(this.senha);
     }
 
     @Override

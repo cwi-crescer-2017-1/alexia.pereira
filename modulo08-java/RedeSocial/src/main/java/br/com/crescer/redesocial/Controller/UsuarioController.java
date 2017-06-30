@@ -30,6 +30,8 @@ public class UsuarioController {
 
     @PostMapping
     public Usuario save(@RequestBody Usuario usuario) {
+        usuario.setIdUsuario(0l);
+        usuario.criptografarSenha();
         return service.save(usuario);
     }
 
@@ -47,5 +49,7 @@ public class UsuarioController {
     public Usuario loadById(@PathVariable Long id) {
         return service.loadById(id);
     }
+    
+    
 
 }
