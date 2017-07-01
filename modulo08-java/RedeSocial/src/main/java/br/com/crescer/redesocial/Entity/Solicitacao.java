@@ -33,12 +33,17 @@ public class Solicitacao implements Serializable {
     private Long idSolicitacao;
     @JoinColumn(name = "ID_USUARIO_OWNER", referencedColumnName = "ID_USUARIO")
     @ManyToOne
-    private Usuario idUsuarioOwner;
+    private Usuario usuarioOwner;
     @JoinColumn(name = "ID_USUARIO_TARGET", referencedColumnName = "ID_USUARIO")
     @ManyToOne
-    private Usuario idUsuarioTarget;
+    private Usuario usuarioTarget;
 
     public Solicitacao() {
+    }
+
+    public Solicitacao(Usuario usuarioOwner, Usuario usuarioTarget) {
+        this.usuarioOwner = usuarioOwner;
+        this.usuarioTarget = usuarioTarget;
     }
 
     public Solicitacao(Long idSolicitacao) {
@@ -53,45 +58,20 @@ public class Solicitacao implements Serializable {
         this.idSolicitacao = idSolicitacao;
     }
 
-    public Usuario getIdUsuarioOwner() {
-        return idUsuarioOwner;
+    public Usuario getUsuarioOwner() {
+        return usuarioOwner;
     }
 
-    public void setIdUsuarioOwner(Usuario idUsuarioOwner) {
-        this.idUsuarioOwner = idUsuarioOwner;
+    public void setUsuarioOwner(Usuario usuarioOwner) {
+        this.usuarioOwner = usuarioOwner;
     }
 
-    public Usuario getIdUsuarioTarget() {
-        return idUsuarioTarget;
+    public Usuario getUsuarioTarget() {
+        return usuarioTarget;
     }
 
-    public void setIdUsuarioTarget(Usuario idUsuarioTarget) {
-        this.idUsuarioTarget = idUsuarioTarget;
+    public void setUsuarioTarget(Usuario usuarioTarget) {
+        this.usuarioTarget = usuarioTarget;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idSolicitacao != null ? idSolicitacao.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Solicitacao)) {
-            return false;
-        }
-        Solicitacao other = (Solicitacao) object;
-        if ((this.idSolicitacao == null && other.idSolicitacao != null) || (this.idSolicitacao != null && !this.idSolicitacao.equals(other.idSolicitacao))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "br.com.crescer.redesocial.Solicitacao[ idSolicitacao=" + idSolicitacao + " ]";
-    }
-    
 }
