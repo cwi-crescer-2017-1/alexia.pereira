@@ -3,8 +3,7 @@ package br.com.crescer.redesocial.Security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import static org.springframework.http.HttpMethod.GET;
-import static org.springframework.http.HttpMethod.POST;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -32,23 +31,19 @@ public class SocialWebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
-                .authorizeRequests().antMatchers(GET, securityPublic).permitAll()
-                .and()
-                .authorizeRequests().antMatchers(POST, "/usuario").permitAll()
-                .and()
                 .authorizeRequests().anyRequest().authenticated()
                 .and()
                 .httpBasic()
                 .and()
-                .logout().logoutUrl("/logout").deleteCookies("JSESSIONID").permitAll().logoutSuccessUrl("/usuarios")
+                .cors()
                 .and()
-                .cors().disable()
                 .csrf().disable();
     }
 
     @Override
     public void configure(WebSecurity webSecurity) throws Exception {
-        webSecurity.ignoring().antMatchers(securityPublic);
+        webSecurity.ignoring().antMatchers(securityPublic)
+                .antMatchers(HttpMethod.POST, "/usuarios");;
     }
 
     @Bean
@@ -63,7 +58,6 @@ public class SocialWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void setDetailsService(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService)
-                .passwordEncoder(new BCryptPasswordEncoder());
+        auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
     }
 }
