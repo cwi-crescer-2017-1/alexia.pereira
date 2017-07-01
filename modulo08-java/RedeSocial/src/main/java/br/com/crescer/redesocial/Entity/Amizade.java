@@ -31,14 +31,19 @@ public class Amizade implements Serializable {
     @NotNull
     @Column(name = "ID_AMIZADE")
     private Long idAmizade;
-    @JoinColumn(name = "ID_USUARIO_1", referencedColumnName = "ID_USUARIO")
+    @JoinColumn(name = "ID_USUARIO_1", referencedColumnName = "ID_USUARIO", unique = false)
     @ManyToOne
-    private Usuario idUsuario1;
-    @JoinColumn(name = "ID_USUARIO_2", referencedColumnName = "ID_USUARIO")
+    private Usuario usuario1;
+    @JoinColumn(name = "ID_USUARIO_2", referencedColumnName = "ID_USUARIO", unique = false)
     @ManyToOne
-    private Usuario idUsuario2;
+    private Usuario usuario2;
 
     public Amizade() {
+    }
+
+    public Amizade(Usuario usuario1, Usuario usuario2) {
+        this.usuario1 = usuario1;
+        this.usuario2 = usuario2;
     }
 
     public Amizade(Long idAmizade) {
@@ -53,45 +58,20 @@ public class Amizade implements Serializable {
         this.idAmizade = idAmizade;
     }
 
-    public Usuario getIdUsuario1() {
-        return idUsuario1;
+    public Usuario getUsuario1() {
+        return usuario1;
     }
 
-    public void setIdUsuario1(Usuario idUsuario1) {
-        this.idUsuario1 = idUsuario1;
+    public void setUsuario1(Usuario usuario1) {
+        this.usuario1 = usuario1;
     }
 
-    public Usuario getIdUsuario2() {
-        return idUsuario2;
+    public Usuario getUsuario2() {
+        return usuario2;
     }
 
-    public void setIdUsuario2(Usuario idUsuario2) {
-        this.idUsuario2 = idUsuario2;
+    public void setUsuario2(Usuario usuario2) {
+        this.usuario2 = usuario2;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idAmizade != null ? idAmizade.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Amizade)) {
-            return false;
-        }
-        Amizade other = (Amizade) object;
-        if ((this.idAmizade == null && other.idAmizade != null) || (this.idAmizade != null && !this.idAmizade.equals(other.idAmizade))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "br.com.crescer.redesocial.Amizade[ idAmizade=" + idAmizade + " ]";
-    }
-    
 }
