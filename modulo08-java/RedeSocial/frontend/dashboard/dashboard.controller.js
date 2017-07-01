@@ -1,3 +1,6 @@
 angular.module('app').controller('DashboardController', function ($location, $scope, authService) {
-  console.log("Oi");
+  $scope.logout = logout;
+  function logout() {
+    authService.logout();
+  };
 });
