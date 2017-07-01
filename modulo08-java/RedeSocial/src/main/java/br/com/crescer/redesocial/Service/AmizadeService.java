@@ -23,10 +23,11 @@ public class AmizadeService {
     }
 
     private void saveInvertedAmizade(Amizade amizade) {
-        Usuario aux = amizade.getUsuario1();
-        amizade.setUsuario1(amizade.getUsuario2());
-        amizade.setUsuario2(aux);
-        repository.save(amizade);
+        Amizade amizadeInvertida = new Amizade();
+        amizadeInvertida.setIdAmizade(1l);
+        amizadeInvertida.setUsuario1(amizade.getUsuario2());
+        amizadeInvertida.setUsuario2(amizade.getUsuario1());
+        repository.save(amizadeInvertida);
     }
     
 }
