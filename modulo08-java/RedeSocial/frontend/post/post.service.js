@@ -9,7 +9,7 @@ angular.module('app').factory('postService', function ($http) {
 
   function postsDeUsuario(idUsuario, parametros) {
     return $http({
-      url: urlBase + idUsuario,
+      url: urlBase + 'usuario/' + idUsuario,
       method: 'GET',
       params: parametros
     });
@@ -25,7 +25,7 @@ angular.module('app').factory('postService', function ($http) {
 
   return {
     getPostPorId: getPostPorId,
-    postsDeUsuario: postsDeUsuario,
+    listarPorUsuario: postsDeUsuario,
     criar: criar,
     deletar: deletar
   };
