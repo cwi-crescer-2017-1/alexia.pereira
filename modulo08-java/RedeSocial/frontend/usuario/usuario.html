@@ -1,0 +1,11 @@
+<h1>{{usuario.nome}}</h1>
+<img ng-src="usuario.foto" alt="foto de perfil">
+<h2>{{usuario.sexo}}</h2>
+<h2>{{usuario.dataNascimento}}</h1>
+
+
+
+<div class="paginas">
+  <button class="botoes" ng-hide="pagina === 1" ng-click="decrementarPagina()">Anterior</button>
+  <button class="botoes" ng-hide="pagina === totalPaginas" ng-click="incrementarPagina()">Próxima</button>
+</div>
