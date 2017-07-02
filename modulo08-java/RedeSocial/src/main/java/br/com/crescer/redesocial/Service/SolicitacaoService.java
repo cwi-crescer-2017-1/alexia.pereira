@@ -2,7 +2,9 @@ package br.com.crescer.redesocial.Service;
 
 import br.com.crescer.redesocial.Entity.Amizade;
 import br.com.crescer.redesocial.Entity.Solicitacao;
+import br.com.crescer.redesocial.Entity.Usuario;
 import br.com.crescer.redesocial.Repository.SolicitacaoRepository;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +23,11 @@ public class SolicitacaoService {
 
     public Solicitacao enviarSolicitacao(Solicitacao solicitacao) {
         solicitacao.setIdSolicitacao(0l);
-        return repository.save(solicitacao);
+        if (this.solicitacaoEhValida(solicitacao)) {
+            return repository.save(solicitacao);
+        } else {
+            return null;
+        }
     }
 
     public void aceitarSolicitacao(Solicitacao solicitacao) {
@@ -29,6 +35,23 @@ public class SolicitacaoService {
         amizade.setIdAmizade(0l);
         amizadeService.save(amizade);
         repository.delete(solicitacao);
+    }
+
+    public Set<Solicitacao> buscarSolicitacoesPorUsuario(Usuario usuarioTarget) {
+        return repository.findByUsuarioTarget(usuarioTarget);
+    }
+
+    public void remover(Solicitacao solicitacao) {
+        repository.delete(solicitacao);
+    }
+
+    public Solicitacao buscarPorId(Long idSolicitacao) {
+        return repository.findOne(idSolicitacao);
+    }
+
+    private boolean solicitacaoEhValida(Solicitacao solicitacao) {
+        return solicitacao.getUsuarioOwner().getIdUsuario() != solicitacao.getUsuarioTarget().getIdUsuario()
+                && solicitacao.getUsuarioOwner().getAmizadeSet().contains(solicitacao.getUsuarioTarget());
     }
 
 }
