@@ -1,6 +1,7 @@
 package br.com.crescer.redesocial.Entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -12,10 +13,14 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 /**
  *
@@ -37,15 +42,24 @@ public class Post implements Serializable {
     @NotNull
     @Column(name = "ID_POST")
     private Long idPost;
+
     @Size(max = 500)
     @Column(name = "DESCRICAO")
     private String descricao;
+
     @Size(max = 200)
     @Column(name = "URL_IMAGEM")
     private String urlImagem;
+
+    @Column(name = "DATA_PUBLICACAO")
+    @Temporal(TemporalType.TIMESTAMP)
+    @NotNull
+    private Date dataPublicacao;
+
     @JoinColumn(name = "ID_USUARIO", referencedColumnName = "ID_USUARIO")
     @ManyToOne
-    private Usuario idUsuario;
+    private Usuario usuario;
+
     @OneToMany(mappedBy = "idPost")
     private Set<Curtidas> curtidasSet;
 
@@ -80,12 +94,22 @@ public class Post implements Serializable {
         this.urlImagem = urlImagem;
     }
 
-    public Usuario getIdUsuario() {
-        return idUsuario;
+    public Date getDataPublicacao() {
+        return dataPublicacao;
     }
 
-    public void setIdUsuario(Usuario idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setDataPublicacao(Date dataPublicacao) {
+        this.dataPublicacao = dataPublicacao;
+    }
+    
+    
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     @XmlTransient
@@ -97,29 +121,4 @@ public class Post implements Serializable {
         this.curtidasSet = curtidasSet;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idPost != null ? idPost.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Post)) {
-            return false;
-        }
-        Post other = (Post) object;
-        if ((this.idPost == null && other.idPost != null) || (this.idPost != null && !this.idPost.equals(other.idPost))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "br.com.crescer.redesocial.Post[ idPost=" + idPost + " ]";
-    }
-    
 }
