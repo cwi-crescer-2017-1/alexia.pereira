@@ -21,8 +21,7 @@ angular.module('auth').factory('authService', function (authConfig, $http, $q, $
 
   // LOGIN - Retorna PROMISE com o response (sucesso ou erro)
   function login(usuario) {
-    debugger;
-
+  
     let deferred = $q.defer();
 
     let headerAuth = montarHeader(usuario);
