@@ -80,6 +80,11 @@ public class Usuario implements Serializable {
     @Column(name = "CASA")
     @NotNull
     private String casa;
+    
+    @Size(max = 200)
+    @Column(name = "FOTO")
+    @NotNull
+    private String foto;
 
     @OneToMany(mappedBy = "idUsuario")
     private Set<Post> postSet;
