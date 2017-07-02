@@ -1,6 +1,9 @@
 package br.com.crescer.redesocial.Repository;
 
 import br.com.crescer.redesocial.Entity.Post;
+import br.com.crescer.redesocial.Entity.Usuario;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**
@@ -8,5 +11,5 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  * @author alexia.pereira
  */
 public interface PostRepository extends PagingAndSortingRepository<Post, Long> {
-
+    Page<Post> findByUsuario(Usuario usuario, Pageable pg);
 }
