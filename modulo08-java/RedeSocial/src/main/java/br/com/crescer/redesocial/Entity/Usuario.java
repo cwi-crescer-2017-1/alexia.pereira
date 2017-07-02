@@ -86,8 +86,8 @@ public class Usuario implements Serializable {
     @NotNull
     private String foto;
 
-    @OneToMany(mappedBy = "idUsuario")
-    private Set<Post> postSet;
+//    @OneToMany(mappedBy = "usuario")
+//    private Set<Post> postSet;
 
     @OneToMany(mappedBy = "usuario1")
     @JsonProperty(access = Access.WRITE_ONLY)
@@ -163,14 +163,22 @@ public class Usuario implements Serializable {
         this.casa = casa;
     }
 
-    @XmlTransient
-    public Set<Post> getPostSet() {
-        return postSet;
+    public String getFoto() {
+        return foto;
     }
 
-    public void setPostSet(Set<Post> postSet) {
-        this.postSet = postSet;
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
+    
+//    @XmlTransient
+//    public Set<Post> getPostSet() {
+//        return postSet;
+//    }
+//
+//    public void setPostSet(Set<Post> postSet) {
+//        this.postSet = postSet;
+//    }
 
     @XmlTransient
     public Set<Amizade> getAmizadeSet() {
