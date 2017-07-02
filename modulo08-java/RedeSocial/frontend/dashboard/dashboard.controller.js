@@ -1,12 +1,22 @@
 angular.module('app').controller('DashboardController', function ($location, $scope,
-  solicitacaoService, authService) {
+  solicitacaoService, postService, authService) {
 
   buscarSolicitacoes();
 
   $scope.logout = logout;
   $scope.recusarSolicitacao = recusarSolicitacao;
   $scope.aceitarSolicitacao = aceitarSolicitacao;
+  $scope.adicionarPost = adicionarPost;
 
+  function adicionarPost(post) {
+    debugger;
+    post.usuario = authService.getUsuario();
+    post.dataPublicacao = new Date();
+    postService.criar(post).then(function (response) {
+      alert("Post criado com sucesso");
+      $scope.post = {};
+    })
+  }
 
   function buscarSolicitacoes() {
     solicitacaoService.getSolicitacoesPendentes(authService.getUsuario().idUsuario)

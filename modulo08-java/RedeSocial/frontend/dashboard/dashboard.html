@@ -6,3 +6,11 @@
   <button ng-click="aceitarSolicitacao(solicitacao)">Aceitar</button>
   <button ng-click="recusarSolicitacao(solicitacao)">Recusar</button>
 </div>
+
+<h2>Adicionar post</h2>
+
+<form ng-submit="adicionarPost(post)">
+<input type="text" ng-model="post.descricao" placeholder="obrigatório">
+<input type="text" ng-model="post.urlImagem" placeholder="imagem: opcional">
+<button type="submit">Adicionar Post</button>
+</form>
