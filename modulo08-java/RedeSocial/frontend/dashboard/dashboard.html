@@ -3,12 +3,13 @@
 
 <div class="inner">
 
-  <h2>Adicionar post</h2>
+  <h2>Adicione uma postagem</h2>
 
   <form ng-submit="adicionarPost(post)">
-    <input type="text" ng-model="post.descricao" placeholder="obrigatório">
-    <input type="text" ng-model="post.urlImagem" placeholder="imagem: opcional">
-    <button type="submit">Adicionar Post</button>
+    <textarea class="border-add" ng-model="post.descricao" placeholder="obrigatório">
+    </textarea>
+    <input class="border-add" type="text" ng-model="post.urlImagem" placeholder="imagem: opcional">
+    <button class="btn btn-primary" type="submit">Adicionar Post</button>
   </form>
 
   <div ng-repeat="post in posts">
@@ -16,6 +17,7 @@
     {{post.dataPublicacao}}
     {{post.descricao}}
   </div>
+
   <div class="paginas">
     <button class="botoes" ng-hide="primeiraPagina" ng-click="decrementarPagina()">Anterior</button>
     <button class="botoes" ng-hide="ultimaPagina" ng-click="incrementarPagina()">Próxima</button>

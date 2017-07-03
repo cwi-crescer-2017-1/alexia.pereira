@@ -146,3 +146,22 @@
   width: 60px;
   height: 60px;
 }
+
+.border-add {
+  width: 60%;
+  border: none;
+  padding: 10px 20px;
+  border: 1px solid grey;
+}
+
+textarea {
+  font: 14px/22px "Lato", Arial, sans-serif;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  resize: none;
+}
+
+.btn-primary {
+  display: block;
+  margin: 10px 0;
+}
