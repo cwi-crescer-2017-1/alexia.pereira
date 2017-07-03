@@ -23,6 +23,7 @@ angular.module('app')
 
   function cadastrar (usuario) {
     usuario.sexo = usuario.sexo.sigla;
+    usuario.foto = usuario.foto || 'https://vignette1.wikia.nocookie.net/harrypotter/images/2/23/Hallows.png/revision/latest?cb=20090309113642';
     usuarioService.criar(usuario).then(res => {
       alert("Cadastro realizado com sucesso")
       $location.path('/login');
