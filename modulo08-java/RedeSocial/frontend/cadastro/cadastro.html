@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Cadastro</title>
+  </head>
+  <body>
+    <form ng-submit="cadastrar(usuario)">
+      <input type="text" placeholder="Nome" ng-model="usuario.nome">
+      <select ng-model="usuario.sexo" ng-options="sexo.nome for sexo in sexos">
+        <option value="">
+          {{sexo.nome}}
+        </option>
+      </select>
+      <input type="date" ng-model="usuario.dataNascimento">
+      <input type="email" placeholder="email" ng-model="usuario.email">
+      <input type="password" placeholder="*****" ng-model="usuario.senha">
+      <select ng-model="usuario.casa" ng-options="casa for casa in casas">
+        <option value="">
+          {{casa}}
+        </option>
+      </select>
+      <input type="text" ng-model="usuario.foto">
+      <button type="submit">Cadastrar</button>
+    </form>
+  </body>
+</html>

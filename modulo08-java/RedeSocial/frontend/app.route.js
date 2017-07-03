@@ -4,6 +4,10 @@ angular.module('app').config(function ($routeProvider) {
     controller: 'LoginController',
     templateUrl: '/login/login.html'
   })
+  .when('/cadastro', {
+    controller: 'CadastroController',
+    templateUrl: '/cadastro/cadastro.html'
+  })
   .when('/dashboard', {
       controller: 'DashboardController',
       templateUrl: 'dashboard/dashboard.html',
