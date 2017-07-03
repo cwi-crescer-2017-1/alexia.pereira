@@ -14,12 +14,12 @@ angular.module('app').factory('usuarioService', function ($http) {
     return $http.get(urlBase + id);
   };
 
-  function atualizar(cliente) {
-    return $http.put(urlBase + 'atualizar', cliente);
+  function atualizar(usuario) {
+    return $http.put(urlBase + 'atualizar', usuario);
   };
 
-  function criar (cliente) {
-    return $http.post(urlBase, cliente);
+  function criar (usuario) {
+    return $http.post(urlBase, usuario);
   }
 
   function getAmigos(idUsuario) {
