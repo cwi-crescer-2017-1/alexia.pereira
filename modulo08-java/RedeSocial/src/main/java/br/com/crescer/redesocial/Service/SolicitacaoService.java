@@ -1,10 +1,10 @@
 package br.com.crescer.redesocial.Service;
 
-import br.com.crescer.redesocial.Exceptions.AdicionarASiMesmo;
-import br.com.crescer.redesocial.Exceptions.JaSaoAmigos;
 import br.com.crescer.redesocial.Entity.Amizade;
 import br.com.crescer.redesocial.Entity.Solicitacao;
 import br.com.crescer.redesocial.Entity.Usuario;
+import br.com.crescer.redesocial.Exceptions.AdicionarASiMesmo;
+import br.com.crescer.redesocial.Exceptions.JaSaoAmigos;
 import br.com.crescer.redesocial.Repository.SolicitacaoRepository;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,7 +59,7 @@ public class SolicitacaoService {
         if (solicitacao.getUsuarioOwner().getAmigos().contains(solicitacao.getUsuarioTarget())) {
             throw new JaSaoAmigos();
         }
-                
+
     }
 
 }

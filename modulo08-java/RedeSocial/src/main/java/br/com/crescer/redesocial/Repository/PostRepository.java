@@ -15,5 +15,6 @@ public interface PostRepository extends PagingAndSortingRepository<Post, Long> {
 
     Page<Post> findByUsuario(Usuario usuario, Pageable pg);
 
-    Page<Post> findByUsuario(Set<Usuario> usuarios, Pageable pg);
+//    @Query("SELECT * FROM POST P INNER JOIN USUARIO U ON U.ID_USUARIO = P.ID_USUARIO WHERE ID")
+    Page<Post> findByUsuarioIn(Set<Usuario> usuarios, Pageable pg);
 }

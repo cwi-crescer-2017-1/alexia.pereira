@@ -22,7 +22,7 @@ public class PostService {
 
     @Autowired
     PostRepository repository;
-    
+
     @Autowired
     UsuarioService usuarioService;
 
@@ -59,7 +59,8 @@ public class PostService {
         Pageable page;
         page = new PageRequest(pagina, quantidade, ordenador);
         Set<Usuario> amigos = accountOwner.getAmigos();
-        return repository.findByUsuario(amigos, page);
+        amigos.add(accountOwner);
+        return repository.findByUsuarioIn(amigos, page);
     }
 
 }

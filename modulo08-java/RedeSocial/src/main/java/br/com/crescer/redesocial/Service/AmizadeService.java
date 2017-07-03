@@ -13,14 +13,14 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class AmizadeService {
-    
+
     @Autowired
     AmizadeRepository repository;
-    
-    public Amizade save(Amizade amizade) {
+
+    public void save(Amizade amizade) {
         amizade.setIdAmizade(0l);
         this.saveInvertedAmizade(amizade);
-        return repository.save(amizade);
+        repository.save(amizade);
     }
 
     private void saveInvertedAmizade(Amizade amizade) {
@@ -30,9 +30,9 @@ public class AmizadeService {
         amizadeInvertida.setUsuario2(amizade.getUsuario1());
         repository.save(amizadeInvertida);
     }
-    
-    public Set<Amizade> buscarAmigos (Usuario usuario) {
+
+    public Set<Amizade> buscarAmigos(Usuario usuario) {
         return repository.findByUsuario1(usuario);
     }
-    
+
 }
