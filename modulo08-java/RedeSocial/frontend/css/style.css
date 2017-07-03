@@ -31,14 +31,14 @@
   margin-left: 10px;
 }
 
-.menu .profile .profile-image {
+/*.menu .profile */
+.profile-image {
   display: inline-block;
   width: 40px;
   height: 40px;
   background-position: center;
   background-size: cover;
   border-radius: 50%;
-  /*position: relative;*/
   top: 13px;
 }
 
@@ -120,4 +120,29 @@
 
 .info {
   vertical-align: middle;
+}
+
+/*SOLICITACOES*/
+
+.solicitacoes {
+  background-color: rgba(0, 0, 0, 0.1);
+  overflow: scroll;
+}
+
+.solicitacoes > li > .info-user {
+  text-align: center;
+  color: #f2f2f2;
+  display: block;
+}
+
+.solicitacoes > li > .botoes {
+  display: block;
+  text-align: center;
+}
+
+.solicitacoes > li > img {
+  display: block;
+  margin: 0 auto;
+  width: 60px;
+  height: 60px;
 }

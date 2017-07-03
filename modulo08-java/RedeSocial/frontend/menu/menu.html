@@ -1,30 +1,47 @@
 <div class="menu-container" ng-controller="MenuController">
 
-<nav class="menu">
-  <div class="profile">
-    <img ng-src="{{usuario.foto}}" class="profile-image"/>
-    <span class="profile-name">Olá, {{usuario.nome}}!</span>
-  </div>
+  <nav class="menu">
+    <div class="profile">
+      <img ng-src="{{usuario.foto}}" class="profile-image"/>
+      <span class="profile-name">Olá, {{usuario.nome}}!</span>
+    </div>
 
-  <ul class="menu-items">
-    <li class="menu-item">
-      <a class="menu-link" ng-click="amigos()">
-        <img src="icons/question.svg" alt="">
-        Amigos
-      </a>
-    </li>
-    <li class="menu-item">
-      <a class="menu-link" ng-click="dashboard()">
-        <img src="icons/newspaper.svg" alt="">
-        Dashboard
-      </a>
-    </li>
-    <li class="menu-item">
-      <a class="menu-link" href="#">
-        <img src="icons/letter.svg" alt="">
-        Notificações
-      </a>
-    </li>
-  </ul>
-</nav>
+    <ul class="menu-items">
+      <li class="menu-item">
+        <a class="menu-link" ng-click="amigos()">
+          <img src="icons/question.svg" alt="">
+          Amigos
+        </a>
+      </li>
+      <li class="menu-item">
+        <a class="menu-link" ng-click="dashboard()">
+          <img src="icons/newspaper.svg" alt="">
+          Dashboard
+        </a>
+      </li>
+      <li class="menu-item">
+        <a class="menu-link" ng-click="exibirNotificacoes()">
+          <img src="icons/letter.svg" alt="">
+          Notificações
+        </a>
+      </li>
+    </ul>
+    <ul class="menu-items solicitacoes" ng-show="notificacoes" ng-repeat="solicitacao in solicitacoes">
+      <li>
+        <img class="profile-image" ng-src="{{solicitacao.usuarioOwner.foto}}">
+        <div class="info-user">
+          <span>
+            {{solicitacao.usuarioOwner.nome}}
+            <span>
+              adicionou você!
+            </span>
+          </span>
+        </div>
+        <div class="botoes">
+          <button class="btn-success" ng-click="aceitarSolicitacao(solicitacao)">Aceitar</button>
+          <button class="btn-danger" ng-click="recusarSolicitacao(solicitacao)">Recusar</button>
+      </div>
+      </li>
+    </ul>
+  </nav>
 </div>
