@@ -15,6 +15,15 @@ angular.module('app').factory('postService', function ($http) {
     });
   }
 
+  function postsDeAmigos(idUsuario, parametros) {
+    return $http({
+      url: urlBase + 'amigos/' + idUsuario,
+      method: 'GET',
+      params: parametros
+    });
+  }
+
+
   function criar (post) {
     return $http.post(urlBase, post);
   }
@@ -26,6 +35,7 @@ angular.module('app').factory('postService', function ($http) {
   return {
     getPostPorId: getPostPorId,
     listarPorUsuario: postsDeUsuario,
+    listarPorAmigos: postsDeAmigos,
     criar: criar,
     deletar: deletar
   };
