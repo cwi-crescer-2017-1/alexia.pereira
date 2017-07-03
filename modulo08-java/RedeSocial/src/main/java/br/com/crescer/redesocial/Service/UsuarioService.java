@@ -1,5 +1,6 @@
 package br.com.crescer.redesocial.Service;
 
+import br.com.crescer.redesocial.Controller.Exceptions.EmailJaCadastrado;
 import br.com.crescer.redesocial.Entity.Amizade;
 import br.com.crescer.redesocial.Entity.Usuario;
 import br.com.crescer.redesocial.Repository.UsuarioRepository;
@@ -25,7 +26,10 @@ public class UsuarioService {
         return repository.findAll();
     }
 
-    public Usuario save(Usuario usuario) {
+    public Usuario save(Usuario usuario) throws EmailJaCadastrado {
+        if (repository.countByEmail(usuario.getEmail()) > 0) {
+            throw new EmailJaCadastrado();
+        }
         return repository.save(usuario);
     }
 
