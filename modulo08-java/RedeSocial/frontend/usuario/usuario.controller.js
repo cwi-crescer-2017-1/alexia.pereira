@@ -12,6 +12,7 @@ angular.module('app')
   buscarUsuario($routeParams.idUsuario);
   var pagina = 0;
 
+
   function editarPerfil() {
     $location.url($location.path() + "/edit");
   }
@@ -23,14 +24,14 @@ angular.module('app')
   function buscarUsuario(id) {
     usuarioService.buscarPorId(id).then(function (response) {
       $scope.usuario = response.data;
-      buscarPosts();
+      incrementarPagina(true);
       verificarPossibilidadeDeEdicaoDePerfil();
     })
   };
 
   function buscarPosts () {
     pagina = pagina || 0;
-    let parametros = {pagina: pagina, quantidade: 2};
+    let parametros = {pagina: pagina, quantidade: 5};
     postService.listarPorUsuario($scope.usuario.idUsuario, parametros).then(function (response) {
       $scope.posts = response.data.content;
       $scope.primeiraPagina = response.data.first;
@@ -39,17 +40,15 @@ angular.module('app')
   };
 
 
-    function decrementarPagina () {
-      pagina = (pagina-2) *2;
-      buscarPosts();
-      pagina--;
-    }
+  function decrementarPagina () {
+    pagina = (pagina-1);
+    buscarPosts();
+  }
 
-    function incrementarPagina () {
-      pagina = (pagina+1) * 2;
-      buscarPosts();
-    }
-
+  function incrementarPagina () {
+    pagina = (pagina+1);
+    buscarPosts();
+  }
 
   function atualizarUsuario(usuario) {
     usuarioService.atualizar(usuario).then(function(response) {
