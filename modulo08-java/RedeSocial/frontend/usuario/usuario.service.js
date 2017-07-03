@@ -23,7 +23,7 @@ angular.module('app').factory('usuarioService', function ($http) {
   }
 
   function getAmigos(idUsuario) {
-    return $http.get(urlBase + 'amigos');
+    return $http.get(urlBase + 'amigos/' + idUsuario);
   }
 
   return {

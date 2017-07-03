@@ -18,6 +18,16 @@ angular.module('app').config(function ($routeProvider) {
         }
       }
     })
+    .when('/amigos', {
+        controller: 'AmigosController',
+        templateUrl: 'amigos/amigos.html',
+        resolve: {
+          // define que para acessar esta página deve ser um usuário autenticado (mas não restringe o tipo de permissão)
+          autenticado: function (authService) {
+            return authService.isAutenticadoPromise();
+          }
+        }
+      })
     .when('/usuario/:idUsuario', {
         controller: 'UsuarioController',
         templateUrl: 'usuario/usuario.html',
