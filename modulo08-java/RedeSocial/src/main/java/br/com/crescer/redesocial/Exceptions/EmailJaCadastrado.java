@@ -1,4 +1,4 @@
-package br.com.crescer.redesocial.Controller.Exceptions;
+package br.com.crescer.redesocial.Exceptions;
 
 /**
  *
