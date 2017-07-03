@@ -1,26 +1,32 @@
-<button type="submit" ng-click="logout()">Logout</button>
+<div ng-include="'../menu/menu.html'"></div>
 
 
-<div ng-repeat="solicitacao in solicitacoes">
-  {{solicitacao.usuarioOwner.nome}} adicionou você!
-  <button ng-click="aceitarSolicitacao(solicitacao)">Aceitar</button>
-  <button ng-click="recusarSolicitacao(solicitacao)">Recusar</button>
-</div>
+<div class="inner">
 
-<h2>Adicionar post</h2>
+  <button type="submit" ng-click="logout()">Logout</button>
 
-<form ng-submit="adicionarPost(post)">
-  <input type="text" ng-model="post.descricao" placeholder="obrigatório">
-  <input type="text" ng-model="post.urlImagem" placeholder="imagem: opcional">
-  <button type="submit">Adicionar Post</button>
-</form>
 
-<div ng-repeat="post in posts">
-  {{post.usuario.nome}}
-  {{post.dataPublicacao}}
-  {{post.descricao}}
-</div>
-<div class="paginas">
-  <button class="botoes" ng-hide="primeiraPagina" ng-click="decrementarPagina()">Anterior</button>
-  <button class="botoes" ng-hide="ultimaPagina" ng-click="incrementarPagina()">Próxima</button>
+  <div ng-repeat="solicitacao in solicitacoes">
+    {{solicitacao.usuarioOwner.nome}} adicionou você!
+    <button ng-click="aceitarSolicitacao(solicitacao)">Aceitar</button>
+    <button ng-click="recusarSolicitacao(solicitacao)">Recusar</button>
+  </div>
+
+  <h2>Adicionar post</h2>
+
+  <form ng-submit="adicionarPost(post)">
+    <input type="text" ng-model="post.descricao" placeholder="obrigatório">
+    <input type="text" ng-model="post.urlImagem" placeholder="imagem: opcional">
+    <button type="submit">Adicionar Post</button>
+  </form>
+
+  <div ng-repeat="post in posts">
+    {{post.usuario.nome}}
+    {{post.dataPublicacao}}
+    {{post.descricao}}
+  </div>
+  <div class="paginas">
+    <button class="botoes" ng-hide="primeiraPagina" ng-click="decrementarPagina()">Anterior</button>
+    <button class="botoes" ng-hide="ultimaPagina" ng-click="incrementarPagina()">Próxima</button>
+  </div>
 </div>

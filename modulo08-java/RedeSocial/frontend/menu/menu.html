@@ -1,0 +1,36 @@
+<div class="menu-container" ng-controller="MenuController">
+
+<nav class="menu">
+  <div class="profile">
+    <img ng-src="{{usuario.foto}}" class="profile-image"/>
+    <span class="profile-name">Olá, {{usuario.nome}}!</span>
+  </div>
+
+  <ul class="menu-items">
+    <!-- <li class="menu-item">
+      <a class="menu-link active" ng-click="dashboard()">
+        <img src="icons/home.svg" alt="">
+        Dashboard
+      </a>
+    </li> -->
+    <li class="menu-item">
+      <a class="menu-link" ng-click="amigos()">
+        <img src="icons/question.svg" alt="">
+        Amigos
+      </a>
+    </li>
+    <li class="menu-item">
+      <a class="menu-link" href="#">
+        <img src="icons/newspaper.svg" alt="">
+        Dashboard
+      </a>
+    </li>
+    <li class="menu-item">
+      <a class="menu-link" href="#">
+        <img src="icons/letter.svg" alt="">
+        Notificações
+      </a>
+    </li>
+  </ul>
+</nav>
+</div>

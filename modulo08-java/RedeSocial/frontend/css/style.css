@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i');
+
+* {
+    box-sizing: border-box;
+}
+
+.menu-container {
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+    padding-left: 300px;
+}
+
+.menu {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 280px;
+    background: #2f3947;
+}
+
+.menu .profile {
+    background: #ffae00;
+    text-align: center;
+}
+
+.menu .profile .profile-name {
+    line-height: 70px;
+    color: #fff;
+    font-weight: 300;
+    margin-left: 10px;
+}
+
+.menu .profile .profile-image {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-position: center;
+    background-size: cover;
+    border-radius: 50%;
+    /*position: relative;*/
+    top: 13px;
+}
+
+.menu .menu-items {
+    list-style: none;
+    padding: 0;
+}
+
+.menu .menu-items .menu-item .menu-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 50px;
+    display: block;
+    padding-left: 20px;
+}
+
+.menu .menu-items .menu-item .menu-link:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.menu .menu-items .menu-item .menu-link img {
+    width: 22px;
+    position: relative;
+    top: -1px;
+    margin-right: 10px;
+}
+
+.menu .menu-items .menu-item .menu-link.active {
+    border-right: 4px solid #ffae00;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.inner {
+  padding-left: 300px;
+}
