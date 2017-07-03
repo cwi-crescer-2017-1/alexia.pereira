@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -15,6 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -92,6 +94,9 @@ public class Usuario implements Serializable {
     @OneToMany(mappedBy = "usuario1")
     @JsonProperty(access = Access.WRITE_ONLY)
     private Set<Amizade> amizadeSet;
+    
+    @Transient
+    private Set<Usuario> amigos;
 
     @OneToMany(mappedBy = "usuarioTarget")
     @JsonProperty(access = Access.WRITE_ONLY)
@@ -101,6 +106,7 @@ public class Usuario implements Serializable {
     private Set<Curtidas> curtidasSet;
 
     public Usuario() {
+        this.amigos = new HashSet<Usuario>();
     }
 
     public Usuario(Long idUsuario) {
@@ -170,15 +176,6 @@ public class Usuario implements Serializable {
     public void setFoto(String foto) {
         this.foto = foto;
     }
-    
-//    @XmlTransient
-//    public Set<Post> getPostSet() {
-//        return postSet;
-//    }
-//
-//    public void setPostSet(Set<Post> postSet) {
-//        this.postSet = postSet;
-//    }
 
     @XmlTransient
     public Set<Amizade> getAmizadeSet() {
@@ -189,6 +186,14 @@ public class Usuario implements Serializable {
         this.amizadeSet = amizadeSet;
     }
 
+    public Set<Usuario> getAmigos() {
+        return amigos;
+    }
+
+    public void setAmigos(Set<Usuario> amigos) {
+        this.amigos = amigos;
+    }
+    
     @XmlTransient
     public Set<Solicitacao> getSolicitacaoSet() {
         return solicitacaoSet;

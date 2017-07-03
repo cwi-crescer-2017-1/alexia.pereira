@@ -49,7 +49,12 @@ public class UsuarioController {
     public Usuario loadById(@PathVariable Long id) {
         return service.loadById(id);
     }
-    
-    
+
+    @GetMapping(value = "/amigos/{id}")
+    public Usuario loadFriends(@PathVariable Long id) {
+        Usuario usuario = service.loadById(id);
+        service.buscarAmigos(usuario);
+        return usuario;
+    }
 
 }

@@ -3,6 +3,7 @@ package br.com.crescer.redesocial.Service;
 import br.com.crescer.redesocial.Entity.Amizade;
 import br.com.crescer.redesocial.Entity.Usuario;
 import br.com.crescer.redesocial.Repository.AmizadeRepository;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +29,10 @@ public class AmizadeService {
         amizadeInvertida.setUsuario1(amizade.getUsuario2());
         amizadeInvertida.setUsuario2(amizade.getUsuario1());
         repository.save(amizadeInvertida);
+    }
+    
+    public Set<Amizade> buscarAmigos (Usuario usuario) {
+        return repository.findByUsuario1(usuario);
     }
     
 }
