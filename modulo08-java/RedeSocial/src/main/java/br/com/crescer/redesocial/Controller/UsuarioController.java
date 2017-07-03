@@ -1,6 +1,6 @@
 package br.com.crescer.redesocial.Controller;
 
-import br.com.crescer.redesocial.Controller.Exceptions.EmailJaCadastrado;
+import br.com.crescer.redesocial.Exceptions.EmailJaCadastrado;
 import br.com.crescer.redesocial.Entity.Usuario;
 import br.com.crescer.redesocial.Service.UsuarioService;
 import java.util.Set;

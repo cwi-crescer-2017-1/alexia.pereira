@@ -1,5 +1,7 @@
 package br.com.crescer.redesocial.Service;
 
+import br.com.crescer.redesocial.Exceptions.AdicionarASiMesmo;
+import br.com.crescer.redesocial.Exceptions.JaSaoAmigos;
 import br.com.crescer.redesocial.Entity.Amizade;
 import br.com.crescer.redesocial.Entity.Solicitacao;
 import br.com.crescer.redesocial.Entity.Usuario;
@@ -21,13 +23,13 @@ public class SolicitacaoService {
     @Autowired
     AmizadeService amizadeService;
 
-    public Solicitacao enviarSolicitacao(Solicitacao solicitacao) {
+    @Autowired
+    UsuarioService usuarioService;
+
+    public Solicitacao enviarSolicitacao(Solicitacao solicitacao) throws Exception {
         solicitacao.setIdSolicitacao(0l);
-        if (this.solicitacaoEhValida(solicitacao)) {
-            return repository.save(solicitacao);
-        } else {
-            return null;
-        }
+        this.solicitacaoEhValida(solicitacao);
+        return repository.save(solicitacao);
     }
 
     public void aceitarSolicitacao(Solicitacao solicitacao) {
@@ -49,9 +51,15 @@ public class SolicitacaoService {
         return repository.findOne(idSolicitacao);
     }
 
-    private boolean solicitacaoEhValida(Solicitacao solicitacao) {
-        return solicitacao.getUsuarioOwner().getIdUsuario() != solicitacao.getUsuarioTarget().getIdUsuario()
-                && solicitacao.getUsuarioOwner().getAmizadeSet().contains(solicitacao.getUsuarioTarget());
+    private void solicitacaoEhValida(Solicitacao solicitacao) throws AdicionarASiMesmo, JaSaoAmigos {
+        usuarioService.buscarAmigos(solicitacao.getUsuarioOwner());
+        if (solicitacao.getUsuarioOwner().getIdUsuario() == solicitacao.getUsuarioTarget().getIdUsuario()) {
+            throw new AdicionarASiMesmo();
+        }
+        if (solicitacao.getUsuarioOwner().getAmigos().contains(solicitacao.getUsuarioTarget())) {
+            throw new JaSaoAmigos();
+        }
+                
     }
 
 }

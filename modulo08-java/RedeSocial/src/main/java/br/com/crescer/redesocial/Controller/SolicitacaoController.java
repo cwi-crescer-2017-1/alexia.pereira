@@ -29,7 +29,7 @@ public class SolicitacaoController {
     UsuarioService usuarioService;
 
     @PostMapping
-    public Solicitacao save(@RequestBody Solicitacao solicitacao) {
+    public Solicitacao save(@RequestBody Solicitacao solicitacao) throws Exception {
         solicitacao.setIdSolicitacao(0l);
         return service.enviarSolicitacao(solicitacao);
     }
