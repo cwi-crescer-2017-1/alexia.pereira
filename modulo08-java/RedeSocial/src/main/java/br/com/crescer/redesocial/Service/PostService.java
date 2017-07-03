@@ -19,39 +19,39 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class PostService {
-
+    
     @Autowired
     PostRepository repository;
-
+    
     @Autowired
     UsuarioService usuarioService;
-
+    
     public Iterable<Post> findAll() {
         return repository.findAll();
     }
-
+    
     public Post save(Post post) {
         return repository.save(post);
     }
-
+    
     public Post update(Post post) {
         return repository.save(post);
     }
-
+    
     public void remove(Post post) {
         repository.delete(post);
     }
-
+    
     public Post loadById(Long id) {
         return repository.findOne(id);
     }
-
+    
     public Page<Post> loadByUsuario(Long idUsuario, int pagina, int tamanho) {
         Usuario donoDoPost = usuarioService.loadById(idUsuario);
         Sort ordenador = new Sort(new Order(Direction.DESC, "dataPublicacao"));
         return repository.findByUsuario(donoDoPost, new PageRequest(pagina, tamanho, ordenador));
     }
-
+    
     public Page<Post> loadFriendsPost(Long idUsuario, int pagina, int quantidade) {
         Usuario accountOwner = usuarioService.loadById(idUsuario);
         usuarioService.buscarAmigos(accountOwner);
@@ -59,8 +59,10 @@ public class PostService {
         Pageable page;
         page = new PageRequest(pagina, quantidade, ordenador);
         Set<Usuario> amigos = accountOwner.getAmigos();
-        amigos.add(accountOwner);
+        Usuario donoDoPost = new Usuario();
+        donoDoPost.setIdUsuario(accountOwner.getIdUsuario());
+        amigos.add(donoDoPost);
         return repository.findByUsuarioIn(amigos, page);
     }
-
+    
 }
