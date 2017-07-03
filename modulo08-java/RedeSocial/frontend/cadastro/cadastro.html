@@ -1,27 +1,56 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Cadastro</title>
-  </head>
-  <body>
+<head>
+  <meta charset="utf-8">
+  <title>Cadastro</title>
+</head>
+<div class="cadastro-body">
+  <div class="container">
+    <h1>Bem vindo ao PotterMedia!</h1>
+    <span>Já possui uma conta?</span>
+    <a ng-click="redirecionarLogin()">
+      <em>Ir para a tela de Login</em>
+    </a>
     <form ng-submit="cadastrar(usuario)">
-      <input type="text" placeholder="Nome" ng-model="usuario.nome">
-      <select ng-model="usuario.sexo" ng-options="sexo.nome for sexo in sexos">
-        <option value="">
-          {{sexo.nome}}
-        </option>
-      </select>
-      <input type="date" ng-model="usuario.dataNascimento">
-      <input type="email" placeholder="email" ng-model="usuario.email">
-      <input type="password" placeholder="*****" ng-model="usuario.senha">
-      <select ng-model="usuario.casa" ng-options="casa for casa in casas">
-        <option value="">
-          {{casa}}
-        </option>
-      </select>
-      <input type="text" ng-model="usuario.foto">
-      <button type="submit">Cadastrar</button>
+      <div class="form-group">
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" placeholder="Nome" ng-model="usuario.nome" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="sexo">Sexo</label>
+        <select name="sexo" ng-model="usuario.sexo" ng-options="sexo.nome for sexo in sexos" class="form-control">
+          <option value="">
+            {{sexo.nome}}
+          </option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="dataNasc">Data Nascimento</label>
+        <input type="date" name="dataNasc" ng-model="usuario.dataNascimento" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" name="email" placeholder="eu@exemplo.com" ng-model="usuario.email" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="senha">Senha</label>
+        <input name="senha" type="password" placeholder="*****" ng-model="usuario.senha" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="casa">Casa:</label>
+        <select ng-model="usuario.casa" name="casa" ng-options="casa for casa in casas" class="form-control">
+          <option value="">
+            {{casa}}
+          </option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="foto">Foto</label>
+        <input type="text" ng-model="usuario.foto" class="form-control" placeholder="url publica">
+      </div>
+      <button class="btn btn-primary" type="submit">Cadastrar</button>
     </form>
-  </body>
+  </div>
+</div>
+</body>
 </html>

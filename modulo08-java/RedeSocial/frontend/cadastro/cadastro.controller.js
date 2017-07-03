@@ -1,7 +1,7 @@
 angular.module('app')
-  .controller('CadastroController', function ($scope, $location, usuarioService, authService) {
+.controller('CadastroController', function ($scope, $location, usuarioService, authService) {
 
-    $scope.sexos = [
+  $scope.sexos = [
     {
       nome: 'Masculino',
       sigla: 'M'
@@ -15,11 +15,14 @@ angular.module('app')
       sigla: 'O'
     }
   ];
-    $scope.casas = ['Corvinal', 'Grifinória', 'Lufa-Lufa', 'Sonserina'];
-    $scope.cadastrar = cadastrar;
+  $scope.casas = ['Corvinal', 'Grifinória', 'Lufa-Lufa', 'Sonserina'];
+  $scope.cadastrar = cadastrar;
+  $scope.redirecionarLogin = redirecionarLogin;
 
 
-
+  function redirecionarLogin() {
+    $location.path('/login')
+  }
 
   function cadastrar (usuario) {
     usuario.sexo = usuario.sexo.sigla;
@@ -31,4 +34,4 @@ angular.module('app')
   }
 
 
-  });
+});

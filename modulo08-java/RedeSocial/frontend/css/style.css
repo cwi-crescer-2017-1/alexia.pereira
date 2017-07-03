@@ -165,3 +165,23 @@ textarea {
   display: block;
   margin: 10px 0;
 }
+
+h1, h2 {
+  margin: 0;
+}
+
+em {
+  color: black;
+}
+
+em:hover {
+  color: grey;
+}
+
+.container {
+  padding-top: 15px;
+}
+
+form {
+  margin-top: 10px;
+}
