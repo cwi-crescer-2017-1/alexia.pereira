@@ -31,18 +31,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Table(name = "USUARIO")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")
-    ,
-    @NamedQuery(name = "Usuario.findByIdUsuario", query = "SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario")
-    ,
-    @NamedQuery(name = "Usuario.findByNome", query = "SELECT u FROM Usuario u WHERE u.nome = :nome")
-    ,
-    @NamedQuery(name = "Usuario.findBySexo", query = "SELECT u FROM Usuario u WHERE u.sexo = :sexo")
-    ,
-    @NamedQuery(name = "Usuario.findByDataNascimento", query = "SELECT u FROM Usuario u WHERE u.dataNascimento = :dataNascimento")
-    ,
-    @NamedQuery(name = "Usuario.findByEmail", query = "SELECT u FROM Usuario u WHERE u.email = :email")
-    ,
+    @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
+    @NamedQuery(name = "Usuario.findByIdUsuario", query = "SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario"),
+    @NamedQuery(name = "Usuario.findByNome", query = "SELECT u FROM Usuario u WHERE u.nome = :nome"),
+    @NamedQuery(name = "Usuario.findBySexo", query = "SELECT u FROM Usuario u WHERE u.sexo = :sexo"),
+    @NamedQuery(name = "Usuario.findByDataNascimento", query = "SELECT u FROM Usuario u WHERE u.dataNascimento = :dataNascimento"),
+    @NamedQuery(name = "Usuario.findByEmail", query = "SELECT u FROM Usuario u WHERE u.email = :email"),
     @NamedQuery(name = "Usuario.findBySenha", query = "SELECT u FROM Usuario u WHERE u.senha = :senha")})
 public class Usuario implements Serializable {
 
@@ -82,19 +76,18 @@ public class Usuario implements Serializable {
     @Column(name = "CASA")
     @NotNull
     private String casa;
-    
-    @Size(max = 200)
+
+    @Size(max = 500)
     @Column(name = "FOTO")
     @NotNull
     private String foto;
 
 //    @OneToMany(mappedBy = "usuario")
 //    private Set<Post> postSet;
-
     @OneToMany(mappedBy = "usuario1")
     @JsonProperty(access = Access.WRITE_ONLY)
     private Set<Amizade> amizadeSet;
-    
+
     @Transient
     private Set<Usuario> amigos;
 
@@ -193,7 +186,7 @@ public class Usuario implements Serializable {
     public void setAmigos(Set<Usuario> amigos) {
         this.amigos = amigos;
     }
-    
+
     @XmlTransient
     public Set<Solicitacao> getSolicitacaoSet() {
         return solicitacaoSet;

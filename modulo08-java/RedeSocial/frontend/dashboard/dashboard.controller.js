@@ -1,12 +1,8 @@
 angular.module('app').controller('DashboardController', function ($location, $scope,
-  solicitacaoService, postService, authService) {
+    postService, authService) {
 
-  buscarSolicitacoes();
   buscarPostsDosAmigos();
 
-  $scope.logout = logout;
-  $scope.recusarSolicitacao = recusarSolicitacao;
-  $scope.aceitarSolicitacao = aceitarSolicitacao;
   $scope.adicionarPost = adicionarPost;
   $scope.decrementarPagina = decrementarPagina;
   $scope.incrementarPagina = incrementarPagina;
@@ -21,32 +17,6 @@ angular.module('app').controller('DashboardController', function ($location, $sc
       $scope.post = {};
     })
   }
-
-  function buscarSolicitacoes() {
-    solicitacaoService.getSolicitacoesPendentes(authService.getUsuario().idUsuario)
-    .then(function (response) {
-      $scope.solicitacoes = response.data;
-    });
-  }
-
-  function recusarSolicitacao(solicitacao) {
-    debugger;
-    solicitacaoService.deletar(solicitacao.idSolicitacao)
-    .then(function (response) {
-      buscarSolicitacoes();
-    });
-  }
-
-  function aceitarSolicitacao(solicitacao) {
-    solicitacaoService.aceitar(solicitacao).then(function (response) {
-      buscarSolicitacoes();
-    })
-  }
-
-  function logout() {
-    authService.logout();
-  };
-
   function buscarPostsDosAmigos () {
     pagina = pagina || 0;
     let parametros = {pagina: pagina, quantidade: 15};
@@ -56,7 +26,6 @@ angular.module('app').controller('DashboardController', function ($location, $sc
       $scope.ultimaPagina = response.data.last;
     })
   };
-
 
   function decrementarPagina () {
     pagina = (pagina-1);

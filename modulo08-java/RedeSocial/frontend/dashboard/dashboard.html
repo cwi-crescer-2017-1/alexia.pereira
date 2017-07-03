@@ -3,15 +3,6 @@
 
 <div class="inner">
 
-  <button type="submit" ng-click="logout()">Logout</button>
-
-
-  <div ng-repeat="solicitacao in solicitacoes">
-    {{solicitacao.usuarioOwner.nome}} adicionou você!
-    <button ng-click="aceitarSolicitacao(solicitacao)">Aceitar</button>
-    <button ng-click="recusarSolicitacao(solicitacao)">Recusar</button>
-  </div>
-
   <h2>Adicionar post</h2>
 
   <form ng-submit="adicionarPost(post)">

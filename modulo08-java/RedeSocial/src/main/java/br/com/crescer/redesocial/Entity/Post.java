@@ -19,8 +19,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 
 /**
  *
@@ -30,10 +28,10 @@ import org.springframework.data.domain.Sort;
 @Table(name = "POST")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Post.findAll", query = "SELECT p FROM Post p")
-    , @NamedQuery(name = "Post.findByIdPost", query = "SELECT p FROM Post p WHERE p.idPost = :idPost")
-    , @NamedQuery(name = "Post.findByDescricao", query = "SELECT p FROM Post p WHERE p.descricao = :descricao")
-    , @NamedQuery(name = "Post.findByUrlImagem", query = "SELECT p FROM Post p WHERE p.urlImagem = :urlImagem")})
+    @NamedQuery(name = "Post.findAll", query = "SELECT p FROM Post p"),
+    @NamedQuery(name = "Post.findByIdPost", query = "SELECT p FROM Post p WHERE p.idPost = :idPost"),
+    @NamedQuery(name = "Post.findByDescricao", query = "SELECT p FROM Post p WHERE p.descricao = :descricao"),
+    @NamedQuery(name = "Post.findByUrlImagem", query = "SELECT p FROM Post p WHERE p.urlImagem = :urlImagem")})
 public class Post implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -101,8 +99,6 @@ public class Post implements Serializable {
     public void setDataPublicacao(Date dataPublicacao) {
         this.dataPublicacao = dataPublicacao;
     }
-    
-    
 
     public Usuario getUsuario() {
         return usuario;
