@@ -7,7 +7,10 @@ angular.module('app')
   $scope.usuarioLogado = usuarioLogado;
   $scope.atualizarUsuario = atualizarUsuario;
   $scope.editarPerfil = editarPerfil;
+  $scope.incrementarPagina = incrementarPagina;
+  $scope.decrementarPagina = decrementarPagina;
   buscarUsuario($routeParams.idUsuario);
+  var pagina = 0;
 
   function editarPerfil() {
     $location.url($location.path() + "/edit");
@@ -26,11 +29,27 @@ angular.module('app')
   };
 
   function buscarPosts () {
-    let parametros = {pagina: 0, quantidade: 5};
+    pagina = pagina || 0;
+    let parametros = {pagina: pagina, quantidade: 2};
     postService.listarPorUsuario($scope.usuario.idUsuario, parametros).then(function (response) {
       $scope.posts = response.data.content;
+      $scope.primeiraPagina = response.data.first;
+      $scope.ultimaPagina = response.data.last;
     })
   };
+
+
+    function decrementarPagina () {
+      pagina = (pagina-2) *2;
+      buscarPosts();
+      pagina--;
+    }
+
+    function incrementarPagina () {
+      pagina = (pagina+1) * 2;
+      buscarPosts();
+    }
+
 
   function atualizarUsuario(usuario) {
     usuarioService.atualizar(usuario).then(function(response) {
