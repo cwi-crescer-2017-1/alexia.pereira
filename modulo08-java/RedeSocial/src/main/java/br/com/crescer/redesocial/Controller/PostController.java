@@ -55,4 +55,10 @@ public class PostController {
     public Page<Post> buscarPorUsuario(@PathVariable Long idUsuario, @RequestParam int pagina, int quantidade) {
         return service.loadByUsuario(idUsuario, pagina, quantidade);
     }
+    
+    @GetMapping(value = "/amigos/{idUsuario}")
+    public Page<Post> buscarPorAmigos(@PathVariable Long idUsuario, @RequestParam int pagina, int quantidade) {
+        return service.loadFriendsPost(idUsuario, pagina, quantidade);
+    }
+    
 }
