@@ -26,7 +26,7 @@ angular.module('app')
     usuarioService.criar(usuario).then(res => {
       alert("Cadastro realizado com sucesso")
       $location.path('/login');
-    })
+    }, res => {alert(res.data.message);})
   }
 
 
