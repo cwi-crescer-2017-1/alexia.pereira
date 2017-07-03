@@ -1,9 +1,25 @@
 <div class="inner">
 
   <div ng-include="'../menu/menu.html'"></div>
-  <div ng-repeat="amigo in amigos">
-    {{amigo.nome}}
-    {{amigo.email}}
-    {{amigo.casa}}
+  <div class="amigos-container">
+    <div ng-repeat="amigo in amigos" class="amigo col-sm-6">
+      <img ng-src="{{amigo.foto}}" alt="">
+      <div class="info">
+
+        <span>
+          {{amigo.nome}}
+        </span>
+        <span>
+          {{amigo.email}}
+        </span>
+        <span>
+          {{amigo.casa}}
+        </span>
+        <span>
+          <button ng-click="verPerfil()">Ver Perfil</button>
+
+        </span>
+      </div>
+    </div>
   </div>
 </div>

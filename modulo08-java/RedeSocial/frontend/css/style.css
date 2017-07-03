@@ -1,78 +1,123 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i');
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .menu-container {
-    margin: 0;
-    font-family: 'Lato', sans-serif;
-    padding-left: 300px;
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+  padding-left: 300px;
 }
 
 .menu {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 280px;
-    background: #2f3947;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 280px;
+  background: #2f3947;
 }
 
 .menu .profile {
-    background: #ffae00;
-    text-align: center;
+  background: #ffae00;
+  text-align: center;
 }
 
 .menu .profile .profile-name {
-    line-height: 70px;
-    color: #fff;
-    font-weight: 300;
-    margin-left: 10px;
+  line-height: 70px;
+  color: #fff;
+  font-weight: 300;
+  margin-left: 10px;
 }
 
 .menu .profile .profile-image {
-    display: inline-block;
-    width: 40px;
-    height: 40px;
-    background-position: center;
-    background-size: cover;
-    border-radius: 50%;
-    /*position: relative;*/
-    top: 13px;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+  /*position: relative;*/
+  top: 13px;
 }
 
 .menu .menu-items {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 .menu .menu-items .menu-item .menu-link {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 300;
-    font-size: 14px;
-    line-height: 50px;
-    display: block;
-    padding-left: 20px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 50px;
+  display: block;
+  padding-left: 20px;
 }
 
 .menu .menu-items .menu-item .menu-link:hover {
-    background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .menu .menu-items .menu-item .menu-link img {
-    width: 22px;
-    position: relative;
-    top: -1px;
-    margin-right: 10px;
+  width: 22px;
+  position: relative;
+  top: -1px;
+  margin-right: 10px;
 }
 
 .menu .menu-items .menu-item .menu-link.active {
-    border-right: 4px solid #ffae00;
-    background: rgba(0, 0, 0, 0.1);
+  border-right: 4px solid #ffae00;
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .inner {
   padding-left: 300px;
+}
+
+/*AMIGOS*/
+
+.amigos-container {
+  width: 80%;
+  margin: 50px auto;
+  height: 100%;
+}
+.amigos-container::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.amigo {
+  height: 150px;
+  width: 40%;
+  margin: 20px auto;
+}
+/*impar*/
+.amigo:nth-child(odd) {
+  float: left;
+}
+
+.amigo:nth-child(even) {
+  float: right;
+}
+
+.amigo > img {
+  float: left;
+  max-width: 100px;
+  max-height: 100px;
+  border: 1px solid #f2f2f2;
+  width: auto;
+  height: auto;
+}
+
+.amigo > .info > span {
+  float: right;
+  clear: right;
+}
+
+.info {
+  vertical-align: middle;
 }
