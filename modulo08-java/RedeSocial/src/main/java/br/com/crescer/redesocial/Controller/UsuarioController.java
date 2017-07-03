@@ -1,7 +1,9 @@
 package br.com.crescer.redesocial.Controller;
 
+import br.com.crescer.redesocial.Controller.Exceptions.EmailJaCadastrado;
 import br.com.crescer.redesocial.Entity.Usuario;
 import br.com.crescer.redesocial.Service.UsuarioService;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -29,7 +32,7 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public Usuario save(@RequestBody Usuario usuario) {
+    public Usuario save(@RequestBody Usuario usuario) throws EmailJaCadastrado {
         usuario.setIdUsuario(0l);
         usuario.criptografarSenha();
         return service.save(usuario);
@@ -55,6 +58,11 @@ public class UsuarioController {
         Usuario usuario = service.loadById(id);
         service.buscarAmigos(usuario);
         return usuario;
+    }
+    
+    @GetMapping(value="buscar")
+    public Set<Usuario> loadByName (@RequestParam String nome) {
+        return service.buscarPorNome(nome);
     }
 
 }

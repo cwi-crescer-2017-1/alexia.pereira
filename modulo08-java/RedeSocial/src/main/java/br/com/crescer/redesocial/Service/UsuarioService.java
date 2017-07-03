@@ -4,7 +4,6 @@ import br.com.crescer.redesocial.Controller.Exceptions.EmailJaCadastrado;
 import br.com.crescer.redesocial.Entity.Amizade;
 import br.com.crescer.redesocial.Entity.Usuario;
 import br.com.crescer.redesocial.Repository.UsuarioRepository;
-import java.util.HashSet;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,6 +50,10 @@ public class UsuarioService {
             Usuario amigo = amizade.getUsuario2();
             usuario.getAmigos().add(amigo);
         }
+    }
+    
+    public Set<Usuario> buscarPorNome (String nome) {
+        return repository.findByNomeLikeIgnoreCase("%"+nome+"%");
     }
 
 }
