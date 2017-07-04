@@ -1,3 +1,10 @@
+angular.module('app').filter('vold', function() {
+  return function mascada(nome) {
+    return nome.replace(/(voldemort)/ig, 'Você Sabe Quem');
+  }
+})
+
+
 angular.module('app').controller('DashboardController', function ($location, $scope,
   postService, authService, curtidasService, Alertify) {
 
