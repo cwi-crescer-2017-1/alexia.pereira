@@ -4,6 +4,8 @@ angular.module('app').controller('MenuController', function ($scope, $location, 
   $scope.usuario = authService.getUsuario();
   $scope.dashboard = dashboard;
   $scope.amigos = amigos;
+  $scope.buscar = buscar;
+  $scope.logout = logout;
   $scope.notificacoes = false;
   $scope.exibirNotificacoes = exibirNotificacoes;
   $scope.aceitarSolicitacao = aceitarSolicitacao;
@@ -42,5 +44,12 @@ angular.module('app').controller('MenuController', function ($scope, $location, 
     })
   }
 
+  function buscar() {
+    $location.path('/busca');
+  }
+
+  function logout() {
+    authService.logout();
+  }
 
 });

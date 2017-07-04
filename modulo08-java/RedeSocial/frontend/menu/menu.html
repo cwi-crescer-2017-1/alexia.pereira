@@ -8,6 +8,12 @@
 
     <ul class="menu-items">
       <li class="menu-item">
+        <a class="menu-link" ng-click="buscar()">
+          <img src="icons/lupa.svg" alt="">
+          Procurar Usuários
+        </a>
+      </li>
+      <li class="menu-item">
         <a class="menu-link" ng-click="amigos()">
           <img src="icons/question.svg" alt="">
           Amigos
@@ -42,6 +48,13 @@
           <button class="btn-danger" ng-click="recusarSolicitacao(solicitacao)">Recusar</button>
       </div>
       </li>
-    </ul>
+    </ul class="menu-items">
+    <ul>
+    <li class="menu-item">
+      <a class="menu-link" ng-click="logout()">
+        Logout
+      </a>
+    </li>
+  </ul>
   </nav>
 </div>
