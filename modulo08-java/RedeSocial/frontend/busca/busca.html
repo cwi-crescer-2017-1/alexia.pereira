@@ -1,0 +1,24 @@
+<div ng-include="'../menu/menu.html'"></div>
+
+<div class="inner">
+  <div class="container">
+    <form ng-submit="buscar(nomeUser)">
+      <div class="form-group form-pesquisa">
+        <input type="text" ng-model="nomeUser" placeholder="digite aqui o nome do usuário que deseja buscar" class="form-control busca-user">
+        <button type="submit" class="btn btn-primary btn-pesquisa">
+          <img src="icons/lupa.svg" alt="">
+        </button>
+      </div>
+    </form>
+
+    <div class="" ng-repeat="usuario in usuarios">
+      <img ng-src="{{usuario.foto}}" class="profile-image">
+      <span>
+        {{usuario.nome}}
+      </span>
+      <button class="btn btn-success" ng-click="enviarSolicitacao(usuario)" ng-show="adicionarAosAmigos(usuario)">Adicionar aos Amigos</button>
+      <button class="btn btn-success" disabled ng-hide="adicionarAosAmigos(usuario)">Adicionar aos Amigos</button>
+    </div>
+
+  </div>
+</div>
