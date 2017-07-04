@@ -43,9 +43,11 @@ angular.module('app').controller('DashboardController', function ($location, $sc
       let curtida = {post: post, usuario: $scope.usuario };
       curtidasService.criar(curtida).then(res => {
         if (res.data !== "") {
+          post.descurtir = true;
           post.curtidasSet.push(res.data);
         } else {
-          post.curtidasSet.slice(1, post.curtidasSet.length-1);
+          post.curtidasSet.slice(post.curtidasSet.length = post.curtidasSet.length-1);
+          post.descurtir = false;
         }
       }, res => Alertify.error('Erro inesperado'));
 
