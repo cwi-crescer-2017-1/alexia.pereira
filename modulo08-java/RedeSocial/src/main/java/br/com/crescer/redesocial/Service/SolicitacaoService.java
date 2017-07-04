@@ -26,10 +26,10 @@ public class SolicitacaoService {
     @Autowired
     UsuarioService usuarioService;
 
-    public Solicitacao enviarSolicitacao(Solicitacao solicitacao) throws Exception {
+    public void enviarSolicitacao(Solicitacao solicitacao) throws Exception {
         solicitacao.setIdSolicitacao(0l);
         this.solicitacaoEhValida(solicitacao);
-        return repository.save(solicitacao);
+        repository.save(solicitacao);
     }
 
     public void aceitarSolicitacao(Solicitacao solicitacao) {
@@ -41,6 +41,10 @@ public class SolicitacaoService {
 
     public Set<Solicitacao> buscarSolicitacoesPorUsuario(Usuario usuarioTarget) {
         return repository.findByUsuarioTarget(usuarioTarget);
+    }
+    
+    public Set<Solicitacao> buscarMinhasSolicitacoes(Usuario usuarioOwner) {
+        return repository.findByUsuarioOwner(usuarioOwner);
     }
 
     public void remover(Solicitacao solicitacao) {

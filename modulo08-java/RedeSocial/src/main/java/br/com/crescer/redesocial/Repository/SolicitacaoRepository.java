@@ -11,4 +11,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  */
 public interface SolicitacaoRepository extends PagingAndSortingRepository<Solicitacao, Long> {
     Set<Solicitacao> findByUsuarioTarget(Usuario usuarioTarget);
+    Set<Solicitacao> findByUsuarioOwner(Usuario usuarioOwner);
+    
 }

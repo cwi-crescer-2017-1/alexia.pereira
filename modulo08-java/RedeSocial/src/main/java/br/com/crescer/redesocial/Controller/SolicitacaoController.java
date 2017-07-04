@@ -24,23 +24,23 @@ public class SolicitacaoController {
 
     @Autowired
     SolicitacaoService service;
-    
+
     @Autowired
     UsuarioService usuarioService;
 
     @PostMapping
-    public Solicitacao save(@RequestBody Solicitacao solicitacao) throws Exception {
+    public void save(@RequestBody Solicitacao solicitacao) throws Exception {
         solicitacao.setIdSolicitacao(0l);
-        return service.enviarSolicitacao(solicitacao);
+        service.enviarSolicitacao(solicitacao);
     }
 
     @PostMapping(value = "/aceitar")
     public void accept(@RequestBody Solicitacao solicitacao) {
         service.aceitarSolicitacao(solicitacao);
     }
-    
-    @DeleteMapping(value="/delete/{idSolicitacao}")
-    public void delete (@PathVariable Long idSolicitacao) {
+
+    @DeleteMapping(value = "/delete/{idSolicitacao}")
+    public void delete(@PathVariable Long idSolicitacao) {
         Solicitacao solicitacao = service.buscarPorId(idSolicitacao);
         service.remover(solicitacao);
     }
@@ -49,6 +49,12 @@ public class SolicitacaoController {
     public Set<Solicitacao> pendentes(@PathVariable Long idUsuario) {
         Usuario usuarioTarget = usuarioService.loadById(idUsuario);
         return service.buscarSolicitacoesPorUsuario(usuarioTarget);
+    }
+
+    @GetMapping(value = "/minhas/{idUsuario}")
+    public Set<Solicitacao> minhasSolicitacoes(@PathVariable Long idUsuario) {
+        Usuario usuarioOwner = usuarioService.loadById(idUsuario);
+        return service.buscarMinhasSolicitacoes(usuarioOwner);
     }
 
 }
