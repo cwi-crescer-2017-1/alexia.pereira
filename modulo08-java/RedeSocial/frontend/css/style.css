@@ -93,7 +93,7 @@ body {
 }
 
 .inner {
-  padding-left: 275px;
+  padding-left: 280px;
 }
 
 /*AMIGOS*/
@@ -239,7 +239,7 @@ form {
   margin: 0 -20px;
   padding: 10px 0;
   text-align: center;
-  background: #e0e0e0;
+  /*background: #e0e0e0;*/
 }
 
 .btn-postar {
@@ -326,4 +326,28 @@ form {
   max-width: 600px;
   width: auto;
   height: auto;
+}
+
+
+/*PERFIL*/
+
+.profile-picture {
+  min-width: 200px;
+  min-height: 200px;
+}
+
+.capa {
+  margin: 0;
+  position: absolute;
+  background-color: red;
+  height: 250px;
+  width: 100%;
+  background-position: center;
+}
+
+.profile-wizard {
+  top: 40%;
+  position: absolute;
+  left: 50%;
+  transform: translate(-58%);
 }

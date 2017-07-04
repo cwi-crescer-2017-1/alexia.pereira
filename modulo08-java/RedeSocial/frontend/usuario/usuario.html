@@ -1,16 +1,47 @@
-<h1>{{usuario.nome}}</h1>
-<!-- <img ng-src="usuario.foto" alt="foto de perfil"> -->
-<h2>{{usuario.sexo}}</h2>
-<h2>{{usuario.dataNascimento}}</h1>
-<button ng-click="editarPerfil()" ng-show="meuPerfil">Editar Perfil</button>
-<div ng-repeat="post in posts">
-  {{post.usuario.nome}}
-  {{post.dataPublicacao}}
-  {{post.descricao}}
-  <img ng-src="{{post.urlImagem}}">
-</div>
+<div ng-include="'../menu/menu.html'"></div>
 
-<div class="paginas">
-  <button class="botoes" ng-hide="primeiraPagina" ng-click="decrementarPagina()">Anterior</button>
-  <button class="botoes" ng-hide="ultimaPagina" ng-click="incrementarPagina()">Próxima</button>
+<div class="inner">
+  <div class="capa" style="background-image:url('{{buscarImagemDeFundo()}}');">
+    <div class="container container-centered profile-wizard">
+      <img ng-src="{{usuario.foto}}" alt="foto de perfil" class="profile-image profile-picture">
+      <div class="">
+        <span>Nome:</span>
+        <span>{{usuario.nome}}</span>
+      </div>
+      <div class="">
+        <span>Sexo:</span>
+        <span>{{buscarSexo(usuario.sexo)}}</span>
+      </div>
+      <div class="">
+        <span>Data de Nascimento:</span>
+        <span>{{usuario.dataNascimento | date: 'dd/MM/yyyy'}}</span>
+      </div>
+      <button ng-click="editarPerfil()" ng-show="meuPerfil">Editar Perfil</button>
+
+      <div class="container">
+        <div ng-repeat="post in posts">
+          <div class="post">
+            <img class="profile-image profile-image-feed" ng-src="{{post.usuario.foto}}">
+            <span>
+              {{post.usuario.nome}}
+            </span>
+            <span class="post-date">
+              <small>
+                {{post.dataPublicacao | date: 'dd-MM-yyyy HH:mm'}}
+              </small>
+            </span>
+            <div class="content">
+              {{post.descricao}}
+              <img src="{{post.urlImagem}}" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="paginas">
+        <button class="botoes" ng-hide="primeiraPagina" ng-click="decrementarPagina()">Anterior</button>
+        <button class="botoes" ng-hide="ultimaPagina" ng-click="incrementarPagina()">Próxima</button>
+      </div>
+    </div>
+  </div>
 </div>
