@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
 .menu-container {
   margin: 0;
   font-family: 'Lato', sans-serif;
@@ -88,7 +93,7 @@
 }
 
 .inner {
-  padding-left: 300px;
+  padding-left: 275px;
 }
 
 /*AMIGOS*/
@@ -140,18 +145,18 @@
 
 .scrollbar::-webkit-scrollbar-track
 {
--webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-background-color: #F5F5F5;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-color: #F5F5F5;
 }
 
 .scrollbar::-webkit-scrollbar
 {
-width: 6px;
+  width: 6px;
 }
 
 .scrollbar::-webkit-scrollbar-thumb
 {
-background-color: #4cae4c;
+  background-color: #4cae4c;
 }
 
 .scrollbar {
@@ -292,4 +297,33 @@ form {
   position: relative;
   left: 50%;
   transform: translate(-50%);
+}
+
+.post-date {
+  font-style: italic;
+  color: #ffae00;
+  float: right;
+}
+
+.profile-image-feed {
+  min-width: 70px;
+  min-height: 70px;
+}
+
+.post {
+  margin: 50px auto;
+  width: 60%;
+}
+
+.content {
+  padding: 20px;
+  margin: 10px;
+  border:  1px solid #f2f2f2;
+}
+
+.content > img {
+  max-height: 600px;
+  max-width: 600px;
+  width: auto;
+  height: auto;
 }
