@@ -4,6 +4,7 @@ angular.module('app').controller('DashboardController', function ($location, $sc
   buscarPostsDosAmigos();
 
   $scope.adicionarPost = adicionarPost;
+  $scope.usuario = authService.getUsuario();
   $scope.decrementarPagina = decrementarPagina;
   $scope.incrementarPagina = incrementarPagina;
 
@@ -21,9 +22,7 @@ angular.module('app').controller('DashboardController', function ($location, $sc
     pagina = pagina || 0;
     let parametros = {pagina: pagina, quantidade: 15};
     postService.listarPorAmigos(authService.getUsuario().idUsuario, parametros).then(function (response) {
-      console.log(response);
       $scope.posts = response.data.content;
-      console.log($scope.posts);
       $scope.primeiraPagina = response.data.first;
       $scope.ultimaPagina = response.data.last;
     })

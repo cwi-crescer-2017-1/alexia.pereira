@@ -20,8 +20,23 @@
 }
 
 .menu .profile {
-  background: #ffae00;
   text-align: center;
+}
+
+.house-bg-dark-Sonserina {
+  background: #0a2309;
+}
+
+.house-bg-dark-Corvinal {
+  background:  #004475;
+}
+
+.house-bg-dark-Grifinória {
+  background: #ab100b;
+}
+
+.house-bg-dark-Lufa-Lufa {
+  background: #efb903;
 }
 
 .menu .profile .profile-name {
@@ -152,12 +167,12 @@
   border: none;
   padding: 10px 20px;
   border: 1px solid grey;
+  border-radius: 5px;
 }
 
 textarea {
   font: 14px/22px "Lato", Arial, sans-serif;
   margin-bottom: 10px;
-  border-radius: 5px;
   resize: none;
 }
 
@@ -192,4 +207,36 @@ form {
 
 .btn-default {
   margin-left: 5px;
+}
+
+.container-centered {
+  margin: 0 -20px;
+  padding: 10px 0;
+  text-align: center;
+  background: #e0e0e0;
+}
+
+.btn-postar {
+  margin: 12px auto;
+}
+
+.post-add {
+  text-transform: uppercase;
+  color: #d6d6d6;
+}
+
+.color-Sonserina {
+  color: #0a2309;
+}
+
+.color-Grifinória {
+  color: #ab100b;
+}
+
+.color-Corvinal {
+  color: #004475;
+}
+
+.color-Lufa-Lufa {
+  color: #efb903;
 }
