@@ -19,39 +19,44 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class PostService {
-    
+
     @Autowired
     PostRepository repository;
-    
+
     @Autowired
     UsuarioService usuarioService;
-    
+
+    @Autowired
+    CurtidasService curtidasService;
+
     public Iterable<Post> findAll() {
         return repository.findAll();
     }
-    
+
     public Post save(Post post) {
         return repository.save(post);
     }
-    
+
     public Post update(Post post) {
         return repository.save(post);
     }
-    
+
     public void remove(Post post) {
         repository.delete(post);
     }
-    
+
     public Post loadById(Long id) {
         return repository.findOne(id);
     }
-    
+
     public Page<Post> loadByUsuario(Long idUsuario, int pagina, int tamanho) {
         Usuario donoDoPost = usuarioService.loadById(idUsuario);
         Sort ordenador = new Sort(new Order(Direction.DESC, "dataPublicacao"));
-        return repository.findByUsuario(donoDoPost, new PageRequest(pagina, tamanho, ordenador));
+        Page<Post> postsDoUsuario = repository.findByUsuario(donoDoPost, new PageRequest(pagina, tamanho, ordenador));
+        return popularSetDeCurtidas(postsDoUsuario);
+
     }
-    
+
     public Page<Post> loadFriendsPost(Long idUsuario, int pagina, int quantidade) {
         Usuario accountOwner = usuarioService.loadById(idUsuario);
         usuarioService.buscarAmigos(accountOwner);
@@ -62,7 +67,15 @@ public class PostService {
         Usuario donoDoPost = new Usuario();
         donoDoPost.setIdUsuario(accountOwner.getIdUsuario());
         amigos.add(donoDoPost);
-        return repository.findByUsuarioIn(amigos, page);
+        Page<Post> friendsPost = repository.findByUsuarioIn(amigos, page);
+        return this.popularSetDeCurtidas(friendsPost);
     }
-    
+
+    private Page<Post> popularSetDeCurtidas(Page<Post> postagens) {
+        for (Post post : postagens) {
+            post.setCurtidasSet(curtidasService.loadByPost(post.getIdPost()));
+        }
+        return postagens;
+    }
+
 }

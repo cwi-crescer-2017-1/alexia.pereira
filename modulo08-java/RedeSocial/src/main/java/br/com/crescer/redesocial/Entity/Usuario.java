@@ -18,6 +18,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -61,7 +62,7 @@ public class Usuario implements Serializable {
     @NotNull
     private Date dataNascimento;
 
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="E-mail inválido")//if the field contains email address consider using this annotation to enforce field validation
+    @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="E-mail inválido")//if the field contains email address consider using this annotation to enforce field validation
     @Size(max = 100)
     @Column(name = "EMAIL", unique = true)
     @NotNull
@@ -95,8 +96,8 @@ public class Usuario implements Serializable {
     @JsonProperty(access = Access.WRITE_ONLY)
     private Set<Solicitacao> solicitacaoSet;
 
-    @OneToMany(mappedBy = "idUsuario")
-    private Set<Curtidas> curtidasSet;
+//    @OneToMany(mappedBy = "idUsuario")
+//    private Set<Curtidas> curtidasSet;
 
     public Usuario() {
         this.amigos = new HashSet<Usuario>();
@@ -194,15 +195,6 @@ public class Usuario implements Serializable {
 
     public void setSolicitacaoSet(Set<Solicitacao> solicitacaoSet) {
         this.solicitacaoSet = solicitacaoSet;
-    }
-
-    @XmlTransient
-    public Set<Curtidas> getCurtidasSet() {
-        return curtidasSet;
-    }
-
-    public void setCurtidasSet(Set<Curtidas> curtidasSet) {
-        this.curtidasSet = curtidasSet;
     }
 
     public void criptografarSenha() {

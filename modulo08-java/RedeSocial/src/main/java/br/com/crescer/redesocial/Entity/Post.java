@@ -58,7 +58,7 @@ public class Post implements Serializable {
     @ManyToOne
     private Usuario usuario;
 
-    @OneToMany(mappedBy = "idPost")
+    @OneToMany(mappedBy = "post")
     private Set<Curtidas> curtidasSet;
 
     public Post() {
