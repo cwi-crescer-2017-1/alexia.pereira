@@ -81,14 +81,14 @@ angular.module('app')
   function buscarImagemDeFundo () {
     let casa = $scope.usuario.casa;
     if (casa === 'Corvinal') {
-      return 'http://sieuimba.com/wp-content/uploads/2016/05/4-3.jpg';
+      return '/icons/corvinal.jpg';
     } else if (casa === 'Grifinória') {
-      return 'http://img10.deviantart.net/fc63/i/2014/158/c/c/harry_potter_wallpaper__gryffindor_by_theladyavatar-d7lcrth.jpg';
+      return '/icons/grifinoria.jfif';
       // return 'https://s-media-cache-ak0.pinimg.com/originals/96/20/c6/9620c6daa67c6c448eba32bce29749fa.png';
     } else if (casa === 'Lufa-Lufa') {
-      return 'http://img14.deviantart.net/dc39/i/2015/263/7/4/hp_wallpaper___hufflepuff_lightning_by_theladyavatar-d7frvo0.jpg'
+      return '/icons/lufa-lufa.jfif'
     } else {
-      return 'http://img04.deviantart.net/eb3b/i/2015/263/b/1/harry_potter_wallpaper__slytherin_by_theladyavatar-d7lcu9g.jpg';
+      return '/icons/sonserina.jfif';
       // return 'http://orig08.deviantart.net/8443/f/2015/171/f/7/harry_potter___slytherin_facebook_cover_by_valquiria_l-d8y078o.png'
     }
 

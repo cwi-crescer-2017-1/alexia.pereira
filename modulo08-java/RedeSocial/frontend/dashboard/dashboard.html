@@ -27,9 +27,9 @@
         </span>
         <div class="content">
           {{post.descricao}}
-          <img src="{{post.urlImagem}} col-sm-4" alt="" >
+          <img src="{{post.urlImagem}}" class="col-sm-4" alt="" >
         </div>
-        <button ng-click="curtir(post)">Curtir</button>
+        <button class="btn btn-primary" ng-click="curtir(post)">Curtir</button>
         <span>Numero de Curtidas: {{post.curtidasSet.length}}</span>
       </div>
     </div>
