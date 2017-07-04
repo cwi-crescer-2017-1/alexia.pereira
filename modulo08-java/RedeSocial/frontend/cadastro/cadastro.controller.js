@@ -1,5 +1,5 @@
 angular.module('app')
-.controller('CadastroController', function ($scope, $location, usuarioService, authService) {
+.controller('CadastroController', function ($scope, $location, usuarioService, authService, Alertify) {
 
   $scope.sexos = [
     {
