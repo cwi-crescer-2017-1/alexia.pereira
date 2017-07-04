@@ -18,6 +18,16 @@ angular.module('app').config(function ($routeProvider) {
         }
       }
     })
+    .when('/atualizar', {
+        controller: 'AtualizarController',
+        templateUrl: 'atualizar/atualizar.html',
+        resolve: {
+          // define que para acessar esta página deve ser um usuário autenticado (mas não restringe o tipo de permissão)
+          autenticado: function (authService) {
+            return authService.isAutenticadoPromise();
+          }
+        }
+      })
     .when('/busca', {
         controller: 'BuscaController',
         templateUrl: 'busca/busca.html',

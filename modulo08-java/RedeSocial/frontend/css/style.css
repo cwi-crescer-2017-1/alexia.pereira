@@ -96,6 +96,15 @@ body {
   padding-left: 280px;
 }
 
+.inner > .cadastro-body {
+  padding-right: 80px;
+}
+
+.inner-cadastro {
+  padding-left: 350px;
+  padding-right: 50px;
+}
+
 /*AMIGOS*/
 
 .amigos-container {
@@ -394,7 +403,6 @@ form {
 .capa {
   margin: 0;
   position: absolute;
-  background-color: red;
   height: 250px;
   width: 100%;
   background-position: center;

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Atualizar Perfil</title>
+</head>
+<div ng-include="'../menu/menu.html'"></div>
+<div class="inner-cadastro">
+  <div class="cadastro-body">
+    <div class="">
+      <h1>Edição de perfil:</h1>
+      <form ng-submit="atualizar(usuario)">
+        <div class="form-group">
+          <label for="nome">Nome</label>
+          <input type="text" name="nome" placeholder="Nome" ng-model="usuario.nome" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="sexo">Sexo</label>
+          <select name="sexo" ng-model="usuario.sexo" ng-options="sexo.nome for sexo in sexos" class="form-control">
+            <option value="">
+              {{sexo.nome}}
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="dataNasc">Data Nascimento</label>
+          <input type="date" name="dataNasc" ng-model="usuario.dataNascimento" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="casa">Casa:</label>
+          <select ng-model="usuario.casa" name="casa" ng-options="casa for casa in casas" class="form-control">
+            <option value="">
+              {{casa}}
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="foto">Foto</label>
+          <input type="text" ng-model="usuario.foto" class="form-control" placeholder="url publica">
+        </div>
+        <button class="btn btn-primary" type="submit">Atualizar</button>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -23,7 +23,7 @@ angular.module('app').factory('usuarioService', function ($http) {
   };
 
   function atualizar(usuario) {
-    return $http.put(urlBase + 'atualizar', usuario);
+    return $http.put(urlBase, usuario);
   };
 
   function criar (usuario) {

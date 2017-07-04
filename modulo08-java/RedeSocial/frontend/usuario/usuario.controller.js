@@ -16,7 +16,7 @@ angular.module('app')
 
 
   function editarPerfil() {
-    $location.url($location.path() + "/edit");
+    $location.url("/atualizar");
   }
 
   function verificarPossibilidadeDeEdicaoDePerfil() {
