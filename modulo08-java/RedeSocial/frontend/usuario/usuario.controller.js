@@ -26,7 +26,7 @@ angular.module('app')
   function buscarUsuario(id) {
     usuarioService.buscarPorId(id).then(function (response) {
       $scope.usuario = response.data;
-      incrementarPagina(true);
+      buscarPosts();
       verificarPossibilidadeDeEdicaoDePerfil();
     })
   };

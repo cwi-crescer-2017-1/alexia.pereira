@@ -1,4 +1,4 @@
-angular.module('app').controller('LoginController', function ($location, $scope, authService) {
+angular.module('app').controller('LoginController', function ($location, $scope, authService, Alertify) {
 
   $scope.login = login;
   $scope.telaCadastro = telaCadastro;
@@ -8,11 +8,11 @@ angular.module('app').controller('LoginController', function ($location, $scope,
     authService.login(usuario)
     .then(
       function (response) {
-        alert('Login com sucesso!');
+        Alertify.success('Login com sucesso!');
 
       },
       function (response) {
-        alert('Erro no Login!');
+        Alertify.error('Erro no Login!');
       });
     }
 

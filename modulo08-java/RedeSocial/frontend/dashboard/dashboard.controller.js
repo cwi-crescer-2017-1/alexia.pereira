@@ -1,5 +1,5 @@
 angular.module('app').controller('DashboardController', function ($location, $scope,
-    postService, authService) {
+    postService, authService, Alertify) {
 
   buscarPostsDosAmigos();
 
@@ -14,9 +14,9 @@ angular.module('app').controller('DashboardController', function ($location, $sc
     post.usuario = authService.getUsuario();
     post.dataPublicacao = new Date();
     postService.criar(post).then(function (response) {
-      alert("Post criado com sucesso");
+      Alertify.success("Post criado com sucesso");
       $scope.post = {};
-    })
+    }, res => Alertify.error(res.data.message))
   }
   function buscarPostsDosAmigos () {
     pagina = pagina || 0;

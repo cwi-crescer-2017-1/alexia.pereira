@@ -1,5 +1,5 @@
 angular.module('app').controller('MenuController', function ($scope, $location, authService,
-  solicitacaoService, Alertify) {
+  solicitacaoService) {
 
   $scope.usuario = authService.getUsuario();
   $scope.dashboard = dashboard;
