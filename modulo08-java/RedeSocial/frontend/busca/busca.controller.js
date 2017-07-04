@@ -3,6 +3,7 @@ angular.module('app').controller('BuscaController', function ($location, $scope,
     $scope.buscar = buscar;
     $scope.adicionarAosAmigos = adicionarAosAmigos;
     $scope.enviarSolicitacao = enviarSolicitacao;
+    $scope.verPerfil = verPerfil;
     buscarUsuarioAtual();
     buscarSolicitacoes();
     buscarMinhasSolicitacoes();
@@ -66,5 +67,10 @@ angular.module('app').controller('BuscaController', function ($location, $scope,
         buscar($scope.nomeUser);
       });
     }
+
+    function verPerfil (usuario) {
+      $location.path('/usuario/' + usuario.idUsuario);
+    }
+
 
   });

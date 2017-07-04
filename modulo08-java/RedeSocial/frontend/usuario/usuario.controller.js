@@ -91,7 +91,6 @@ angular.module('app')
       return '/icons/sonserina.jfif';
       // return 'http://orig08.deviantart.net/8443/f/2015/171/f/7/harry_potter___slytherin_facebook_cover_by_valquiria_l-d8y078o.png'
     }
-
   }
 
 });

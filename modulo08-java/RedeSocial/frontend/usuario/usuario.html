@@ -16,7 +16,7 @@
         <span>Data de Nascimento:</span>
         <span>{{usuario.dataNascimento | date: 'dd/MM/yyyy'}}</span>
       </div>
-      <button ng-click="editarPerfil()" ng-show="meuPerfil">Editar Perfil</button>
+      <button ng-click="editarPerfil()" class="btn btn-primary btn-profile-edit" ng-show="meuPerfil">Editar Perfil</button>
 
       <div class="container">
         <div ng-repeat="post in posts">

@@ -11,14 +11,20 @@
       </div>
     </form>
 
-    <div class="" ng-repeat="usuario in usuarios">
-      <img ng-src="{{usuario.foto}}" class="profile-image">
-      <span>
-        {{usuario.nome}}
-      </span>
-      <button class="btn btn-success" ng-click="enviarSolicitacao(usuario)" ng-show="adicionarAosAmigos(usuario)">Adicionar aos Amigos</button>
-      <button class="btn btn-success" disabled ng-hide="adicionarAosAmigos(usuario)">Adicionar aos Amigos</button>
-    </div>
+    <div class="container-busca clearfix">
 
+      <div class="amigo-busca col-sm-5 clearfix" ng-repeat="usuario in usuarios">
+        <img ng-src="{{usuario.foto}}" class="profile-image">
+        <span>
+          {{usuario.nome}}
+        </span>
+        <div class="botoes">
+          <button class="btn btn-primary" ng-click="verPerfil(usuario)">Ver Perfil</button>
+          <button class="btn btn-success" ng-click="enviarSolicitacao(usuario)" ng-show="adicionarAosAmigos(usuario)">Adicionar aos Amigos</button>
+          <button class="btn btn-success" disabled ng-hide="adicionarAosAmigos(usuario)">Adicionar aos Amigos</button>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>

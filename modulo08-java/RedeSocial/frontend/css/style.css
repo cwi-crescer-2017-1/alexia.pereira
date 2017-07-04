@@ -425,3 +425,29 @@ form {
   }
 
 }
+
+.text-info {
+  color: black;
+}
+
+.container-busca {
+  width: 80%;
+  display: block;
+  margin: 0 auto;
+}
+
+.container-busca > .amigo-busca {
+  padding: 40px;
+}
+
+.container-busca > .amigo-busca:nth-child(odd) {
+  float: left;
+}
+
+.container-busca > .amigo-busca:nth-child(even) {
+  float: right;
+}
+
+.btn-profile-edit {
+  display: inline-block;
+}
