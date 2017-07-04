@@ -12,7 +12,7 @@ angular.module('app').controller('LoginController', function ($location, $scope,
 
       },
       function (response) {
-        Alertify.error('Erro no Login!');
+        Alertify.error('Email ou Senha Incorretos!');
       });
     }
 

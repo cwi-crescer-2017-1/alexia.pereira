@@ -1,5 +1,5 @@
 angular.module('app').controller('DashboardController', function ($location, $scope,
-    postService, authService, Alertify) {
+    postService, authService, curtidasService, Alertify) {
 
   buscarPostsDosAmigos();
 
@@ -7,6 +7,7 @@ angular.module('app').controller('DashboardController', function ($location, $sc
   $scope.usuario = authService.getUsuario();
   $scope.decrementarPagina = decrementarPagina;
   $scope.incrementarPagina = incrementarPagina;
+  $scope.curtir = curtir;
 
   var pagina = 0;
 
@@ -36,6 +37,18 @@ angular.module('app').controller('DashboardController', function ($location, $sc
   function incrementarPagina () {
     pagina = (pagina+1);
     buscarPosts();
+  }
+
+  function curtir(post) {
+    let curtida = {post: post, usuario: $scope.usuario };
+    curtidasService.criar(curtida).then(res => {
+      if (res.data !== null) {
+        post.curtidasSet.push(res.data);
+      } else {
+        post.curtidasSet.slice(1, post.curtidasSet.length-1);
+      }
+    }, res => Alertify.error('Erro inesperado'));
+
   }
 
 
