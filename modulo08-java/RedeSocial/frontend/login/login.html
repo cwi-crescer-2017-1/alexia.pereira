@@ -1,17 +1,17 @@
-<h1 class="login">Login</h1>
-<form class="form">
-  <div class="grupo">
-
-    <label for="email">Email:</label>
-    <input class="form-control" type="email" name="email" ng-model="usuario.email">
-  </div>
-
-  <div class="grupo">
-
-    <label for="senha">Senha:</label>
-    <input class="form-control" type="password" name="senha" ng-model="usuario.senha">
-
-  </div>
-</form>
-<button class="botoes logar" type="submit" ng-click="login(usuario)">Logar</button>
-<button type="button" ng-click="telaCadastro()">Cadastre-se</button>
+<div class="container">
+  <h1>Bem vindo ao PotterMedia!</h1>
+  <br>
+  <h2 class="login">Login</h2>
+  <form class="form">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input class="form-control" type="email" name="email" ng-model="usuario.email">
+    </div>
+    <div class="form-group">
+      <label for="senha">Senha:</label>
+      <input class="form-control" type="password" name="senha" ng-model="usuario.senha">
+    </div>
+  </form>
+  <button class="login-btn btn btn-primary" type="submit" ng-click="login(usuario)">Logar</button>
+  <button class="login-btn btn btn-default" ng-click="telaCadastro()">Cadastre-se</button>
+</div>

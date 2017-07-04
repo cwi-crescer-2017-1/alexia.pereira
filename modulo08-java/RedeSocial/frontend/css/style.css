@@ -185,3 +185,11 @@ em:hover {
 form {
   margin-top: 10px;
 }
+
+.login-btn {
+  display: inline-block;
+}
+
+.btn-default {
+  margin-left: 5px;
+}
