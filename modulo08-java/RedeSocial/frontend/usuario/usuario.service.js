@@ -10,6 +10,14 @@ angular.module('app').factory('usuarioService', function ($http) {
     return $http.get(urlBase + email);
   };
 
+  function getByName(nome) {
+    return $http({
+      url: urlBase + 'buscar',
+      method: 'GET',
+      params: {nome: nome}
+    });
+  }
+
   function getUsuarioPorId(id) {
     return $http.get(urlBase + id);
   };
@@ -30,6 +38,7 @@ angular.module('app').factory('usuarioService', function ($http) {
     buscarUsuarioPorEmail: getUsuarioPorEmail,
     buscarPorId: getUsuarioPorId,
     buscarAmigos: getAmigos,
+    buscarPorNome: getByName,
     listar: getTodosOsUsuarios,
     atualizar: atualizar,
     criar: criar

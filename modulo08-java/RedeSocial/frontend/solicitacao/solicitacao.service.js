@@ -14,6 +14,10 @@ angular.module('app').factory('solicitacaoService', function ($http) {
     return $http.get(urlBase + 'pendentes/' + idUsuario);
   }
 
+  function getMinhasSolicitacoes(idUsuario) {
+    return $http.get(urlBase + 'minhas/' + idUsuario);
+  }
+
   function aceitar (solicitacao) {
     return $http.post(urlBase + 'aceitar', solicitacao);
   }
@@ -25,6 +29,7 @@ angular.module('app').factory('solicitacaoService', function ($http) {
   return {
     buscarSolicitacaoPorId: getSolicitacaoPorId,
     getSolicitacoesPendentes: getSolicitacoesPendentes,
+    getMinhasSolicitacoes: getMinhasSolicitacoes,
     criar: criar,
     aceitar: aceitar,
     deletar: deletar
