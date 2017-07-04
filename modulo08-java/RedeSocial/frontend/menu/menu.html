@@ -32,29 +32,31 @@
         </a>
       </li>
     </ul>
-    <ul class="menu-items solicitacoes" ng-show="notificacoes" ng-repeat="solicitacao in solicitacoes">
-      <li>
-        <img class="profile-image" ng-src="{{solicitacao.usuarioOwner.foto}}">
-        <div class="info-user">
-          <span>
-            {{solicitacao.usuarioOwner.nome}}
+    <div class="scrollbar face-overflow" ng-show="notificacoes">
+      <ul class="menu-items solicitacoes" ng-show="notificacoes" ng-repeat="solicitacao in solicitacoes">
+        <li>
+          <img class="profile-image" ng-src="{{solicitacao.usuarioOwner.foto}}">
+          <div class="info-user">
             <span>
-              adicionou você!
+              {{solicitacao.usuarioOwner.nome}}
+              <span>
+                adicionou você!
+              </span>
             </span>
-          </span>
-        </div>
-        <div class="botoes">
-          <button class="btn-success" ng-click="aceitarSolicitacao(solicitacao)">Aceitar</button>
-          <button class="btn-danger" ng-click="recusarSolicitacao(solicitacao)">Recusar</button>
-      </div>
-      </li>
-    </ul class="menu-items">
+          </div>
+          <div class="botoes">
+            <button class="btn-success" ng-click="aceitarSolicitacao(solicitacao)">Aceitar</button>
+            <button class="btn-danger" ng-click="recusarSolicitacao(solicitacao)">Recusar</button>
+          </div>
+        </li>
+      </ul class="menu-items">
+    </div>
     <ul>
-    <li class="menu-item">
-      <a class="menu-link" ng-click="logout()">
-        Logout
-      </a>
-    </li>
-  </ul>
+      <li class="menu-item">
+        <a class="menu-link" ng-click="logout()">
+          Logout
+        </a>
+      </li>
+    </ul>
   </nav>
 </div>
