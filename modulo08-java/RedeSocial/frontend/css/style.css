@@ -406,3 +406,14 @@ form {
   left: 50%;
   transform: translate(-58%);
 }
+
+@media screen and (max-width: 1300px) {
+  .menu {
+    display: none !important;
+  }
+
+  .inner {
+    padding-left: 0;
+  }
+
+}
